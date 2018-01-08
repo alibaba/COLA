@@ -20,8 +20,8 @@ public class CustomerBizOneConvertorExt  implements CustomerConvertorExtPt{
     private CustomerConvertor customerConvertor;//Composite basic convertor to do basic conversion
 
     @Override
-    public CustomerEntity convert(CustomerCO customerCO){
-        CustomerEntity customerEntity = customerConvertor.convert(customerCO);
+    public CustomerEntity clientToEntity(CustomerCO customerCO){
+        CustomerEntity customerEntity = customerConvertor.clientToEntity(customerCO);
         //In this business, AD and RFQ are regarded as different source
         if(Constants.SOURCE_AD.equals(customerCO.getSource()))
         {

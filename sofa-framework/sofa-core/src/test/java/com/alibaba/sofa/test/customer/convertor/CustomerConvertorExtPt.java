@@ -13,5 +13,5 @@ import com.alibaba.sofa.test.customer.entity.CustomerEntity;
  */
 public interface CustomerConvertorExtPt extends ConvertorI, ExtensionPointI {
 
-    public CustomerEntity convert(CustomerCO customerCO);
+    public CustomerEntity clientToEntity(CustomerCO customerCO);
 }

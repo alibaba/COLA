@@ -7,20 +7,19 @@
  */
 package com.alibaba.sofa.boot;
 
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
-
-import com.alibaba.common.lang.ArrayUtil;
-import com.alibaba.common.lang.StringUtil;
 import com.alibaba.sofa.common.CoreConstant;
 import com.alibaba.sofa.exception.InfraException;
 import com.alibaba.sofa.extension.Extension;
 import com.alibaba.sofa.extension.ExtensionCoordinate;
 import com.alibaba.sofa.extension.ExtensionPointI;
 import com.alibaba.sofa.extension.ExtensionRepository;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 /**
  * ExtensionRegister 
@@ -52,11 +51,11 @@ public class ExtensionRegister implements RegisterI, ApplicationContextAware{
      */
     private String calculateExtensionPoint(Class<?> targetClz) {
         Class[] interfaces = targetClz.getInterfaces();
-        if (ArrayUtil.isEmpty(interfaces))
+        if (ArrayUtils.isEmpty(interfaces))
             throw new InfraException("Please assign a extension point interface for "+targetClz);
         for (Class intf : interfaces) {
             String extensionPoint = intf.getSimpleName();
-            if (StringUtil.contains(extensionPoint, CoreConstant.EXTENSION_EXTPT_NAMING))
+            if (StringUtils.contains(extensionPoint, CoreConstant.EXTENSION_EXTPT_NAMING))
                 return extensionPoint;
         }
         throw new InfraException("Your name of ExtensionPoint for "+targetClz+" is not valid, must be end of "+CoreConstant.EXTENSION_EXTPT_NAMING);

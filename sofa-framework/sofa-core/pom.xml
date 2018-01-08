@@ -3,18 +3,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.alibaba.crm</groupId>
+		<groupId>com.alibaba.sofa</groupId>
 		<artifactId>all</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<artifactId>crm-core</artifactId>
+	<artifactId>sofa-core</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>crm-core</name>
+	<name>sofa-core</name>
 	<dependencies>	
 		<dependency>
-			<groupId>com.alibaba.crm</groupId>
-			<artifactId>crm-common</artifactId>
+			<groupId>com.alibaba.sofa</groupId>
+			<artifactId>sofa-common</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -41,8 +41,8 @@
 			<artifactId>reflections</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.alibaba.shared</groupId>
-			<artifactId>toolkit.common.lang</artifactId>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
 		</dependency>
 		<!-- JSR 303 Validation -->
 		<dependency>

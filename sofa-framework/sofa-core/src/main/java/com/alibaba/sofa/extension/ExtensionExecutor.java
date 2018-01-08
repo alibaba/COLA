@@ -12,6 +12,8 @@ import com.alibaba.sofa.common.CoreConstant;
 import com.alibaba.sofa.common.DefaultBizCode;
 import com.alibaba.sofa.context.TenantContext;
 import com.alibaba.sofa.exception.InfraException;
+import com.alibaba.sofa.logger.Logger;
+import com.alibaba.sofa.logger.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,11 +24,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExtensionExecutor extends ComponentExecutor{
 
+    private Logger logger = LoggerFactory.getLogger(ExtensionExecutor.class);
+
     @Autowired
     private ExtensionRepository extensionRepository;
 
     @Override
     protected <C> C locateComponent(Class<C> targetClz) {
+        C extension = locateExtension(targetClz);
+        logger.debug("[Located Extension]: "+extension.getClass().getSimpleName());
         return locateExtension(targetClz);
     }
 

@@ -1,7 +1,7 @@
 package com.alibaba.sofa.boot;
 
-import com.alibaba.common.lang.ArrayUtil;
-import com.alibaba.common.lang.StringUtil;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author fulan.zjf
@@ -16,11 +16,11 @@ public class ClassInterfaceChecker {
         }
 
         Class[] interfaces = targetClz.getInterfaces();
-        if (ArrayUtil.isEmpty(interfaces))
+        if (ArrayUtils.isEmpty(interfaces))
             return false;
         for (Class intf : interfaces) {
             String intfSimpleName = intf.getSimpleName();
-            if (StringUtil.equals(intfSimpleName, expectedName))
+            if (StringUtils.equals(intfSimpleName, expectedName))
                 return true;
         }
         return false;

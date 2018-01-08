@@ -30,7 +30,7 @@ public class ValidatorExecutor extends ExtensionExecutor {
     @Override
     protected <C> C locateComponent(Class<C> targetClz) {
         C validator = (C) plainValidatorRepository.getPlainValidators().get(targetClz);
-        return null != validator ? validator : super.locateExtension(targetClz);
+        return null != validator ? validator : super.locateComponent(targetClz);
     }
 
 }
