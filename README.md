@@ -1,5 +1,6 @@
 # SOFA
 > SOFA是Simple Object-Oriented and Flexible Architecture的缩写，是轻量级的企业应用框架，可以有效的降低业务系统复杂度。
+![image.png](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/26321403c9123efc269cb6013c55555f.png)
 
 关于架构和设计的详细内容，请查看：https://www.atatech.org/articles/96063
 
