@@ -83,7 +83,7 @@
         </fileSet>
       </fileSets>
     </module>
-    <module id="${rootArtifactId}-tunnel" dir="__rootArtifactId__-tunnel" name="${rootArtifactId}-tunnel">
+    <module id="${rootArtifactId}-infrastructure" dir="__rootArtifactId__-infrastructure" name="${rootArtifactId}-infrastructure">
       <fileSets>
         <fileSet filtered="true" packaged="true" encoding="UTF-8">
           <directory>src/main/java</directory>
@@ -101,28 +101,6 @@
           <directory>src/test/java</directory>
           <includes>
             <include>**/*.java</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/test/resources</directory>
-          <includes>
-            <include>**/*.properties</include>
-          </includes>
-        </fileSet>
-      </fileSets>
-    </module>
-    <module id="${rootArtifactId}-config" dir="__rootArtifactId__-config" name="${rootArtifactId}-config">
-      <fileSets>
-        <fileSet filtered="true" packaged="true" encoding="UTF-8">
-          <directory>src/main/java</directory>
-          <includes>
-            <include>**/*.java</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/main/resources</directory>
-          <includes>
-            <include>**/*.xml</include>
           </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">

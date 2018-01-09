@@ -6,8 +6,8 @@ package ${package}.domain.customer.repository;
 import java.util.ArrayList;
 import java.util.List;
 
-import ${package}.dataobject.CustomerDO;
-import ${package}.datatunnel.CustomerTunnelI;
+import ${package}.tunnel.dataobject.CustomerDO;
+import ${package}.tunnel.datatunnel.CustomerTunnelI;
 import ${package}.domain.customer.convertor.CustomerConvertor;
 import ${package}.domain.customer.entity.CustomerE;
 import org.springframework.beans.factory.annotation.Autowired;

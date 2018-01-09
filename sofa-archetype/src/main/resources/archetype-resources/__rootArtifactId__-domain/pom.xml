@@ -12,7 +12,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>${groupId}</groupId>
-			<artifactId>${rootArtifactId}-tunnel</artifactId>
+			<artifactId>${rootArtifactId}-infrastructure</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>${groupId}</groupId>
@@ -27,4 +27,17 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 	</dependencies>
+
+	<build>
+			<pluginManagement>
+					<plugins>
+							<plugin>
+								<artifactId>maven-deploy-plugin</artifactId>
+								<configuration>
+									<skip>true</skip>
+								</configuration>
+							</plugin>
+					</plugins>
+			</pluginManagement>
+	</build>
 </project>

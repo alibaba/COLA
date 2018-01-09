@@ -3,8 +3,8 @@
 #set( $symbol_escape = '\' )
 package ${package}.service;
 
-import ${package}.config.AppConstants;
-import ${package}.config.BizCode;
+import ${package}.common.AppConstants;
+import ${package}.common.BizCode;
 import ${package}.dto.CustomerCheckConflictCmd;
 import ${package}.dto.CustomerFindByCriteriaQuery;
 import ${package}.dto.clientobject.CustomerType;

@@ -3,9 +3,9 @@
 #set( $symbol_escape = '\' )
 package ${package}.domain.customer.convertor.extension;
 
-import ${package}.config.AppConstants;
-import ${package}.config.BizCode;
-import ${package}.dataobject.CustomerDO;
+import ${package}.common.AppConstants;
+import ${package}.common.BizCode;
+import ${package}.tunnel.dataobject.CustomerDO;
 import ${package}.domain.customer.convertor.CustomerConvertor;
 import ${package}.domain.customer.convertor.extensionpoint.CustomerConvertorExtPt;
 import ${package}.domain.customer.entity.CustomerE;

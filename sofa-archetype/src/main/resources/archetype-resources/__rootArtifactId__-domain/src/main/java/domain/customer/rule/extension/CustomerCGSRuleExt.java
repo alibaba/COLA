@@ -3,7 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.domain.customer.rule.extension;
 
-import ${package}.config.BizCode;
+import ${package}.common.BizCode;
 import ${package}.domain.customer.entity.CustomerE;
 import com.alibaba.sofa.extension.Extension;
 import com.alibaba.sofa.logger.Logger;

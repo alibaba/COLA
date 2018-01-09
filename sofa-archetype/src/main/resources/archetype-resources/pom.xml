@@ -30,8 +30,7 @@
         <module>${artifactId}-client</module>
         <module>${artifactId}-app</module>
         <module>${artifactId}-domain</module>
-        <module>${artifactId}-tunnel</module>
-        <module>${artifactId}-config</module>
+        <module>${artifactId}-infrastructure</module>
         <module>start</module>
     </modules>
 
@@ -73,12 +72,7 @@
             </dependency>
             <dependency>
                 <groupId>${groupId}</groupId>
-                <artifactId>${artifactId}-tunnel</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${groupId}</groupId>
-                <artifactId>${artifactId}-config</artifactId>
+                <artifactId>${artifactId}-infrastructure</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Project modules End-->

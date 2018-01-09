@@ -10,7 +10,7 @@
  */
 package ${package}.validator.extension;
 
-import ${package}.config.BizCode;
+import ${package}.common.BizCode;
 import ${package}.dto.CustomerAddCmd;
 import ${package}.dto.clientobject.CustomerType;
 import ${package}.validator.CustomerAddValidator;

@@ -3,7 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.domain.customer.convertor;
 
-import ${package}.dataobject.CustomerDO;
+import ${package}.tunnel.dataobject.CustomerDO;
 import ${package}.domain.customer.entity.CustomerE;
 import ${package}.domain.customer.valueobject.CompanyType;
 import ${package}.dto.clientobject.CustomerCO;

@@ -10,7 +10,7 @@
  */
 package ${package}.validator.extension;
 
-import ${package}.config.BizCode;
+import ${package}.common.BizCode;
 import ${package}.dto.CustomerAddCmd;
 import ${package}.validator.CustomerAddValidator;
 import com.alibaba.sofa.exception.ParamException;

@@ -9,28 +9,28 @@
 	<artifactId>${artifactId}</artifactId>
 	<version>${version}</version>
 	<name>${artifactId}</name>
-
 	<dependencies>
+		<!-- SOFA Framework -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
+			<groupId>com.alibaba.sofa</groupId>
+			<artifactId>sofa-core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
+			<groupId>com.alibaba.sofa</groupId>
+			<artifactId>sofa-test</artifactId>
+		</dependency>
+		<!-- SOFA Framework End-->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
 		</dependency>
 	</dependencies>
-
-	<build>
-			<pluginManagement>
-					<plugins>
-							<plugin>
-								<artifactId>maven-deploy-plugin</artifactId>
-								<configuration>
-									<skip>true</skip>
-								</configuration>
-							</plugin>
-					</plugins>
-			</pluginManagement>
-	</build>		
 </project>

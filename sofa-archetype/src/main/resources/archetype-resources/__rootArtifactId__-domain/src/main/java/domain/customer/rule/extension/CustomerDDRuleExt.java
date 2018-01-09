@@ -3,7 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.domain.customer.rule.extension;
 
-import ${package}.config.BizCode;
+import ${package}.common.BizCode;
 import ${package}.domain.customer.entity.CustomerE;
 import ${package}.domain.customer.rule.extensionpoint.CustomerRuleExtPt;
 import ${package}.domain.customer.valueobject.SourceType;

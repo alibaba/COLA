@@ -4,8 +4,8 @@
 package ${package}.command.query;
 
 import ${package}.domain.customer.convertor.CustomerConvertor;
-import ${package}.dataobject.CustomerDO;
-import ${package}.datatunnel.CustomerTunnelI;
+import ${package}.tunnel.dataobject.CustomerDO;
+import ${package}.tunnel.datatunnel.CustomerTunnelI;
 import ${package}.dto.CustomerFindByCriteriaQuery;
 import ${package}.dto.clientobject.CustomerCO;
 import com.alibaba.sofa.command.Command;

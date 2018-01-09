@@ -4,7 +4,7 @@
 package ${package}.command.extension;
 
 import ${package}.command.extensionpoint.CustomerCheckConflictSearchConditionExtPt;
-import ${package}.config.BizCode;
+import ${package}.common.BizCode;
 import com.alibaba.sofa.extension.Extension;
 
 @Extension(bizCode = BizCode.TP)

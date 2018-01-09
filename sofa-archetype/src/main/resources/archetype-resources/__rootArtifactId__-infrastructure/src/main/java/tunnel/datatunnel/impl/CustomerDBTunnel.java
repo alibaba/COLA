@@ -1,10 +1,10 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.datatunnel.impl;
+package ${package}.tunnel.datatunnel.impl;
 
-import ${package}.dataobject.CustomerDO;
-import ${package}.datatunnel.CustomerTunnelI;
+import ${package}.tunnel.dataobject.CustomerDO;
+import ${package}.tunnel.datatunnel.CustomerTunnelI;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
