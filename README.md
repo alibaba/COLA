@@ -1,15 +1,16 @@
 # SOFA
 > SOFA是Simple Object-Oriented and Flexible Architecture的缩写，是轻量级的企业应用框架，可以有效的降低业务系统复杂度。
+![image.png](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/26321403c9123efc269cb6013c55555f.png)
 
 关于架构和设计的详细内容，请查看：https://www.atatech.org/articles/96063
 
 # 项目说明
-SOFA框架包括两个Project，一个是sofa-framework里面是框架的核心代码，另一个是sofa-archetype是用来生成新应用的Maven Archetype
+SOFA框架包括两个Project，一个是sofa-framework里面是框架的核心代码，另一个是sofa-archetype是用来生成新应用的Maven Archetype源码。
 ## sofa-framework Project
 该Project包含3个Module，sofa-core, sofa-common, sofa-test
 ### sofa-core
 该Module是整个框架的核心，里面的主要功能和Package如下：
-```java
+```
 com
 └── alibaba
     └── sofa
@@ -42,7 +43,7 @@ mvn archetype:generate  -DgroupId=com.alibaba.crm -DartifactId=demo -Dversion=1.
 ```
 生成的应用主要包括demo-app, demo-domain, demo-tunnel, demo-config, demo-client和Start五个Module，分别代表不同层次（Tier）和用途。
 ```
-├── demo-app  //这个是Application层
+├── demo-app  \\这个是Application层
 │   └── src
 │       └── main
 │           └── java
@@ -62,7 +63,7 @@ mvn archetype:generate  -DgroupId=com.alibaba.crm -DartifactId=demo -Dversion=1.
 │                               └── validator
 │                                   ├── extension
 │                                   └── extensionpoint
-├── demo-client //这个是二方库，提供给Consumer做RPC调用用的
+├── demo-client \\这个是二方库，提供给Consumer做RPC调用用的
 │   └── src
 │       └── main
 │           └── java
@@ -73,7 +74,7 @@ mvn archetype:generate  -DgroupId=com.alibaba.crm -DartifactId=demo -Dversion=1.
 │                               ├── api
 │                               └── dto
 │                                   └── clientobject
-├── demo-config //这个是应用的配置
+├── demo-config \\这个是应用的配置
 │   └── src
 │       └── main
 │           └── java
@@ -82,7 +83,7 @@ mvn archetype:generate  -DgroupId=com.alibaba.crm -DartifactId=demo -Dversion=1.
 │                       └── crm
 │                           └── demo
 │                               └── config
-├── demo-domain //这个是Domain层，所有的业务逻辑都应该在这个Module里面
+├── demo-domain \\这个是Domain层，所有的业务逻辑都应该在这个Module里面
 │   └── src
 │       └── main
 │           └── java
@@ -102,7 +103,7 @@ mvn archetype:generate  -DgroupId=com.alibaba.crm -DartifactId=demo -Dversion=1.
 │                                       │   ├── extension
 │                                       │   └── extensionpoint
 │                                       └── valueobject
-├── demo-tunnel //这个是Tunnel层，也就是仓储层，所有和DB或者其它通道的数据交互都在这一层处理
+├── demo-tunnel \\这个是Tunnel层，也就是仓储层，所有和DB或者其它通道的数据交互都在这一层处理
 │   └── src
 │       └── main
 │           └── java
@@ -113,7 +114,7 @@ mvn archetype:generate  -DgroupId=com.alibaba.crm -DartifactId=demo -Dversion=1.
 │                               ├── dataobject
 │                               └── datatunnel
 │                                   └── impl
-└── start //这个是应用的启动Module，通常是用SpringBoot，如果是阿里系的话，通常是PandoraBoot
+└── start \\这个是应用的启动Module，通常是用SpringBoot，如果是阿里系的话，通常是PandoraBoot
     └── src
         └── main
             └── java
