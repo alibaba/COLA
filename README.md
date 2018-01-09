@@ -9,7 +9,7 @@ SOFA框架包括两个Project，一个是sofa-framework里面是框架的核心�
 该Project包含3个Module，sofa-core, sofa-common, sofa-test
 ### sofa-core
 该Module是整个框架的核心，里面的主要功能和Package如下：
-```xml
+```
 com
 └── alibaba
     └── sofa
@@ -41,7 +41,7 @@ com
 mvn archetype:generate  -DgroupId=com.alibaba.crm -DartifactId=demo -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.crm.demo -DarchetypeArtifactId=sofa-framework-archetype -DarchetypeGroupId=com.alibaba.sofa -DarchetypeVersion=1.0.0-SNAPSHOT
 ```
 生成的应用主要包括demo-app, demo-domain, demo-tunnel, demo-config, demo-client和Start五个Module，分别代表不同层次（Tier）和用途。
-```js
+```
 ├── demo-app  \\这个是Application层
 │   └── src
 │       └── main
