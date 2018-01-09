@@ -9,7 +9,7 @@ SOFA框架包括两个Project，一个是sofa-framework里面是框架的核心�
 该Project包含3个Module，sofa-core, sofa-common, sofa-test
 ### sofa-core
 该Module是整个框架的核心，里面的主要功能和Package如下：
-```js
+```xml
 com
 └── alibaba
     └── sofa
