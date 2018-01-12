@@ -5,7 +5,7 @@ package ${package}.api;
 
 import ${package}.dto.CustomerAddCmd;
 import ${package}.dto.CustomerCheckConflictCmd;
-import ${package}.dto.CustomerFindByCriteriaQuery;
+import ${package}.dto.CustomerFindByCriteriaQry;
 import com.alibaba.sofa.dto.MultiResponse;
 import com.alibaba.sofa.dto.Response;
 import ${package}.dto.clientobject.CustomerCO;
@@ -16,5 +16,5 @@ public interface CustomerServiceI {
     
     public MultiResponse<CustomerCO> checkConflict(CustomerCheckConflictCmd customerCheckConflictCmd);
     
-    public MultiResponse<CustomerCO> findByCriteria(CustomerFindByCriteriaQuery customerFindByCriteriaQuery);
+    public MultiResponse<CustomerCO> findByCriteria(CustomerFindByCriteriaQry CustomerFindByCriteriaQry);
 }

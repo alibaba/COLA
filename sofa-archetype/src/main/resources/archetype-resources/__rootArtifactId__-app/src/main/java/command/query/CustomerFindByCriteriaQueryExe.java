@@ -6,7 +6,7 @@ package ${package}.command.query;
 import ${package}.domain.customer.convertor.CustomerConvertor;
 import ${package}.tunnel.dataobject.CustomerDO;
 import ${package}.tunnel.datatunnel.CustomerTunnelI;
-import ${package}.dto.CustomerFindByCriteriaQuery;
+import ${package}.dto.CustomerFindByCriteriaQry;
 import ${package}.dto.clientobject.CustomerCO;
 import com.alibaba.sofa.command.Command;
 import com.alibaba.sofa.command.QueryExecutorI;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Command
-public class CustomerFindByCriteriaQueryExe implements QueryExecutorI<MultiResponse<CustomerCO>, CustomerFindByCriteriaQuery> {
+public class CustomerFindByCriteriaQryExe implements QueryExecutorI<MultiResponse<CustomerCO>, CustomerFindByCriteriaQry> {
 
     @Autowired
     CustomerTunnelI customerDBTunnel;
@@ -26,7 +26,7 @@ public class CustomerFindByCriteriaQueryExe implements QueryExecutorI<MultiRespo
     CustomerConvertor customerConvertor;
     
     @Override
-    public MultiResponse<CustomerCO> execute(CustomerFindByCriteriaQuery cmd) {
+    public MultiResponse<CustomerCO> execute(CustomerFindByCriteriaQry cmd) {
         CustomerDO customerDO = customerDBTunnel.get("123");
         List<CustomerCO> customerCos = new ArrayList<>();
         customerCos.add(customerConvertor.dataToClient(customerDO));

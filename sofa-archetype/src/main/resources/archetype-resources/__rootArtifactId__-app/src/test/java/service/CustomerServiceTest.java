@@ -6,7 +6,7 @@ package ${package}.service;
 import ${package}.common.AppConstants;
 import ${package}.common.BizCode;
 import ${package}.dto.CustomerCheckConflictCmd;
-import ${package}.dto.CustomerFindByCriteriaQuery;
+import ${package}.dto.CustomerFindByCriteriaQry;
 import ${package}.dto.clientobject.CustomerType;
 import com.alibaba.sofa.context.TenantContext;
 import com.alibaba.sofa.dto.MultiResponse;

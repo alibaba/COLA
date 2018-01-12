@@ -4,7 +4,7 @@
 package ${package}.service;
 
 import ${package}.dto.CustomerCheckConflictCmd;
-import ${package}.dto.CustomerFindByCriteriaQuery;
+import ${package}.dto.CustomerFindByCriteriaQry;
 import com.alibaba.sofa.command.CommandBusI;
 import com.alibaba.sofa.dto.MultiResponse;
 import com.alibaba.sofa.dto.Response;
@@ -36,8 +36,8 @@ public class CustomerServiceImpl implements CustomerServiceI {
     }
 
     @Override
-    public MultiResponse<CustomerCO> findByCriteria(CustomerFindByCriteriaQuery customerFindByCriteriaQuery) {
-        return (MultiResponse<CustomerCO>)commandBus.send(customerFindByCriteriaQuery);
+    public MultiResponse<CustomerCO> findByCriteria(CustomerFindByCriteriaQry CustomerFindByCriteriaQry) {
+        return (MultiResponse<CustomerCO>)commandBus.send(CustomerFindByCriteriaQry);
     }
 
 }

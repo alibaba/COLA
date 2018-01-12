@@ -5,6 +5,6 @@ package ${package}.dto;
 
 import com.alibaba.sofa.dto.Query;
 
-public class CustomerFindByNameQuery extends Query{
+public class CustomerFindByNameQry extends Query{
 
 }
