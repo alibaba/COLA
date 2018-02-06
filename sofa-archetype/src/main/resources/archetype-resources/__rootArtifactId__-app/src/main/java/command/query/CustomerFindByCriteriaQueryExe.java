@@ -17,14 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Command
-public class CustomerFindByCriteriaQryExe implements QueryExecutorI<MultiResponse<CustomerCO>, CustomerFindByCriteriaQry> {
+public class CustomerFindByCriteriaQueryExe implements QueryExecutorI<MultiResponse<CustomerCO>, CustomerFindByCriteriaQry> {
 
     @Autowired
     CustomerTunnelI customerDBTunnel;
-    
+
     @Autowired
     CustomerConvertor customerConvertor;
-    
+
     @Override
     public MultiResponse<CustomerCO> execute(CustomerFindByCriteriaQry cmd) {
         CustomerDO customerDO = customerDBTunnel.get("123");
@@ -32,7 +32,7 @@ public class CustomerFindByCriteriaQryExe implements QueryExecutorI<MultiRespons
         customerCos.add(customerConvertor.dataToClient(customerDO));
         return MultiResponse.of(customerCos, customerCos.size());
     }
-    
+
 
     public CustomerDO get(String id) {
         CustomerDO customerDO = customerDBTunnel.get("123");
