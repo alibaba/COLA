@@ -1,8 +1,7 @@
 # SOFA
 > SOFA是Simple Object-Oriented and Flexible Architecture的缩写，是轻量级的企业应用框架，可以有效的降低业务系统复杂度。
-![image.png](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/26321403c9123efc269cb6013c55555f.png)
 
-关于架构和设计的详细内容，请查看：https://yq.aliyun.com/articles/285590?spm=a2c4e.11155435.0.0.36ec3312joePJU
+关于架构和设计的详细内容，请查看：https://yq.aliyun.com/articles/285590
 
 # 项目说明
 SOFA框架包括两个Project，一个是sofa-framework里面是框架的核心代码，另一个是sofa-archetype是用来生成新应用的Maven Archetype源码。
