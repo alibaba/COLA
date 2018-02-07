@@ -1,0 +1,30 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- <import resource="mybatis-beans.xml" /> -->
+
+	<context:component-scan base-package="${groupId}" />
+
+	<bean id="bootstrap" class="${groupId}.boot.Bootstrap" init-method="init">
+		<property name="packages">
+			<list>
+				<value>${package}</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="appProperty"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<array>
+				<value>classpath:localConfig.properties</value>
+			</array>
+		</property>
+	</bean>
+</beans>

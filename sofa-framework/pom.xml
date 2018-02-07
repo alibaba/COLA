@@ -1,0 +1,191 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+			<groupId>com.taobao</groupId>
+			<artifactId>parent</artifactId>
+			<version>2.0.0</version>
+	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.alibaba.sofa</groupId>
+	<artifactId>all</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>all</name>
+
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<mockito-all.version>1.10.19</mockito-all.version>
+		<mybatis-starter.version>1.1.1</mybatis-starter.version>
+		<spring-version>4.3.5.RELEASE</spring-version>
+		<spring-boot.version>1.4.3.RELEASE</spring-boot.version>
+		<spring-test.version>4.3.2.RELEASE</spring-test.version>
+		<junit.version>4.12</junit.version>
+		<logback.version>1.2.3.5-struct</logback.version>
+		<slf4j.version>1.7.22</slf4j.version>
+		<sofa.framework.version>1.0.0-SNAPSHOT</sofa.framework.version>
+		<toolkit.common.lang.version>1.0</toolkit.common.lang.version>
+		<jakarta.commons.beanutils.version>1.8.3</jakarta.commons.beanutils.version>
+	</properties>
+
+	<modules>
+		<module>sofa-test</module>
+		<module>sofa-common</module>
+		<module>sofa-core</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<!--项目依赖 -->
+			<dependency>
+				<groupId>com.alibaba.sofa</groupId>
+				<artifactId>sofa-test</artifactId>
+				<version>${sofa.framework.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba.sofa</groupId>
+				<artifactId>sofa-common</artifactId>
+				<version>${sofa.framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba.sofa</groupId>
+				<artifactId>sofa-core</artifactId>
+				<version>${sofa.framework.version}</version>
+			</dependency>
+			<!--项目依赖 End -->
+			<!-- Mybatis -->
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>3.4.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>1.3.1</version>
+			</dependency>
+			<!-- Mybatis End -->
+			<!-- Spring框架 -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring-version}</version>
+			</dependency>
+			<!-- Spring框架 End -->
+			<!-- 日志依赖 -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.9</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<!-- 日志依赖 End -->
+			<!-- 测试依赖 -->
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>${mockito-all.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring-test.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- 测试依赖 End -->
+			<!-- Commons依赖 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.4</version>
+			</dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+				<version>1.12.6</version>
+            </dependency>
+			<dependency>
+				<groupId>org.reflections</groupId>
+				<artifactId>reflections</artifactId>
+				<version>0.9.10</version>
+			</dependency>
+			<!-- Commons依赖End -->
+			<!--Validation API-->
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>2.0.0.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>6.0.7.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.el</groupId>
+				<artifactId>javax.el-api</artifactId>
+				<version>3.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.web</groupId>
+				<artifactId>javax.el</artifactId>
+				<version>2.2.6</version>
+			</dependency>
+			<!--Validation API End -->
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>3.0.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
