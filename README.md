@@ -1,13 +1,13 @@
-# SOFA
-> SOFA是Simple Object-Oriented and Flexible Architecture的缩写，是轻量级的企业应用框架，可以有效的降低业务系统复杂度。
+# COPA
+> COPA是Collaborative Open Platform Architecture的缩写，是轻量级的企业应用框架，可以有效的降低业务系统复杂度。
 
 关于架构和设计的详细内容，请查看
-- SOFA架构：http://blog.csdn.net/significantfrank/article/details/79286947
+- COPA架构：http://blog.csdn.net/significantfrank/article/details/79286947
 - 领域建模：http://blog.csdn.net/significantfrank/article/details/79614915
 - 需要进一步交流的，也可以加我的微信 25216348
 
 # 项目说明
-SOFA框架包括两个Project，一个是sofa-framework里面是框架的核心代码，另一个是sofa-archetype是用来生成新应用的Maven Archetype源码。
+COPA框架包括两个Project，一个是sofa-framework里面是框架的核心代码，另一个是sofa-archetype是用来生成新应用的Maven Archetype源码。
 ## sofa-framework Project
 该Project包含3个Module，sofa-core, sofa-common, sofa-test
 ### sofa-core
