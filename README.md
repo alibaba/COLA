@@ -4,7 +4,7 @@
 关于架构和设计的详细内容，请查看
 - COPA架构：http://blog.csdn.net/significantfrank/article/details/79286947
 - 领域建模：http://blog.csdn.net/significantfrank/article/details/79614915
-- 需要进一步交流的，也可以加我的微信 25216348
+- 需要进一步交流的，也可以加我微信： josico-nie
 
 # 项目说明
 COPA框架包括两个Project，一个是sofa-framework里面是框架的核心代码，另一个是sofa-archetype是用来生成新应用的Maven Archetype源码。
