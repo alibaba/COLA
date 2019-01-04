@@ -1,6 +1,10 @@
 # COLA
+<<<<<<< HEAD
 > COLA是Clean Object-oriented & Layered Architecture的缩写，是轻量级的企业应用框架，可以有效的降低业务系统复杂度。
 ![image.png](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/26321403c9123efc269cb6013c55555f.png)
+=======
+> COLA是Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”，也叫“可乐”架构。
+>>>>>>> 4cc8105518388c16e8d102b2d3ff74de70d0f92e
 
 关于架构和设计的详细内容，请查看：https://www.atatech.org/articles/96063
 
