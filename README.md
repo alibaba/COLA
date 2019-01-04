@@ -4,7 +4,6 @@
 ![image.png](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/9e7048ef11db23b0579a439676dec4c9.png)
 
 # COLA架构
-![image.png](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/f2362774cb6e4f5a46c1479eee1b2443.png)
 关于架构和设计的详细内容，请查看：https://www.atatech.org/articles/96063
 
 # 项目说明
