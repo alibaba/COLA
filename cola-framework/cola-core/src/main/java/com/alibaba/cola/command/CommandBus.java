@@ -1,5 +1,6 @@
 package com.alibaba.cola.command;
 
+import com.alibaba.cola.common.ApplicationContextHelper;
 import com.alibaba.cola.exception.*;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -18,16 +19,14 @@ import com.alibaba.cola.logger.LoggerFactory;
  * @author fulan.zjf 2017年10月24日 上午12:47:18
  */
 @Component
-public class CommandBus implements CommandBusI, ApplicationContextAware{
+public class CommandBus implements CommandBusI{
     
     Logger logger = LoggerFactory.getLogger(CommandBus.class);
     
     @Autowired
     private CommandHub commandHub;
 
-    private ApplicationContext applicationContext;
 
-    @SuppressWarnings("unchecked")
     @Override
     public Response send(Command cmd) {
         Response response = null;
@@ -58,12 +57,34 @@ public class CommandBus implements CommandBusI, ApplicationContextAware{
         try {
             return (Response) responseClz.newInstance();
         } catch (Exception e) {
-            logger.error("Process "+cmd+" error: "+e.getMessage(), e);
             throw new ColaException(e.getMessage());
         }
     }
 
     private void defaultHandleException(Command cmd, Response response, Exception exception) {
+        formResponse(response, exception);
+
+        printLog(cmd, response, exception);
+    }
+
+    private void printLog(Command cmd, Response response, Exception exception) {
+        if(exception instanceof BizException || exception instanceof ParamException){
+            //biz exception is expected, only warn it
+            logger.warn(buildErrorMsg(cmd, response));
+        }
+        else{
+            //sys exception should be monitored, and pay attention to it
+            logger.error(buildErrorMsg(cmd, response), exception);
+        }
+    }
+
+    private String buildErrorMsg(Command cmd, Response response) {
+        return "Process [" + cmd + "] failed, errorCode: "
+                + response.getErrCode() + " errorMsg:"
+                + response.getErrMessage();
+    }
+
+    private void formResponse(Response response, Exception exception) {
         if (exception instanceof AppException) {
             ErrorCodeI errCode = ((AppException) exception).getErrCode();
             response.setErrCode(errCode.getErrCode());
@@ -72,22 +93,15 @@ public class CommandBus implements CommandBusI, ApplicationContextAware{
             response.setErrCode(BasicErrorCode.S_UNKNOWN.getErrCode());
         }
         response.setErrMessage(exception.getMessage());
-        logger.error("Process ["+cmd+"] error, errorCode: "
-                + response.getErrCode() + " errorMsg:"
-                + response.getErrMessage(), exception);
     }
 
     private ExceptionHandlerI getCustomerizedExceptionHandler() {
         try {
-            return applicationContext.getBean(ExceptionHandlerI.class);
+            return ApplicationContextHelper.getBean(ExceptionHandlerI.class);
         }
         catch (NoSuchBeanDefinitionException ex){
             return null;
         }
     }
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
 }
