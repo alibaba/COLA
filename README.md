@@ -1,12 +1,11 @@
 # 
 > COLA是Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”，也叫“可乐”架构。
 
-http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/9e7048ef11db23b0579a439676dec4c9.png
-
-关于架构和设计的详细内容，请查看：https://www.atatech.org/articles/96063
+![image.png](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/9e7048ef11db23b0579a439676dec4c9.png)
 
 # COLA架构
-http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/f2362774cb6e4f5a46c1479eee1b2443.png
+![image.png](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/f2362774cb6e4f5a46c1479eee1b2443.png)
+关于架构和设计的详细内容，请查看：https://www.atatech.org/articles/96063
 
 # 项目说明
 COLA框架包括两个Project，一个是cola-framework里面是框架的核心代码，另一个是cola-archetype是用来生成新应用的Maven Archetype源码。
