@@ -4,10 +4,11 @@
 <strong>COLA是Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”，也叫“可乐”架构。</strong>
 >注意本架构曾用名SOFA、COPA，以后统一使用COLA这个新名称，若有困扰和不便，在此表示抱歉
 
-关于架构和设计的详细内容，请查看
-- COLA架构：http://blog.csdn.net/significantfrank/article/details/79286947
-- 领域建模：http://blog.csdn.net/significantfrank/article/details/79614915
-- 需要进一步交流的，可以微信咨询： josico-nie
+更多关于COLA架构的信息：
+- COLA架构的设计思想和原理：[请点击](https://blog.csdn.net/significantfrank/article/details/85785565)
+- 领域建模的方法论：[请点击](http://blog.csdn.net/significantfrank/article/details/79614915)
+
+需要进一步交流的，可以微信咨询： josico-nie
 
 # 项目说明
 COLA框架包括两个Project，一个是cola-framework里面是框架的核心代码，另一个是cola-archetype是用来生成新应用的Maven Archetype源码。
