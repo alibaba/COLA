@@ -1,23 +1,24 @@
-# COLA
-> COLA是Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”，也叫“可乐”架构。
-
+==请注意本架构曾用名SOFA、COPA，以后统一使用COLA这个新名称，若有困扰和不便，在此表示抱歉==
 ![image.png](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/9e7048ef11db23b0579a439676dec4c9.png)
 
+# COLA架构
+>COLA是Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”，也叫“可乐”架构。
+
 关于架构和设计的详细内容，请查看
-- COPA架构：http://blog.csdn.net/significantfrank/article/details/79286947
+- COLA架构：http://blog.csdn.net/significantfrank/article/details/79286947
 - 领域建模：http://blog.csdn.net/significantfrank/article/details/79614915
 - 需要进一步交流的，可以微信咨询： josico-nie
 
 # 项目说明
-COPA框架包括两个Project，一个是sofa-framework里面是框架的核心代码，另一个是sofa-archetype是用来生成新应用的Maven Archetype源码。
-## sofa-framework Project
-该Project包含3个Module，sofa-core, sofa-common, sofa-test
-### sofa-core
+COLA框架包括两个Project，一个是cola-framework里面是框架的核心代码，另一个是cola-archetype是用来生成新应用的Maven Archetype源码。
+## cola-framework Project
+该Project包含3个Module，cola-core, cola-common, cola-test
+### cola-core
 该Module是整个框架的核心，里面的主要功能和Package如下：
 ```
 com
 └── alibaba
-    └── sofa
+    └── cola
         ├── assembler  \\提供Assembler标准
         ├── boot \\这是框架的核心启动包，负责框架组件的注册、发现
         ├── command  \\提供Command标准
@@ -35,90 +36,14 @@ com
         │   └── ruleengine
         └── validator  \\提供Validator标准和执行
 ```
-### sofa-common
+### cola-common
 该Module提供了框架中Client Object, Entity Object和Data Object的定义，二方库会依赖该Module。
-### sofa-test  
+### cola-test  
 该Module主要是提供一些开发测试的工具，可以使用TDD来进行开发。
 
-## sofa-archetype Project
+## cola-archetype Project
 该Project下面是Archetype的源码，先执行`mvn install`，然后就可以用下面的命令来创建新应用：
 ```
-mvn archetype:generate  -DgroupId=com.alibaba.crm -DartifactId=demo -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.crm.demo -DarchetypeArtifactId=sofa-framework-archetype -DarchetypeGroupId=com.alibaba.sofa -DarchetypeVersion=1.0.0-SNAPSHOT
+mvn archetype:generate  -DgroupId=com.alibaba.sample -DartifactId=demo -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.sample -DarchetypeArtifactId=cola-framework-archetype -DarchetypeGroupId=com.alibaba.cola -DarchetypeVersion=1.0.0-SNAPSHOT
 ```
-生成的应用主要包括demo-app, demo-domain, demo-infrastructure, demo-client和Start五个Module，分别代表不同层次（Tier）和用途。
-```
-├── demo-app  \\这个是Application层
-│   └── src
-│       └── main
-│           └── java
-│               └── com
-│                   └── alibaba
-│                       └── crm
-│                           └── demo
-│                               ├── assembler
-│                               ├── command
-│                               │   ├── extension
-│                               │   ├── extensionpoint
-│                               │   └── query
-│                               ├── event
-│                               │   └── handler
-│                               ├── interceptor
-│                               ├── service
-│                               └── validator
-│                                   ├── extension
-│                                   └── extensionpoint
-├── demo-domain \\这个是Domain层，所有的业务逻辑都应该在这个Module里面
-│   └── src
-│       └── main
-│           └── java
-│               └── com
-│                   └── alibaba
-│                       └── crm
-│                           └── demo
-│                               └── domain
-│                                   └── customer
-│                                       ├── convertor
-│                                       │   ├── extension
-│                                       │   └── extensionpoint
-│                                       ├── entity
-│                                       ├── factory
-│                                       ├── repository
-│                                       ├── rule
-│                                       │   ├── extension
-│                                       │   └── extensionpoint
-│                                       └── valueobject
-├── demo-infrastructure \\\\这个是infrastructure层，也就是仓储(tunnul), 配置（config）和通用（common）
-│   └── src
-│       ├── main
-│           ├── java
-│           │   └── com
-│           │       └── alibaba
-│           │           └── crm
-│           │               └── demo
-│           │                   ├── common
-│           │                   ├── config
-│           │                   └── tunnel
-│           │                       ├── dataobject
-│           │                       └── datatunnel
-│           │                           └── impl
-│           └── resources
-├── demo-client \\这个是二方库，提供给Consumer做RPC调用用的
-│   └── src
-│       └── main
-│           └── java
-│               └── com
-│                   └── alibaba
-│                       └── crm
-│                           └── demo
-│                               ├── api
-│                               └── dto
-│                                   └── clientobject
-└── start \\这个是应用的启动Module，通常是用SpringBoot，如果是阿里系的话，通常是PandoraBoot
-    └── src
-        └── main
-            └── java
-                └── com
-                    └── alibaba
-                        └── crm
-                            └── demo
-```
+生成的应用主要包括demo-app, demo-domain, demo-infrastructure, demo-client和Start五个Module，分别代表不同层次（layer）和用途。
