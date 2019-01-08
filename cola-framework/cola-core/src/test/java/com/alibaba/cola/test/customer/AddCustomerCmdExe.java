@@ -11,6 +11,8 @@ import com.alibaba.cola.test.customer.entity.CustomerE;
 import com.alibaba.cola.test.customer.validator.extensionpoint.AddCustomerValidatorExtPt;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.function.Function;
+
 /**
  * AddCustomerCmdExe
  *

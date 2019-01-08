@@ -11,6 +11,7 @@ import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.command.CommandHub;
 import com.alibaba.cola.command.CommandInterceptorI;
 import com.alibaba.cola.command.CommandInvocation;
+import com.alibaba.cola.common.ApplicationContextHelper;
 import com.alibaba.cola.common.ColaConstant;
 import com.alibaba.cola.dto.Command;
 import com.alibaba.cola.exception.ColaException;
@@ -29,20 +30,17 @@ import java.lang.reflect.Method;
  * @author fulan.zjf 2017-11-04
  */
 
-@SuppressWarnings({ "rawtypes", "unchecked" })
 @Component
-public class CommandRegister implements RegisterI, ApplicationContextAware {
+public class CommandRegister implements RegisterI {
 
     @Autowired
     private CommandHub         commandHub;
 
-    private ApplicationContext applicationContext;
-
     @Override
     public void doRegistration(Class<?> targetClz) {
         Class<? extends Command> commandClz = getCommandFromExecutor(targetClz);
-        CommandInvocation commandInvocation = new CommandInvocation();
-        commandInvocation.setCommandExecutor((CommandExecutorI) applicationContext.getBean(targetClz));
+        CommandInvocation commandInvocation = ApplicationContextHelper.getBean(CommandInvocation.class);
+        commandInvocation.setCommandExecutor((CommandExecutorI) ApplicationContextHelper.getBean(targetClz));
         commandInvocation.setPreInterceptors(collectInterceptors(commandClz, true));
         commandInvocation.setPostInterceptors(collectInterceptors(commandClz, false));
         commandHub.getCommandRepository().put(commandClz, commandInvocation);
@@ -95,8 +93,4 @@ public class CommandRegister implements RegisterI, ApplicationContextAware {
         return commandItr;
     }
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
 }
