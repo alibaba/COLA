@@ -25,7 +25,7 @@ public class DefaultExceptionHandler implements ExceptionHandlerI{
 
     private void printLog(Command cmd, Response response, Exception exception) {
         if(exception instanceof BizException || exception instanceof ParamException){
-            //biz exception is expected, only warn it
+            //biz exception is expected, only warn it, 2 git remote test
             logger.warn(buildErrorMsg(cmd, response));
         }
         else{
