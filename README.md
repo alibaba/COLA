@@ -1,10 +1,14 @@
-# 
-> COLA是Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”，也叫“可乐”架构。
-
 ![image.png](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/9e7048ef11db23b0579a439676dec4c9.png)
 
 # COLA架构
-关于架构和设计的详细内容，请查看：https://www.atatech.org/articles/96063
+<strong>COLA是Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”，也叫“可乐”架构。</strong>
+>注意本架构曾用名SOFA、COPA，以后统一使用COLA这个新名称，带来不便，表示抱歉
+
+更多关于COLA架构的信息：
+- COLA架构的设计思想和原理：[请点击](https://blog.csdn.net/significantfrank/article/details/85785565)
+- 领域建模的方法论：[请点击](http://blog.csdn.net/significantfrank/article/details/79614915)
+
+需要进一步交流的，可以微信咨询： josico-nie
 
 # 项目说明
 COLA框架包括两个Project，一个是cola-framework里面是框架的核心代码，另一个是cola-archetype是用来生成新应用的Maven Archetype源码。
@@ -39,8 +43,8 @@ com
 该Module主要是提供一些开发测试的工具，可以使用TDD来进行开发。
 
 ## cola-archetype Project
-该Project下面是Archetype的源码，先执行`mvn install`，然后就可以用下面的命令来创建新应用了：
+该Project下面是Archetype的源码，先执行`mvn install`，然后就可以用下面的命令来创建新应用：
 ```
-mvn archetype:generate  -DgroupId=com.alibaba.demo -DartifactId=sample -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.demo -DarchetypeArtifactId=cola-framework-archetype -DarchetypeGroupId=com.alibaba.cola -DarchetypeVersion=1.0.0-SNAPSHOT
+mvn archetype:generate  -DgroupId=com.alibaba.sample -DartifactId=demo -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.sample -DarchetypeArtifactId=cola-framework-archetype -DarchetypeGroupId=com.alibaba.cola -DarchetypeVersion=1.0.0-SNAPSHOT
 ```
-生成的应用主要包括demo-app, demo-domain, demo-tunnel, demo-config, demo-client和Start五个Module，分别代表不同层次（layer）和用途。
+生成的应用主要包括demo-app, demo-domain, demo-infrastructure, demo-client和Start五个Module，分别代表不同层次（layer）和用途。

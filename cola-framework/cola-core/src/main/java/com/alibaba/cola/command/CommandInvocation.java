@@ -2,10 +2,7 @@ package com.alibaba.cola.command;
 
 import com.alibaba.cola.dto.Command;
 import com.alibaba.cola.dto.Response;
-import com.alibaba.cola.exception.ColaException;
-import com.alibaba.cola.exception.DefaultExceptionHandler;
 import com.alibaba.cola.exception.ExceptionHandlerFactory;
-import com.alibaba.cola.exception.ExceptionHandlerI;
 import com.alibaba.cola.logger.Logger;
 import com.alibaba.cola.logger.LoggerFactory;
 import com.google.common.collect.FluentIterable;
@@ -16,6 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)

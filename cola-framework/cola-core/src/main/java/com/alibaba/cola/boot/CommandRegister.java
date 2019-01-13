@@ -16,13 +16,11 @@ import com.alibaba.cola.common.ColaConstant;
 import com.alibaba.cola.dto.Command;
 import com.alibaba.cola.exception.ColaException;
 import com.google.common.collect.Iterables;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
+
 
 /**
  * CommandRegister
@@ -34,6 +32,7 @@ import java.lang.reflect.Method;
 public class CommandRegister implements RegisterI {
 
     @Autowired
+
     private CommandHub         commandHub;
 
     @Override

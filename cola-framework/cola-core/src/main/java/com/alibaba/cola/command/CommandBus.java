@@ -4,6 +4,7 @@ import com.alibaba.cola.dto.Command;
 import com.alibaba.cola.dto.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 /**
  * Just send Command to CommandBus, 
  * 
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CommandBus implements CommandBusI{
-    
+
     @Autowired
     private CommandHub commandHub;
 

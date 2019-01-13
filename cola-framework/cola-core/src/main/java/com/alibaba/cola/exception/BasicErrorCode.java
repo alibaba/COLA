@@ -15,16 +15,6 @@ package com.alibaba.cola.exception;
 public enum BasicErrorCode implements ErrorCodeI{
 
     /**
-     * Parameter Exception
-     *
-     * You can extend it by implementing ErrorCodeI in your Application
-     * For example:
-     *
-     * P_CUSTOMER_NameIsNull("P_CUSTOMER_NameIsNull","客户姓名不能为空")
-     */
-    P_COMMON_ERROR("P_COMMON_ERROR" , "通用的参数校验错误"),
-
-    /**
      * Business Exception
      *
      * You can extend it by implementing ErrorCodeI in your Application
