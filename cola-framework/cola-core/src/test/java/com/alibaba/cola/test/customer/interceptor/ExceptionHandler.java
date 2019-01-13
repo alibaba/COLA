@@ -5,7 +5,6 @@ import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.*;
 import com.alibaba.cola.logger.Logger;
 import com.alibaba.cola.logger.LoggerFactory;
-import com.alibaba.cola.test.customer.AddCustomerCmd;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,8 +24,8 @@ public class ExceptionHandler implements ExceptionHandlerI{
     }
 
     private void assembleResponse(Response response, Exception exception) {
-        if (exception instanceof AppException) {
-            ErrorCodeI errCode = ((AppException) exception).getErrCode();
+        if (exception instanceof BaseException) {
+            ErrorCodeI errCode = ((BaseException) exception).getErrCode();
             response.setErrCode(errCode.getErrCode());
         }
         else {
@@ -36,7 +35,7 @@ public class ExceptionHandler implements ExceptionHandlerI{
     }
 
     private void printLog(Command cmd, Response response, Exception exception) {
-        if(exception instanceof BizException || exception instanceof ParamException){
+        if(exception instanceof BizException){
             logger.warn(formErrorMessage(cmd, response), exception);
         }
         else{

@@ -1,6 +1,6 @@
 package com.alibaba.cola.exception;
 
-public class BizException extends AppException {
+public class BizException extends BaseException {
 
     private static final long serialVersionUID = 1L;
 

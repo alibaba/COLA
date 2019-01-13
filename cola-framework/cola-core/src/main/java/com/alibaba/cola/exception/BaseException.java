@@ -2,21 +2,21 @@ package com.alibaba.cola.exception;
 
 /**
  * 
- * Application Exception
+ * Base Exception is the parent of all exceptions
  * 
  * @author fulan.zjf 2017年10月22日 上午12:00:39
  */
-public abstract class AppException extends RuntimeException{
+public abstract class BaseException extends RuntimeException{
 
     private static final long serialVersionUID = 1L;
     
     private ErrorCodeI errCode;
     
-    public AppException(String errMessage){
+    public BaseException(String errMessage){
         super(errMessage);
     }
     
-    public AppException(String errMessage, Throwable e) {
+    public BaseException(String errMessage, Throwable e) {
         super(errMessage, e);
     }
     

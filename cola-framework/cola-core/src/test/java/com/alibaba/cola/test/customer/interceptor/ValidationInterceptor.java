@@ -3,7 +3,7 @@ package com.alibaba.cola.test.customer.interceptor;
 import com.alibaba.cola.command.CommandInterceptorI;
 import com.alibaba.cola.command.PreInterceptor;
 import com.alibaba.cola.dto.Command;
-import com.alibaba.cola.exception.ParamException;
+import com.alibaba.cola.exception.BizException;
 import com.alibaba.cola.validator.ColaMessageInterpolator;
 import org.hibernate.validator.HibernateValidator;
 
@@ -30,7 +30,7 @@ public class ValidationInterceptor implements CommandInterceptorI {
         Validator validator = factory.getValidator();
         Set<ConstraintViolation<Command>> constraintViolations = validator.validate(command);
         constraintViolations.forEach(violation -> {
-            throw new ParamException(violation.getPropertyPath() + " " + violation.getMessage());
+            throw new BizException(violation.getPropertyPath() + " " + violation.getMessage());
         });
     }
 }

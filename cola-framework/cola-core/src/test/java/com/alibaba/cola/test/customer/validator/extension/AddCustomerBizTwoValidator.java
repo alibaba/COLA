@@ -1,6 +1,7 @@
 package com.alibaba.cola.test.customer.validator.extension;
 
-import com.alibaba.cola.exception.ParamException;
+import com.alibaba.cola.exception.Assert;
+import com.alibaba.cola.exception.BizException;
 import com.alibaba.cola.extension.Extension;
 import com.alibaba.cola.test.customer.AddCustomerCmd;
 import com.alibaba.cola.test.customer.Constants;
@@ -19,7 +20,7 @@ public class AddCustomerBizTwoValidator implements AddCustomerValidatorExtPt{
     public void validate(Object candidate) {
         AddCustomerCmd addCustomerCmd = (AddCustomerCmd) candidate;
         //For BIZ TWO CustomerTYpe could not be null
-        if (addCustomerCmd.getCustomerCO().getCustomerType() == null)
-            throw new ParamException("CustomerType could not be null");
+        Assert.notNull(addCustomerCmd.getCustomerCO());
+        Assert.notNull(addCustomerCmd.getCustomerCO().getCustomerType());
     }
 }

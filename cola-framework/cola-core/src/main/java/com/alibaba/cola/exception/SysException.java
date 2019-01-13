@@ -6,7 +6,7 @@ package com.alibaba.cola.exception;
  * @author Frank Zhang
  * @date 2018-12-29 4:38 PM
  */
-public class SysException extends AppException {
+public class SysException extends BaseException {
 
     private static final long serialVersionUID = 1L;
 

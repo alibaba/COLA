@@ -124,6 +124,6 @@ public class CustomerCommandTest {
 
         //Expect parameter validation error
         Assert.assertFalse(response.isSuccess());
-        Assert.assertEquals(response.getErrCode(), BasicErrorCode.P_COMMON_ERROR.getErrCode());
+        Assert.assertEquals(response.getErrCode(), BasicErrorCode.B_COMMON_ERROR.getErrCode());
     }
 }

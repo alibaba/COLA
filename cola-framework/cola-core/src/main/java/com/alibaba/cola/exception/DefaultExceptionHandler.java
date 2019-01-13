@@ -24,7 +24,7 @@ public class DefaultExceptionHandler implements ExceptionHandlerI{
     }
 
     private void printLog(Command cmd, Response response, Exception exception) {
-        if(exception instanceof BizException || exception instanceof ParamException){
+        if(exception instanceof BizException ){
             //biz exception is expected, only warn it
             logger.warn(buildErrorMsg(cmd, response));
         }
@@ -41,13 +41,14 @@ public class DefaultExceptionHandler implements ExceptionHandlerI{
     }
 
     private void buildResponse(Response response, Exception exception) {
-        if (exception instanceof AppException) {
-            ErrorCodeI errCode = ((AppException) exception).getErrCode();
+        if (exception instanceof BaseException) {
+            ErrorCodeI errCode = ((BaseException) exception).getErrCode();
             response.setErrCode(errCode.getErrCode());
         }
         else {
             response.setErrCode(BasicErrorCode.S_UNKNOWN.getErrCode());
         }
         response.setErrMessage(exception.getMessage());
+        response.setSuccess(false);
     }
 }

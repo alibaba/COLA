@@ -6,7 +6,7 @@ package com.alibaba.cola.exception;
  * 
  * @author fulan.zjf 2017年10月22日 下午5:56:57
  */
-public class ColaException extends AppException {
+public class ColaException extends BaseException {
     
     private static final long serialVersionUID = 1L;
     
