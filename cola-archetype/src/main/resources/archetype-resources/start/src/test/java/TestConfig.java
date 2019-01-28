@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2018-08-08 12:33 PM
  */
 @Configuration
-@ComponentScan(basePackages = {"com.alibaba.cola", "com.alibaba.demo"})
+@ComponentScan(basePackages = {"com.alibaba.cola", "${package}"})
 public class TestConfig {
 
     public TestConfig() {

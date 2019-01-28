@@ -21,7 +21,7 @@
         <pandora-boot.version>2017-10-stable</pandora-boot.version>
         <spring-test.version>4.3.2.RELEASE</spring-test.version>
         <junit.version>4.12</junit.version>
-        <logback.version>1.2.3.5-struct</logback.version>
+        <logback.version>1.2.3</logback.version>
         <slf4j.version>1.7.22</slf4j.version>
         <cola.framework.version>1.0.0-SNAPSHOT</cola.framework.version>
     </properties>
@@ -81,13 +81,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.taobao.pandora</groupId>
-                <artifactId>pandora-boot-starter-bom</artifactId>
-                <version>${pandora-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
