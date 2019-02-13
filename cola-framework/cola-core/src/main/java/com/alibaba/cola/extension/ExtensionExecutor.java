@@ -87,6 +87,7 @@ public class ExtensionExecutor extends AbstractExecutorFacade {
             if (extension != null) {
                 return extension;
             }
+            lastDotIndex = bizCode.lastIndexOf(ColaConstant.BIZ_CODE_SEPARATOR);
         }
         return null;
     }
