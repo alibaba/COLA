@@ -8,7 +8,6 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>cola-test</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
 	<name>cola-test</name>
 	<dependencies>
 		<dependency>
