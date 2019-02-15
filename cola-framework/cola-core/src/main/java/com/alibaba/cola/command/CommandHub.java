@@ -1,5 +1,6 @@
 package com.alibaba.cola.command;
 
+import com.alibaba.cola.dto.Command;
 import com.alibaba.cola.exception.ColaException;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
@@ -45,8 +46,16 @@ public class CommandHub{
     
     public CommandInvocation getCommandInvocation(Class cmdClass) {
         CommandInvocation commandInvocation = commandRepository.get(cmdClass);
-        if (commandRepository.get(cmdClass) == null)
+        if (commandInvocation == null) {
+            //extends command, last parent Command
+            Class<?> superClass = cmdClass.getSuperclass();
+            if (!superClass.equals(Command.class)) {
+                return getCommandInvocation(superClass);
+            }
+        }
+        if (commandInvocation == null) {
             throw new ColaException(cmdClass + " is not registered in CommandHub, please register first");
+        }
         return commandInvocation;
     }
 }
