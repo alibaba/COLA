@@ -14,9 +14,20 @@ public class SLFJLogger implements com.alibaba.cola.logger.Logger{
     }
 
     @Override
+    public void debug(String msg, Object... args) {
+        slfjLogger.debug(msg, args);
+    }
+
+
+    @Override
     public void info(String msg) {
         slfjLogger.info(msg);
         
+    }
+
+    @Override
+    public void info(String msg, Object... args) {
+        slfjLogger.info(msg, args);
     }
 
     @Override
@@ -26,9 +37,21 @@ public class SLFJLogger implements com.alibaba.cola.logger.Logger{
     }
 
     @Override
+    public void warn(String msg, Object... args) {
+        slfjLogger.warn(msg, args);
+    }
+
+
+    @Override
     public void error(String msg) {
         slfjLogger.error(msg);
         
+    }
+
+
+    @Override
+    public void error(String msg, Object... args) {
+        slfjLogger.error(msg, args);
     }
 
     @Override
