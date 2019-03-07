@@ -9,6 +9,7 @@ package com.alibaba.cola.context;
  * @author Frank Zhang
  * @date 2019-01-02 10:14 AM
  */
+
 public class Context<T> {
 
     /**
@@ -44,5 +45,13 @@ public class Context<T> {
 
     public void setContent(T content) {
         this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "Context{" +
+                "bizCode='" + bizCode + '\'' +
+                ", content=" + content +
+                '}';
     }
 }

@@ -11,7 +11,7 @@
 	<version>${version}</version>
 	<name>${artifactId}</name>
 	<dependencies>
-		<!-- SOFA Framework -->
+		<!-- COLA Framework -->
 		<dependency>
 			<groupId>com.alibaba.cola</groupId>
 			<artifactId>cola-core</artifactId>
@@ -20,11 +20,15 @@
 			<groupId>com.alibaba.cola</groupId>
 			<artifactId>cola-test</artifactId>
 		</dependency>
-		<!-- SOFA Framework End-->
+		<!-- COLA Framework End-->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

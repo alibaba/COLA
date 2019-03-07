@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * TestConfig,  {@link com.alibaba.demo.config.ColaConfig}
+ * TestConfig,  {@link ${package}.config.ColaConfig}
  *
  * @author Frank Zhang
  * @date 2018-08-08 12:33 PM
@@ -17,10 +17,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan(basePackages = {"com.alibaba.cola", "${package}"})
 public class TestConfig {
+    Logger logger = LoggerFactory.getLogger(TestConfig.class);
 
     public TestConfig() {
-        LoggerFactory.activateSysLogger();
-        Logger logger = LoggerFactory.getLogger(TestConfig.class);
         logger.debug("Spring container is booting");
     }
 

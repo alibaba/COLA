@@ -46,7 +46,15 @@ public class LocateExtensionTest {
     }
 
     @Test
-    public void testDefault() {
+    public void testDefaultWithNullExistBizCode() {
+        Context context = new Context();
+        context.setBizCode("ali.noexist");
+        String dog = extensionExecutor.execute(AnimalExtPt.class, context, extension -> extension.eat());
+        Assert.assertEquals(dog, "DefaultAnimal");
+    }
+
+    @Test
+    public void testDefaultWithNoBizCode() {
         Context context = new Context();
         String dog = extensionExecutor.execute(AnimalExtPt.class, context, extension -> extension.eat());
         Assert.assertEquals(dog, "DefaultAnimal");

@@ -55,16 +55,16 @@ public abstract class Assert {
 
     public static void notNull(Object object, ErrorCodeI errorCode, String message) {
         if (object == null) {
-            throw new BizException(errorCode, message);
+            throw new SysException(errorCode, message);
         }
     }
 
     public static void notNull(Object object, String message) {
-        notNull(object, BasicErrorCode.B_COMMON_ERROR, message);
+        notNull(object, BasicErrorCode.S_NPE, message);
     }
 
     public static void notNull(Object object){
-        notNull(object, BasicErrorCode.B_COMMON_ERROR, "[Assertion failed] - the argument "+object+" must not be null");
+        notNull(object, BasicErrorCode.S_NPE, "[Assertion failed] - the argument "+object+" must not be null");
     }
 
     public static void notEmpty(Collection<?> collection) {

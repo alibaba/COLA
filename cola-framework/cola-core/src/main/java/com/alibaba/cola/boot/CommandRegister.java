@@ -32,7 +32,6 @@ import java.lang.reflect.Method;
 public class CommandRegister implements RegisterI {
 
     @Autowired
-
     private CommandHub         commandHub;
 
     @Override

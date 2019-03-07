@@ -32,6 +32,7 @@ public enum BasicErrorCode implements ErrorCodeI{
      * You can extend it by implementing ErrorCodeI in your Application
      */
     S_COLA_ERROR("S_COLA_ERROR" , "COLA框架错误"),
+    S_NPE("S_NPE", "空指针错误"),
     S_DB_ERROR("S_DB_ERROR", "数据库错误"),
     S_RPC_ERROR("S_RPC_ERROR", "远程方法调用错误"),
     S_UNKNOWN("S_UNKNOWN" , "未知的系统错误" );

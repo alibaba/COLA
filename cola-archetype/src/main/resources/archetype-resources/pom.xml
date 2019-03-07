@@ -76,7 +76,7 @@
                 <version>${project.version}</version>
             </dependency>
             <!--Project modules End-->
-            <!--Pandora Boot-->
+            <!--Spring Boot-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -89,7 +89,7 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-starter.version}</version>
             </dependency>
-            <!--Pandora Boot End-->
+            <!--Spring Boot End-->
             <!-- Spring Framework -->
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -209,6 +209,11 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>3.4</version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.55</version>
+            </dependency>            
             <!-- Misc End -->
         </dependencies>
     </dependencyManagement>

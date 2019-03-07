@@ -3,9 +3,9 @@
 #set( $symbol_escape = '\' )
 package ${package};
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ImportResource;
 
 /**
  * Spring Boot Starter
@@ -14,7 +14,8 @@ import org.springframework.context.annotation.ImportResource;
  *
  * @author Frank Zhang
  */
-@SpringBootApplication(scanBasePackages = {"${package}"})
+@SpringBootApplication(scanBasePackages = {"${package}","com.alibaba.cola"})
+@MapperScan("${package}.tunnel.database")
 public class Application {
 
     public static void main(String[] args) {

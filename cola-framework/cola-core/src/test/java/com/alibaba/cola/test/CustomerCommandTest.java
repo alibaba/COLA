@@ -55,9 +55,20 @@ public class CustomerCommandTest {
 
         //2. Execute
         Response response = customerService.addCustomer(addCustomerCmd);
-
-        //3. Expect Success
         Assert.assertTrue(response.isSuccess());
+
+        //3. Execute
+        response = customerService.addCustomer2(addCustomerCmd);
+        Assert.assertTrue(response.isSuccess());
+    }
+
+    @Test(expected= IllegalArgumentException.class)
+    public void testIllegalArgument(){
+        //1. Prepare
+        AddCustomerCmd addCustomerCmd = new AddCustomerCmd();
+
+        //2. Execute
+        Response response = customerService.addCustomerParaError(addCustomerCmd);
     }
 
     @Test
