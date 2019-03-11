@@ -1,21 +1,19 @@
 package com.alibaba.craftsman;
 
 import com.alibaba.cola.dto.Response;
-import com.alibaba.cola.exception.BizException;
+import com.alibaba.cola.mock.annotation.ColaMockConfig;
+import com.alibaba.cola.mock.annotation.ExcludeCompare;
+import com.alibaba.cola.mock.runner.ColaTestRunner;
 import com.alibaba.craftsman.api.MetricsServiceI;
-import com.alibaba.craftsman.api.UserProfileServiceI;
 import com.alibaba.craftsman.dto.ATAMetricAddCmd;
 import com.alibaba.craftsman.dto.clientobject.ATAMetricCO;
+import com.alibaba.craftsman.mock.MockTestBase;
+import com.alibaba.craftsman.tunnel.database.MetricTunnel;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * ATAMetricAddCmdExeTest
@@ -23,10 +21,9 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author Frank Zhang
  * @date 2019-03-01 6:18 PM
  */
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {TestConfig.class})
-public class ATAMetricAddCmdExeTest {
+@RunWith(ColaTestRunner.class)
+@ColaMockConfig(mocks={MetricTunnel.class})
+public class ATAMetricAddCmdExeTest extends MockTestBase {
 
     @Autowired
     private MetricsServiceI metricsService;
@@ -53,6 +50,7 @@ public class ATAMetricAddCmdExeTest {
     }
 
     @Test
+    @ExcludeCompare(fields = {"id","userId"})
     public void testATAMetricAddSuccess(){
         ATAMetricAddCmd ataMetricAddCmd = prepareCommand(userId);
         Response response = metricsService.addATAMetric(ataMetricAddCmd);

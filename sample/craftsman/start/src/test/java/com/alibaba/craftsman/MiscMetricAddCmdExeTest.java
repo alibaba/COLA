@@ -2,7 +2,6 @@ package com.alibaba.craftsman;
 
 import com.alibaba.cola.dto.Response;
 import com.alibaba.craftsman.api.MetricsServiceI;
-import com.alibaba.craftsman.dto.CodeReviewMetricAddCmd;
 import com.alibaba.craftsman.dto.MiscMetricAddCmd;
 import com.alibaba.craftsman.dto.clientobject.MiscMetricCO;
 import org.junit.Assert;

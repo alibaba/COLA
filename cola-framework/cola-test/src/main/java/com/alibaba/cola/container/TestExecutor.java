@@ -8,9 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.cola.mock.listener.ColaNotifier;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.Description;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -20,7 +23,8 @@ import org.springframework.context.ApplicationContext;
  * @author fulan.zjf 2017年10月27日 下午3:14:21
  */
 public class TestExecutor {
-    
+
+    private ColaNotifier notifier = new ColaNotifier();
     private String className;
     private String methodName;
     
@@ -35,17 +39,23 @@ public class TestExecutor {
     public void testClass() throws Exception {
         Class<?> testClz = Class.forName(className);
         Object testInstance = getTestInstance(testClz);
+        //刷新
+        //ColaMockito.g().refreshScanMockFromTest(testClz);
         runClassTest(testClz, testInstance);
     }
     
     public void testMethod() throws Exception {
         Class<?> testClz = Class.forName(className);
-        Object testInstance = getTestInstance(testClz);    
+        Object testInstance = getTestInstance(testClz);
+        //刷新
+        //if(ColaMockito.g().getContext().isRecording()) {
+        //    ColaMockito.g().refreshScanMockFromTest(testClz);
+        //}
         runMethodTest(testClz, testInstance);
     }
     
     private void runMethodTest(Class<?> testClz, Object testInstance) throws Exception{
-        Method[] allMethods = testClz.getDeclaredMethods();
+        Method[] allMethods = testClz.getMethods();
         Method beforeMethod = null;
         Method afterMethod = null;
         for (Method method : allMethods){
@@ -61,24 +71,33 @@ public class TestExecutor {
                 }
             }
         }
+        Method method = testClz.getMethod(methodName);
+        Description description = Description.createTestDescription(testClz, method.getName());
+        notifier.fireTestRunStarted(testInstance);
+        notifier.fireTestRunStarted(description);
         //invoke before method
         invokeMethod(testInstance, beforeMethod);
+        notifier.fireTestStarted(method, description);
         //invoke test method
-        invokeMethod(testInstance, testClz.getMethod(methodName));
+        invokeMethod(testInstance, method);
+        notifier.fireTestFinished(method, description);
         //invoke after method
-        invokeMethod(testInstance, afterMethod);        
+        invokeMethod(testInstance, afterMethod);
+        notifier.fireTestRunFinished(description);
     }
 
     private Object getTestInstance(Class<?> testClz) throws Exception{
-        if(testInstanceCache.get(className) != null)
+        if(testInstanceCache.get(className) != null) {
             return testInstanceCache.get(className);
+        }
         Object testInstance = testClz.newInstance();
         injectWiredBean(testClz, testInstance);
         return testInstance;
     }
 
     private void runClassTest(Class<?> testClz, Object testInstance)throws Exception{
-        Method[] allMethods = testClz.getDeclaredMethods();
+        Description description = Description.createSuiteDescription(testClz);
+        Method[] allMethods = testClz.getMethods();
         Method beforeMethod = null;
         Method afterMethod = null;
         List<Method> testMethods = new ArrayList<Method>();
@@ -95,40 +114,53 @@ public class TestExecutor {
                 }
                 if(annotation instanceof Test || method.getName().startsWith("test")){
                     testMethods.add(method);
+                    description.addChild(Description.createTestDescription(testClz, method.getName()));
                     break;
                 }
             }
-        }   
+        }
+        notifier.fireTestRunStarted(testInstance);
+        notifier.fireTestRunStarted(description);
         //invoke before method
         invokeMethod(testInstance, beforeMethod);
         //invoke test methods
         for(Method testMethod: testMethods){
+            notifier.fireTestStarted(testMethod, description);
+            //testMethodStarted(testInstance, testMethod);
             invokeMethod(testInstance, testMethod);
+            //testMethodFinished(testInstance, testMethod);
+            notifier.fireTestFinished(testMethod, description);
         }
         //invoke after method
         invokeMethod(testInstance, afterMethod);
+        notifier.fireTestRunFinished(description);
     }
 
     private static void invokeMethod(Object obj, Method method) throws Exception{
-        if (method == null)
+        if (method == null) {
             return;
+        }
         method.invoke(obj);
     }
     
     private void injectWiredBean(Class<?> testClz, Object testInstance) {
        Field[] fields = testClz.getDeclaredFields();
-       if(fields == null) return;
+       if(fields == null) {
+           return;
+       }
        for(Field field : fields) {
            String beanName = field.getName();
            Annotation autowiredAnn = field.getDeclaredAnnotation(Autowired.class);
            if (autowiredAnn == null) {
-               //System.out.println("Field "+beanName+" is not autowired, just ignore it");
-               return;
+               System.out.println("Field "+beanName+" is not autowired, just ignore it");
+               continue;
            }
            try {
                field.setAccessible(true);
                field.set(testInstance, context.getBean(beanName));
-           } catch (BeansException | IllegalArgumentException | IllegalAccessException e) {
+           } catch (IllegalArgumentException e){
+               e.printStackTrace();
+           }catch (BeansException | IllegalAccessException e) {
                //try to use type to get bean
                try {
                 field.set(testInstance, context.getBean(field.getType()));
@@ -171,6 +203,12 @@ public class TestExecutor {
     public void setMethodName(String methodName) {
         this.methodName = methodName;
     }
-    
-    
+
+    public ColaNotifier getNotifier() {
+        return notifier;
+    }
+
+    public void setNotifier(ColaNotifier notifier) {
+        this.notifier = notifier;
+    }
 }

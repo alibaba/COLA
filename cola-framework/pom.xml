@@ -114,19 +114,16 @@
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-all</artifactId>
 				<version>${mockito-all.version}</version>
-				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
-				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-test</artifactId>
 				<version>${spring-test.version}</version>
-				<scope>test</scope>
 			</dependency>
 			<!-- 测试依赖 End -->
 			<!-- Commons依赖 -->
@@ -167,7 +164,17 @@
 				<artifactId>javax.el</artifactId>
 				<version>2.2.6</version>
 			</dependency>
-			<!--Validation API End -->
+			<!--Others-->
+			<dependency>
+				<groupId>uk.co.jemos.podam</groupId>
+				<artifactId>podam</artifactId>
+				<version>7.2.1.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.2.48</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

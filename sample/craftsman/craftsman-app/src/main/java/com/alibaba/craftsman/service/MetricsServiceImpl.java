@@ -22,41 +22,41 @@ public class MetricsServiceImpl implements MetricsServiceI{
 
     @Override
     public Response addATAMetric(ATAMetricAddCmd cmd) {
-        return commandBus.send(cmd, ATAMetricAddCmdExe.class);
+        return commandBus.send(cmd);
     }
 
     @Override
     public Response addSharingMetric(SharingMetricAddCmd cmd) {
-        return commandBus.send(cmd, SharingMetricAddCmdExe.class);
+        return commandBus.send(cmd);
     }
 
     @Override
     public Response addPatentMetric(PatentMetricAddCmd cmd) {
-        return  commandBus.send(cmd, PatentMetricAddCmdExe.class);
+        return  commandBus.send(cmd);
     }
 
     @Override
     public Response addPaperMetric(PaperMetricAddCmd cmd) {
-        return  commandBus.send(cmd, PaperMetricAddCmdExe.class);
+        return  commandBus.send(cmd);
     }
 
     @Override
     public Response addRefactoringMetric(RefactoringMetricAddCmd cmd) {
-        return  commandBus.send(cmd, RefactoringMetricAddCmdExe.class);
+        return  commandBus.send(cmd);
     }
 
     @Override
     public Response addMiscMetric(MiscMetricAddCmd cmd) {
-        return  commandBus.send(cmd, MiscMetricAddCmdExe.class);
+        return  commandBus.send(cmd);
     }
 
     @Override
     public Response addCodeReviewMetric(CodeReviewMetricAddCmd cmd) {
-        return commandBus.send(cmd, CodeReviewMetricAddCmdExe.class);
+        return commandBus.send(cmd);
     }
 
     @Override
     public Response deleteMetric(MetricDeleteCmd cmd) {
-        return commandBus.send(cmd, MetricDeleteCmdExe.class);
+        return commandBus.send(cmd);
     }
 }

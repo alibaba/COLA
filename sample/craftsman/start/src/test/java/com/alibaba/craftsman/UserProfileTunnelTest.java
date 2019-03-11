@@ -1,10 +1,6 @@
 package com.alibaba.craftsman;
 
-import com.alibaba.craftsman.domain.metrics.MainMetricType;
-import com.alibaba.craftsman.domain.metrics.SubMetricType;
-import com.alibaba.craftsman.tunnel.database.MetricTunnel;
 import com.alibaba.craftsman.tunnel.database.UserProfileTunnel;
-import com.alibaba.craftsman.tunnel.database.dataobject.MetricDO;
 import com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO;
 import org.junit.Assert;
 import org.junit.Test;

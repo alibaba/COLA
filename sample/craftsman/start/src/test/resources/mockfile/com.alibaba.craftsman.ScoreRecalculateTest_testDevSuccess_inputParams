@@ -1,0 +1,71 @@
+{"initialized":false,"version":"1.0.0"}
+com.alibaba.craftsman.tunnel.database.MetricTunnel_create
+=================method_params_separator================
+[
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"id":"1012",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"commentCount\":14,\"favoriteCount\":49,\"hitCount\":299,\"thumbsUpCount\":89,\"title\":\"testATAMetricAddSuccess\",\"url\":\"sharingLink\"}",
+			"modifier":"System",
+			"subMetric":"ATA",
+			"userId":"ScoreRecalculateTest1552292543156"
+		}
+	],
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"id":"1013",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"commentCount\":14,\"favoriteCount\":49,\"hitCount\":299,\"thumbsUpCount\":89,\"title\":\"testATAMetricAddSuccess\",\"url\":\"sharingLink\"}",
+			"modifier":"System",
+			"subMetric":"ATA",
+			"userId":"ScoreRecalculateTest1552292543156"
+		}
+	],
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"id":"1014",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"commentCount\":14,\"favoriteCount\":49,\"hitCount\":299,\"thumbsUpCount\":89,\"title\":\"testATAMetricAddSuccess\",\"url\":\"sharingLink\"}",
+			"modifier":"System",
+			"subMetric":"ATA",
+			"userId":"ScoreRecalculateTest1552292543156"
+		}
+	]
+]
+=======================different_method_separator=============================
+com.alibaba.craftsman.tunnel.database.MetricTunnel_listByMainMetric
+=================method_params_separator================
+[
+	[
+		"ScoreRecalculateTest1552292543156",
+		"tech-influence"
+	],
+	[
+		"ScoreRecalculateTest1552292543156",
+		"tech-contribution"
+	],
+	[
+		"ScoreRecalculateTest1552292543156",
+		"tech-influence"
+	],
+	[
+		"ScoreRecalculateTest1552292543156",
+		"tech-contribution"
+	],
+	[
+		"ScoreRecalculateTest1552292543156",
+		"tech-influence"
+	],
+	[
+		"ScoreRecalculateTest1552292543156",
+		"tech-contribution"
+	]
+]
+=======================different_method_separator=============================

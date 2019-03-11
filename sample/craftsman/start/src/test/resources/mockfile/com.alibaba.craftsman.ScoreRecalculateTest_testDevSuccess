@@ -1,0 +1,95 @@
+{"initialized":false,"version":"1.0.0"}
+com.alibaba.craftsman.tunnel.database.MetricTunnel_create
+---------------------------
+[
+	1,
+	1,
+	1
+]
+===========================
+com.alibaba.craftsman.tunnel.database.MetricTunnel_listByMainMetric
+---------------------------
+[
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"gmtCreate":1552339344000,
+			"gmtModified":1552339344000,
+			"id":"1012",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"url\": \"sharingLink\", \"title\": \"testATAMetricAddSuccess\", \"hitCount\": 299, \"commentCount\": 14, \"favoriteCount\": 49, \"thumbsUpCount\": 89}",
+			"modifier":"System",
+			"subMetric":"ATA",
+			"userId":"ScoreRecalculateTest1552292543156"
+		}
+	],
+	[],
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"gmtCreate":1552339344000,
+			"gmtModified":1552339344000,
+			"id":"1012",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"url\": \"sharingLink\", \"title\": \"testATAMetricAddSuccess\", \"hitCount\": 299, \"commentCount\": 14, \"favoriteCount\": 49, \"thumbsUpCount\": 89}",
+			"modifier":"System",
+			"subMetric":"ATA",
+			"userId":"ScoreRecalculateTest1552292543156"
+		},
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"gmtCreate":1552339344000,
+			"gmtModified":1552339344000,
+			"id":"1013",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"url\": \"sharingLink\", \"title\": \"testATAMetricAddSuccess\", \"hitCount\": 299, \"commentCount\": 14, \"favoriteCount\": 49, \"thumbsUpCount\": 89}",
+			"modifier":"System",
+			"subMetric":"ATA",
+			"userId":"ScoreRecalculateTest1552292543156"
+		}
+	],
+	[],
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"gmtCreate":1552339344000,
+			"gmtModified":1552339344000,
+			"id":"1012",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"url\": \"sharingLink\", \"title\": \"testATAMetricAddSuccess\", \"hitCount\": 299, \"commentCount\": 14, \"favoriteCount\": 49, \"thumbsUpCount\": 89}",
+			"modifier":"System",
+			"subMetric":"ATA",
+			"userId":"ScoreRecalculateTest1552292543156"
+		},
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"gmtCreate":1552339344000,
+			"gmtModified":1552339344000,
+			"id":"1013",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"url\": \"sharingLink\", \"title\": \"testATAMetricAddSuccess\", \"hitCount\": 299, \"commentCount\": 14, \"favoriteCount\": 49, \"thumbsUpCount\": 89}",
+			"modifier":"System",
+			"subMetric":"ATA",
+			"userId":"ScoreRecalculateTest1552292543156"
+		},
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"gmtCreate":1552339344000,
+			"gmtModified":1552339344000,
+			"id":"1014",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"url\": \"sharingLink\", \"title\": \"testATAMetricAddSuccess\", \"hitCount\": 299, \"commentCount\": 14, \"favoriteCount\": 49, \"thumbsUpCount\": 89}",
+			"modifier":"System",
+			"subMetric":"ATA",
+			"userId":"ScoreRecalculateTest1552292543156"
+		}
+	],
+	[]
+]
+===========================

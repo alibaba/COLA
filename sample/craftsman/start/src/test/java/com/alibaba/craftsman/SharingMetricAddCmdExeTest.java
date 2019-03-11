@@ -2,9 +2,7 @@ package com.alibaba.craftsman;
 
 import com.alibaba.cola.dto.Response;
 import com.alibaba.craftsman.api.MetricsServiceI;
-import com.alibaba.craftsman.dto.ATAMetricAddCmd;
 import com.alibaba.craftsman.dto.SharingMetricAddCmd;
-import com.alibaba.craftsman.dto.clientobject.ATAMetricCO;
 import com.alibaba.craftsman.dto.clientobject.SharingMetricCO;
 import org.junit.Assert;
 import org.junit.Test;

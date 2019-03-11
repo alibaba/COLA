@@ -1,12 +1,17 @@
 package com.alibaba.craftsman;
 
 import com.alibaba.cola.dto.Response;
+import com.alibaba.cola.mock.annotation.ColaMockConfig;
+import com.alibaba.cola.mock.runner.ColaTestRunner;
 import com.alibaba.craftsman.api.UserProfileServiceI;
 import com.alibaba.craftsman.dto.RefreshScoreCmd;
 import com.alibaba.craftsman.dto.UserProfileAddCmd;
 import com.alibaba.craftsman.dto.UserProfileGetQry;
 import com.alibaba.craftsman.dto.UserProfileUpdateCmd;
 import com.alibaba.craftsman.dto.clientobject.UserProfileCO;
+import com.alibaba.craftsman.mock.MockTestBase;
+import com.alibaba.craftsman.tunnel.database.MetricTunnel;
+import com.alibaba.craftsman.tunnel.database.UserProfileTunnel;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,10 +28,9 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author Frank Zhang
  * @date 2019-02-28 7:43 PM
  */
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {TestConfig.class})
-public class UserProfileCmdExeTest {
+@RunWith(ColaTestRunner.class)
+@ColaMockConfig(mocks={MetricTunnel.class, UserProfileTunnel.class})
+public class UserProfileCmdExeTest extends MockTestBase {
 
     @Autowired
     private UserProfileServiceI userProfileService;

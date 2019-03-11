@@ -3,6 +3,11 @@ package com.alibaba.cola.container;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import com.alibaba.cola.mock.ColaTestRecordController;
+import com.alibaba.cola.mock.autotest.ColaTestGenerator;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -37,13 +42,28 @@ public class TestsContainer implements ApplicationContextAware{
     private static final String WELCOME_INPUT = "$Welcome$";
     
     private static final String REPEAT_INPUT = "r";
-    
+    /** 创建测试类命令*/
+    private static final String CREATE_TEST_INPUT = "new";
+    private static final String SPACE = " ";
+
     private static ApplicationContext context;
     
     private static TestExecutor testExecutor;
+    private static AtomicBoolean initFlag = new AtomicBoolean(false);
     
     private static boolean isInputValid = true;
-    
+
+    public static void init(ApplicationContext context){
+        if(!initFlag.compareAndSet(false, true)) {
+            return;
+        }
+        if(context == null){
+            testExecutor = new TestExecutor(TestsContainer.context);
+        }else {
+            testExecutor = new TestExecutor(context);
+        }
+    }
+
     /**
      * TestsContainer is optional to be in Spring Container
      * @param context ApplicationContext to be provided
@@ -56,10 +76,8 @@ public class TestsContainer implements ApplicationContextAware{
     /**
      * TestsContainer must be within Spring Container
      */
-    public static void start( ){
-        
-        testExecutor = new TestExecutor(context);
-        
+    public static void start(){
+        init(TestsContainer.context);
         BufferedReader bufferRead = new BufferedReader(new InputStreamReader(
                 System.in));
         String input = WELCOME_INPUT;
@@ -103,6 +121,8 @@ public class TestsContainer implements ApplicationContextAware{
             System.out.println("**** 2.测试整个测试类，请在控制台输入类全称");
             System.out.println("**** 例如：com.alibaba.cola.sales.service.test.CustomerServiceTest");
             System.out.println("**** 3.重复上一次测试，只需在控制台输入字母 - ‘r’");
+            System.out.println("**** 4.自动生成ColaTest测试类,请输入‘new 方法全称  参数1 参数2 ...’");
+            System.out.println("**** 例如：new com.alibaba.crm.sales.domain.customer.entity.CustomerE#addContact");
             System.out.println("***********************************************************************************");
             return;
         }
@@ -110,6 +130,10 @@ public class TestsContainer implements ApplicationContextAware{
             isInputValid = false;
             System.err.println("Your input is not a valid qualified name");
             return;         
+        }
+        if(input.startsWith(CREATE_TEST_INPUT + SPACE)){
+            createTestClassCmd(input);
+            return;
         }
         boolean isMethod = false;
         if (isEclipseMethod(input) || isIdeaMethod(input)){
@@ -142,6 +166,17 @@ public class TestsContainer implements ApplicationContextAware{
         System.out.println("===Run "+(isMethod?"Method":"Class")+" end====\n");
     }
 
+    private static void createTestClassCmd(String cmd){
+        cmd = cmd.replaceAll(" +", " ");
+        String[] cmdParams = cmd.split(" ");
+        if(cmdParams.length < 2){
+            System.err.println("Your input is not a valid");
+            return;
+        }
+        ColaTestGenerator generator = new ColaTestGenerator(cmdParams[1], ColaTestRecordController.getTemplateSuperClassName());
+        generator.generate(Arrays.copyOfRange(cmdParams, 2, cmdParams.length));
+    }
+
     /**
      * @param input
      * @return
@@ -152,6 +187,10 @@ public class TestsContainer implements ApplicationContextAware{
     
     private static boolean isIdeaMethod(String input) {
         return input.indexOf("#") > 0 ;//to accommodate idea
+    }
+
+    public static TestExecutor getTestExecutor() {
+        return testExecutor;
     }
 
     @Override
