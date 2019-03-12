@@ -1,4 +1,4 @@
-{"initialized":false,"version":"1.0.0"}
+{"initialized":true,"version":"1.0.0"}
 com.alibaba.craftsman.tunnel.database.MetricTunnel_create
 =================method_params_separator================
 [
@@ -6,66 +6,37 @@ com.alibaba.craftsman.tunnel.database.MetricTunnel_create
 		{
 			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
 			"creator":"System",
-			"id":"1012",
+			"id":"1065",
 			"mainMetric":"tech-influence",
 			"metricItem":"{\"commentCount\":14,\"favoriteCount\":49,\"hitCount\":299,\"thumbsUpCount\":89,\"title\":\"testATAMetricAddSuccess\",\"url\":\"sharingLink\"}",
 			"modifier":"System",
 			"subMetric":"ATA",
-			"userId":"ScoreRecalculateTest1552292543156"
+			"userId":"ScoreRecalculateTest1552360659169"
 		}
 	],
 	[
 		{
 			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
 			"creator":"System",
-			"id":"1013",
+			"id":"1066",
 			"mainMetric":"tech-influence",
 			"metricItem":"{\"commentCount\":14,\"favoriteCount\":49,\"hitCount\":299,\"thumbsUpCount\":89,\"title\":\"testATAMetricAddSuccess\",\"url\":\"sharingLink\"}",
 			"modifier":"System",
 			"subMetric":"ATA",
-			"userId":"ScoreRecalculateTest1552292543156"
+			"userId":"ScoreRecalculateTest1552360659169"
 		}
 	],
 	[
 		{
 			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
 			"creator":"System",
-			"id":"1014",
+			"id":"1067",
 			"mainMetric":"tech-influence",
 			"metricItem":"{\"commentCount\":14,\"favoriteCount\":49,\"hitCount\":299,\"thumbsUpCount\":89,\"title\":\"testATAMetricAddSuccess\",\"url\":\"sharingLink\"}",
 			"modifier":"System",
 			"subMetric":"ATA",
-			"userId":"ScoreRecalculateTest1552292543156"
+			"userId":"ScoreRecalculateTest1552360659169"
 		}
-	]
-]
-=======================different_method_separator=============================
-com.alibaba.craftsman.tunnel.database.MetricTunnel_listByMainMetric
-=================method_params_separator================
-[
-	[
-		"ScoreRecalculateTest1552292543156",
-		"tech-influence"
-	],
-	[
-		"ScoreRecalculateTest1552292543156",
-		"tech-contribution"
-	],
-	[
-		"ScoreRecalculateTest1552292543156",
-		"tech-influence"
-	],
-	[
-		"ScoreRecalculateTest1552292543156",
-		"tech-contribution"
-	],
-	[
-		"ScoreRecalculateTest1552292543156",
-		"tech-influence"
-	],
-	[
-		"ScoreRecalculateTest1552292543156",
-		"tech-contribution"
 	]
 ]
 =======================different_method_separator=============================

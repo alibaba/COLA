@@ -2,6 +2,7 @@ package com.alibaba.craftsman;
 
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.mock.annotation.ColaMockConfig;
+import com.alibaba.cola.mock.annotation.ExcludeCompare;
 import com.alibaba.cola.mock.runner.ColaTestRunner;
 import com.alibaba.craftsman.api.UserProfileServiceI;
 import com.alibaba.craftsman.dto.RefreshScoreCmd;
@@ -12,6 +13,7 @@ import com.alibaba.craftsman.dto.clientobject.UserProfileCO;
 import com.alibaba.craftsman.mock.MockTestBase;
 import com.alibaba.craftsman.tunnel.database.MetricTunnel;
 import com.alibaba.craftsman.tunnel.database.UserProfileTunnel;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,6 +37,9 @@ public class UserProfileCmdExeTest extends MockTestBase {
     @Autowired
     private UserProfileServiceI userProfileService;
 
+    @Autowired
+    private UserProfileTunnel userProfileTunnel;
+
     private String userId;
 
     public static final String TEST_USER_NAME = "Frank";
@@ -42,7 +47,7 @@ public class UserProfileCmdExeTest extends MockTestBase {
 
     @Before
     public void init(){
-        userId = "UserProfileCmdExeTest" + System.currentTimeMillis();
+        userId = "UserProfileCmdExeTest1000";
     }
 
     public static UserProfileAddCmd prepareCommand(String userId, String role){
@@ -100,5 +105,10 @@ public class UserProfileCmdExeTest extends MockTestBase {
         Assert.assertEquals(TEST_USER_NAME, result.getUserName());
         Assert.assertEquals(100, result.getTechContributionScore(), 0.01);
         Assert.assertEquals(TEST_DEP, result.getDep());
+    }
+
+    @After
+    public void cleanup(){
+        userProfileTunnel.delete(userId);
     }
 }

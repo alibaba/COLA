@@ -11,19 +11,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * UserProfileTunnelTest
+ * This is Tunnel Test, no need to mock, and no regression needed as well
  *
  * @author Frank Zhang
  * @date 2019-02-27 5:31 PM
  */
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {TestConfig.class})
 public class UserProfileTunnelTest {
     @Autowired
     private UserProfileTunnel userProfileTunnel;
 
-    @Test
     public void testCRUD(){
         String userId = Math.random()+"UserProfileTunnelTest";
 

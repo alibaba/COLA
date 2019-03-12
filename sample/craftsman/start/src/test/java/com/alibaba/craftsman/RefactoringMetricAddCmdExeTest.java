@@ -1,9 +1,14 @@
 package com.alibaba.craftsman;
 
 import com.alibaba.cola.dto.Response;
+import com.alibaba.cola.mock.annotation.ColaMockConfig;
+import com.alibaba.cola.mock.annotation.ExcludeCompare;
+import com.alibaba.cola.mock.runner.ColaTestRunner;
 import com.alibaba.craftsman.api.MetricsServiceI;
 import com.alibaba.craftsman.dto.RefactoringMetricAddCmd;
 import com.alibaba.craftsman.dto.clientobject.RefactoringMetricCO;
+import com.alibaba.craftsman.mock.MockTestBase;
+import com.alibaba.craftsman.tunnel.database.MetricTunnel;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,15 +23,15 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author Frank Zhang
  * @date 2019-03-04 1:59 PM
  */
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {TestConfig.class})
-public class RefactoringMetricAddCmdExeTest {
+@RunWith(ColaTestRunner.class)
+@ColaMockConfig(mocks={MetricTunnel.class})
+public class RefactoringMetricAddCmdExeTest extends MockTestBase {
 
     @Autowired
     private MetricsServiceI metricsService;
 
     @Test
+    @ExcludeCompare(fields = {"id","userId"})
     public void testSuccess(){
         RefactoringMetricAddCmd refactoringMetricAddCmd = new RefactoringMetricAddCmd();
         RefactoringMetricCO refactoringMetricCO = new RefactoringMetricCO();

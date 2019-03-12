@@ -1,8 +1,13 @@
 package com.alibaba.craftsman;
 
 import com.alibaba.cola.dto.Response;
+import com.alibaba.cola.mock.annotation.ColaMockConfig;
+import com.alibaba.cola.mock.annotation.ExcludeCompare;
+import com.alibaba.cola.mock.runner.ColaTestRunner;
 import com.alibaba.craftsman.api.MetricsServiceI;
 import com.alibaba.craftsman.dto.CodeReviewMetricAddCmd;
+import com.alibaba.craftsman.mock.MockTestBase;
+import com.alibaba.craftsman.tunnel.database.MetricTunnel;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,14 +22,14 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author Frank Zhang
  * @date 2019-03-04 11:23 AM
  */
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {TestConfig.class})
-public class CodeReviewMetricAddCmdExeTest {
+@RunWith(ColaTestRunner.class)
+@ColaMockConfig(mocks={MetricTunnel.class})
+public class CodeReviewMetricAddCmdExeTest extends MockTestBase {
     @Autowired
     private MetricsServiceI metricsService;
 
     @Test
+    @ExcludeCompare(fields = {"id","userId"})
     public void testSuccess(){
         CodeReviewMetricAddCmd codeReviewMetricAddCmd = prepareCodeReviewMetricAddCmd("CodeReviewMetricAddCmdExeTest_098873");
 

@@ -1,9 +1,14 @@
 package com.alibaba.craftsman;
 
 import com.alibaba.cola.dto.Response;
+import com.alibaba.cola.mock.annotation.ColaMockConfig;
+import com.alibaba.cola.mock.annotation.ExcludeCompare;
+import com.alibaba.cola.mock.runner.ColaTestRunner;
 import com.alibaba.craftsman.api.MetricsServiceI;
 import com.alibaba.craftsman.dto.PatentMetricAddCmd;
 import com.alibaba.craftsman.dto.clientobject.PatentMetricCO;
+import com.alibaba.craftsman.mock.MockTestBase;
+import com.alibaba.craftsman.tunnel.database.MetricTunnel;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,14 +23,14 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author Frank Zhang
  * @date 2019-03-03 11:57 AM
  */
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {TestConfig.class})
-public class PatentMetricAddCmdExeTest {
+@RunWith(ColaTestRunner.class)
+@ColaMockConfig(mocks={MetricTunnel.class})
+public class PatentMetricAddCmdExeTest extends MockTestBase {
     @Autowired
     private MetricsServiceI metricsService;
 
     @Test
+    @ExcludeCompare(fields = {"id","userId"})
     public void testPatentMetricAddSuccess(){
         PatentMetricAddCmd patentMetricAddCmd = new PatentMetricAddCmd();
         patentMetricAddCmd.setOperater("jack ma");

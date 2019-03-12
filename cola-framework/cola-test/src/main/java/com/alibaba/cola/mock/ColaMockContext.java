@@ -11,6 +11,8 @@ import com.alibaba.cola.mock.model.MockServiceModel;
 import com.alibaba.cola.mock.model.ColaTestModel;
 
 import org.junit.runner.Description;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.FactoryBean;
 
 /**
@@ -18,6 +20,8 @@ import org.springframework.beans.factory.FactoryBean;
  * @date 2018/09/02
  */
 public class ColaMockContext implements Serializable{
+    private static Logger logger = LoggerFactory.getLogger(ColaMockContext.class);
+
     private Object testInstance;
     private Description testMeta;
     /** 整体监控列表，容器启动需要一次性将需要mock的类都通过cglib代理*/
@@ -111,6 +115,10 @@ public class ColaMockContext implements Serializable{
     }
 
     public void putColaTestModel(ColaTestModel colaTestModel) {
+        if(colaTestModel == null){
+            logger.error("No cola mock config is specified, which could be normal if you are not intend to do Recording");
+            return;
+        }
         colaTestModelMap.put(colaTestModel.getTestClazz(), colaTestModel);
     }
 

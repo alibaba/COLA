@@ -30,6 +30,9 @@ com.alibaba.craftsman.tunnel.database.UserProfileTunnel_getByUserId
 	],
 	[
 		"UserProfileCmdExeTest1000"
+	],
+	[
+		"UserProfileCmdExeTest1000"
 	]
 ]
 =======================different_method_separator=============================
@@ -56,7 +59,7 @@ com.alibaba.craftsman.tunnel.database.UserProfileTunnel_update
 			"checkinCodeQuantity":0.0D,
 			"dep":"ICBU",
 			"devQualityScore":90.0D,
-			"id":"1055",
+			"id":"1057",
 			"isManager":"y",
 			"modifier":"System",
 			"role":"DEV",
@@ -65,6 +68,20 @@ com.alibaba.craftsman.tunnel.database.UserProfileTunnel_update
 			"totalScore":33.8D,
 			"userId":"UserProfileCmdExeTest1000",
 			"userName":"Frank"
+		}
+	],
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO",
+			"appQualityScore":0.0D,
+			"checkinCodeQuantity":0.0D,
+			"devQualityScore":0.0D,
+			"modifier":"testSuccessUpdate",
+			"role":"QA",
+			"techContributionScore":100.0D,
+			"techInfluenceScore":200.0D,
+			"totalScore":0.0D,
+			"userId":"UserProfileCmdExeTest1000"
 		}
 	]
 ]

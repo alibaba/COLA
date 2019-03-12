@@ -1,0 +1,96 @@
+{"initialized":true,"version":"1.0.0"}
+
+com.alibaba.craftsman.tunnel.database.MetricTunnel_create
+---------------------------
+[
+	1,
+	1,
+	1
+]
+===========================
+com.alibaba.craftsman.tunnel.database.MetricTunnel_listByMainMetric
+---------------------------
+[
+	[],
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"gmtCreate":1552407447000,
+			"gmtModified":1552407447000,
+			"id":"1062",
+			"mainMetric":"tech-contribution",
+			"metricItem":"{\"reviewId\": \"72376263\", \"noteCount\": 8, \"reviewDocLink\": \"http://www.alibaba.com \"}",
+			"modifier":"System",
+			"subMetric":"CodeReview",
+			"userId":"ScoreRecalculateTest1552360647050"
+		}
+	],
+	[],
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"gmtCreate":1552407447000,
+			"gmtModified":1552407447000,
+			"id":"1062",
+			"mainMetric":"tech-contribution",
+			"metricItem":"{\"reviewId\": \"72376263\", \"noteCount\": 8, \"reviewDocLink\": \"http://www.alibaba.com \"}",
+			"modifier":"System",
+			"subMetric":"CodeReview",
+			"userId":"ScoreRecalculateTest1552360647050"
+		},
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"gmtCreate":1552407447000,
+			"gmtModified":1552407447000,
+			"id":"1063",
+			"mainMetric":"tech-contribution",
+			"metricItem":"{\"reviewId\": \"72376263\", \"noteCount\": 8, \"reviewDocLink\": \"http://www.alibaba.com \"}",
+			"modifier":"System",
+			"subMetric":"CodeReview",
+			"userId":"ScoreRecalculateTest1552360647050"
+		}
+	],
+	[],
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"gmtCreate":1552407447000,
+			"gmtModified":1552407447000,
+			"id":"1062",
+			"mainMetric":"tech-contribution",
+			"metricItem":"{\"reviewId\": \"72376263\", \"noteCount\": 8, \"reviewDocLink\": \"http://www.alibaba.com \"}",
+			"modifier":"System",
+			"subMetric":"CodeReview",
+			"userId":"ScoreRecalculateTest1552360647050"
+		},
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"gmtCreate":1552407447000,
+			"gmtModified":1552407447000,
+			"id":"1063",
+			"mainMetric":"tech-contribution",
+			"metricItem":"{\"reviewId\": \"72376263\", \"noteCount\": 8, \"reviewDocLink\": \"http://www.alibaba.com \"}",
+			"modifier":"System",
+			"subMetric":"CodeReview",
+			"userId":"ScoreRecalculateTest1552360647050"
+		},
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"gmtCreate":1552407447000,
+			"gmtModified":1552407447000,
+			"id":"1064",
+			"mainMetric":"tech-contribution",
+			"metricItem":"{\"reviewId\": \"72376263\", \"noteCount\": 8, \"reviewDocLink\": \"http://www.alibaba.com \"}",
+			"modifier":"System",
+			"subMetric":"CodeReview",
+			"userId":"ScoreRecalculateTest1552360647050"
+		}
+	]
+]
+===========================

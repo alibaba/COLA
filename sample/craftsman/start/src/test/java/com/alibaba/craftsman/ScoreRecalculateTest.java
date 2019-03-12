@@ -1,8 +1,6 @@
 package com.alibaba.craftsman;
 
 
-import com.alibaba.cola.mock.annotation.ColaMockConfig;
-import com.alibaba.cola.mock.runner.ColaTestRunner;
 import com.alibaba.craftsman.api.MetricsServiceI;
 import com.alibaba.craftsman.api.UserProfileServiceI;
 import com.alibaba.craftsman.dto.ATAMetricAddCmd;
@@ -10,14 +8,11 @@ import com.alibaba.craftsman.dto.CodeReviewMetricAddCmd;
 import com.alibaba.craftsman.dto.UserProfileAddCmd;
 import com.alibaba.craftsman.dto.clientobject.UserProfileCO;
 import com.alibaba.craftsman.mock.MockTestBase;
-import com.alibaba.craftsman.tunnel.database.MetricTunnel;
 import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@RunWith(ColaTestRunner.class)
-@ColaMockConfig(mocks={MetricTunnel.class})
+//@RunWith(ColaTestRunner.class)
+//@ColaMockConfig(mocks={MetricTunnel.class, UserProfileTunnel.class})
 public class ScoreRecalculateTest extends MockTestBase {
     private String userId;
 
@@ -31,7 +26,7 @@ public class ScoreRecalculateTest extends MockTestBase {
         userId = "ScoreRecalculateTest" + System.currentTimeMillis();
     }
 
-    @Test
+    //@Test
     public void testDevSuccess(){
         UserProfileAddCmd userProfileAddCmd = UserProfileCmdExeTest.prepareCommand(userId, UserProfileCO.DEV_ROLE);
         userProfileService.addUserProfile(userProfileAddCmd);
@@ -42,7 +37,7 @@ public class ScoreRecalculateTest extends MockTestBase {
         metricsService.addATAMetric(ataMetricAddCmd);
     }
 
-    @Test
+    //@Test
     public void testQASuccess(){
         UserProfileAddCmd userProfileAddCmd = UserProfileCmdExeTest.prepareCommand(userId, UserProfileCO.QA_ROLE);
         userProfileService.addUserProfile(userProfileAddCmd);

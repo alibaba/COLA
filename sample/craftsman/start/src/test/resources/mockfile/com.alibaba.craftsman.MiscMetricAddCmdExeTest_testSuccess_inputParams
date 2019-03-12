@@ -6,12 +6,12 @@ com.alibaba.craftsman.tunnel.database.MetricTunnel_create
 		{
 			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
 			"creator":"System",
-			"id":"1024",
-			"mainMetric":"tech-influence",
-			"metricItem":"{\"commentCount\":14,\"favoriteCount\":49,\"hitCount\":299,\"thumbsUpCount\":89,\"title\":\"testATAMetricAddSuccess\",\"url\":\"sharingLink\"}",
+			"id":"1034",
+			"mainMetric":"tech-contribution",
+			"metricItem":"{\"codeUrl\":\"codeUrl\",\"content\":\"Highlight content\",\"docUrl\":\"docUrl\",\"name\":\"Tech highlight\"}",
 			"modifier":"System",
-			"subMetric":"ATA",
-			"userId":"ATAMetricAddCmdExeTest1552294466005"
+			"subMetric":"Misc",
+			"userId":"MiscMetricAddCmdExeTest_09888"
 		}
 	]
 ]

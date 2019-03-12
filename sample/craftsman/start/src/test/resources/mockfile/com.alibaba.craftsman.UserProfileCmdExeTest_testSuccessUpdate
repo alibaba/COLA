@@ -15,9 +15,9 @@ com.alibaba.craftsman.tunnel.database.UserProfileTunnel_getByUserId
 		"creator":"testSuccessAdd",
 		"dep":"ICBU",
 		"devQualityScore":0.0D,
-		"gmtCreate":1552362890000,
-		"gmtModified":1552362890000,
-		"id":"1055",
+		"gmtCreate":1552406421000,
+		"gmtModified":1552406421000,
+		"id":"1057",
 		"isManager":"y",
 		"modifier":"testSuccessAdd",
 		"role":"DEV",
@@ -34,14 +34,33 @@ com.alibaba.craftsman.tunnel.database.UserProfileTunnel_getByUserId
 		"creator":"testSuccessAdd",
 		"dep":"ICBU",
 		"devQualityScore":90.0D,
-		"gmtCreate":1552362890000,
-		"gmtModified":1552362898000,
-		"id":"1055",
+		"gmtCreate":1552406421000,
+		"gmtModified":1552406423000,
+		"id":"1057",
 		"isManager":"y",
 		"modifier":"System",
 		"role":"DEV",
 		"techContributionScore":0.0D,
 		"techInfluenceScore":0.0D,
+		"totalScore":33.8D,
+		"userId":"UserProfileCmdExeTest1000",
+		"userName":"Frank"
+	},
+	{
+		"@type":"com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO",
+		"appQualityScore":79.0D,
+		"checkinCodeQuantity":0.0D,
+		"creator":"testSuccessAdd",
+		"dep":"ICBU",
+		"devQualityScore":90.0D,
+		"gmtCreate":1552406421000,
+		"gmtModified":1552406423000,
+		"id":"1057",
+		"isManager":"y",
+		"modifier":"testSuccessUpdate",
+		"role":"QA",
+		"techContributionScore":100.0D,
+		"techInfluenceScore":200.0D,
 		"totalScore":33.8D,
 		"userId":"UserProfileCmdExeTest1000",
 		"userName":"Frank"
@@ -58,10 +77,8 @@ com.alibaba.craftsman.tunnel.database.MetricTunnel_listByMainMetric
 com.alibaba.craftsman.tunnel.database.UserProfileTunnel_update
 ---------------------------
 [
+	1,
 	1
 ]
 ===========================
-================
----------------------------
-[]
-===========================
+

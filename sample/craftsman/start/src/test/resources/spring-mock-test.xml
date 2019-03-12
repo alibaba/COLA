@@ -6,7 +6,7 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--<context:property-placeholder location="classpath:test.properties"/>-->
-    <context:component-scan base-package="com.alibaba.craftsman" >
+    <context:component-scan base-package="com.alibaba.craftsman, com.alibaba.cola" >
         <!-- 排除Application和TestApplication-->
         <context:exclude-filter type="annotation" expression="org.springframework.boot.autoconfigure.SpringBootApplication"/>
         <!-- 排除Dao-->

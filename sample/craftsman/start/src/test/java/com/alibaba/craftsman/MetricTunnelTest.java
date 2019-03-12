@@ -15,20 +15,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 /**
- * MetricTunnelTest
+ * This is Tunnel Test, no need to mock, and no regression needed as well
  *
  * @author Frank Zhang
  * @date 2019-02-27 2:33 PM
  */
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {TestConfig.class})
 public class MetricTunnelTest {
 
     @Autowired
     private MetricTunnel metricTunnel;
 
-    @Test
     public void testCRUD(){
         String userId = "MetricTunnelTest" + Math.random();
         MetricDO metricDO = new MetricDO();
