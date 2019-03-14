@@ -1,30 +1,28 @@
 package com.alibaba.cola.mock.utils;
 
-import java.lang.reflect.Constructor;
+import com.alibaba.cola.mock.ColaMockito;
+import com.alibaba.cola.mock.annotation.Inject;
+import com.alibaba.cola.mock.annotation.InjectOnlyTest;
+import com.alibaba.cola.mock.scan.InjectAnnotationScanner;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.Spy;
+import org.mockito.internal.configuration.DefaultInjectionEngine;
+import org.mockito.internal.configuration.GlobalConfiguration;
+import org.mockito.internal.configuration.SpyAnnotationEngine;
+import org.mockito.internal.configuration.injection.scanner.MockScanner;
+import org.mockito.internal.util.MockUtil;
+import org.mockito.internal.util.reflection.FieldReader;
+import org.mockito.internal.util.reflection.FieldSetter;
+import org.mockito.plugins.AnnotationEngine;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import com.alibaba.cola.mock.ColaMockito;
-import com.alibaba.cola.mock.annotation.Inject;
-import com.alibaba.cola.mock.annotation.InjectOnlyTest;
-import com.alibaba.cola.mock.scan.InjectAnnotationScanner;
-
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
-import org.mockito.configuration.AnnotationEngine;
-import org.mockito.internal.configuration.DefaultAnnotationEngine;
-import org.mockito.internal.configuration.DefaultInjectionEngine;
-import org.mockito.internal.configuration.SpyAnnotationEngine;
-import org.mockito.internal.configuration.injection.scanner.MockScanner;
-import org.mockito.internal.util.MockUtil;
-import org.mockito.internal.util.reflection.FieldReader;
-import org.mockito.internal.util.reflection.FieldSetter;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
  * @author shawnzhan.zxy
@@ -34,36 +32,12 @@ public class SpyHelper {
     Object owner;
     Class ownerClazz;
     Set<Object> mocks = new HashSet<>();
-    //InjectingAnnotationEngine injectingAnnotationEngine = new InjectingAnnotationEngine();
-    MockUtil mockUtil;
-    private final AnnotationEngine delegate = new DefaultAnnotationEngine();
+    private final AnnotationEngine delegate = new GlobalConfiguration().tryGetPluginAnnotationEngine();
     private final AnnotationEngine spyAnnotationEngine = new SpyAnnotationEngine();
 
     public SpyHelper(Class ownerClazz, Object owner){
         this.owner = owner;
         this.ownerClazz = ownerClazz;
-        //throwExceptionIfHasAnnotationMock();
-        initMockUtil();
-    }
-
-    /**
-     * 兼容mockito-core:2.23.4
-     * @return
-     */
-    private void initMockUtil() {
-        try {
-            mockUtil = new MockUtil();
-        }
-        catch (IllegalAccessError error){
-            try {
-                Constructor constructor = MockUtil.class.getDeclaredConstructor();
-                constructor.setAccessible(true);
-                mockUtil = (MockUtil)constructor.newInstance();
-            } catch (Exception e) {
-                throw  new RuntimeException(e.getMessage());
-            }
-        }
-
     }
 
     /**
@@ -127,7 +101,7 @@ public class SpyHelper {
 
     private void throwExceptionIfHasAnnotationMock(){
         for(Object o : mocks){
-            if(!mockUtil.isSpy(o)){
+            if(!MockUtil.isSpy(o)){
                 throw new RuntimeException("not support Mock annotation!");
             }
         }
@@ -246,7 +220,7 @@ public class SpyHelper {
             }else{
                 value = Mockito.spy(value);
             }
-            new FieldSetter(owner, f).set(value);
+            FieldSetter.setField(owner, f, value);
         }
     }
 
@@ -254,7 +228,7 @@ public class SpyHelper {
         if(instance == null){
             return false;
         }
-        return mockUtil.isMock(instance)
-            || mockUtil.isSpy(instance);
+        return MockUtil.isMock(instance)
+            || MockUtil.isSpy(instance);
     }
 }

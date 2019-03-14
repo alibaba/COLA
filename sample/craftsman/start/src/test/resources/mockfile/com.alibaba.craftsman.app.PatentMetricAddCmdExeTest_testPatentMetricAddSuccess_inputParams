@@ -1,0 +1,18 @@
+{"initialized":true,"version":"1.0.0"}
+com.alibaba.craftsman.tunnel.database.MetricTunnel_create
+=================method_params_separator================
+[
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"jack ma",
+			"id":"1077",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"authorType\":\"FIRST_AUTHOR\",\"patentDesc\":\"This is a very valuable patent\",\"patentName\":\"patentName\",\"patentNo\":\"73499992323\",\"patentUrl\":\"http://www.alibaba.com\"}",
+			"modifier":"jack ma",
+			"subMetric":"Patent",
+			"userId":"PatentMetricAddCmdExeTest_627327"
+		}
+	]
+]
+=======================different_method_separator=============================

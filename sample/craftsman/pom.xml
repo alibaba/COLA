@@ -27,6 +27,7 @@
 
     <modules>
         <module>craftsman-client</module>
+        <module>craftsman-controller</module>
         <module>craftsman-app</module>
         <module>craftsman-domain</module>
         <module>craftsman-infrastructure</module>
@@ -54,6 +55,11 @@
             </dependency>
             <!--Framework End-->
             <!--Project modules-->
+            <dependency>
+                <groupId>com.alibaba.craftsman</groupId>
+                <artifactId>craftsman-controller</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.alibaba.craftsman</groupId>
                 <artifactId>craftsman-client</artifactId>

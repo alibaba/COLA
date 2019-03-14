@@ -1,0 +1,18 @@
+{"initialized":true,"version":"1.0.0"}
+com.alibaba.craftsman.tunnel.database.MetricTunnel_create
+=================method_params_separator================
+[
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"id":"1079",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"sharingLink\":\"sharing.com\",\"sharingName\":\"Structured thinking\",\"sharingScope\":\"TEAM\"}",
+			"modifier":"System",
+			"subMetric":"Sharing",
+			"userId":"testSharingMetricAddSuccess_089765"
+		}
+	]
+]
+=======================different_method_separator=============================

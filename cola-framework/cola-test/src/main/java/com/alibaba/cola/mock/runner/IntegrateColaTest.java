@@ -46,7 +46,7 @@ public class IntegrateColaTest extends AbstractColaTest {
                 try {
                     instance = field.get(testInstance);
                     assertNotInterface(instance, field.getType());
-                    if (new MockUtil().isMock(instance)) {
+                    if (MockUtil.isMock(instance)) {
                         Mockito.reset(instance);
                         mock = instance;
                     } else if (instance != null) {

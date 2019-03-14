@@ -14,7 +14,7 @@
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<mockito-all.version>1.10.19</mockito-all.version>
+		<mockito.version>2.23.4</mockito.version>
 		<mybatis-starter.version>1.1.1</mybatis-starter.version>
 		<spring-version>4.3.5.RELEASE</spring-version>
 		<spring-boot.version>1.4.3.RELEASE</spring-boot.version>
@@ -112,8 +112,8 @@
 			<!-- 测试依赖 -->
 			<dependency>
 				<groupId>org.mockito</groupId>
-				<artifactId>mockito-all</artifactId>
-				<version>${mockito-all.version}</version>
+				<artifactId>mockito-core</artifactId>
+				<version>${mockito.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>

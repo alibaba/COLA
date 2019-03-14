@@ -13,6 +13,7 @@ import com.alibaba.cola.mock.utils.MockHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.config.BeanDefinition;
 
 /**
@@ -63,7 +64,14 @@ public class ColaTestRecordController extends AbstractRecordController {
         if(beanName.indexOf(Constants.INNER_BEAN_NAME) > -1) {
             return bean;
         }
-        BeanDefinition beanDefinition = registry.getBeanDefinition(beanName);
+        //This is to accommodate Web starters
+        BeanDefinition beanDefinition;
+        try {
+            beanDefinition = registry.getBeanDefinition(beanName);
+        }
+        catch (NoSuchBeanDefinitionException ex){
+            return bean;
+        }
         String metaClassName = getClassName(bean, beanDefinition);
         try {
             Class factCls = Class.forName(metaClassName);

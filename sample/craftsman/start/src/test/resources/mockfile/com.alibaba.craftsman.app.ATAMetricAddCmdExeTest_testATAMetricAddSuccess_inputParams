@@ -1,0 +1,18 @@
+{"initialized":true,"version":"1.0.0"}
+com.alibaba.craftsman.tunnel.database.MetricTunnel_create
+=================method_params_separator================
+[
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"id":"1073",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"commentCount\":14,\"favoriteCount\":49,\"hitCount\":299,\"thumbsUpCount\":89,\"title\":\"testATAMetricAddSuccess\",\"url\":\"sharingLink\"}",
+			"modifier":"System",
+			"subMetric":"ATA",
+			"userId":"ATAMetricAddCmdExeTest1552554148803"
+		}
+	]
+]
+=======================different_method_separator=============================
