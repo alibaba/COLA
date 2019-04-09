@@ -33,24 +33,6 @@
 			<artifactId>javax.el</artifactId>
 		</dependency>
 		<!-- JSR 303 Validation End-->
-		<!-- Test -->
-		<dependency>
-			<groupId>com.alibaba.cola</groupId>
-			<artifactId>cola-test</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-		</dependency>
-		<!-- Test End -->
 	</dependencies>
 
 	<build>

@@ -57,7 +57,7 @@ public class ATAMetricAddCmdExeTest extends MockTestBase {
     }
 
     @Test
-    public void testATAMetricAddWithNoAuthor(){
+    public void testATAMetricAddWithoutAuthor(){
         ATAMetricAddCmd ataMetricAddCmd = new ATAMetricAddCmd();
         ATAMetricCO ataMetricCO = new ATAMetricCO();
         ataMetricAddCmd.setAtaMetricCO(ataMetricCO);

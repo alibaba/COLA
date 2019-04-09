@@ -53,19 +53,39 @@ public class ATAMetricItem extends MetricItem {
     public double calculateScore() {
         logger.debug("calculate score for : " + this);
         double score = BASIC_SCORE;
+        score = addScoreByHitCount(score);
+        score = addScoreByThumbsupCount(score);
+        score = addScoreByFavoriteCount(score);
+        score = addScoreByCommentCount(score);
+        logger.debug("calculated score is : " + score);
+        return score;
+    }
+
+    private double addScoreByHitCount(double score) {
         for(int counter = HIT_STEP_SIZE; counter <= hitCount; counter = counter + HIT_STEP_SIZE){
             score = score + STEP_SCORE;
         }
+        return score;
+    }
+
+    private double addScoreByThumbsupCount(double score){
         for(int counter = THUMB_UPS_STEP_SIZE; counter <= thumbsUpCount; counter = counter + THUMB_UPS_STEP_SIZE){
             score = score + STEP_SCORE;
         }
+        return score;
+    }
+
+    private double addScoreByFavoriteCount(double score){
         for(int counter = FAVORITE_STEP_SIZE; counter <= favoriteCount; counter = counter + FAVORITE_STEP_SIZE){
             score = score + STEP_SCORE;
         }
+        return score;
+    }
+
+    private double addScoreByCommentCount(double score){
         for(int counter = COMMENT_STEP_SIZE; counter <= commentCount; counter = counter + COMMENT_STEP_SIZE){
             score = score + STEP_SCORE;
         }
-        logger.debug("calculated score is : " + score);
         return score;
     }
 

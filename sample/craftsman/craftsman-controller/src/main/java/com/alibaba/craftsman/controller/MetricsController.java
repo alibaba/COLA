@@ -1,8 +1,8 @@
 package com.alibaba.craftsman.controller;
 
-import com.alibaba.cola.command.CommandBusI;
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
+import com.alibaba.craftsman.api.MetricsServiceI;
 import com.alibaba.craftsman.dto.ATAMetricAddCmd;
 import com.alibaba.craftsman.dto.ATAMetricQry;
 import com.alibaba.craftsman.dto.clientobject.ATAMetricCO;
@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.*;
 public class MetricsController {
 
     @Autowired
-    private CommandBusI commandBus;
+    private MetricsServiceI metricsService;
 
     @GetMapping(value = "/metrics/ata")
-    public MultiResponse<ATAMetricCO> getATAMetrics(@RequestParam String ownerId){
+    public MultiResponse<ATAMetricCO> listATAMetrics(@RequestParam String ownerId){
         ATAMetricQry ataMetricQry = new ATAMetricQry();
         ataMetricQry.setOwnerId(ownerId);
-        return (MultiResponse<ATAMetricCO>)commandBus.send(ataMetricQry);
+        return metricsService.listATAMetrics(ataMetricQry);
     }
 
     @PostMapping(value = "/metrics/ata")
     public Response addATAMetric(@RequestBody ATAMetricAddCmd ataMetricAddCmd){
-        return commandBus.send(ataMetricAddCmd);
+        return metricsService.addATAMetric(ataMetricAddCmd);
     }
 }

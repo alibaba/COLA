@@ -28,6 +28,4 @@ public class InfluenceMetric extends MainMetric {
     public double getWeight() {
         return  metricOwner.getWeight().getTechInfluenceWeight();
     }
-
-
 }

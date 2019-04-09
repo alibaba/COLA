@@ -22,6 +22,6 @@ public class SharingMetric extends SubMetric {
 
     @Override
     public double getWeight() {
-        return  metricOwner.getWeight().getUnanimousWeight();
+        return  parent.getMetricOwner().getWeight().getUnanimousWeight();
     }
 }

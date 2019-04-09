@@ -1,6 +1,6 @@
 package com.alibaba.craftsman.app;
 
-import com.alibaba.craftsman.context.LoginUser;
+import com.alibaba.craftsman.context.UserContext;
 import com.alibaba.craftsman.dto.UserProfileAddCmd;
 import com.alibaba.craftsman.dto.clientobject.UserProfileCO;
 import com.alibaba.craftsman.interceptor.ContextInterceptor;
@@ -18,17 +18,25 @@ public class ContextInterceptorTest {
     @Test
     public void testNoOperatorContext(){
         UserProfileAddCmd userProfileAddCmd = new UserProfileAddCmd();
-        UserProfileCO userProfileCO = new UserProfileCO();
-        userProfileCO.setUserId("UserProfileAddCmdExeTest" + Math.random());
-        userProfileCO.setDep("Alibaba");
-        userProfileCO.setIsManager(UserProfileCO.IS_MANAGER);
-        userProfileCO.setUserName("Frank");
-        userProfileAddCmd.setUserProfileCO(userProfileCO);
+        userProfileAddCmd.setUserProfileCO(new UserProfileCO());
 
         ContextInterceptor contextInterceptor = new ContextInterceptor();
         contextInterceptor.preIntercept(userProfileAddCmd);
-        String loginUserId = ((LoginUser)userProfileAddCmd.getContext().getContent()).getLoginUserId();
+        String operator = ((UserContext)userProfileAddCmd.getContext().getContent()).getOperator();
 
-        Assert.assertEquals(loginUserId, ContextInterceptor.SYS_USER);
+        Assert.assertEquals(operator, ContextInterceptor.SYS_USER);
+    }
+
+    @Test
+    public void testOperatorContext(){
+        UserProfileAddCmd userProfileAddCmd = new UserProfileAddCmd();
+        userProfileAddCmd.setUserProfileCO(new UserProfileCO());
+        userProfileAddCmd.setOperater("Frank");
+
+        ContextInterceptor contextInterceptor = new ContextInterceptor();
+        contextInterceptor.preIntercept(userProfileAddCmd);
+        String operator = ((UserContext)userProfileAddCmd.getContext().getContent()).getOperator();
+
+        Assert.assertEquals(operator, "Frank");
     }
 }

@@ -10,6 +10,8 @@ import com.alibaba.craftsman.dto.RefreshScoreCmd;
 import com.alibaba.craftsman.dto.domainevent.MetricItemCreatedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Collections;
+
 @EventHandler
 public class MetricItemCreatedHandler implements EventHandlerI<MetricItemCreatedEvent> {
 

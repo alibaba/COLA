@@ -4,7 +4,7 @@ import com.alibaba.cola.command.CommandInterceptorI;
 import com.alibaba.cola.command.PreInterceptor;
 import com.alibaba.cola.context.Context;
 import com.alibaba.cola.exception.Assert;
-import com.alibaba.craftsman.context.LoginUser;
+import com.alibaba.craftsman.context.UserContext;
 import com.alibaba.craftsman.dto.CommonCommand;
 
 @PreInterceptor
@@ -14,17 +14,16 @@ public class ContextInterceptor implements CommandInterceptorI<CommonCommand>{
 
     @Override
     public void preIntercept(CommonCommand command) {
-        Context<LoginUser> context = new Context();
-        LoginUser content = new LoginUser();
+        Context<UserContext> context = new Context();
+        UserContext content = new UserContext();
         //Normally, this will go to Auth System to do Authorization and Authentication.
         if (command.isNeedsOperator()){
             Assert.notNull(command.getOperater());
-            content.setLoginUserId(command.getOperater());
-            content.setLoginUserName("HumanBeing-Lucy");
+            content.setOperator(command.getOperater());
         }
         //System operation, No Human Operator needed
         else{
-            content.setLoginUserId(ContextInterceptor.SYS_USER);
+            content.setOperator(ContextInterceptor.SYS_USER);
         }
         context.setContent(content);
 

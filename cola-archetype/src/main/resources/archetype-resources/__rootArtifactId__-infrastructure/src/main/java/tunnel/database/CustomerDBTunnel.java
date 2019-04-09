@@ -25,8 +25,10 @@ public class CustomerDBTunnel implements DataTunnelI {
         return customerDo;
     }
 
-    public List<CustomerDO> findByCriteria(String... params) {
-        return null;
+    public CustomerDO getByName(String name) {
+        CustomerDO customerDO = new CustomerDO();
+        customerDO.setCompanyName("Hello, " + name);
+        return customerDO;
     }
 
 }

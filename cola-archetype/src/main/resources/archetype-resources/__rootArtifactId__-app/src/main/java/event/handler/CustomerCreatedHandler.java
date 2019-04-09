@@ -10,18 +10,19 @@ import com.alibaba.cola.logger.LoggerFactory;
 import ${package}.dto.domainevent.CustomerCreatedEvent;
 
 /**
- * 同步搜索器的handler
+ * Handle customer created event
  *
  * @author frankzhang
- * @date 2017/11/30
+ * @date 2019/04/09
  */
 @EventHandler
-public class CustomerCreatedSyncSearchHandler implements EventHandlerI<CustomerCreatedEvent> {
+public class CustomerCreatedHandler implements EventHandlerI<CustomerCreatedEvent> {
 
-    private Logger logger = LoggerFactory.getLogger(CustomerCreatedSyncSearchHandler.class);
+    private Logger logger = LoggerFactory.getLogger(CustomerCreatedHandler.class);
 
     @Override
     public void execute(CustomerCreatedEvent event) {
         logger.debug("Sync new customer to Search");
+        logger.debug("Logging system operation for new customer");
     }
 }

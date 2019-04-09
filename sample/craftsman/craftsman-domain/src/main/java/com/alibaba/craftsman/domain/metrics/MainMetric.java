@@ -39,22 +39,10 @@ public abstract class MainMetric extends Metric{
 
     @Override
     public double calculateScore() {
-        return weightedSum();
-    }
-
-    /**
-     * 获取所有子度量的加权平均分
-     * @return
-     */
-    private double weightedSum(){
-        double newScore = 0;
-        for (Metric metric : subMetrics) {
-            //各项子度量指标加权求和得到
-            newScore = newScore + metric.calculateScore() * metric.getWeight();
+        double mainMetricScore = 0;
+        for (Metric subMetric : subMetrics) {
+            mainMetricScore = mainMetricScore + subMetric.calculateScore() * subMetric.getWeight();
         }
-        //保留两位小数
-        newScore = Double.parseDouble(String.format("%.2f", newScore));
-        return newScore;
+        return mainMetricScore;
     }
-
 }

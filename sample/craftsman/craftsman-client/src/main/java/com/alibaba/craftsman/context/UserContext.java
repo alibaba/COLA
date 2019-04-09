@@ -3,13 +3,14 @@ package com.alibaba.craftsman.context;
 import lombok.Data;
 
 /**
- * LoginUser
+ * UserContext
  *
  * @author Frank Zhang
  * @date 2019-02-28 7:08 PM
  */
 @Data
-public class LoginUser {
+public class UserContext {
+    private String operator;
     private String loginUserId;
     private String loginUserName;
     private String loginUserRole;

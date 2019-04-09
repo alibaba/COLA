@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.domain.customer.valueobject;
+package ${package}.domain.customer;
 
 /**
  * CompanyType
@@ -14,6 +14,4 @@ public enum CompanyType {
     INTENTIONAL,
     IMPORTANT,
     VIP;
-
-
 }

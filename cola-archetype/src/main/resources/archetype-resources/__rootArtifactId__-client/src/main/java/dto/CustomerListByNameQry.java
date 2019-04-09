@@ -4,7 +4,9 @@
 package ${package}.dto;
 
 import com.alibaba.cola.dto.Query;
+import lombok.Data;
 
-public class CustomerFindByNameQry extends Query{
-
+@Data
+public class CustomerListByNameQry extends Query{
+   private String name;
 }

@@ -18,6 +18,5 @@ public class CustomerAddValidator implements ValidatorI {
 	@Override
 	public void validate(Object candidate) {
 		logger.debug("General validation");
-		CustomerAddCmd addCmd = (CustomerAddCmd)candidate;
 	}
 }

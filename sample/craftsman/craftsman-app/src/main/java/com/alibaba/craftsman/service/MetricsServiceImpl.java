@@ -1,10 +1,12 @@
 package com.alibaba.craftsman.service;
 
 import com.alibaba.cola.command.CommandBusI;
+import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.craftsman.api.MetricsServiceI;
 import com.alibaba.craftsman.command.*;
 import com.alibaba.craftsman.dto.*;
+import com.alibaba.craftsman.dto.clientobject.ATAMetricCO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,5 +60,10 @@ public class MetricsServiceImpl implements MetricsServiceI{
     @Override
     public Response deleteMetric(MetricDeleteCmd cmd) {
         return commandBus.send(cmd);
+    }
+
+    @Override
+    public MultiResponse<ATAMetricCO> listATAMetrics(ATAMetricQry ataMetricQry) {
+        return (MultiResponse<ATAMetricCO>)commandBus.send(ataMetricQry);
     }
 }

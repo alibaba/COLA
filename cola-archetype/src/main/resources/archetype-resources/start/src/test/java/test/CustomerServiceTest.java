@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package};
+package ${package}.test;
 
 import com.alibaba.cola.context.Context;
 import com.alibaba.cola.dto.Response;
@@ -16,8 +16,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * This is for integration test.
@@ -25,7 +25,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * Created by fulan.zjf on 2017/11/29.
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {TestConfig.class})
+@SpringBootTest
 public class CustomerServiceTest {
 
     @Autowired

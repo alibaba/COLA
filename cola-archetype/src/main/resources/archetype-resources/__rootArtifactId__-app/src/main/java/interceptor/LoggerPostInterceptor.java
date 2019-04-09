@@ -9,6 +9,7 @@ import com.alibaba.cola.dto.Command;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.logger.Logger;
 import com.alibaba.cola.logger.LoggerFactory;
+import com.alibaba.fastjson.JSON;
 
 @PostInterceptor
 public class LoggerPostInterceptor implements CommandInterceptorI{
@@ -17,7 +18,7 @@ public class LoggerPostInterceptor implements CommandInterceptorI{
 
     @Override
     public void postIntercept(Command command, Response response) {
-        logger.debug("End processing "+ command.getClass()+" Response:"+response);
+         logger.debug("End processing, Respons is "+ JSON.toJSONString(response));
     }
 
 }
