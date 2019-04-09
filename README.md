@@ -47,25 +47,20 @@ com
 
 可以按照以下步骤使用COLA Archetype：
 
-1. 下载Archetype：源码在 https://github.com/alibaba/COLA
+1. 下载Archetype
 
 2. 安装Archetype到本地：运行 mvn install
 
-3. 生成应用，比如要生成一个名为demo应用，只要执行下面的maven 命令：
+3. 生成应用，比如，要生成一个名为demo应用，只要执行下面的maven 命令：
 ```
 mvn archetype:generate  -DgroupId=com.alibaba.sample -DartifactId=demo -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.sample -DarchetypeArtifactId=cola-framework-archetype -DarchetypeGroupId=com.alibaba.cola -DarchetypeVersion=1.0.0-SNAPSHOT
 ```
 
 4. 启动SpringBoot，首先在demo目录下运行mvn install（如果不想运行测试，可以加上-DskipTests参数）。然后进入start目录，执行mvn spring-boot:run。
-
 运行成功的话，可以看到SpringBoot启动成功的界面
-![undefined](https://intranetproxy.alipay.com/skylark/lark/0/2019/png/6846/1554800799891-2f6c8953-9959-41b9-981a-0f37488505e4.png) 
 
 5. 执行测试，生成的应用中，已经实现了一个简单的Rest请求，可以在浏览器中输入 http://localhost:8080/customer?name=World 进行测试。
 
-6. 请求执行成功的话，可以在浏览器中的返回值中看到："customerName":"Hello, World"。同时观察启动SpringBoot的控制台，可以看到LoggerInterceptor答应的日志：
-![undefined](https://intranetproxy.alipay.com/skylark/lark/0/2019/png/6846/1554801117509-10c499a1-41dd-4a0d-99a1-ae794766cfa7.png) 
+6. 请求执行成功的话，可以在浏览器中的返回值中看到："customerName":"Hello, World"。同时观察启动SpringBoot的控制台，可以看到LoggerInterceptor打印出来的日志。
 
-
-查看生产的demo应用，我们可以看到生成了5个module，分别是demo-controller、demo-client、demo-app、demo-domain、demo-infrastructure。其中demo-client是用来存放RPC调用中的DTO（Data Transfer Object）类，其它四个module分别对应控制层、应用层、领域层和基础实施层。它们之间的关系如下：
-![undefined](https://intranetproxy.alipay.com/skylark/lark/0/2019/png/6846/1554801519549-2a4fa3f4-0773-43d4-9c49-0c84bd4b8bad.png) 
+查看生成的demo应用，我们可以看到生成了5个module，分别是demo-controller、demo-client、demo-app、demo-domain、demo-infrastructure。其中demo-client是用来存放RPC调用中的DTO（Data Transfer Object）类，其它四个module分别对应控制层、应用层、领域层和基础实施层。
