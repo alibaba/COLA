@@ -7,6 +7,7 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.alibaba.cola.mock.utils.JsonUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
@@ -71,7 +72,7 @@ public class JsonStore implements DataStore {
             }
             writeLine(raf, mockData.getDataId());
             writeLine(raf, Constants.RESPONSE_METHOD_DELIMITER  + "------------------------");
-            writeLine(raf, checkAndToJson(mockData.getDataList()));
+            writeLine(raf, JsonUtils.checkAndToJson(mockData.getDataList()));
             writeLine(raf, Constants.RESPONSE_DATA_DELIMITER    + "========================");
         }
         raf.close();
@@ -94,7 +95,7 @@ public class JsonStore implements DataStore {
             writeLine(raf, inputLists.getDataId());
             writeLine(raf, Constants.METHOD_PARAM_DELIMITER);
 
-            writeLine(raf, checkAndToJson(to2DimensionArr(inputLists.getDataList())));
+            writeLine(raf, JsonUtils.checkAndToJson(to2DimensionArr(inputLists.getDataList())));
             writeLine(raf, Constants.METHOD_METHOD_DELIMITER);
         }
         raf.close();
@@ -360,7 +361,7 @@ public class JsonStore implements DataStore {
             sb.append(line);
         }
         List<Object> dataList = null;
-        dataList = parseJson(sb.toString());
+        dataList = JsonUtils.parseJson(sb.toString());
         return dataList;
     }
 
@@ -432,29 +433,6 @@ public class JsonStore implements DataStore {
         line = new String(line.getBytes("ISO-8859-1"), "utf-8");
         line = StringUtils.trim(line);
         return line;
-    }
-
-    private String checkAndToJson(Object data){
-        String json = JSONArray.toJSONString(data, SerializerFeature.WriteClassName, SerializerFeature.PrettyFormat);
-        checkJson(json);
-        return json;
-    }
-
-    private void checkJson(String json){
-        parseJson(json);
-    }
-
-    private<T> T parseJson(String json){
-        T data = null;
-        try{
-            data = (T)JSON.parse(json);
-        }catch (JSONException e){
-            //if(e.getMessage().indexOf("autoType is not support") < 0){
-            //    throw e;
-            //}
-            throw new RuntimeException("无法反序列化,请确保序列化对象满足POJO,同时 存在无参构造!json=>" + json, e);
-        }
-        return data;
     }
 
 }

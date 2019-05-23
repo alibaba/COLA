@@ -4,6 +4,7 @@ import com.alibaba.cola.mock.ColaMockito;
 import com.alibaba.cola.mock.model.MockServiceModel;
 import com.alibaba.cola.mock.proxy.MockDataProxy;
 import com.alibaba.cola.mock.utils.MockHelper;
+
 import org.mockito.Mockito;
 import org.springframework.beans.factory.FactoryBean;
 

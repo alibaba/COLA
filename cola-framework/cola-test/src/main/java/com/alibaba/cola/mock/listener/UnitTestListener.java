@@ -1,17 +1,12 @@
 package com.alibaba.cola.mock.listener;
 
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import com.alibaba.cola.mock.ColaMockito;
 import com.alibaba.cola.mock.annotation.ExcludeCompare;
 import com.alibaba.cola.mock.exceptions.ErrorContext;
-import com.alibaba.cola.mock.model.MockData;
-import com.alibaba.cola.mock.model.MockDataFile;
 import com.alibaba.cola.mock.model.ColaTestModel;
-import com.alibaba.cola.mock.utils.CommonUtils;
-import com.alibaba.cola.mock.utils.Constants;
+import com.alibaba.cola.mock.utils.ColaMockConfigPrettyHelper;
 import com.alibaba.cola.mock.utils.SpyHelper;
 
 import org.junit.runner.Description;
@@ -31,7 +26,12 @@ public class UnitTestListener extends RunListener{
 
     @Override
     public void testStarted(Description description) throws Exception {
+        if(ColaMockito.g().getContext().getColaTestMeta() == null){
+            return;
+        }
         spyHelper = new SpyHelper(description.getTestClass(), ColaMockito.g().getContext().getTestInstance());
+        spyHelper.processInject4Test(new HashSet<>());
+
         //开始前先清理repo
         ColaMockito.g().getFileDataEngine().clean();
         readTestMethodConfig(description);
@@ -39,15 +39,17 @@ public class UnitTestListener extends RunListener{
 
     @Override
     public void testRunStarted(Description description){
-        ColaMockito.g().getContext().setTestMeta(description);
+        ColaMockito.g().getContext().getColaTestMeta().setDescription(description);
     }
 
     @Override
-    public void testRunFinished(Result result) throws Exception{
-    }
+    public void testRunFinished(Result result) throws Exception{}
 
     @Override
     public void testFinished(Description description) throws Exception {
+        if(ColaMockito.g().getContext().getColaTestMeta() == null){
+            return;
+        }
         spyHelper.resetTest();
         if(ErrorContext.isError()){
             ErrorContext.reset();
@@ -58,7 +60,8 @@ public class UnitTestListener extends RunListener{
         if(remain){
             throw new RuntimeException("remain data,please clean! testMethod=>" + description.getDisplayName());
         }
-        printPrettyColaConfig();
+        printPrettyColaInfo();
+        ColaMockito.g().getContext().clean();
     }
 
     @Override
@@ -91,29 +94,16 @@ public class UnitTestListener extends RunListener{
     //    spyHelper.resetTest();
     //}
 
-    private void printPrettyColaConfig(){
+    private void printPrettyColaInfo(){
         ColaTestModel colaTestModel = ColaMockito.g().getCurrentTestModel();
         if(colaTestModel == null){
             return;
         }
-        Class[] mocks = colaTestModel.getColaMockConfig().mocks();
-        Set<String> clazzNameSet = getAllActualMockClasses();
-        if(mocks.length != clazzNameSet.size()){
-            logger.info("PrettyColaConfig => " + String.format(Constants.COLAMOCKCONFIG_TEMPLATE, CommonUtils.format2ColaConfigClazz(clazzNameSet)));
-        }
+        ColaMockConfigPrettyHelper prettyHelper = new ColaMockConfigPrettyHelper(colaTestModel);
+        logger.info("PrettyColaMockConfig => " + prettyHelper.pretty());
+
+        //输出调用栈
+        logger.info(ColaMockito.g().getContext().getStackTree().toString());
     }
 
-    private Set<String> getAllActualMockClasses(){
-        Set<String> clazzNameSet = new HashSet<>();
-        if(!ColaMockito.g().getFileDataEngine().isExsitsMockDataFileByFileId(ColaMockito.g().getCurrentTestUid())){
-            return clazzNameSet;
-        }
-        MockDataFile mockDataFile = ColaMockito.g().getFileDataEngine().getMockDataFileByFileId(ColaMockito.g().getCurrentTestUid());
-
-        List<MockData> mockDataLst = mockDataFile.getAllMockData();
-        for(MockData mockData : mockDataLst){
-            clazzNameSet.add(mockData.getDataId().split(Constants.UNDERLINE)[0]);
-        }
-        return clazzNameSet;
-    }
 }

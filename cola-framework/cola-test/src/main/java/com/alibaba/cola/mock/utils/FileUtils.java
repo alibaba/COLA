@@ -10,6 +10,9 @@ import java.io.InputStream;
  */
 public class FileUtils {
 
+    public static final String PACKAGE_SPLITER = ".";
+    public static final String PACKAGE_SPLITER_REGEP = "\\.";
+
     public static File createFileIfNotExists(String srcResource){
         File file = new File(srcResource);
         File dir = file.getParentFile();
@@ -28,7 +31,7 @@ public class FileUtils {
 
     public static File reCreateFile(String filePath) throws IOException {
         File file = new File(filePath);
-        if(!file.exists()){
+        if(file.exists()){
             file.delete();
         }
         file.createNewFile();
@@ -103,5 +106,26 @@ public class FileUtils {
             is = FileUtils.class.getResourceAsStream("/META-INF/testclass-template.ftl");
         }
         return is;
+    }
+
+    /**
+     * 录制文件名缩写，原本com.alibaba.Test_execute->c.a.Test_execute
+     * @param originClassName
+     * @return
+     */
+    public static String getAbbrOfClassName(String originClassName){
+
+        String[] classNameFragment = originClassName.split(PACKAGE_SPLITER_REGEP);
+
+        StringBuilder shortName = new StringBuilder();
+        for(int i=0; i<classNameFragment.length; i++){
+            if(i< classNameFragment.length-1){
+                shortName.append(new String(new char[]{classNameFragment[i].charAt(0)})).append(PACKAGE_SPLITER);
+            }else{
+                shortName.append(classNameFragment[i]);
+            }
+        }
+        return shortName.toString();
+
     }
 }

@@ -1,5 +1,8 @@
 package com.alibaba.cola.mock.agent.transformlet;
 
+import com.alibaba.cola.mock.agent.model.AgentArgs;
+import com.alibaba.cola.mock.agent.model.TranslateType;
+
 import javassist.CtClass;
 import javassist.CtMethod;
 
@@ -9,14 +12,13 @@ import javassist.CtMethod;
  */
 public class MainRecordTransformlet extends AbstractTransformlet {
     private String methodName;
-    public MainRecordTransformlet(String className){
-        super(className);
+    public MainRecordTransformlet(String className, TranslateType type){
+        super(className, type);
     }
 
     @Override
-    public byte[] transform(String className, byte[] classFileBuffer, ClassLoader loader, String config)
+    public CtClass transform(String className, CtClass clazz, ClassLoader loader, AgentArgs config)
         throws Exception {
-        final CtClass clazz = TransformletUtils.getCtClass(classFileBuffer, loader);
         CtMethod method = null;
         try {
             method = clazz.getDeclaredMethod(methodName);
@@ -24,8 +26,8 @@ public class MainRecordTransformlet extends AbstractTransformlet {
             method = clazz.getMethod(methodName, "");
         }
 
-        TransformletUtils.doArroundForMethod(method, berforeCode(), afterCode());
-        return clazz.toBytecode();
+        TransformletUtils.doArroundForMethod(clazz, method, berforeCode(), afterCode());
+        return clazz;
     }
 
     private String berforeCode(){

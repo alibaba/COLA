@@ -47,7 +47,7 @@ public class MainRecordProxy implements MethodInterceptor {
 
         if(ColaMockito.g().getCurrentTestModel() != null
             && ColaMockito.g().getCurrentTestModel().getTestClazz().isAssignableFrom(mapperInterface)){
-            ColaMockito.g().getFileDataEngine().flush();
+            ColaMockito.g().getFileDataEngine().flushOutputData();
             ColaMockito.g().getFileDataEngine().flushInputParamsFile();
         }
         return result;

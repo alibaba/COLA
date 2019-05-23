@@ -24,6 +24,29 @@ public class Constants {
     public final static String METHOD_METHOD_DELIMITER = "=======================different_method_separator=============================";
 
     /** colamockconfig格式化模板*/
-    public final static String COLAMOCKCONFIG_TEMPLATE = "@ColaMockConfig(mocks={%s})";
+    public final static String COLAMOCKCONFIG_TEMPLATE = "@ColaMockConfig(mocks={${mocks}}"
+        + "<#if dataManufactures !=''>, dataManufactures={${dataManufactures}}</#if>)";
 
+    public final static String AGENT_NEW_METHOD_TEMPALTE =
+        "{ "
+            + "${beforeCode} "
+            + "<#if isReturn>Object result = </#if> ${renamedMethodName}($$); "
+            + "${afterCode} "
+            + "<#if isReturn>return result;</#if>"
+    + "}";
+
+    public final static String DATA_CURSOR_DESC = "curIndex %s params %s ";
+
+    /** 返回类型*/
+    public static final String RETURN_TYPE_VOID = "void";
+
+    /** 帮助手册*/
+    public static final String HELP_MANUAL_URL = "https://www.atatech.org/articles/121826";
+
+
+    public static final String GUIDE_HELP = "h";
+    public static final String GUIDE_REPEAT = "r";
+    public static final String GUIDE_QUIT = "q";
+
+    public static final String OS_WINDOWS = "Windows";
 }

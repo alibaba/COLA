@@ -4,6 +4,8 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import com.alibaba.cola.mock.model.ColaTestDescription;
+
 import org.junit.runner.Description;
 import org.junit.runner.Result;
 import org.junit.runner.notification.RunListener;
@@ -27,23 +29,17 @@ public class ColaNotifier {
     }
 
     /**
-     * runner开始(自定义)
-     * @param instance
-     */
-    public void fireTestRunStarted(Object instance){
-        if(colaRunListener != null){
-            colaRunListener.testRunStarted(instance);
-        }
-    }
-
-    /**
      * runner开始
-     * @param description
+     * @param colaDes
      */
-    public void fireTestRunStarted(final Description description){
+    public void fireTestRunStarted(final ColaTestDescription colaDes){
+        if(colaRunListener != null){
+            colaRunListener.testRunStarted(colaDes);
+        }
+
         for (RunListener listener : listeners) {
             try {
-                listener.testRunStarted(description);
+                listener.testRunStarted(colaDes.getDescription());
             } catch (Exception e) {
                 logger.error("", e);
             }
@@ -84,7 +80,7 @@ public class ColaNotifier {
     }
 
     /**
-     * runner结束
+     * runner结束( 多个test共用)
      * @param description
      */
     public void fireTestRunFinished(final Description description){

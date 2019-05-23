@@ -17,4 +17,5 @@ public @interface ColaMockConfig {
     Class[] mocks() default {};
     String[] regexMocks() default {};
     Class[] annotationMocks() default {};
+    Class[] dataManufactures() default {};
 }

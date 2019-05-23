@@ -75,7 +75,7 @@ public class ColaTestModelStore {
 
             JSONArray recordPointList = data.getJSONArray("recordPoints");
             recordPointList.stream().forEach(point->{
-                colaTestModel.addFilter(new RegexPatternTypeFilter(point.toString()));
+                colaTestModel.addMockFilter(new RegexPatternTypeFilter(point.toString()));
             });
             models.add(colaTestModel);
         });

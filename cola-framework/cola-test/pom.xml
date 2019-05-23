@@ -8,13 +8,40 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>cola-test</artifactId>
-	<version>${cola.framework.version}</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>cola-test</name>
+
+	<properties>
+		<mockito.version>1.10.19</mockito.version>
+	</properties>
+
 	<dependencies>
+		<dependency>
+			<groupId>com.sun</groupId>
+			<artifactId>tools</artifactId>
+			<version>1.8</version>
+			<scope>system</scope>
+			<systemPath>${java.home}/../lib/tools.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-cli</groupId>
+			<artifactId>commons-cli</artifactId>
+			<version>1.4</version>
+		</dependency>
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 			<version>2.3.28</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>2.4.7</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-beanutils</groupId>
@@ -30,18 +57,14 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>com.sun</groupId>
-			<artifactId>tools</artifactId>
-			<version>1.8</version>
-		</dependency>
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
+			<artifactId>mockito-all</artifactId>
+			<version>${mockito.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -79,6 +102,28 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<archive>
+								<manifestEntries>
+									<Agent-Class>com.alibaba.cola.mock.agent.MainAgent</Agent-Class>
+									<Can-Redefine-Classes>true</Can-Redefine-Classes>
+									<Can-Retransform-Classes>true</Can-Retransform-Classes>
+								</manifestEntries>
+							</archive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 				<executions>
 					<execution>
@@ -91,5 +136,5 @@
 				</executions>
 			</plugin>
 		</plugins>
-	</build>		
+	</build>
 </project>

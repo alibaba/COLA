@@ -3,6 +3,9 @@ package com.alibaba.cola.mock.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.alibaba.cola.mock.exceptions.ErrorCodes;
+import com.alibaba.cola.mock.utils.Constants;
+
 /**
  * @author shawnzhan.zxy
  * @date 2018/09/04
@@ -20,10 +23,14 @@ public class MockData {
     }
 
     public void put(Object data){
-        this.dataList.add(data);
+        this.dataList.add(curIndex++, data);
     }
 
     public Object nextData(){
+        if(curIndex >= dataList.size()){
+            throw new IndexOutOfBoundsException("index " + curIndex + ", size " + dataList.size()
+                + ",refer to " + ErrorCodes.INDEX_OUT_OF_BOUNDS);
+        }
         return this.dataList.get(curIndex++);
     }
 

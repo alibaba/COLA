@@ -6,6 +6,7 @@ import java.io.RandomAccessFile;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.alibaba.cola.mock.utils.JsonUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.parser.ParserConfig;
@@ -38,9 +39,10 @@ public class DataMapStore {
 
     public void save(Map<String, Object> data, String fileName) {
         try {
+            //先检查json的可用性，再重写文件
+            String json = JsonUtils.checkAndToJson(data);
             File file = FileUtils.reCreateFile(getFilePath(fileName));
             RandomAccessFile raf = new RandomAccessFile(file, "rw");
-            String json = JSONArray.toJSONString(data, SerializerFeature.WriteClassName, SerializerFeature.PrettyFormat);
             raf.write(json.getBytes("utf-8"));
             raf.close();
         } catch (Exception e) {

@@ -1,6 +1,7 @@
 package com.alibaba.cola.mock.proxy;
 
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Map;
@@ -8,13 +9,15 @@ import java.util.Map.Entry;
 
 import com.alibaba.cola.mock.ColaMockito;
 import com.alibaba.cola.mock.annotation.ExcludeCompare;
+import com.alibaba.cola.mock.model.ColaTestModel;
+import com.alibaba.cola.mock.model.InputListOfSameNameMethod;
 import com.alibaba.cola.mock.model.InputParamsFile;
 import com.alibaba.cola.mock.model.InputParamsOfOneMethod;
 import com.alibaba.cola.mock.model.MockDataFile;
 import com.alibaba.cola.mock.model.MockServiceModel;
-import com.alibaba.cola.mock.model.ColaTestModel;
 import com.alibaba.cola.mock.utils.CommonUtils;
 import com.alibaba.cola.mock.utils.CompareUtils;
+import com.alibaba.cola.mock.utils.Constants;
 import com.alibaba.cola.mock.utils.DeepCopy;
 import com.alibaba.cola.mock.utils.MockHelper;
 import com.alibaba.cola.mock.utils.reflection.BeanPropertySetter;
@@ -24,6 +27,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
 import org.springframework.util.StringUtils;
+
+import static com.alibaba.cola.mock.ColaMockito.g;
 
 /**
  * @author shawnzhan.zxy
@@ -41,45 +46,63 @@ public class MockDataProxy implements MethodInterceptor,InvocationHandler {
 
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-        return invokeMethod(o, method, objects, methodProxy);
+        try{
+            return invokeMethod(o, method, objects, methodProxy);
+        }catch (InvocationTargetException e){
+            throw e.getTargetException();
+        }
     }
 
     @Override
     public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
-        return invokeMethod(o, method, objects, null);
+        try{
+            return invokeMethod(o, method, objects, null);
+        }catch (InvocationTargetException e){
+            throw e.getTargetException();
+        }
     }
 
     public Object invokeMethod(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-        Object result = null;
-        boolean isMock = false;
         //检查本次要mock的对象
-        MockServiceModel mockServiceModel = ColaMockito.g().getContext().getMockByIntf(mapperInterface);
-        if(MockHelper.isMonitorMethod(method.getName())
-            && mockServiceModel != null){
-            isMock = true;
+        if(isMockService(method)){
+            return exceuteMock(method, objects);
         }
-        if(isMock){
-            String mockDataId = mapperInterface.getName()+"_"+method.getName();
-            MockDataFile mockDataFile = ColaMockito.g().getFileDataEngine().getMockDataFileByFileId(ColaMockito.g().getCurrentTestUid());
-            if(dataHasBeenMocked(mockDataId, mockDataFile)){
-                //自动对比mock接口的入参
-                if(needCompareThisMethodInputs(method)){
-                    autoCheckParams(mockDataId, objects);
-                }
-                //返回mock的返回值数据
-                result = mockDataFile.getData(mockDataId, method.getReturnType());
-                result = DeepCopy.from(result);
-                throwIfException(result);
-            }
-            return result;
+        if (isDataManufacture()) {
+            return manufactureDataIfNotExists(method);
         }
+
         method.setAccessible(true);
         if(instance == null){
-            //System.out.println(String.format("leaf mock[%s],no instance",o.getClass().getSuperclass()));
             return null;
         }
-        result = method.invoke(instance, objects);
-        return result;
+        return method.invoke(instance, objects);
+    }
+
+    private Object exceuteMock(Method method, Object[] objects) throws Exception{
+        Object result = null;
+        String mockDataId = getMockDataStorageKey(method);
+        MockDataFile mockDataFile = g().getFileDataEngine().getMockDataFileByFileId(g().getCurrentTestUid());
+        if(!dataHasBeenMocked(mockDataId, mockDataFile)) {
+            return result;
+        }
+        //自动对比mock接口的入参
+        autoCheckParams(method, mockDataId, objects);
+        //返回mock的返回值数据
+        result = mockDataFile.getData(mockDataId, method.getReturnType());
+        ColaMockito.g().getContext().getStackTree().recordCurrentStackPoint(ColaMockito.g().getCurrentTestModel());
+        result = DeepCopy.from(result);
+        throwIfException(result);
+        return convertResultIfEnum(method.getReturnType(), result);
+    }
+
+    private boolean isMockService(Method method){
+        return MockHelper.isMonitorMethod(method.getName())
+            && getCurrentTestClassColaTestModel() != null && getCurrentTestClassColaTestModel().matchMockFilter(mapperInterface);
+    }
+
+    private boolean isDataManufacture(){
+        ColaTestModel colaTestModel = getCurrentTestClassColaTestModel();
+        return colaTestModel != null && colaTestModel.matchDataManufactureFilter(mapperInterface);
     }
 
     private boolean needCompareThisMethodInputs( Method currentMockedMethod){
@@ -89,14 +112,10 @@ public class MockDataProxy implements MethodInterceptor,InvocationHandler {
         if (isInExcludeMethodList(currentMockedMethod)) { return false; }
 
         return true;
-
     }
 
-
     private boolean isInExcludeInterfaceList() {
-
         Class[] excludeInterfaces = getNoNeedComparedInterface();
-
         if(excludeInterfaces != null && excludeInterfaces.length > 0) {
             for(Class exclude : excludeInterfaces) {
                 if (mapperInterface.getSimpleName().equals(exclude.getSimpleName())) {
@@ -128,14 +147,18 @@ public class MockDataProxy implements MethodInterceptor,InvocationHandler {
         return mockDataFile.contain(mockDataId);
     }
 
-    private void autoCheckParams(String mockdDataId, Object[] objects ) {
-        InputParamsFile inputParamsFile = ColaMockito.g().getFileDataEngine().getInputParamsFileByFileId(
-            ColaMockito.g().getCurrentTestUid()+ "_inputParams");
+    private void autoCheckParams(Method method, String mockdDataId, Object[] objects ) {
+        InputParamsFile inputParamsFile = g().getFileDataEngine().getInputParamsFileByFileId(
+            g().getCurrentTestUid()+ "_inputParams");
 
         if (inputParamsFile.contain(mockdDataId)) {
+            InputListOfSameNameMethod inputMethod = inputParamsFile.getInputListOfSameNameMethod(mockdDataId);
             InputParamsOfOneMethod inputParamsOfOneMethod = inputParamsFile.getCurrentInputOfOneMethod(mockdDataId);
             Object[] recordInputParams = inputParamsOfOneMethod.getInutParams();
-
+            boolean isNeedCompare = needCompareThisMethodInputs(method);
+            if(!isNeedCompare){
+                return;
+            }
             if(objects == null && recordInputParams != null){
                 throw new RuntimeException(
                     "mock interface input params compare wrong,record inputParams is not null while current inputs is null,class_method is:" + mockdDataId);
@@ -157,7 +180,8 @@ public class MockDataProxy implements MethodInterceptor,InvocationHandler {
                 String compareResult  = CompareUtils.compareFields(currentInput, recordInput, getNoNeedComparedFields());
 
                 if(!StringUtils.isEmpty(compareResult)){
-                    throw new RuntimeException(compareResult);
+                    throw new RuntimeException(String.format(Constants.DATA_CURSOR_DESC, inputMethod.getCurIndex(), i)
+                        + compareResult);
                 }
             }
 
@@ -166,13 +190,15 @@ public class MockDataProxy implements MethodInterceptor,InvocationHandler {
     }
 
     private ColaTestModel getCurrentTestClassColaTestModel(){
+        if(ColaMockito.g().getContext().getColaTestMeta() == null){
+            return null;
+        }
 
-        ColaTestModel currentTestClassConfigModel = ColaMockito.g().getContext().getColaTestModelMap().get(
-            ColaMockito.g().getContext().getTestMeta().getTestClass());
+        Class testClass = ColaMockito.g().getContext().getDescription().getTestClass();
+        ColaTestModel currentTestClassConfigModel = ColaMockito.g().getContext()
+            .getColaTestModelMap().get(testClass);
         return currentTestClassConfigModel;
     }
-
-
 
     private Class[] getNoNeedComparedInterface(){
         ColaTestModel currentTestModel = getCurrentTestClassColaTestModel();
@@ -181,7 +207,7 @@ public class MockDataProxy implements MethodInterceptor,InvocationHandler {
             return null;
         }
 
-        ExcludeCompare config = currentTestModel.getCurrentTestMethodConfig(ColaMockito.g().getCurrentTestUid());
+        ExcludeCompare config = currentTestModel.getCurrentTestMethodConfig(g().getCurrentTestUid());
         if(config != null){
             return config.mockedInterfaces();
         }else{
@@ -197,7 +223,7 @@ public class MockDataProxy implements MethodInterceptor,InvocationHandler {
         if(currentTestModel == null){
             return null;
         }
-        ExcludeCompare config = currentTestModel.getCurrentTestMethodConfig(ColaMockito.g().getCurrentTestUid());
+        ExcludeCompare config = currentTestModel.getCurrentTestMethodConfig(g().getCurrentTestUid());
         if(config != null){
             return config.mockedMethods();
         }else{
@@ -213,7 +239,7 @@ public class MockDataProxy implements MethodInterceptor,InvocationHandler {
             return null;
         }
 
-        ExcludeCompare config = currentTestModel.getCurrentTestMethodConfig(ColaMockito.g().getCurrentTestUid());
+        ExcludeCompare config = currentTestModel.getCurrentTestMethodConfig(g().getCurrentTestUid());
         if(config != null){
             return config.fields();
         }else{
@@ -242,6 +268,29 @@ public class MockDataProxy implements MethodInterceptor,InvocationHandler {
         throw (Exception)exceptionInstance;
     }
 
+    private Object manufactureDataIfNotExists(Method method){
+        ColaTestModel colaTestModel = getCurrentTestClassColaTestModel();
+        String mockDataId = getMockDataStorageKey(method);
+        Object result = colaTestModel.getDataMap(mockDataId);
+        if(result != null){
+            return result;
+        }
+        Class<?> returnType = method.getReturnType();
+        if(returnType != null && !Constants.RETURN_TYPE_VOID.equals(returnType.toString())){
+            result = ColaMockito.pojo().manufacturePojo(returnType);
+            colaTestModel.saveDataMap(mockDataId, result);
+        }
+        return result;
+    }
 
+    private Object convertResultIfEnum(Class clazz, Object value){
+        if(clazz.isEnum() && value != null){
+            return Enum.valueOf(clazz, value.toString());
+        }
+        return value;
+    }
 
+    private String getMockDataStorageKey(Method method) {
+        return mapperInterface.getName() + "_" + method.getName();
+    }
 }

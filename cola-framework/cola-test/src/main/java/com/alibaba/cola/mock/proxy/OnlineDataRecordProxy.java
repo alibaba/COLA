@@ -53,7 +53,7 @@ public class OnlineDataRecordProxy extends DataRecordProxy{
     protected Object afterMethod(Method method, Object[] params, Object result){
         result = super.afterMethod(method, params, result);
         if(isTestFront()){
-            getColaMockito().getFileDataEngine().flush();
+            getColaMockito().getFileDataEngine().flushOutputData();
             getColaMockito().getFileDataEngine().flushInputParamsFile();
         }
         return result;
@@ -66,15 +66,15 @@ public class OnlineDataRecordProxy extends DataRecordProxy{
 
     @Override
     protected String getMockFileName(){
-        return getColaMockito().getContext().getTestMeta().getClassName() + "Test_"
-            + getColaMockito().getContext().getTestMeta().getMethodName();
+        return getColaMockito().getContext().getDescription().getClassName() + "Test_"
+            + getColaMockito().getContext().getDescription().getMethodName();
     }
     /**
      * 通过全局ColaMockito.g() 来判断是否开启
      * @return
      */
     private boolean isTestFront() {
-        return ColaMockito.g().isRecording()
+        return recordStarted()
             && ColaMockito.g().getCurrentTestModel().getTestClazz().isAssignableFrom(mapperInterface);
     }
 
@@ -84,7 +84,7 @@ public class OnlineDataRecordProxy extends DataRecordProxy{
             colaMockito.getContext().setRecording(ColaMockito.g().getContext().isRecording());
             colaMockito.getContext().setColaTestModelList(
                 new ArrayList<>(ColaMockito.g().getContext().getColaTestModelMap().values()));
-            colaMockito.getContext().setTestMeta(ColaMockito.g().getContext().getTestMeta());
+            colaMockito.getContext().getColaTestMeta().setDescription(ColaMockito.g().getContext().getDescription());
             colaMockito.setFileDataEngine(new FileDataEngine(DataStoreEnum.JSON_STORE, ColaMockito.g().getFileDataEngine().getSrcResource()));
         } catch (Exception e) {
             throw new RuntimeException("", e);

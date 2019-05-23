@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.alibaba.cola.mock.model.MockServiceModel;
+import com.alibaba.cola.mock.model.ColaTestDescription;
 import com.alibaba.cola.mock.model.ColaTestModel;
+import com.alibaba.cola.mock.model.MockServiceModel;
+import com.alibaba.cola.mock.model.StackTree;
 
 import org.junit.runner.Description;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.FactoryBean;
 
 /**
@@ -20,10 +20,9 @@ import org.springframework.beans.factory.FactoryBean;
  * @date 2018/09/02
  */
 public class ColaMockContext implements Serializable{
-    private static Logger logger = LoggerFactory.getLogger(ColaMockContext.class);
-
-    private Object testInstance;
-    private Description testMeta;
+    /** 当前测试实例信息*/
+    private ColaTestDescription colaTestMeta;
+    private StackTree stackTree = new StackTree();
     /** 整体监控列表，容器启动需要一次性将需要mock的类都通过cglib代理*/
     private List<MockServiceModel> monitorList = new ArrayList<>();
     /**
@@ -115,10 +114,6 @@ public class ColaMockContext implements Serializable{
     }
 
     public void putColaTestModel(ColaTestModel colaTestModel) {
-        if(colaTestModel == null){
-            logger.error("No cola mock config is specified, which could be normal if you are not intend to do Recording");
-            return;
-        }
         colaTestModelMap.put(colaTestModel.getTestClazz(), colaTestModel);
     }
 
@@ -126,32 +121,33 @@ public class ColaMockContext implements Serializable{
         colaTestModelMap.putAll(colaTestModelList.stream().collect(Collectors.toMap(ColaTestModel::getTestClazz, v->v)));
     }
 
-    public Description getTestMeta() {
-        return testMeta;
+    public Description getDescription() {
+        return colaTestMeta.getDescription();
     }
 
-    public void setTestMeta(Description testMeta) {
-        this.testMeta = testMeta;
+    public void clean(){
+        setColaTestMeta(null);
+        stackTree = new StackTree();
+    }
+
+    public void setColaTestMeta(ColaTestDescription colaTestMeta) {
+        this.colaTestMeta = colaTestMeta;
+    }
+
+    public ColaTestDescription getColaTestMeta() {
+        return colaTestMeta;
     }
 
     public List<MockServiceModel> getMonitorList() {
         return monitorList;
     }
 
-    public List<MockServiceModel> getSpyList() {
-        return spyList;
-    }
-
-    public void setSpyList(List<MockServiceModel> spyList) {
-        this.spyList = spyList;
-    }
-
     public Object getTestInstance() {
-        return testInstance;
+        return colaTestMeta.getTestInstance();
     }
 
-    public void setTestInstance(Object testInstance) {
-        this.testInstance = testInstance;
+    public StackTree getStackTree() {
+        return stackTree;
     }
 }
 

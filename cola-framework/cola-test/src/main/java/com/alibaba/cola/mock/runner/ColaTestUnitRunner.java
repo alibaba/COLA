@@ -3,6 +3,7 @@ package com.alibaba.cola.mock.runner;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import com.alibaba.cola.mock.model.ColaTestDescription;
 import com.alibaba.fastjson.parser.ParserConfig;
 import com.alibaba.cola.mock.ColaMockito;
 import com.alibaba.cola.mock.annotation.ColaBefore;
@@ -38,10 +39,10 @@ public class ColaTestUnitRunner extends BlockJUnit4ClassRunner {
         super(clazz);
     }
 
-    @Override
-    protected Object createTest() throws Exception {
+    protected Object createTest(Description description) throws Exception {
         Object testInstance = super.createTest();
-        ColaMockito.g().initUnitMock(testInstance);
+        ColaTestDescription colaTestDescription = new ColaTestDescription(testInstance, description);
+        ColaMockito.g().initUnitMock(colaTestDescription);
         return testInstance;
     }
 
@@ -53,8 +54,7 @@ public class ColaTestUnitRunner extends BlockJUnit4ClassRunner {
                 @Override
                 protected Object runReflectiveCall() throws Throwable {
                     Description description = describeChild(frameworkMethod);
-                    ColaMockito.g().getContext().setTestMeta(description);
-                    return createTest();
+                    return createTest(description);
                 }
             }.run();
         }

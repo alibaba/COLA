@@ -62,6 +62,18 @@ public class BeanPropertySetter {
         }
         return dest;
     }
+
+    public<T> T getValue() {
+        Field field = getField();
+        field.setAccessible(true);
+        try {
+            return (T)field.get(target);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * 判断对象中是否有要找的字段
      * @param fields the fields which you want to find

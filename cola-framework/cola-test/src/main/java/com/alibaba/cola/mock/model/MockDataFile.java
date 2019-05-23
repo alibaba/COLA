@@ -1,9 +1,9 @@
 package com.alibaba.cola.mock.model;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * @author shawnzhan.zxy
@@ -12,7 +12,7 @@ import java.util.Map;
 public class MockDataFile {
     private String fileId;
     private HeaderVersion header;
-    private Map<String, MockData> mockDataMap = new LinkedHashMap<>();
+    private Map<String, MockData> mockDataMap = new TreeMap<>();
 
     public MockDataFile(){}
 
@@ -74,7 +74,7 @@ public class MockDataFile {
     }
 
     public void cleanNoUseData(){
-        Map<String, MockData> newMockDataMap = new LinkedHashMap<>();
+        Map<String, MockData> newMockDataMap = new TreeMap<>();
         mockDataMap.entrySet().forEach(entry->{
             MockData mockData = entry.getValue();
             if(!mockData.hasNext()){

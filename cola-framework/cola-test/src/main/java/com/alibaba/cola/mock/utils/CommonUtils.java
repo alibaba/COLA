@@ -4,9 +4,12 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.Writer;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.alibaba.cola.mock.utils.Constants.OS_WINDOWS;
 
 /**
  * @author shawnzhan.zxy
@@ -21,7 +24,7 @@ public class CommonUtils {
      * 格式化成colaconfig的 拼接class
      * @return
      */
-    public static String format2ColaConfigClazz(Set<String> clazzNameSet){
+    public static String format2ColaConfigClazz(Collection<String> clazzNameSet){
         StringBuilder sb = new StringBuilder();
         for(String clazzName : clazzNameSet){
             sb.append(clazzName.substring(clazzName.lastIndexOf(Constants.DOT) + 1)).append(".class").append(", ");
@@ -43,6 +46,21 @@ public class CommonUtils {
 
     public static String formatDate(Date date){
         return new SimpleDateFormat(DATE_FORMAT).format(date);
+    }
+
+    public static String buildLoopChar(String c, int loopCnt){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < loopCnt; i++){
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+
+    public static String getSimpleClassName(String className){
+        String[] sp = className.split("\\.");
+        String simpleClassName = sp[sp.length - 1];
+        String[] sp2 = simpleClassName.split("\\$\\$");
+        return sp2[0];
     }
 
     public static void closeWriter(Writer writer){
@@ -93,6 +111,11 @@ public class CommonUtils {
             }
         }
         return rst;
+    }
+
+    public static boolean isWindows(){
+        String osName = System.getProperty("os.name");
+        return osName.contains(OS_WINDOWS);
     }
 
     public static void main(String[] args) {

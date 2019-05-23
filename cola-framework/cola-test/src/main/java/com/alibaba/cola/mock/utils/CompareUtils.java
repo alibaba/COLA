@@ -10,6 +10,8 @@ import java.util.List;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 
+import org.apache.commons.lang3.reflect.FieldUtils;
+
 public class CompareUtils {
 
 
@@ -50,6 +52,10 @@ public class CompareUtils {
                         Object o1 = null;
                         Object o2 = null;
                         Method readMethod=pd.getReadMethod();//get方法
+
+                        if(readMethod == null && FieldUtils.getField(clazz, name) == null){
+                            continue;
+                        }
                         if(readMethod == null){
                             Field f = clazz.getDeclaredField(name);
                             f.setAccessible(true);
@@ -66,10 +72,10 @@ public class CompareUtils {
                             continue;
                         }
                         if(o1 == null && o2 != null){
-                            return name + " compareFields failed, when expect is not null , and real value is null";
+                            return name + " compareFields failed, when expect is not null , and real value is null,expect value is: " + JSON.toJSONString(o2);
                         }
                         if(o1 != null && o2 == null){
-                            return name + " compareFields failed, when expect is  null , and real value is not null";
+                            return name + " compareFields failed, when expect is  null , and real value is not null, real value is : " +  JSON.toJSONString(o1);
                         }
 
                         /**

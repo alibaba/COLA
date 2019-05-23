@@ -1,23 +1,36 @@
 package com.alibaba.cola.mock.agent.transformlet;
 
+import com.alibaba.cola.mock.agent.model.AgentArgs;
+import com.alibaba.cola.mock.agent.model.TranslateType;
+
+import javassist.CtClass;
+
 /**
  * @author shawnzhan.zxy
  * @date 2018/11/12
  */
 public abstract class AbstractTransformlet {
     private String className;
+    private TranslateType type;
 
-    public AbstractTransformlet(String className){
+    public AbstractTransformlet(String className, TranslateType type){
         this.className = className;
+        this.type = type;
     }
 
-    abstract byte[] transform(String className, byte[] classFileBuffer, ClassLoader loader, String config) throws Exception;
+    abstract CtClass transform(String className, CtClass clazz, ClassLoader loader, AgentArgs config) throws Exception;
 
-    byte[] doTransform(String className, byte[] classFileBuffer, ClassLoader loader, String config) throws Exception{
+    public CtClass doTransform(String className, CtClass clazz, ClassLoader loader, AgentArgs config) throws Exception{
         if(!this.className.equals(className)){
-            return null;
+            return clazz;
         }
-        return transform(className, classFileBuffer, loader, config);
+
+        if(TransformletUtils.existsFlagField(clazz, config)){
+            return clazz;
+        }
+        transform(className, clazz, loader, config);
+        //TransformletUtils.injectFlagField(clazz, config);
+        return clazz;
     }
 
 
