@@ -52,7 +52,9 @@ public abstract class AbstractRecordController implements BeanPostProcessor,Bean
     public void onApplicationEvent(ContextRefreshedEvent event) {
         String[] beanDefinitionNames = registry.getBeanDefinitionNames();
         for(String beanName : beanDefinitionNames){
-            beanFactory.getBean(beanName);
+            try{
+                beanFactory.getBean(beanName);
+            }catch (Throwable e){}
         }
 
         if(serviceSet.size() == 0){
