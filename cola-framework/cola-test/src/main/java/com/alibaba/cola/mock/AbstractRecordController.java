@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import com.alibaba.cola.mock.model.ServiceModel;
@@ -34,15 +34,20 @@ import org.springframework.core.type.MethodMetadata;
  * @author shawnzhan.zxy
  * @date 2018/10/28
  */
-public abstract class AbstractRecordController implements BeanPostProcessor,BeanDefinitionRegistryPostProcessor,ApplicationListener<ContextRefreshedEvent>,InitializingBean {
+public abstract class AbstractRecordController
+    implements BeanPostProcessor,BeanDefinitionRegistryPostProcessor,ApplicationListener<ContextRefreshedEvent>,InitializingBean {
+    private static final Integer UN_START = 0;
+    private static final Integer STARTING = 1;
+    private static final Integer END = 2;
+
     protected BeanDefinitionRegistry registry;
     protected ConfigurableListableBeanFactory beanFactory;
     protected Set<ServiceModel> serviceSet = new HashSet<>();
     protected ServiceListStore serviceListStore = new ServiceListStore();
-    private static AtomicBoolean INIT_FLAG = new AtomicBoolean(false);
+    private static AtomicInteger INIT_FLAG = new AtomicInteger(0);
 
     public AbstractRecordController(){
-        if(!INIT_FLAG.compareAndSet(false, true)){
+        if(!INIT_FLAG.compareAndSet(UN_START, STARTING)){
             throw new RuntimeException("init is running!");
         }
     }
@@ -50,9 +55,12 @@ public abstract class AbstractRecordController implements BeanPostProcessor,Bean
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+        if(!INIT_FLAG.compareAndSet(STARTING, END)){
+            return;
+        }
         String[] beanDefinitionNames = registry.getBeanDefinitionNames();
         for(String beanName : beanDefinitionNames){
-            try{
+            try {
                 beanFactory.getBean(beanName);
             }catch (Throwable e){}
         }
@@ -122,11 +130,18 @@ public abstract class AbstractRecordController implements BeanPostProcessor,Bean
         }else if(beanDefinition instanceof RootBeanDefinition){
             className = bean.getClass().getName();
         }else if(bean instanceof Proxy){
-            className = bean.toString();
+            className = getClassNameFromProxy(bean);
         }else{
             className = beanDefinition.getBeanClassName();
         }
         return className;
     }
 
+    private String getClassNameFromProxy(Object proxy){
+        Class[] intfs = proxy.getClass().getInterfaces();
+        if(intfs != null && intfs.length > 0){
+            return intfs[0].getName();
+        }
+        return proxy.toString();
+    }
 }

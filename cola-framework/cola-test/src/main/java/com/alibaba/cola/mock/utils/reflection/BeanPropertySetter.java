@@ -15,7 +15,7 @@ public class BeanPropertySetter {
     public BeanPropertySetter(Object target, String fieldName){
         this.fieldName = fieldName;
         this.target = target;
-        this.field = getField();
+        this.field = findField();
     }
 
 
@@ -44,7 +44,7 @@ public class BeanPropertySetter {
      * @throws Throwable
      * @throws NoSuchFieldException
      */
-    public Field getField() {
+    public Field findField() {
         Class clzz = this.target.getClass();
         Field[] fields = clzz.getDeclaredFields();
         Field dest = null;
@@ -64,7 +64,6 @@ public class BeanPropertySetter {
     }
 
     public<T> T getValue() {
-        Field field = getField();
         field.setAccessible(true);
         try {
             return (T)field.get(target);
@@ -72,6 +71,10 @@ public class BeanPropertySetter {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public Field getField() {
+        return field;
     }
 
     /**
