@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.alibaba.cola.mock.ColaMockito;
 import com.alibaba.cola.mock.annotation.ColaMockConfig;
+import com.alibaba.cola.mock.model.ColaTestDescription;
 import com.alibaba.cola.mock.model.MockServiceModel;
 import com.alibaba.cola.mock.model.ColaTestModel;
 import com.alibaba.cola.mock.persist.ServiceListStore;
@@ -27,8 +28,9 @@ public class UnitColaTest extends AbstractColaTest {
     }
 
     @Override
-    protected void initTest(Object testInstance) {
-        ColaMockito.g().getContext().setTestInstance(testInstance);
+    protected void initTest(ColaTestDescription desc) {
+        super.initTest(desc);
+        Object testInstance = desc.getTestInstance();
         if(ColaMockito.g().getContext().getColaTestModelMap().get(testInstance.getClass()) == null){
             List<ColaTestModel> colaTestModelList = colaMockito.scanColaTest(testInstance.getClass().getPackage().getName());
             colaMockito.getContext().setColaTestModelList(colaTestModelList);

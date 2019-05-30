@@ -16,7 +16,7 @@ import org.springframework.context.ApplicationContext;
  *   例如：com.alibaba.cola.sales.service.test.CustomerServiceTest
  * 3.重复上一次测试，只需在控制台输入字母 - ‘r’
  *
- * @author fulan.zjf
+ * @author shawnzhan.zxy
  *
  */
 public class ColaMockContainer {
@@ -24,14 +24,19 @@ public class ColaMockContainer {
     public static void start(ApplicationContext context) {
         TestsContainer.init(context);
         TestExecutor testExecutor = TestsContainer.getTestExecutor();
-        ColaNotifier colaNotifier = new ColaNotifier();
-        colaNotifier.addListener(new DataRecordListener());
-        colaNotifier.setColaRunListener(new ColaRunListener());
+        ColaNotifier colaNotifier = initColaNotifier();
         testExecutor.setNotifier(colaNotifier);
         TestsContainer.start();
     }
 
     public static void start() {
         start(null);
+    }
+
+    private static ColaNotifier initColaNotifier(){
+        ColaNotifier colaNotifier = new ColaNotifier();
+        colaNotifier.addListener(new DataRecordListener());
+        colaNotifier.setColaRunListener(new ColaRunListener());
+        return colaNotifier;
     }
 }

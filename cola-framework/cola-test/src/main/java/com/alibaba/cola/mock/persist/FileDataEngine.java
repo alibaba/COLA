@@ -12,6 +12,8 @@ import com.alibaba.cola.mock.utils.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.alibaba.cola.mock.exceptions.ErrorCodes.HAS_REMAIN_DATA;
+
 /**
  * 文件存储引擎
  * @author shawnzhan.zxy
@@ -65,7 +67,7 @@ public class FileDataEngine {
         return true;
     }
 
-    public MockDataFile getMockDataFileByFileId(String fileId){
+    public synchronized MockDataFile getMockDataFileByFileId(String fileId){
         MockDataFile mockDataFile = repo.get(fileId);
         if(mockDataFile != null){
             return mockDataFile;
@@ -81,7 +83,7 @@ public class FileDataEngine {
         return mockDataFile;
     }
 
-    public InputParamsFile getInputParamsFileByFileId(String fileId){
+    public synchronized InputParamsFile getInputParamsFileByFileId(String fileId){
         InputParamsFile inputParamsFile = inputRepo.get(fileId);
         if(inputParamsFile != null){
             return inputParamsFile;
@@ -97,6 +99,11 @@ public class FileDataEngine {
     }
 
     public void flush(){
+        flushOutputData();
+        flushInputParamsFile();
+    }
+
+    public void flushOutputData(){
         if(repo.size() == 0){
             logger.warn("repo is null, check record point!");
             return;
@@ -197,8 +204,24 @@ public class FileDataEngine {
                 continue;
             }
             remain = true;
-            logger.warn(mockData.getDataId() + " has remain data,this mockData not used!");
+            logger.warn(mockData.getDataId() + " has remain data,this mockData not used!refer to " + HAS_REMAIN_DATA);
         }
         return remain;
+    }
+
+    public Map<String, MockDataFile> getRepo() {
+        return repo;
+    }
+
+    public Map<String, InputParamsFile> getInputRepo() {
+        return inputRepo;
+    }
+
+    public void setRepo(Map<String, MockDataFile> repo) {
+        this.repo = repo;
+    }
+
+    public void setInputRepo(Map<String, InputParamsFile> inputRepo) {
+        this.inputRepo = inputRepo;
     }
 }

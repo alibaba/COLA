@@ -4,12 +4,20 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.lang.reflect.Modifier;
 
+import com.alibaba.cola.mock.agent.model.AgentArgs;
+import com.alibaba.cola.mock.agent.model.TranslateType;
+import com.alibaba.cola.mock.utils.Constants;
+import com.alibaba.cola.mock.utils.TemplateBuilder;
+
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
+import javassist.CtConstructor;
+import javassist.CtField;
 import javassist.CtMethod;
 import javassist.CtNewMethod;
 import javassist.LoaderClassPath;
+import javassist.NotFoundException;
 
 /**
  * @author shawnzhan.zxy
@@ -17,7 +25,7 @@ import javassist.LoaderClassPath;
  */
 public class TransformletUtils {
 
-    static CtClass getCtClass(final byte[] classFileBuffer, final ClassLoader classLoader) throws IOException {
+    public static CtClass getCtClass(final byte[] classFileBuffer, final ClassLoader classLoader) throws IOException {
         final ClassPool classPool = new ClassPool(true);
         if (classLoader == null) {
             classPool.appendClassPath(new LoaderClassPath(ClassLoader.getSystemClassLoader()));
@@ -30,10 +38,15 @@ public class TransformletUtils {
         return clazz;
     }
 
-    public static void doArroundForMethod(CtMethod method, String beforeCode, String afterCode)
-        throws CannotCompileException {
+    public static void doArroundForMethod(CtClass clazz, CtMethod method, String beforeCode, String afterCode)
+        throws CannotCompileException, NotFoundException {
+        method.insertBefore(beforeCode);
+        method.insertAfter(afterCode);
+    }
+
+    public static void doArroundForCopyNewMethod(CtClass clazz, CtMethod method, String beforeCode, String afterCode)
+        throws CannotCompileException, NotFoundException {
         String renamedMethodName = renamedMethodName(method);
-        final CtClass clazz = method.getDeclaringClass();
         final CtMethod new_method = CtNewMethod.copy(method, clazz, null);
 
         // rename original method, and set to private method(avoid reflect out renamed method unexpectedly)
@@ -43,11 +56,14 @@ public class TransformletUtils {
             & ~Modifier.PROTECTED /* remove protected */
             | Modifier.PRIVATE /* add private */);
 
-        // set new method implementation
-        final String code = "{\n" +
-            beforeCode + "\n" +
-            "Object result = " + renamedMethodName + "($$);\n" +
-            afterCode + "\n";
+        TemplateBuilder builder = new TemplateBuilder(Constants.AGENT_NEW_METHOD_TEMPALTE);
+        builder.addVar("beforeCode", beforeCode)
+            .addVar("afterCode", afterCode)
+            .addVar("renamedMethodName", renamedMethodName);
+        if(new_method.getReturnType() != null){
+            builder.addVar("isReturn", true);
+        }
+        String code = builder.build();
         new_method.setBody(code);
         clazz.addMethod(new_method);
     }
@@ -56,4 +72,21 @@ public class TransformletUtils {
         return "original$" + method.getName() + "$ColaTest";
     }
 
+    static void injectFlagField(CtClass clazz, AgentArgs config) throws Exception{
+        CtField ctField = new CtField(CtClass.intType, "cola_" + config.getKey(), clazz);
+        clazz.addField(ctField);
+    }
+
+    static boolean existsFlagField(CtClass clazz, AgentArgs config) {
+        CtField ctField = null;
+        try {
+            ctField = clazz.getDeclaredField("cola_" + config.getKey());
+        } catch (NotFoundException e) {
+            return false;
+        }
+        if(ctField == null){
+            return false;
+        }
+        return true;
+    }
 }

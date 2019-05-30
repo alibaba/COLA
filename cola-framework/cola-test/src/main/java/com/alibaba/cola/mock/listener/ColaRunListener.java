@@ -1,6 +1,7 @@
 package com.alibaba.cola.mock.listener;
 
 import com.alibaba.cola.mock.ColaMockito;
+import com.alibaba.cola.mock.model.ColaTestDescription;
 
 /**
  * @author shawnzhan.zxy
@@ -8,7 +9,7 @@ import com.alibaba.cola.mock.ColaMockito;
  */
 public class ColaRunListener {
 
-    public void testRunStarted(Object testInstance){
-        ColaMockito.g().getContext().setTestInstance(testInstance);
+    public void testRunStarted(ColaTestDescription description){
+        ColaMockito.g().getContext().setColaTestMeta(description);
     }
 }

@@ -23,7 +23,11 @@ public class RegexPatternTypeFilter implements TypeFilter{
 
     @Override
     public boolean match(Class clzz) {
-        return this.pattern.matcher(clzz.getName()).matches();
+        return match(clzz.getName());
+    }
+
+    public boolean match(String ori) {
+        return this.pattern.matcher(ori).matches();
     }
 
     @Override

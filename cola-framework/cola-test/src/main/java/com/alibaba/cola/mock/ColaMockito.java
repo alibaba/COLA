@@ -3,6 +3,7 @@ package com.alibaba.cola.mock;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.cola.mock.model.ColaTestDescription;
 import com.alibaba.cola.mock.model.ColaTestModel;
 import com.alibaba.cola.mock.persist.DataMapStore;
 import com.alibaba.cola.mock.persist.DataStoreEnum;
@@ -11,6 +12,8 @@ import com.alibaba.cola.mock.runner.AbstractColaTest;
 import com.alibaba.cola.mock.runner.IntegrateColaTest;
 import com.alibaba.cola.mock.runner.UnitColaTest;
 import com.alibaba.cola.mock.scan.ClassPathTestScanner;
+import com.alibaba.cola.mock.utils.DeepCopy;
+import com.alibaba.cola.mock.utils.FileUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +27,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 public class ColaMockito {
     private static final Logger logger = LoggerFactory.getLogger(ColaMockito.class);
+
+
     public static ColaMockito instance = new ColaMockito();
     static PodamFactory podamFactory = new PodamFactoryImpl();
     private ColaMockContext context = new ColaMockContext();
@@ -40,7 +45,15 @@ public class ColaMockito {
     }
 
     public static<T> T getDataMap(String key){
-        return ColaMockito.g().getCurrentTestModel().getDataMap(key);
+        T data = ColaMockito.g().getCurrentTestModel().getDataMap4Strict(key);
+        if(data != null){
+            try {
+                return DeepCopy.from(data);
+            } catch (Exception e) {
+                logger.error("", e);
+            }
+        }
+        return data;
     }
 
     public static PodamFactory pojo(){
@@ -49,20 +62,18 @@ public class ColaMockito {
 
     /**
      * 测试类mock回放初始化
-     * @param testInstance
      */
-    public void initMock(Object testInstance){
+    public void initMock(ColaTestDescription desc){
         AbstractColaTest colaTest = new IntegrateColaTest(this);
-        colaTest.init(testInstance);
+        colaTest.init(desc);
     }
 
     /**
      * 测试类mock回放初始化
-     * @param testInstance
      */
-    public void initUnitMock(Object testInstance){
-        UnitColaTest colaTest = new UnitColaTest(this);
-        colaTest.init(testInstance);
+    public void initUnitMock(ColaTestDescription desc){
+        AbstractColaTest colaTest = new UnitColaTest(this);
+        colaTest.init(desc);
     }
 
     /**
@@ -96,25 +107,25 @@ public class ColaMockito {
     }
 
     public String getCurrentTestUid() {
-        return context.getTestMeta().getClassName() + "_" + context.getTestMeta().getMethodName();
+        return FileUtils.getAbbrOfClassName(context.getDescription().getClassName()) + "_"
+            + context.getDescription().getMethodName();
+        //return context.getDescription().getClassName() + "_"
+        //    + context.getDescription().getMethodName();
     }
 
+
+
+
+
     public ColaTestModel getCurrentTestModel(){
-        if(context.getTestMeta() == null){
+        if(context.getColaTestMeta() == null){
             return null;
         }
         Map<Class, ColaTestModel> colaTestModelMap = context.getColaTestModelMap();
         if(colaTestModelMap == null){
             throw new RuntimeException("not ready ColaTestModel,please check unit test or integrate test!");
         }
-        return colaTestModelMap.get(context.getTestMeta().getTestClass());
-    }
-
-    public boolean isRecording(){
-        if(getCurrentTestModel() == null){
-            return false;
-        }
-        return true;
+        return colaTestModelMap.get(context.getDescription().getTestClass());
     }
 
     public void setContext(ColaMockContext context) {
@@ -127,6 +138,10 @@ public class ColaMockito {
 
     public Map<String, Object> loadDataMaps(String classPath){
         return dataMapStore.load(classPath);
+    }
+
+    public DataMapStore getDataMapStore() {
+        return dataMapStore;
     }
 
     public void setFileDataEngine(FileDataEngine fileDataEngine) {

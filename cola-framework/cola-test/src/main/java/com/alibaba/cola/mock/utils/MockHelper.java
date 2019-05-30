@@ -3,6 +3,9 @@ package com.alibaba.cola.mock.utils;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.alibaba.cola.mock.proxy.MockDataProxy;
+
+import org.mockito.Mockito;
 import org.objenesis.ObjenesisStd;
 import org.springframework.cglib.proxy.Callback;
 import org.springframework.cglib.proxy.Enhancer;
@@ -42,6 +45,15 @@ public class MockHelper {
         Factory proxy = (Factory)newInstance(proxyCls);
         proxy.setCallbacks(new Callback[] {interceptor});
         return proxy;
+    }
+
+    public static Object newInstanceForMockDataProxy(Class clazz){
+        try {
+            Object oriTarget = Mockito.mock(clazz);
+            return MockHelper.createMockFor(clazz, new MockDataProxy(clazz, oriTarget));
+        }catch (Throwable e){
+            return null;
+        }
     }
 
     public static Object newInstance(Class clazz){

@@ -6,19 +6,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.alibaba.cola.mock.model.MockServiceModel;
 import com.alibaba.cola.mock.model.ColaTestModel;
+import com.alibaba.cola.mock.model.MockServiceModel;
 import com.alibaba.cola.mock.persist.ServiceListStore;
 import com.alibaba.cola.mock.proxy.MockDataProxy;
 import com.alibaba.cola.mock.scan.AnnotationTypeFilter;
 import com.alibaba.cola.mock.scan.AssignableTypeFilter;
 import com.alibaba.cola.mock.scan.AutoMockFactoryBean;
-import com.alibaba.cola.mock.scan.ClassPathTestScanner;
 import com.alibaba.cola.mock.scan.FilterManager;
 import com.alibaba.cola.mock.scan.RegexPatternTypeFilter;
 import com.alibaba.cola.mock.utils.Constants;
 import com.alibaba.cola.mock.utils.MockHelper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -27,13 +28,18 @@ import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 
 /**
  * 集成测试回放控制器
  * @author shawnzhan.zxy
  * @date 2018/10/08
  */
-public class ColaMockController implements BeanDefinitionRegistryPostProcessor, BeanPostProcessor, InitializingBean {
+public class ColaMockController implements BeanDefinitionRegistryPostProcessor, BeanPostProcessor, InitializingBean
+    ,ApplicationListener<ContextRefreshedEvent> {
+    private static final Logger logger = LoggerFactory.getLogger(ColaMockController.class);
+    private final static String COLAMOCK_PROXY_FLAG = "\\$\\$EnhancerByColaMockWithCGLIB";
     protected static ConfigurableListableBeanFactory beanFactory;
     private static BeanDefinitionRegistry registry;
     /**
@@ -42,13 +48,11 @@ public class ColaMockController implements BeanDefinitionRegistryPostProcessor, 
     private List<String> serviceList;
     private FilterManager mockFilterManager;
     private FilterManager monitorFilterManager;
-    private ClassPathTestScanner testScanner;
     private ServiceListStore serviceListStore = new ServiceListStore();
 
     public ColaMockController(String... basePackages){
         serviceList = serviceListStore.load();
         mockFilterManager = new FilterManager();
-        testScanner = new ClassPathTestScanner();
         List<ColaTestModel> colaTestModelList = ColaMockito.g().scanColaTest(basePackages);
         ColaMockito.g().getContext().setColaTestModelList(colaTestModelList);
         monitorFilterManager = new FilterManager();
@@ -134,6 +138,7 @@ public class ColaMockController implements BeanDefinitionRegistryPostProcessor, 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if(bean.getClass().getName().indexOf(Constants.COLAMOCK_PROXY_FLAG) > -1){
+            ColaMockito.g().getContext().putMonitorMock(new MockServiceModel(bean.getClass(), beanName, null, bean));
             return bean;
         }
         if(monitorFilterManager.match(bean.getClass())){
@@ -155,5 +160,24 @@ public class ColaMockController implements BeanDefinitionRegistryPostProcessor, 
         if(mockFilterManager.getFilterList().size() == 0){
             mockFilterManager.addFilter(new RegexPatternTypeFilter(".*"));
         }
+    }
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        printMockObjectList();
+    }
+
+    private void printMockObjectList(){
+        logger.info("===mock object list===");
+        int cnt = 0;
+        for(MockServiceModel m : ColaMockito.g().getContext().getMonitorList()){
+            if(m.getInterfaceCls().getName().indexOf(Constants.COLAMOCK_PROXY_FLAG) < 0){
+                continue;
+            }
+            cnt++;
+            String[] sp = m.getInterfaceCls().getName().split(COLAMOCK_PROXY_FLAG);
+            logger.info("serviceName:" + m.getServiceName() + ",class:" + sp[0]);
+        }
+        logger.info("===mock object list===" + cnt);
     }
 }

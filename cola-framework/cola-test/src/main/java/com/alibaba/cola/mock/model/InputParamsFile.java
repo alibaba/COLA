@@ -1,9 +1,9 @@
 package com.alibaba.cola.mock.model;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * bei.fengb 2018-09-24 08:21
@@ -14,7 +14,7 @@ public class InputParamsFile {
     /**
      * key = 被mock类名+方法  value = 对应方法的入参（若出现多次，则入参是list列表，同名方法放在一起）
      */
-    private Map<String, InputListOfSameNameMethod> method2Inputs = new LinkedHashMap<>();
+    private Map<String, InputListOfSameNameMethod> method2Inputs = new TreeMap<>();
     /**
      * 单个testcase中所有mock的方法的入参
      */
@@ -52,6 +52,10 @@ public class InputParamsFile {
         return inputRecord.nextData();
     }
 
+    public InputListOfSameNameMethod getInputListOfSameNameMethod(String classNamePlusMethodName){
+        return method2Inputs.get(classNamePlusMethodName);
+    }
+
     public boolean contain(String dataId){
         return method2Inputs.containsKey(dataId);
     }
@@ -73,7 +77,7 @@ public class InputParamsFile {
     }
 
     public void cleanNoUseData(){
-        Map<String, InputListOfSameNameMethod> newMethod2Inputs = new LinkedHashMap<>();
+        Map<String, InputListOfSameNameMethod> newMethod2Inputs = new TreeMap<>();
         method2Inputs.entrySet().forEach(entry->{
             InputListOfSameNameMethod mockData = entry.getValue();
             if(!mockData.hasNext()){

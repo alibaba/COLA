@@ -2,6 +2,7 @@ package com.alibaba.cola.mock.runner;
 
 import com.alibaba.cola.mock.ColaMockito;
 import com.alibaba.cola.mock.annotation.ColaMockConfig;
+import com.alibaba.cola.mock.model.ColaTestDescription;
 import com.alibaba.cola.mock.scan.FilterManager;
 
 /**
@@ -15,14 +16,16 @@ public abstract class AbstractColaTest {
         this.colaMockito = colaMockito;
     }
 
-    public void init(Object testInstance){
-        validate(testInstance);
-        initTest(testInstance);
+    public void init(ColaTestDescription desc){
+        validate(desc.getTestInstance());
+        initTest(desc);
         colaMockito.getContext().clearMockList();
         scanMock();
     }
 
-    protected abstract void initTest(Object testInstance);
+    protected void initTest(ColaTestDescription desc){
+        ColaMockito.g().getContext().setColaTestMeta(desc);
+    }
 
     private void scanMock(){
         FilterManager filterManager = new FilterManager();
@@ -41,9 +44,9 @@ public abstract class AbstractColaTest {
 
     private boolean validate(Object testInstance){
         ColaMockConfig colaMockConfig = testInstance.getClass().getAnnotation(ColaMockConfig.class);
-        if(colaMockConfig == null){
-            throw new RuntimeException("ColaMockConfig cannot null");
-        }
+        //if(colaMockConfig == null){
+        //    throw new RuntimeException("ColaMockConfig cannot null");
+        //}
         return true;
     }
 }

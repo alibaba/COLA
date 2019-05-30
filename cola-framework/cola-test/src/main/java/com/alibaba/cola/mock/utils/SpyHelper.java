@@ -1,28 +1,29 @@
 package com.alibaba.cola.mock.utils;
 
-import com.alibaba.cola.mock.ColaMockito;
-import com.alibaba.cola.mock.annotation.Inject;
-import com.alibaba.cola.mock.annotation.InjectOnlyTest;
-import com.alibaba.cola.mock.scan.InjectAnnotationScanner;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
-import org.mockito.internal.configuration.DefaultInjectionEngine;
-import org.mockito.internal.configuration.GlobalConfiguration;
-import org.mockito.internal.configuration.SpyAnnotationEngine;
-import org.mockito.internal.configuration.injection.scanner.MockScanner;
-import org.mockito.internal.util.MockUtil;
-import org.mockito.internal.util.reflection.FieldReader;
-import org.mockito.internal.util.reflection.FieldSetter;
-import org.mockito.plugins.AnnotationEngine;
-import org.springframework.beans.factory.annotation.Qualifier;
-
 import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import com.alibaba.cola.mock.ColaMockito;
+import com.alibaba.cola.mock.annotation.Inject;
+import com.alibaba.cola.mock.annotation.InjectOnlyTest;
+import com.alibaba.cola.mock.scan.InjectAnnotationScanner;
+
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.Spy;
+import org.mockito.configuration.AnnotationEngine;
+import org.mockito.internal.configuration.DefaultAnnotationEngine;
+import org.mockito.internal.configuration.DefaultInjectionEngine;
+import org.mockito.internal.configuration.SpyAnnotationEngine;
+import org.mockito.internal.configuration.injection.scanner.MockScanner;
+import org.mockito.internal.util.MockUtil;
+import org.mockito.internal.util.reflection.FieldReader;
+import org.mockito.internal.util.reflection.FieldSetter;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
  * @author shawnzhan.zxy
@@ -32,12 +33,15 @@ public class SpyHelper {
     Object owner;
     Class ownerClazz;
     Set<Object> mocks = new HashSet<>();
-    private final AnnotationEngine delegate = new GlobalConfiguration().tryGetPluginAnnotationEngine();
+    //InjectingAnnotationEngine injectingAnnotationEngine = new InjectingAnnotationEngine();
+    MockUtil mockUtil = new MockUtil();
+    private final AnnotationEngine delegate = new DefaultAnnotationEngine();
     private final AnnotationEngine spyAnnotationEngine = new SpyAnnotationEngine();
 
     public SpyHelper(Class ownerClazz, Object owner){
         this.owner = owner;
         this.ownerClazz = ownerClazz;
+        //throwExceptionIfHasAnnotationMock();
     }
 
     /**
@@ -45,12 +49,16 @@ public class SpyHelper {
      * 集成测 录制
      */
     public void processInject4Record(){
-        scanAndCreateMockitoFields();
-        Set<Field> mockDependentFields = new HashSet<Field>();
-        new InjectAnnotationScanner(ownerClazz, Inject.class).addTo(mockDependentFields);
-        inject(mockDependentFields, mocks);
+        try {
+            pauseRecord();
+            scanAndCreateMockitoFields();
+            Set<Field> mockDependentFields = new HashSet<Field>();
+            new InjectAnnotationScanner(ownerClazz, Inject.class).addTo(mockDependentFields);
+            inject(mockDependentFields, mocks);
+        }finally {
+            continueRecord();
+        }
     }
-
 
     /**
      * 单元测 回放(不用清理)
@@ -101,7 +109,7 @@ public class SpyHelper {
 
     private void throwExceptionIfHasAnnotationMock(){
         for(Object o : mocks){
-            if(!MockUtil.isSpy(o)){
+            if(!mockUtil.isSpy(o)){
                 throw new RuntimeException("not support Mock annotation!");
             }
         }
@@ -112,9 +120,14 @@ public class SpyHelper {
      * 清理集成测 录制
      */
     public void resetRecord(){
-        Set<Field> mockDependentFields = new HashSet<Field>();
-        new InjectAnnotationScanner(ownerClazz, Inject.class).addTo(mockDependentFields);
-        resetMocks(mockDependentFields);
+        try {
+            pauseRecord();
+            Set<Field> mockDependentFields = new HashSet<Field>();
+            new InjectAnnotationScanner(ownerClazz, Inject.class).addTo(mockDependentFields);
+            resetMocks(mockDependentFields);
+        }finally {
+            continueRecord();
+        }
     }
 
     /**
@@ -217,10 +230,12 @@ public class SpyHelper {
             }
             if(value == null){
                 value = Mockito.spy(f.getType());
-            }else{
-                value = Mockito.spy(value);
             }
-            FieldSetter.setField(owner, f, value);
+            //spy会新生成对象，导致从容器中脱离
+            //else{
+            //    value = Mockito.spy(value);
+            //}
+            new FieldSetter(owner, f).set(value);
         }
     }
 
@@ -228,7 +243,15 @@ public class SpyHelper {
         if(instance == null){
             return false;
         }
-        return MockUtil.isMock(instance)
-            || MockUtil.isSpy(instance);
+        return mockUtil.isMock(instance)
+            || mockUtil.isSpy(instance);
+    }
+
+    private void pauseRecord(){
+        ColaMockito.g().getContext().setRecording(false);
+    }
+
+    private void continueRecord(){
+        ColaMockito.g().getContext().setRecording(true);
     }
 }

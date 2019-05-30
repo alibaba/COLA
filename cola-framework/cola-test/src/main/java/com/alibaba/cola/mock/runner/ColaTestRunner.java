@@ -1,7 +1,12 @@
 package com.alibaba.cola.mock.runner;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
+import com.alibaba.cola.mock.listener.IntegrateTestListener;
+import com.alibaba.cola.mock.model.ColaTestDescription;
+import com.alibaba.cola.mock.spring.ColaContextLoader;
+import com.alibaba.cola.mock.utils.reflection.BeanPropertySetter;
 import com.alibaba.fastjson.parser.ParserConfig;
 import com.alibaba.cola.mock.ColaMockito;
 import com.alibaba.cola.mock.annotation.ColaBefore;
@@ -16,15 +21,17 @@ import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
 import org.springframework.test.annotation.ProfileValueUtils;
+import org.springframework.test.context.MergedContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks;
+import org.springframework.test.context.support.DefaultTestContext;
 
 /**
  * @author shawnzhan.zxy
  * @date 2018/09/02
  */
 public class ColaTestRunner extends SpringJUnit4ClassRunner{
-    private static UnitTestListener colaUnitTestListener;
+    public static AtomicBoolean init = new AtomicBoolean(false);
 
     /**
      * Construct a new {@code SpringJUnit4ClassRunner} and initialize a
@@ -38,16 +45,11 @@ public class ColaTestRunner extends SpringJUnit4ClassRunner{
         super(clazz);
     }
 
-    @Override
-    protected Object createTest() throws Exception {
-        //ColaMockController controller = new ColaMockController("com.alibaba.cola", "com.alibaba.crm");
-        //List<String> regexList = new ArrayList<>();
-        //regexList.add(".*");
-        //controller.setMockRegex(regexList);
-        //GenericApplicationContext context = (GenericApplicationContext)super.getTestContextManager().getTestContext().getApplicationContext();
-        //context.addBeanFactoryPostProcessor(controller);
+    protected Object createTest(Description description) throws Exception {
+        assembleContextLoader();
         Object testInstance = super.createTest();
-        ColaMockito.g().initMock(testInstance);
+        ColaTestDescription colaTestDescription = new ColaTestDescription(testInstance, description);
+        ColaMockito.g().initMock(colaTestDescription);
         return testInstance;
     }
 
@@ -59,15 +61,13 @@ public class ColaTestRunner extends SpringJUnit4ClassRunner{
                 @Override
                 protected Object runReflectiveCall() throws Throwable {
                     Description description = describeChild(frameworkMethod);
-                    ColaMockito.g().getContext().setTestMeta(description);
-                    return createTest();
+                    return createTest(description);
                 }
             }.run();
         }
         catch (Throwable ex) {
             return new Fail(ex);
         }
-
 
         Statement statement = methodInvoker(frameworkMethod, testInstance);
         statement = possiblyExpectingExceptions(frameworkMethod, testInstance, statement);
@@ -112,5 +112,12 @@ public class ColaTestRunner extends SpringJUnit4ClassRunner{
         if(ColaTestUnitRunner.init.compareAndSet(false, true)){
             notifier.addListener(ColaTestUnitRunner.colaUnitTestListener);
         }
+    }
+
+    private void assembleContextLoader(){
+        BeanPropertySetter beanProperty = new BeanPropertySetter(getTestContextManager().getTestContext(), "mergedContextConfiguration");
+        MergedContextConfiguration mergedContextConfiguration = beanProperty.getValue();
+        beanProperty = new BeanPropertySetter(mergedContextConfiguration, "contextLoader");
+        beanProperty.setValue(new ColaContextLoader());
     }
 }

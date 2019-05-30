@@ -10,6 +10,7 @@ import com.alibaba.cola.mock.ColaMockito;
 import com.alibaba.cola.mock.annotation.ColaMockConfig;
 import com.alibaba.cola.mock.annotation.ExcludeCompare;
 import com.alibaba.cola.mock.scan.TypeFilter;
+import com.alibaba.cola.mock.utils.FileUtils;
 
 /**
  * @author shawnzhan.zxy
@@ -19,7 +20,8 @@ import com.alibaba.cola.mock.scan.TypeFilter;
 public class ColaTestModel implements Serializable{
     Class<?> testClazz;
     transient ColaMockConfig colaMockConfig;
-    List<TypeFilter> typeFilters = new ArrayList<>();
+    List<TypeFilter> mockFilters = new ArrayList<>();
+    List<TypeFilter> dataManufactureFilters = new ArrayList<>();
     Map<String, Object> dataMaps;
     /**
      * 单测方法，单测方法配置
@@ -57,24 +59,56 @@ public class ColaTestModel implements Serializable{
 
     public <T> T getDataMap(String key){
         if(dataMaps == null){
-            dataMaps = ColaMockito.g().loadDataMaps(testClazz.getName());
-        }
-        if(!this.dataMaps.containsKey(key)){
-            throw new RuntimeException(String.format("%s dataMap not exists!", key));
+            dataMaps = ColaMockito.g().loadDataMaps(FileUtils.getAbbrOfClassName(testClazz.getName()));
         }
         return (T)this.dataMaps.get(key);
     }
 
-    public void addFilter(TypeFilter filter) {
-        this.typeFilters.add(filter);
+    /**
+     * 获取dataMap
+     * @param key
+     * @param <T>
+     * @return
+     */
+    public <T> T getDataMap4Strict(String key){
+        T result = getDataMap(key);
+        if(result == null && !this.dataMaps.containsKey(key)){
+            throw new RuntimeException(String.format("%s dataMap not exists!", key));
+        }
+        return result;
+    }
+
+    public void saveDataMap(String key, Object value){
+        if(dataMaps == null){
+            dataMaps = ColaMockito.g().loadDataMaps(testClazz.getName());
+        }
+        dataMaps.put(key, value);
+        ColaMockito.g().getDataMapStore().save(dataMaps, testClazz.getName());
+    }
+
+    public void addMockFilter(TypeFilter filter) {
+        this.mockFilters.add(filter);
+    }
+
+    public void addDataManufactureFilter(TypeFilter filter) {
+        this.dataManufactureFilters.add(filter);
     }
 
     public List<TypeFilter> getTypeFilters() {
-        return typeFilters;
+        return mockFilters;
     }
 
-    public boolean filterInclude(Class clazz){
-        for(TypeFilter filter : typeFilters){
+    public boolean matchMockFilter(Class clazz){
+        for(TypeFilter filter : mockFilters){
+            if(filter.match(clazz)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean matchDataManufactureFilter(Class clazz){
+        for(TypeFilter filter : dataManufactureFilters){
             if(filter.match(clazz)){
                 return true;
             }

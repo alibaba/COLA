@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.alibaba.cola.mock.model.ColaTestDescription;
 import com.alibaba.cola.mock.model.MockServiceModel;
 import com.alibaba.cola.mock.model.ServiceModel;
 import com.alibaba.cola.mock.model.ColaTestModel;
@@ -77,11 +78,11 @@ public class ColaRecordController extends AbstractRecordController{
         ColaMockito.g().getContext().setColaTestModelList(colaTestModelList);
 
         Description description = Description.createTestDescription(colaTestModel.getTestClazz(), methodName);
-        ColaMockito.g().getContext().setTestMeta(description);
+        ColaMockito.g().getContext().setColaTestMeta(new ColaTestDescription(description));
     }
 
     public void stopRecord(){
-        ColaMockito.g().getContext().setTestMeta(null);
+        ColaMockito.g().getContext().setColaTestMeta(null);
     }
 
     @Override

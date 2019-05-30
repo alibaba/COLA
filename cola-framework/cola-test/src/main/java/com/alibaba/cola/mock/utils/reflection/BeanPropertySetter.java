@@ -15,7 +15,7 @@ public class BeanPropertySetter {
     public BeanPropertySetter(Object target, String fieldName){
         this.fieldName = fieldName;
         this.target = target;
-        this.field = getField();
+        this.field = findField();
     }
 
 
@@ -44,7 +44,7 @@ public class BeanPropertySetter {
      * @throws Throwable
      * @throws NoSuchFieldException
      */
-    public Field getField() {
+    public Field findField() {
         Class clzz = this.target.getClass();
         Field[] fields = clzz.getDeclaredFields();
         Field dest = null;
@@ -62,6 +62,21 @@ public class BeanPropertySetter {
         }
         return dest;
     }
+
+    public<T> T getValue() {
+        field.setAccessible(true);
+        try {
+            return (T)field.get(target);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Field getField() {
+        return field;
+    }
+
     /**
      * 判断对象中是否有要找的字段
      * @param fields the fields which you want to find
