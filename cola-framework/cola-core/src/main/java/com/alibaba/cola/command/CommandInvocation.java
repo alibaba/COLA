@@ -50,6 +50,7 @@ public class CommandInvocation{
             response = commandExecutor.execute(command);  
         }
         catch(Exception e){
+            logger.error("执行command fail,bizCode:[{}],",command.getContext().getBizCode(),e);
             response = getResponseInstance(command);
             response.setSuccess(false);
             ExceptionHandlerFactory.getExceptionHandler().handleException(command, response, e);
@@ -79,11 +80,26 @@ public class CommandInvocation{
     }
 
     private Response getResponseInstance(Command cmd) {
-        Class responseClz = commandHub.getResponseRepository().get(cmd.getClass());
+        boolean bool=true;
+        Class responseClz=null;
+        Class cls=cmd.getClass();
+        while(bool){
+             responseClz = commandHub.getResponseRepository().get(cls);
+            if(responseClz!=null){
+                bool=false;
+            }
+            if(responseClz==null){
+                 cls=cls.getSuperclass();
+             }
+            if(cls==Object.class){
+                bool=false;
+            }
+        }
         try {
             return (Response) responseClz.newInstance();
         } catch (Exception e) {
             return new Response();
         }
     }
+
 }

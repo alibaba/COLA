@@ -7,8 +7,11 @@ import com.google.common.collect.ListMultimap;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +26,7 @@ import java.util.Map;
 @Data
 public class EventHub {
 
+    private Logger logger= LoggerFactory.getLogger(this.getClass());
     /**
      * one event could have multiple event handlers
      */
@@ -31,7 +35,8 @@ public class EventHub {
     public List<EventHandlerI> getEventHandler(Class eventClass) {
         List<EventHandlerI> eventHandlerIList = findHandler(eventClass);
         if (eventHandlerIList == null || eventHandlerIList.size() == 0) {
-            throw new ColaException(eventClass + "is not registered in eventHub, please register first");
+            logger.warn(eventClass + "is not registered in eventHub, please register first");
+            return new ArrayList<>();
         }
         return eventHandlerIList;
     }
