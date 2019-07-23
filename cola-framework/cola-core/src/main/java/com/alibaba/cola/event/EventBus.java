@@ -28,6 +28,7 @@ public class EventBus implements EventBusI {
 
     @Override
     public void asyncFire(Event event) {
+        // todo parallel stream is not async but blocked...
         eventHub.getEventHandler(event.getClass()).parallelStream().forEach(p -> {
             p.execute(event);
         });

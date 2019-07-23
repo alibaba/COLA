@@ -85,6 +85,7 @@ public class CommandRegister implements RegisterI {
          */
         Class<?> superClass = commandClass.getSuperclass();
         while (Command.class.isAssignableFrom(superClass)) {
+            // todo the commandClass should be 'superClass'
             Iterables.concat(commandItr, (pre ? commandHub.getPreInterceptors() : commandHub.getPostInterceptors()).get(commandClass));
             superClass = superClass.getSuperclass();
         }
