@@ -28,7 +28,6 @@ public class MiscMetricAddCmdExe implements CommandExecutorI<Response, MiscMetri
     public Response execute(MiscMetricAddCmd cmd) {
         MiscMetricItem miscMetricItem = new MiscMetricItem();
         BeanUtils.copyProperties(cmd.getMiscMetricCO(), miscMetricItem);
-        miscMetricItem.setContext(cmd.getContext());
         miscMetricItem.setSubMetric(new MiscMetric(new ContributionMetric(new UserProfile(cmd.getMiscMetricCO().getOwnerId()))));
         metricRepository.save(miscMetricItem);
         return Response.buildSuccess();

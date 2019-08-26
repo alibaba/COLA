@@ -14,7 +14,7 @@ import com.alibaba.cola.command.CommandInvocation;
 import com.alibaba.cola.common.ApplicationContextHelper;
 import com.alibaba.cola.common.ColaConstant;
 import com.alibaba.cola.dto.Command;
-import com.alibaba.cola.exception.ColaException;
+import com.alibaba.cola.exception.framework.ColaException;
 import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,6 +32,7 @@ import java.lang.reflect.Method;
 public class CommandRegister implements RegisterI {
 
     @Autowired
+
     private CommandHub         commandHub;
 
     @Override
@@ -76,18 +77,7 @@ public class CommandRegister implements RegisterI {
          * add 通用的Interceptors
          */
         Iterable<CommandInterceptorI> commandItr = Iterables.concat((pre ? commandHub.getGlobalPreInterceptors() : commandHub.getGlobalPostInterceptors()));
-        /**
-         * add command自己专属的Interceptors
-         */
-        Iterables.concat(commandItr, (pre ? commandHub.getPreInterceptors() : commandHub.getPostInterceptors()).get(commandClass));
-        /**
-         * add parents的Interceptors
-         */
-        Class<?> superClass = commandClass.getSuperclass();
-        while (Command.class.isAssignableFrom(superClass)) {
-            Iterables.concat(commandItr, (pre ? commandHub.getPreInterceptors() : commandHub.getPostInterceptors()).get(commandClass));
-            superClass = superClass.getSuperclass();
-        }
+
         return commandItr;
     }
 

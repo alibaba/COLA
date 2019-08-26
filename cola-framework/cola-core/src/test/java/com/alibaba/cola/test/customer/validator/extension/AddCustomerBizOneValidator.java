@@ -1,6 +1,5 @@
 package com.alibaba.cola.test.customer.validator.extension;
 
-import com.alibaba.cola.exception.Assert;
 import com.alibaba.cola.exception.BizException;
 import com.alibaba.cola.extension.Extension;
 import com.alibaba.cola.test.customer.AddCustomerCmd;
@@ -14,13 +13,12 @@ import com.alibaba.cola.test.customer.validator.extensionpoint.AddCustomerValida
  * @author Frank Zhang
  * @date 2018-01-07 1:31 AM
  */
-@Extension(bizCode = Constants.BIZ_ONE)
+@Extension(bizId = Constants.BIZ_1)
 public class AddCustomerBizOneValidator implements AddCustomerValidatorExtPt{
 
-    @Override
-    public void validate(Object candidate) {
-        AddCustomerCmd addCustomerCmd = (AddCustomerCmd) candidate;
+    public void validate(AddCustomerCmd addCustomerCmd) {
         //For BIZ TWO CustomerTYpe could not be VIP
-        Assert.isTrue(CustomerType.VIP != addCustomerCmd.getCustomerCO().getCustomerType(), "Customer Type could not be VIP for Biz One");
+        if(CustomerType.VIP == addCustomerCmd.getCustomerCO().getCustomerType())
+            throw new BizException("Customer Type could not be VIP for Biz One");
     }
 }

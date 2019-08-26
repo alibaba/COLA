@@ -43,7 +43,6 @@ public class RefreshScoreCmdExe implements CommandExecutorI<Response, RefreshSco
     private UserProfile getUserProfile(RefreshScoreCmd cmd) {
         UserProfile userProfile = userProfileRepository.getByUserId(cmd.getUserId());
         Assert.notNull(userProfile, "There is no User Profile for "+cmd.getUserId()+" to update");
-        userProfile.setContext(cmd.getContext());
         return userProfile;
     }
 

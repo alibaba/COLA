@@ -23,17 +23,6 @@ public class CustomerServiceImpl implements CustomerServiceI{
     }
 
     @Override
-    public Response addCustomer2(AddCustomerCmd addCustomerCmd) {
-        return (Response)commandBus.send(addCustomerCmd, AddCustomerCmdExe.class);
-    }
-
-    @Override
-    public Response addCustomerParaError(AddCustomerCmd addCustomerCmd) {
-        return (Response)commandBus.send(addCustomerCmd, AddCustomerErrorCmdExe.class);
-    }
-
-
-    @Override
     public SingleResponse<CustomerCO> getCustomer(GetOneCustomerQry getOneCustomerQry) {
         return null;
     }

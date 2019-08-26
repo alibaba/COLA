@@ -2,11 +2,10 @@ package com.alibaba.cola.command;
 
 import com.alibaba.cola.dto.Command;
 import com.alibaba.cola.dto.Response;
-import com.alibaba.cola.exception.ExceptionHandlerFactory;
+import com.alibaba.cola.exception.framework.ExceptionHandlerFactory;
 import com.alibaba.cola.logger.Logger;
 import com.alibaba.cola.logger.LoggerFactory;
 import com.google.common.collect.FluentIterable;
-import lombok.Data;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -18,13 +17,15 @@ import java.util.List;
 
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@Data
 public class CommandInvocation{
 
     private static Logger logger = LoggerFactory.getLogger(CommandInvocation.class);
 
+    @Setter
     private CommandExecutorI commandExecutor;
+    @Setter
     private Iterable<CommandInterceptorI> preInterceptors;
+    @Setter
     private Iterable<CommandInterceptorI> postInterceptors;
 
     @Autowired

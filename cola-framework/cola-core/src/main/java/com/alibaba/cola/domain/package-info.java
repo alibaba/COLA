@@ -1,5 +1,5 @@
 /**
- * The context of application.
+ * 领域模型抽象层
  * 
  * @author fulan.zjf
  */

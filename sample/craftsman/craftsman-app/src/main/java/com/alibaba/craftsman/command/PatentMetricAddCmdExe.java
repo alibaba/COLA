@@ -26,7 +26,6 @@ public class PatentMetricAddCmdExe implements CommandExecutorI<Response, PatentM
     public Response execute(PatentMetricAddCmd cmd) {
         PatentMetricItem patentMetricItem = new PatentMetricItem();
         BeanUtils.copyProperties(cmd.getPatentMetricCO(), patentMetricItem);
-        patentMetricItem.setContext(cmd.getContext());
         patentMetricItem.setSubMetric(new PatentMetric(new InfluenceMetric(new UserProfile(cmd.getPatentMetricCO().getOwnerId()))));
         patentMetricItem.setAuthorType(AuthorType.valueOf(cmd.getPatentMetricCO().getAuthorType()));
         metricRepository.save(patentMetricItem);

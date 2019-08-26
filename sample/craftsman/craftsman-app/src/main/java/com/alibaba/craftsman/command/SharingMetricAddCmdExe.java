@@ -29,7 +29,6 @@ public class SharingMetricAddCmdExe implements CommandExecutorI<Response, Sharin
     public Response execute(SharingMetricAddCmd cmd) {
         SharingMetricItem sharingMetricItem = new SharingMetricItem();
         BeanUtils.copyProperties(cmd.getSharingMetricCO(), sharingMetricItem);
-        sharingMetricItem.setContext(cmd.getContext());
         sharingMetricItem.setSubMetric(new SharingMetric(new InfluenceMetric(new UserProfile(cmd.getSharingMetricCO().getOwnerId()))));
         sharingMetricItem.setSharingScope(SharingScope.valueOf(cmd.getSharingMetricCO().getSharingScope()));
         metricRepository.save(sharingMetricItem);

@@ -13,7 +13,7 @@ public class LoggerPreInterceptor implements CommandInterceptorI{
 
     @Override
     public void preIntercept(Command command) {
-        logger.debug("Start processing " + command+"; Context: " + command.getContext());
+        logger.debug("Start processing " + command+"; Context: ");
     }
 
 }

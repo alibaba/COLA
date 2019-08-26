@@ -1,6 +1,5 @@
 package com.alibaba.craftsman.convertor;
 
-import com.alibaba.cola.context.Context;
 import com.alibaba.cola.convertor.ConvertorI;
 import com.alibaba.craftsman.context.UserContext;
 import com.alibaba.craftsman.domain.user.Role;
@@ -11,11 +10,10 @@ import org.springframework.beans.BeanUtils;
 
 public class UserProfileConvertor implements ConvertorI {
 
-    public static UserProfile toEntity(UserProfileCO userProfileCO, Context context){
+    public static UserProfile toEntity(UserProfileCO userProfileCO){
         UserProfile userProfile = new UserProfile();
         BeanUtils.copyProperties(userProfileCO, userProfile);
         userProfile.setRole(Role.valueOf(userProfileCO.getRole()));
-        userProfile.setContext(context);
         return userProfile;
     }
 
@@ -28,14 +26,11 @@ public class UserProfileConvertor implements ConvertorI {
 
     public static UserProfileDO toDataObjectForCreate(UserProfile userProfile){
         UserProfileDO userProfileDO = toDataObject(userProfile);
-        userProfileDO.setCreator(((UserContext)userProfile.getContext().getContent()).getOperator());
-        userProfileDO.setModifier(((UserContext)userProfile.getContext().getContent()).getOperator());
         return userProfileDO;
     }
 
     public static UserProfileDO  toDataObjectForUpdate(UserProfile userProfile){
         UserProfileDO userProfileDO = toDataObject(userProfile);
-        userProfileDO.setModifier(((UserContext)userProfile.getContext().getContent()).getOperator());
         return userProfileDO;
     }
 }

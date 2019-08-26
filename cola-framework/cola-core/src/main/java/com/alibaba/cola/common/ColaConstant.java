@@ -8,15 +8,12 @@
 package com.alibaba.cola.common;
 
 /**
- * ColaConstant
+ * CoreConstant 
  * @author fulan.zjf 2017-11-04
  */
 public class ColaConstant {
 
-    public final static String DEFAULT_BIZ_CODE = "$defaultBizCode$";
-
-    public final static String BIZ_CODE_SEPARATOR = ".";
-
+    public final static String DOT_SEPARATOR = ".";
     public final static String EXTENSION_EXTPT_NAMING = "ExtPt";
 
     public final static String EXE_METHOD = "execute";

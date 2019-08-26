@@ -22,7 +22,7 @@
 		<junit.version>4.12</junit.version>
 		<logback.version>1.2.3.5-struct</logback.version>
 		<slf4j.version>1.7.22</slf4j.version>
-		<cola.framework.version>1.0.0-SNAPSHOT</cola.framework.version>
+		<cola.framework.version>2.0.0</cola.framework.version>
 		<toolkit.common.lang.version>1.0</toolkit.common.lang.version>
 		<jakarta.commons.beanutils.version>1.8.3</jakarta.commons.beanutils.version>
 	</properties>
@@ -143,6 +143,13 @@
 				<version>0.9.10</version>
 			</dependency>
 			<!-- Commons依赖End -->
+			<!-- AspectJ-->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>1.8.6</version>
+			</dependency>
+			<!-- AspectJ End-->
 			<!--Validation API-->
 			<dependency>
 				<groupId>javax.validation</groupId>

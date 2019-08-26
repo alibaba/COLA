@@ -1,12 +1,12 @@
 package com.alibaba.craftsman.tunnel.database.dataobject;
 
-import com.alibaba.cola.tunnel.DataObject;
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString
-public class MetricDO extends DataObject {
+public class MetricDO {
+    private String id;
     /**
      * 域账号
      */

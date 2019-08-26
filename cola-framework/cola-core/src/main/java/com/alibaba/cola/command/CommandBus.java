@@ -18,20 +18,7 @@ public class CommandBus implements CommandBusI{
 
     @Override
     public Response send(Command cmd) {
-        return commandHub.getCommandInvocation(cmd.getClass()).invoke(cmd);
-    }
-
-    @Override
-    public Response send(Command cmd,  Class<? extends CommandExecutorI> executorClz){
-        CommandInvocation commandInvocation = commandHub.getCommandInvocation(cmd.getClass());
-        if(!isEquals(executorClz, commandInvocation)){
-            throw new IllegalArgumentException(executorClz + " is not the same with "+commandInvocation.getCommandExecutor().getClass());
-        }
-        return send(cmd);
-    }
-
-    private boolean isEquals(Class<? extends CommandExecutorI> executorClz, CommandInvocation commandInvocation) {
-        return executorClz.equals(commandInvocation.getCommandExecutor().getClass());
+            return commandHub.getCommandInvocation(cmd.getClass()).invoke(cmd);
     }
 
 }

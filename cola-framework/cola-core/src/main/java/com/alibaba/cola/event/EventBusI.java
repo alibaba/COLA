@@ -1,6 +1,5 @@
 package com.alibaba.cola.event;
 
-import com.alibaba.cola.dto.event.Event;
 import com.alibaba.cola.dto.Response;
 
 
@@ -17,14 +16,19 @@ public interface EventBusI {
      * @param event
      * @return Response
      */
-    public void fire(Event event);
+    public Response fire(EventI event);
 
     /**
-     * Send event to EventBus
+     * fire all handlers which registed the event
      *
      * @param event
      * @return Response
      */
-    public void asyncFire(Event event);
+    public void fireAll(EventI event);
 
+    /**
+     * Async fire all handlers
+     * @param event
+     */
+    public void asyncFire(EventI event);
 }

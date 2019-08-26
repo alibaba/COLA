@@ -1,6 +1,5 @@
 package com.alibaba.cola.test.customer;
 
-import com.alibaba.cola.tunnel.DataObject;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -12,7 +11,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class CustomerDO extends DataObject {
+public class CustomerDO implements java.io.Serializable {
     private String customerId;
     private String memberId;
     private String globalId;

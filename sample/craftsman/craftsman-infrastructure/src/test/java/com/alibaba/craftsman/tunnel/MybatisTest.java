@@ -37,8 +37,6 @@ public class MybatisTest {
         metricDO.setSubMetric("subTest");
         metricDO.setUserId("12345");
         metricDO.setMetricItem("{\"patentName\": \"Leads重构\", \"level\": \"PROJECT\"}");
-        metricDO.setCreator("frank");
-        metricDO.setModifier("frank");
 
         metricTunnel.create(metricDO);
         sqlSession.commit();

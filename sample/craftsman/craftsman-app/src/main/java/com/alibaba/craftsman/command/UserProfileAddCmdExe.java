@@ -23,7 +23,7 @@ public class UserProfileAddCmdExe implements CommandExecutorI<Response, UserProf
 
     @Override
     public Response execute(UserProfileAddCmd cmd) {
-        UserProfile userProfile = UserProfileConvertor.toEntity(cmd.getUserProfileCO(), cmd.getContext());
+        UserProfile userProfile = UserProfileConvertor.toEntity(cmd.getUserProfileCO());
         userProfileRepository.create(userProfile);
         return Response.buildSuccess();
     }

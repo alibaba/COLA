@@ -1,8 +1,8 @@
 package com.alibaba.cola.test;
 
 import com.alibaba.cola.TestConfig;
-import com.alibaba.cola.domain.DomainFactory;
-import com.alibaba.cola.test.customer.entity.CustomerE;
+import com.alibaba.cola.common.ApplicationContextHelper;
+import com.alibaba.cola.test.customer.entity.CustomerEntity;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,9 +22,9 @@ public class EntityPrototypeTest {
 
     @Test
     public void testPrototype(){
-        CustomerE customerEntity1 = DomainFactory.create(CustomerE.class);
+        CustomerEntity customerEntity1 = (CustomerEntity)ApplicationContextHelper.getBean(CustomerEntity.class);
         System.out.println(customerEntity1);
-        CustomerE customerEntity2 = DomainFactory.create(CustomerE.class);
+        CustomerEntity customerEntity2 = (CustomerEntity)ApplicationContextHelper.getBean(CustomerEntity.class);
         System.out.println(customerEntity2);
 
         Assert.assertEquals(customerEntity1, customerEntity2);

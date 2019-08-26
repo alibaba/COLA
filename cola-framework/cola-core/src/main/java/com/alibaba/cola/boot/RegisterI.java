@@ -7,10 +7,9 @@
  */
 package com.alibaba.cola.boot;
 
-import java.lang.annotation.Annotation;
 
 /**
- * Register Interface 
+ * Register Interface
  * @author fulan.zjf 2017-11-04
  */
 public interface RegisterI {

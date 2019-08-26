@@ -15,6 +15,6 @@ public class ContextInterceptor  implements CommandInterceptorI {
 
     @Override
     public void preIntercept(Command command) {
-        // TenantContext.set(Constants.TENANT_ID, Constants.BIZ_ONE);
+        // TenantContext.set(Constants.TENANT_ID, Constants.BIZ_1);
     }
 }

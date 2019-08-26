@@ -7,32 +7,30 @@
  */
 package com.alibaba.cola.boot;
 
+import com.alibaba.cola.command.CommandHub;
+import com.alibaba.cola.command.CommandInterceptorI;
+import com.alibaba.cola.command.PostInterceptor;
+import com.alibaba.cola.common.ApplicationContextHelper;
+import com.alibaba.cola.dto.Command;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.cola.command.CommandHub;
-import com.alibaba.cola.command.CommandInterceptorI;
-import com.alibaba.cola.command.PostInterceptor;
-import com.alibaba.cola.dto.Command;
-
 /**
  * PostInterceptorRegister 
  * @author fulan.zjf 2017-11-04
  */
 @Component
-public class PostInterceptorRegister implements RegisterI, ApplicationContextAware{
+public class PostInterceptorRegister extends AbstractRegister {
 
     @Autowired
     private CommandHub commandHub;
     
-    private ApplicationContext applicationContext;
-    
     @Override
     public void doRegistration(Class<?> targetClz) {
-        CommandInterceptorI commandInterceptor = (CommandInterceptorI) applicationContext.getBean(targetClz);
+        CommandInterceptorI commandInterceptor = (CommandInterceptorI) ApplicationContextHelper.getBean(targetClz);
         PostInterceptor postInterceptorAnn = targetClz.getDeclaredAnnotation(PostInterceptor.class);
         Class<? extends Command>[] supportClasses = postInterceptorAnn.commands();
         registerInterceptor(supportClasses, commandInterceptor);        
@@ -41,10 +39,8 @@ public class PostInterceptorRegister implements RegisterI, ApplicationContextAwa
     private void registerInterceptor(Class<? extends Command>[] supportClasses, CommandInterceptorI commandInterceptor) {
         if (null == supportClasses || supportClasses.length == 0) {
             commandHub.getGlobalPostInterceptors().add(commandInterceptor);
+            order(commandHub.getGlobalPostInterceptors());
             return;
-        } 
-        for (Class<? extends Command> supportClass : supportClasses) {
-            commandHub.getPostInterceptors().put(supportClass, commandInterceptor);
         }
     }    
 

@@ -9,15 +9,11 @@ package com.alibaba.cola.boot;
 
 import com.alibaba.cola.common.ApplicationContextHelper;
 import com.alibaba.cola.common.ColaConstant;
-import com.alibaba.cola.dto.Command;
-import com.alibaba.cola.dto.event.Event;
+import com.alibaba.cola.event.EventI;
 import com.alibaba.cola.event.EventHandlerI;
 import com.alibaba.cola.event.EventHub;
-import com.alibaba.cola.exception.ColaException;
-import org.springframework.beans.BeansException;
+import com.alibaba.cola.exception.framework.ColaException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -36,12 +32,12 @@ public class EventRegister implements RegisterI {
 
     @Override
     public void doRegistration(Class<?> targetClz) {
-        Class<? extends Event> eventClz = getEventFromExecutor(targetClz);
+        Class<? extends EventI> eventClz = getEventFromExecutor(targetClz);
         EventHandlerI executor = (EventHandlerI) ApplicationContextHelper.getBean(targetClz);
         eventHub.register(eventClz, executor);
     }
 
-    private Class<? extends Event> getEventFromExecutor(Class<?> eventExecutorClz) {
+    private Class<? extends EventI> getEventFromExecutor(Class<?> eventExecutorClz) {
         Method[] methods = eventExecutorClz.getDeclaredMethods();
         for (Method method : methods) {
             if (isExecuteMethod(method)){
@@ -61,7 +57,7 @@ public class EventRegister implements RegisterI {
         if (exeParams.length == 0){
             throw new ColaException("Execute method in "+method.getDeclaringClass()+" should at least have one parameter");
         }
-        if(!Event.class.isAssignableFrom(exeParams[0]) ){
+        if(!EventI.class.isAssignableFrom(exeParams[0]) ){
             throw new ColaException("Execute method in "+method.getDeclaringClass()+" should be the subClass of Event");
         }
         return exeParams[0];

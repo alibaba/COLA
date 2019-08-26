@@ -3,6 +3,8 @@ package com.alibaba.cola.boot;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.lang.reflect.Modifier;
+
 /**
  * @author fulan.zjf
  * @date 2017/12/21
@@ -10,8 +12,13 @@ import org.apache.commons.lang3.StringUtils;
 public class ClassInterfaceChecker {
 
     public static boolean check(Class<?> targetClz, String expectedName){
-        //If it is not Class, just return false
+        //If it is interface, just return false
         if(targetClz.isInterface()){
+            return false;
+        }
+
+        //If it is abstract class, just return false
+        if(Modifier.isAbstract(targetClz.getModifiers())){
             return false;
         }
 
