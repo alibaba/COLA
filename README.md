@@ -16,7 +16,7 @@
 
 ## COLA框架
 COLA作为框架主要是提供应用和架构需要的通用组件支撑，比如对CQRS和扩展点功能的支持。COLA框架主要由cola-framework这个项目来实现。
-在这个项目里面包含4个Module：cola-core, cola-common, cola-test和cola-extension
+在这个项目里面包含3个Module：cola-core, cola-common和cola-test。
 
 ### cola-core
 该Module是整个框架的核心，里面的主要功能和Package如下：
@@ -41,9 +41,6 @@ com
 
 ### cola-test  
 该Module主要是提供一些开发测试的工具，可以使用TDD来进行开发。
-
-### cola-extension
-该Module提供了一些扩展通用功能支持，比如乐观锁、缓存、mybatis的模板等等。
 
 ## COLA架构
 COLA作为架构，组要是制定了一套指导和约束，并将这套规范沉淀成Archetype。以便通过Archetype可以快速的生成符合COLA规范的应用。满足COLA的应用是一个有清晰的依赖关系的分层架构，如下图所示：
