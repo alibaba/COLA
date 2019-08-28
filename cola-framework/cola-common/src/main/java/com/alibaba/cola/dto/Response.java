@@ -50,7 +50,7 @@ public class Response extends DTO{
         return "Response [isSuccess=" + isSuccess + ", errCode=" + errCode + ", errMessage=" + errMessage + "]";
     }
 
-    public static Response buildFailure(String errCode, String errMessage) {
+    public static <T> Response buildFailure(String errCode, String errMessage) {
         Response response = new Response();
         response.setSuccess(false);
         response.setErrCode(errCode);
@@ -58,7 +58,7 @@ public class Response extends DTO{
         return response;
     }
 
-    public static Response buildSuccess(){
+    public static <T> Response buildSuccess(){
         Response response = new Response();
         response.setSuccess(true);
         return response;

@@ -25,16 +25,16 @@ public class SingleResponse<T> extends Response {
         this.data = data;
     }
 
-    public static SingleResponse buildFailure(String errCode, String errMessage) {
-        SingleResponse response = new SingleResponse();
+    public static <T> SingleResponse<T> buildFailure(String errCode, String errMessage) {
+        SingleResponse<T> response = new SingleResponse<T>();
         response.setSuccess(false);
         response.setErrCode(errCode);
         response.setErrMessage(errMessage);
         return response;
     }
 
-    public static SingleResponse buildSuccess(){
-        SingleResponse response = new SingleResponse();
+    public static <T> SingleResponse<T> buildSuccess(){
+        SingleResponse<T> response = new SingleResponse<T>();
         response.setSuccess(true);
         return response;
     }
