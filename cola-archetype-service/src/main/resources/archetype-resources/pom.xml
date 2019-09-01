@@ -34,11 +34,6 @@
             </dependency>
             <dependency>
                 <groupId>com.alibaba.cola</groupId>
-                <artifactId>cola-extension</artifactId>
-                <version>${cola.framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cola</groupId>
                 <artifactId>cola-test</artifactId>
                 <version>${cola.framework.version}</version>
                 <scope>test</scope>

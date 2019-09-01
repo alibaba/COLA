@@ -11,10 +11,6 @@
 	<version>${version}</version>
 	<name>${artifactId}</name>
 	<dependencies>
-		<dependency>
-			<groupId>${groupId}</groupId>
-			<artifactId>${rootArtifactId}-client</artifactId>
-		</dependency>
 		<!-- COLA Framework -->
 		<dependency>
 			<groupId>com.alibaba.cola</groupId>
@@ -22,13 +18,17 @@
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba.cola</groupId>
-			<artifactId>cola-extension</artifactId>
+			<artifactId>cola-common</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba.cola</groupId>
 			<artifactId>cola-test</artifactId>
 		</dependency>
 		<!-- COLA Framework End-->
+		<dependency>
+			<groupId>${groupId}</groupId>
+			<artifactId>${rootArtifactId}-client</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

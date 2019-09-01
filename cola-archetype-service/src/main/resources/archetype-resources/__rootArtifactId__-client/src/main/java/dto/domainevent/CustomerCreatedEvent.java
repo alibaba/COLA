@@ -3,7 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.dto.domainevent;
 
-import com.alibaba.cola.dto.DomainEvent;
+import com.alibaba.cola.event.DomainEventI;
 
 import static ${package}.dto.domainevent.DomainEventConstant.CUSTOMER_CREATED_TOPIC;
 
@@ -13,7 +13,7 @@ import static ${package}.dto.domainevent.DomainEventConstant.CUSTOMER_CREATED_TO
  * @author Frank Zhang
  * @date 2019-01-04 10:32 AM
  */
-public class CustomerCreatedEvent extends DomainEvent {
+public class CustomerCreatedEvent implements DomainEventI {
 
     private String customerId;
 
@@ -25,8 +25,4 @@ public class CustomerCreatedEvent extends DomainEvent {
         this.customerId = customerId;
     }
 
-    @Override
-    public String getEventTopic() {
-        return CUSTOMER_CREATED_TOPIC;
-    }
 }
