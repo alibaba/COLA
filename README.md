@@ -6,6 +6,7 @@
 >需要访问COLA 1.0，请使用TAG ： https://github.com/alibaba/COLA/tree/COLA1.0
 
 关于COLA 2.0的更多信息，请关注微信公众号：
+
 ![qrcode_60.jpg](https://ata2-img.cn-hangzhou.oss-pub.aliyun-inc.com/9434d30a2db4c6036e1ba37be55b2c6e.jpg)
 
 **需要进一步交流的，可以微信咨询：fsxiaodao**
