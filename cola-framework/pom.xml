@@ -16,7 +16,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<mockito.version>2.23.4</mockito.version>
 		<mybatis-starter.version>1.1.1</mybatis-starter.version>
-		<spring-version>4.3.5.RELEASE</spring-version>
+		<spring-version>5.2.0.RELEASE</spring-version>
 		<spring-boot.version>1.4.3.RELEASE</spring-boot.version>
 		<spring-test.version>4.3.2.RELEASE</spring-test.version>
 		<junit.version>4.12</junit.version>
