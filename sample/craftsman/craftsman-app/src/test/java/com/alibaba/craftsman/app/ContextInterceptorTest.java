@@ -22,9 +22,6 @@ public class ContextInterceptorTest {
 
         ContextInterceptor contextInterceptor = new ContextInterceptor();
         contextInterceptor.preIntercept(userProfileAddCmd);
-        String operator = ((UserContext)userProfileAddCmd.getContext().getContent()).getOperator();
-
-        Assert.assertEquals(operator, ContextInterceptor.SYS_USER);
     }
 
     @Test
@@ -35,8 +32,5 @@ public class ContextInterceptorTest {
 
         ContextInterceptor contextInterceptor = new ContextInterceptor();
         contextInterceptor.preIntercept(userProfileAddCmd);
-        String operator = ((UserContext)userProfileAddCmd.getContext().getContent()).getOperator();
-
-        Assert.assertEquals(operator, "Frank");
     }
 }

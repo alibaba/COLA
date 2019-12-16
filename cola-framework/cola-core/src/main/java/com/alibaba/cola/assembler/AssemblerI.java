@@ -14,12 +14,5 @@ package com.alibaba.cola.assembler;
  *
  * @author fulan.zjf 2017-11-07
  */
-public interface AssemblerI<F, T> {
-
-    default T assemble(F from) {
-        return null;
-    }
-
-    default void assemble(F from, T to) {
-    }
+public interface AssemblerI{
 }

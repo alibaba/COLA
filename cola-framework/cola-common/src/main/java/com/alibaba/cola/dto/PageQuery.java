@@ -11,8 +11,8 @@ import java.util.List;
  */
 public abstract class PageQuery extends Query {
 
-    private int pageNum;
-    private int pageSize;
+    private int pageNum = 1;
+    private int pageSize = 10;
     private boolean needTotalCount = true;
     private List<OrderDesc> orderDescs;
 

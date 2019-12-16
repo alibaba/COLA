@@ -28,26 +28,26 @@ public class UserProfileServiceImpl implements UserProfileServiceI{
 
     @Override
     public Response addUserProfile(UserProfileAddCmd userProfileAddCmd) {
-        return (Response) commandBus.send(userProfileAddCmd, UserProfileAddCmdExe.class);
+        return (Response) commandBus.send(userProfileAddCmd);
     }
 
     @Override
     public Response updateUserProfile(UserProfileUpdateCmd cmd) {
-        return (Response) commandBus.send(cmd, UserProfileUpdateCmdExe.class);
+        return (Response) commandBus.send(cmd);
     }
 
     @Override
     public Response refreshScore(RefreshScoreCmd cmd) {
-        return (Response) commandBus.send(cmd, RefreshScoreCmdExe.class);
+        return (Response) commandBus.send(cmd);
     }
 
     @Override
     public SingleResponse<UserProfileCO> getUserProfileBy(UserProfileGetQry qry) {
-        return (SingleResponse) commandBus.send(qry, UserProfileGetQryExe.class);
+        return (SingleResponse) commandBus.send(qry);
     }
 
     @Override
     public MultiResponse<UserProfileCO> listUserProfileBy(UserProfileListQry qry) {
-        return (MultiResponse) commandBus.send(qry, UserProfileListQryExe.class);
+        return (MultiResponse) commandBus.send(qry);
     }
 }

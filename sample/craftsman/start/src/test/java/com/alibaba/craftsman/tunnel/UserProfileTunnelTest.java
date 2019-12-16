@@ -29,8 +29,6 @@ public class UserProfileTunnelTest {
         userProfileDO.setIsManager("n");
         userProfileDO.setUserName("Frank");
         userProfileDO.setRole("DEV");
-        userProfileDO.setCreator("Frank");
-        userProfileDO.setModifier("Frank");
 
         userProfileTunnel.create(userProfileDO);
 

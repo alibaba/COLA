@@ -7,18 +7,13 @@
  */
 package com.alibaba.cola.boot;
 
+import com.alibaba.cola.common.ApplicationContextHelper;
 import com.alibaba.cola.common.ColaConstant;
-import com.alibaba.cola.exception.ColaException;
-import com.alibaba.cola.extension.Extension;
-import com.alibaba.cola.extension.ExtensionCoordinate;
-import com.alibaba.cola.extension.ExtensionPointI;
-import com.alibaba.cola.extension.ExtensionRepository;
+import com.alibaba.cola.exception.framework.ColaException;
+import com.alibaba.cola.extension.*;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,19 +21,19 @@ import org.springframework.stereotype.Component;
  * @author fulan.zjf 2017-11-05
  */
 @Component
-public class ExtensionRegister implements RegisterI, ApplicationContextAware{
+public class ExtensionRegister implements RegisterI{
 
     @Autowired
     private ExtensionRepository extensionRepository;
     
-    private ApplicationContext applicationContext;
-    
+
     @Override
     public void doRegistration(Class<?> targetClz) {
-        ExtensionPointI extension = (ExtensionPointI) applicationContext.getBean(targetClz);
+        ExtensionPointI extension = (ExtensionPointI) ApplicationContextHelper.getBean(targetClz);
         Extension extensionAnn = targetClz.getDeclaredAnnotation(Extension.class);
         String extPtClassName = calculateExtensionPoint(targetClz);
-        ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(extPtClassName, extensionAnn.bizCode());
+        BizScenario bizScenario = BizScenario.valueOf(extensionAnn.bizId(), extensionAnn.useCase(), extensionAnn.scenario());
+        ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(extPtClassName, bizScenario.getUniqueIdentity());
         ExtensionPointI preVal = extensionRepository.getExtensionRepo().put(extensionCoordinate, extension);
         if (preVal != null) {
             throw new ColaException("Duplicate registration is not allowed for :" + extensionCoordinate);
@@ -61,10 +56,4 @@ public class ExtensionRegister implements RegisterI, ApplicationContextAware{
         throw new ColaException("Your name of ExtensionPoint for "+targetClz+" is not valid, must be end of "+ ColaConstant.EXTENSION_EXTPT_NAMING);
     }
 
-
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
 }

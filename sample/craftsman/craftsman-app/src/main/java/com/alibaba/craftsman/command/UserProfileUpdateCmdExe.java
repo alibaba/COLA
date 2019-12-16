@@ -17,7 +17,7 @@ public class UserProfileUpdateCmdExe implements CommandExecutorI<Response, UserP
 
     @Override
     public Response execute(UserProfileUpdateCmd cmd) {
-        UserProfile userProfile = UserProfileConvertor.toEntity(cmd.getUserProfileCO(), cmd.getContext());
+        UserProfile userProfile = UserProfileConvertor.toEntity(cmd.getUserProfileCO());
         userProfileRepository.update(userProfile);
         return Response.buildSuccess();
     }

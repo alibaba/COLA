@@ -5,6 +5,6 @@ package com.alibaba.cola.domain;
  * @author xueliang.sxl
  *
  */
-public abstract class ValueObject {
+public interface ValueObject {
 
 }

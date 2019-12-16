@@ -28,7 +28,6 @@ public class CodeReviewMetricAddCmdExe implements CommandExecutorI<Response, Cod
     public Response execute(CodeReviewMetricAddCmd cmd) {
         CodeReviewMetricItem codeReviewMetricItem = new CodeReviewMetricItem();
         BeanUtils.copyProperties(cmd, codeReviewMetricItem);
-        codeReviewMetricItem.setContext(cmd.getContext());
         codeReviewMetricItem.setSubMetric(new CodeReviewMetric(new ContributionMetric(new UserProfile(cmd.getOwnerId()))));
         metricRepository.save(codeReviewMetricItem);
         return Response.buildSuccess();

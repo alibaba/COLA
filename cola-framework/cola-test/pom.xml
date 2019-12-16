@@ -8,7 +8,7 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>cola-test</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>${cola.framework.version}</version>
 	<name>cola-test</name>
 
 	<properties>

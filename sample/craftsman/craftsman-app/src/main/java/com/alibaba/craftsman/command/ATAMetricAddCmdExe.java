@@ -28,7 +28,6 @@ public class ATAMetricAddCmdExe implements CommandExecutorI<Response, ATAMetricA
     public Response execute(ATAMetricAddCmd cmd) {
         ATAMetricItem ataMetricItem = new ATAMetricItem();
         BeanUtils.copyProperties(cmd.getAtaMetricCO(), ataMetricItem);
-        ataMetricItem.setContext(cmd.getContext());
         ataMetricItem.setSubMetric(new ATAMetric(new InfluenceMetric(new UserProfile(cmd.getAtaMetricCO().getOwnerId()))));
         metricRepository.save(ataMetricItem);
         return Response.buildSuccess();

@@ -13,7 +13,7 @@ import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.alibaba.cola.exception.ColaException;
+import com.alibaba.cola.exception.framework.ColaException;
 
 import lombok.Getter;
 import lombok.Setter;

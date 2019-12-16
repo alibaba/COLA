@@ -10,7 +10,11 @@ import com.alibaba.cola.common.ApplicationContextHelper;
  */
 public class DomainFactory {
 
-    public static <T> T create(Class<T> entityClz){
+    public static <T extends EntityObject> T create(Class<T> entityClz){
+        return ApplicationContextHelper.getBean(entityClz);
+    }
+
+    public static <T > T getBean(Class<T> entityClz){
         return ApplicationContextHelper.getBean(entityClz);
     }
 }

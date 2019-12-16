@@ -1,6 +1,6 @@
 package com.alibaba.cola.common;
 
-import com.alibaba.cola.exception.BasicErrorCode;
+import com.alibaba.cola.exception.framework.BasicErrorCode;
 import com.alibaba.cola.exception.SysException;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -38,8 +38,11 @@ public class ApplicationContextHelper implements ApplicationContextAware{
             beanInstance = (T) applicationContext.getBean(simpleName);
         }
         if(beanInstance == null){
-            new SysException(BasicErrorCode.S_COLA_ERROR, "Component " + targetClz + " can not be found in Spring Container");
+            new SysException(BasicErrorCode.COLA_ERROR, "Component " + targetClz + " can not be found in Spring Container");
         }
         return beanInstance;
+    }
+    public static Object getBean(String claz){
+        return ApplicationContextHelper.applicationContext.getBean(claz);
     }
 }

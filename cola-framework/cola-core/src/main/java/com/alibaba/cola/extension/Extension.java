@@ -21,5 +21,7 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Component
 public @interface Extension {
-    String bizCode()  default ColaConstant.DEFAULT_BIZ_CODE;
+    String bizId()  default BizScenario.DEFAULT_BIZ_ID;
+    String useCase() default BizScenario.DEFAULT_USE_CASE;
+    String scenario() default BizScenario.DEFAULT_SCENARIO;
 }

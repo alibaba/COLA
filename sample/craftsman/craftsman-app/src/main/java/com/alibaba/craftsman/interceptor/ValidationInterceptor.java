@@ -8,7 +8,6 @@ import com.alibaba.cola.logger.Logger;
 import com.alibaba.cola.logger.LoggerFactory;
 import com.alibaba.cola.validator.AbstractValidationInterceptor;
 import com.alibaba.cola.validator.ColaMessageInterpolator;
-import org.apache.commons.lang3.ClassUtils;
 import org.hibernate.validator.HibernateValidator;
 
 import javax.validation.ConstraintViolation;

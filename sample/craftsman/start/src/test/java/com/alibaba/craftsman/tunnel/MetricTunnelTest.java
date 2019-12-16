@@ -32,8 +32,6 @@ public class MetricTunnelTest {
         metricDO.setSubMetric(SubMetricType.Refactoring.getMetricSubTypeCode());
         metricDO.setUserId(userId);
         metricDO.setMetricItem("{\"patentName\": \"Leads重构\", \"level\": \"PROJECT\"}");
-        metricDO.setCreator("frank");
-        metricDO.setModifier("frank");
 
         metricTunnel.create(metricDO);
 

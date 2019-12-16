@@ -13,9 +13,6 @@ public class MetricConvertor implements ConvertorI {
 
     public static MetricDO toDataObject(MetricItem metricItem){
         MetricDO metricDO = new MetricDO();
-        UserContext userContext = (UserContext)metricItem.getContext().getContent();
-        metricDO.setCreator(userContext.getOperator());
-        metricDO.setModifier(userContext.getOperator());
         metricDO.setUserId(metricItem.getMetricOwner().getUserId());
         metricDO.setMainMetric(metricItem.getSubMetric().getParent().getCode());
         metricDO.setSubMetric(metricItem.getSubMetric().getCode());

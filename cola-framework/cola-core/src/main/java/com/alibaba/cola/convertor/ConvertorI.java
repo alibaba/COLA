@@ -5,6 +5,6 @@ package com.alibaba.cola.convertor;
  *
  * @author fulan.zjf on 2017/12/16.
  */
-public interface ConvertorI {
+public interface ConvertorI{
 }
 

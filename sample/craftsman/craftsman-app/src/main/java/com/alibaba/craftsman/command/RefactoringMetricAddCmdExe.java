@@ -29,7 +29,6 @@ public class RefactoringMetricAddCmdExe implements CommandExecutorI<Response, Re
     public Response execute(RefactoringMetricAddCmd cmd) {
         RefactoringMetricItem refactoringMetricItem = new RefactoringMetricItem();
         BeanUtils.copyProperties(cmd.getRefactoringMetricCO(), refactoringMetricItem);
-        refactoringMetricItem.setContext(cmd.getContext());
         refactoringMetricItem.setSubMetric(new RefactoringMetric(new ContributionMetric(new UserProfile(cmd.getRefactoringMetricCO().getOwnerId()))));
         refactoringMetricItem.setRefactoringLevel(RefactoringLevel.valueOf(cmd.getRefactoringMetricCO().getRefactoringLevel()));
         metricRepository.save(refactoringMetricItem);

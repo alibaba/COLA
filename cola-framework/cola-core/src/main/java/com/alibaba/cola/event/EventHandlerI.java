@@ -1,7 +1,8 @@
 package com.alibaba.cola.event;
 
-import com.alibaba.cola.dto.event.Event;
 import com.alibaba.cola.dto.Response;
+
+import java.util.concurrent.ExecutorService;
 
 /**
  * event handler
@@ -9,7 +10,11 @@ import com.alibaba.cola.dto.Response;
  * @author shawnzhan.zxy
  * @date 2017/11/20
  */
-public interface EventHandlerI<E extends Event> {
+public interface EventHandlerI<R extends Response, E extends EventI> {
 
-    public void execute(E e);
+    default public ExecutorService getExecutor(){
+        return null;
+    }
+
+    public R execute(E e);
 }

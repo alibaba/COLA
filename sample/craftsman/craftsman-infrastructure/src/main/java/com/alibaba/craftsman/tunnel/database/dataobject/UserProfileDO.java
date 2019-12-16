@@ -1,6 +1,5 @@
 package com.alibaba.craftsman.tunnel.database.dataobject;
 
-import com.alibaba.cola.tunnel.DataObject;
 import lombok.Data;
 import lombok.ToString;
 
@@ -14,7 +13,7 @@ import java.util.Date;
  */
 @Data
 @ToString
-public class UserProfileDO extends DataObject{
+public class UserProfileDO {
 
     /**
      * 域账号

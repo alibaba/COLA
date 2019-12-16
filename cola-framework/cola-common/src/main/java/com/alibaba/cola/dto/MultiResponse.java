@@ -1,6 +1,8 @@
 package com.alibaba.cola.dto;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Response with batch record to return,
@@ -36,9 +38,8 @@ public class MultiResponse<T> extends Response {
         this.total = total;
     }
 
-    
-    public Collection<T> getData() {
-        return data;
+    public List<T> getData() {
+        return null == data ? new ArrayList<>() : new ArrayList<>(data);
     }
 
     

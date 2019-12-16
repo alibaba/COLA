@@ -28,7 +28,6 @@ public class PaperMetricAddCmdExe implements CommandExecutorI<Response, PaperMet
     public Response execute(PaperMetricAddCmd cmd) {
         PaperMetricItem paperMetricItem = new PaperMetricItem();
         BeanUtils.copyProperties(cmd.getPaperMetricCO(), paperMetricItem);
-        paperMetricItem.setContext(cmd.getContext());
         paperMetricItem.setSubMetric(new PaperMetric(new InfluenceMetric(new UserProfile(cmd.getPaperMetricCO().getOwnerId()))));
         paperMetricItem.setMetricOwner(new UserProfile(cmd.getPaperMetricCO().getOwnerId()));
         metricRepository.save(paperMetricItem);
