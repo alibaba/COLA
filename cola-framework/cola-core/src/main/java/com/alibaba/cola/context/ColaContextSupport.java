@@ -7,6 +7,6 @@ package com.alibaba.cola.context;
  * @author niexiaolong
  * @date 2018/6/25
  */
-public interface ColaContextSupprot {
+public interface ColaContextSupport {
 
 }

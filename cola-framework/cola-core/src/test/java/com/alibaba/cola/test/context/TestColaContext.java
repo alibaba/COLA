@@ -2,7 +2,7 @@ package com.alibaba.cola.test.context;
 
 import com.alibaba.cola.context.ColaContext;
 import com.alibaba.cola.context.ColaContextRunnable;
-import com.alibaba.cola.context.ColaContextSupprot;
+import com.alibaba.cola.context.ColaContextSupport;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -48,7 +48,7 @@ public class TestColaContext {
 		ColaContext.setContext(new PvgContext("1","1","1","1"),
 							   new TenantContext("t2","ICBU"));
 		// 导出父线程全部上下文信息，为透传准备
-		Set<ColaContextSupprot> allContext = ColaContext.getAllContext();
+		Set<ColaContextSupport> allContext = ColaContext.getAllContext();
 		//TenantContext tenantContext = SofaContext.getUniqueIdentity(TenantContext.class);
 
 		// 子线程来取

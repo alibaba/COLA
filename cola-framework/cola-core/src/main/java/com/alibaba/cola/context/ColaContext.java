@@ -78,9 +78,9 @@ public class ColaContext {
 	 */
 
 	// 所有应用需要的Context信息，通过SofaContext的map进行维护，每个context都是一个独立的Threadlocal
-	private static Map<Class<? extends ColaContextSupprot>,ThreadLocal<ColaContextSupprot>> map = new HashMap<>();
+	private static Map<Class<? extends ColaContextSupport>,ThreadLocal<ColaContextSupport>> map = new HashMap<>();
 
-	public static <T extends ColaContextSupprot> T getContext(Class<T> clazz){
+	public static <T extends ColaContextSupport> T getContext(Class<T> clazz){
 		if(map.get(clazz) == null){
 			return null;
 		}
@@ -91,8 +91,8 @@ public class ColaContext {
 	 * 导出所有上下文信息（便于在透传时，设进子线程）
 	 * @return
 	 */
-	public static Set<ColaContextSupprot> getAllContext(){
-		Set<ColaContextSupprot> set = new HashSet<>();
+	public static Set<ColaContextSupport> getAllContext(){
+		Set<ColaContextSupport> set = new HashSet<>();
 		map.values().forEach(e->set.add(e.get()));
 		return set;
 	}
@@ -101,8 +101,8 @@ public class ColaContext {
 	 * 设置个别上下文
 	 * @param context
 	 */
-	public static void setContext(ColaContextSupprot... context){
-		for(ColaContextSupprot sofaContext : context){
+	public static void setContext(ColaContextSupport... context){
+		for(ColaContextSupport sofaContext : context){
 			if(map.get(sofaContext.getClass()) == null){
 				synchronized (ColaContext.class){
 					if(map.get(sofaContext.getClass()) == null){
@@ -118,11 +118,11 @@ public class ColaContext {
 	 * 设置全部上下文（一般结合getAllContext一起使用）
 	 * @param allContext
 	 */
-	public static void setContext(Set<ColaContextSupprot> allContext){
+	public static void setContext(Set<ColaContextSupport> allContext){
 		allContext.forEach(ColaContext::setContext);
 	}
 
-	public static void clearContext(Class<? extends ColaContextSupprot> clazz){
+	public static void clearContext(Class<? extends ColaContextSupport> clazz){
 		map.get(clazz).remove();
 	}
 

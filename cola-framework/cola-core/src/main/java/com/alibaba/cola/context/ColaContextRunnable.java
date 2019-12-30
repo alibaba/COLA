@@ -13,11 +13,11 @@ import java.util.Set;
  */
 public abstract class ColaContextRunnable implements Runnable {
 
-	private Set<ColaContextSupprot> sofaContextSet;
+	private Set<ColaContextSupport> sofaContextSet;
 
 	private ColaContextRunnable() {}
 
-	public ColaContextRunnable(Set<ColaContextSupprot> sofaContextSet) {
+	public ColaContextRunnable(Set<ColaContextSupport> sofaContextSet) {
 		this.sofaContextSet = sofaContextSet;
 	}
 

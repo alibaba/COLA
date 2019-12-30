@@ -1,6 +1,6 @@
 package com.alibaba.cola.test.context;
 
-import com.alibaba.cola.context.ColaContextSupprot;
+import com.alibaba.cola.context.ColaContextSupport;
 
 /**
  * 租户上下文 -- demo
@@ -9,7 +9,7 @@ import com.alibaba.cola.context.ColaContextSupprot;
  * @author niexiaolong
  * @date 2018/6/25
  */
-public class TenantContext implements ColaContextSupprot {
+public class TenantContext implements ColaContextSupport {
 
 	private String tenantId;
 	private String bizCode;
