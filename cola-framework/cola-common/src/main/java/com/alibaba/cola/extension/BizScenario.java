@@ -1,6 +1,8 @@
 package com.alibaba.cola.extension;
 
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * BizScenario（业务场景）= bizId + useCase + scenario, which can uniquely identify a user scenario.
  *
@@ -9,8 +11,8 @@ package com.alibaba.cola.extension;
  */
 public class BizScenario {
     public final static String DEFAULT_BIZ_ID = "defaultBizId";
-    public final static String DEFAULT_USE_CASE = "defaultUseCase";
-    public final static String DEFAULT_SCENARIO = "defaultScenario";
+    public final static String DEFAULT_USE_CASE = "";
+    public final static String DEFAULT_SCENARIO = "";
     private final static String DOT_SEPARATOR = ".";
 
     /**
@@ -35,7 +37,14 @@ public class BizScenario {
      * @return
      */
     public String getUniqueIdentity(){
-        return bizId + DOT_SEPARATOR + useCase + DOT_SEPARATOR + scenario;
+        String uniqueIdentity = bizId;
+        if (StringUtils.isNotBlank(useCase)) {
+            uniqueIdentity = uniqueIdentity + DOT_SEPARATOR + useCase;
+        }
+        if (StringUtils.isNotBlank(scenario)) {
+            uniqueIdentity = uniqueIdentity + DOT_SEPARATOR + scenario;
+        }
+        return uniqueIdentity;
     }
 
     public static BizScenario valueOf(String bizId, String useCase, String scenario){

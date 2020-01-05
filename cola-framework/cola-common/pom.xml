@@ -10,6 +10,12 @@
 	<artifactId>cola-common</artifactId>
 	<version>${cola.framework.version}</version>
 	<name>cola-common</name>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
