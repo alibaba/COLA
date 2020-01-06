@@ -9,7 +9,7 @@
 
 ![qrcode_60.jpg](https://ata2-img.cn-hangzhou.oss-pub.aliyun-inc.com/9434d30a2db4c6036e1ba37be55b2c6e.jpg)
 
-**需要进一步交流的，可以微信咨询：fsxiaodao**
+**需要进一步交流的，可以微信咨询：Tunnell**
 
 # 项目说明
 **COLA既是框架，也是架构。创建COLA的主要目的是为应用架构提供一套简单的可以复制、可以理解、可以落地、可以控制复杂性的”指导和约束"。**
