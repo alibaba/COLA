@@ -2,6 +2,7 @@
 <strong>COLA是Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”，也叫“可乐”架构，目前COLA已经发展到[COLA 2.0](https://blog.csdn.net/significantfrank/article/details/100074716)。</strong>  需要访问老版本，请使用[COLA 1.0 TAG](https://github.com/alibaba/COLA/tree/COLA1.0)
 
 关于COLA 2.0的更多信息，请关注微信公众号：
+
 ![qrcode_60.jpg](https://ata2-img.cn-hangzhou.oss-pub.aliyun-inc.com/9434d30a2db4c6036e1ba37be55b2c6e.jpg)
 
 也可以购买我的新书[《代码精进之路：从码农到工匠》](https://detail.tmall.com/item.htm?id=610042416451)，里面有关于COLA比较详细的描述和使用。
