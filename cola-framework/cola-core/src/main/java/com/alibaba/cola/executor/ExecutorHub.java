@@ -1,4 +1,4 @@
-package com.alibaba.cola.command;
+package com.alibaba.cola.executor;
 
 import com.alibaba.cola.exception.framework.ColaException;
 import lombok.Getter;
@@ -17,23 +17,23 @@ import java.util.Map;
  */
 @SuppressWarnings("rawtypes")
 @Component
-public class CommandHub{
+public class ExecutorHub {
 
     @Getter
     @Setter
     /**
      * 全局通用的PreInterceptors
      */
-    private List<CommandInterceptorI> globalPreInterceptors = new ArrayList<>();
+    private List<ExecutorInterceptorI> globalPreInterceptors = new ArrayList<>();
     @Getter
     @Setter
     /**
      * 全局通用的PostInterceptors
      */
-    private List<CommandInterceptorI> globalPostInterceptors = new ArrayList<>();
+    private List<ExecutorInterceptorI> globalPostInterceptors = new ArrayList<>();
     @Getter
     @Setter
-    private Map<Class/*CommandClz*/, CommandInvocation> commandRepository = new HashMap<>();
+    private Map<Class/*CommandClz*/, ExecutorInvocation> commandRepository = new HashMap<>();
     
     @Getter
     /**
@@ -41,10 +41,10 @@ public class CommandHub{
      */
     private Map<Class/*CommandClz*/, Class/*ResponseClz*/> responseRepository = new HashMap<>();
     
-    public CommandInvocation getCommandInvocation(Class cmdClass) {
-        CommandInvocation commandInvocation = commandRepository.get(cmdClass);
+    public ExecutorInvocation getCommandInvocation(Class cmdClass) {
+        ExecutorInvocation executorInvocation = commandRepository.get(cmdClass);
         if (commandRepository.get(cmdClass) == null)
             throw new ColaException(cmdClass + " is not registered in CommandHub, please register first");
-        return commandInvocation;
+        return executorInvocation;
     }
 }

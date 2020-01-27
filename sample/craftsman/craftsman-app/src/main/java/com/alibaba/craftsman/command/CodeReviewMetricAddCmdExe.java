@@ -1,8 +1,8 @@
 package com.alibaba.craftsman.command;
 
-import com.alibaba.cola.command.Command;
-import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.Response;
+import com.alibaba.cola.executor.Executor;
+import com.alibaba.cola.executor.ExecutorI;
 import com.alibaba.craftsman.repository.MetricRepository;
 import com.alibaba.craftsman.domain.metrics.techcontribution.CodeReviewMetric;
 import com.alibaba.craftsman.domain.metrics.techcontribution.CodeReviewMetricItem;
@@ -18,8 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Frank Zhang
  * @date 2019-03-04 11:14 AM
  */
-@Command
-public class CodeReviewMetricAddCmdExe implements CommandExecutorI<Response, CodeReviewMetricAddCmd> {
+@Executor
+public class CodeReviewMetricAddCmdExe implements ExecutorI<Response, CodeReviewMetricAddCmd> {
 
     @Autowired
     private MetricRepository metricRepository;

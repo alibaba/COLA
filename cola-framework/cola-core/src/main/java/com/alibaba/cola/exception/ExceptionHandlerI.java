@@ -1,6 +1,6 @@
 package com.alibaba.cola.exception;
 
-import com.alibaba.cola.dto.Command;
+import com.alibaba.cola.dto.Executor;
 import com.alibaba.cola.dto.Response;
 
 /**
@@ -10,5 +10,5 @@ import com.alibaba.cola.dto.Response;
  * @date 2019-01-02 11:25 PM
  */
 public interface ExceptionHandlerI {
-    public void handleException(Command cmd, Response response, Exception exception);
+    public void handleException(Executor cmd, Response response, Exception exception);
 }

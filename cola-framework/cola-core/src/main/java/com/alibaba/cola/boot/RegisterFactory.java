@@ -7,54 +7,32 @@
  */
 package com.alibaba.cola.boot;
 
-import com.alibaba.cola.command.Command;
-import com.alibaba.cola.command.PostInterceptor;
-import com.alibaba.cola.command.PreInterceptor;
-import com.alibaba.cola.event.EventHandler;
-import com.alibaba.cola.extension.Extension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * RegisterFactory
  *
+ * @author lorne 2020-01-27
  * @author fulan.zjf 2017-11-04
  */
 @Component
 public class RegisterFactory{
 
-    @Autowired
-    private PreInterceptorRegister preInterceptorRegister;
-    @Autowired
-    private PostInterceptorRegister postInterceptorRegister;
-    @Autowired
-    private CommandRegister commandRegister;
-    @Autowired
-    private ExtensionRegister extensionRegister;
-    @Autowired
-    private EventRegister eventRegister;
+    private List<RegisterI> registers;
 
+    public RegisterFactory(@Autowired(required = false)
+                                   List<RegisterI> registers) {
+        this.registers = registers;
+    }
 
     public RegisterI getRegister(Class<?> targetClz) {
-        PreInterceptor preInterceptorAnn = targetClz.getDeclaredAnnotation(PreInterceptor.class);
-        if (preInterceptorAnn != null) {
-            return preInterceptorRegister;
-        }
-        PostInterceptor postInterceptorAnn = targetClz.getDeclaredAnnotation(PostInterceptor.class);
-        if (postInterceptorAnn != null) {
-            return postInterceptorRegister;
-        }
-        Command commandAnn = targetClz.getDeclaredAnnotation(Command.class);
-        if (commandAnn != null) {
-            return commandRegister;
-        }
-        Extension extensionAnn = targetClz.getDeclaredAnnotation(Extension.class);
-        if (extensionAnn != null) {
-            return extensionRegister;
-        }
-        EventHandler eventHandlerAnn = targetClz.getDeclaredAnnotation(EventHandler.class);
-        if (eventHandlerAnn != null) {
-            return eventRegister;
+        for(RegisterI register:registers){
+            if(targetClz.getDeclaredAnnotation(register.annotationType())!=null){
+                return register;
+            }
         }
         return null;
     }

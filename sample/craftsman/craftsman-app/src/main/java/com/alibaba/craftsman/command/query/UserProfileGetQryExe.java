@@ -1,9 +1,9 @@
 package com.alibaba.craftsman.command.query;
 
-import com.alibaba.cola.command.Command;
-import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
+import com.alibaba.cola.executor.Executor;
+import com.alibaba.cola.executor.ExecutorI;
 import com.alibaba.craftsman.dto.UserProfileGetQry;
 import com.alibaba.craftsman.dto.clientobject.UserProfileCO;
 import com.alibaba.craftsman.tunnel.database.UserProfileTunnel;
@@ -11,8 +11,8 @@ import com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Command
-public class UserProfileGetQryExe implements CommandExecutorI<Response, UserProfileGetQry> {
+@Executor
+public class UserProfileGetQryExe implements ExecutorI<Response, UserProfileGetQry> {
 
     @Autowired
     private UserProfileTunnel userProfileTunnel;

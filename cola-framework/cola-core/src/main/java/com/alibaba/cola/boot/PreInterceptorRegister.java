@@ -7,15 +7,12 @@
  */
 package com.alibaba.cola.boot;
 
-import com.alibaba.cola.command.CommandHub;
-import com.alibaba.cola.command.CommandInterceptorI;
-import com.alibaba.cola.command.PreInterceptor;
+import com.alibaba.cola.executor.ExecutorHub;
+import com.alibaba.cola.executor.ExecutorInterceptorI;
+import com.alibaba.cola.executor.PreInterceptor;
 import com.alibaba.cola.common.ApplicationContextHelper;
-import com.alibaba.cola.dto.Command;
-import org.springframework.beans.BeansException;
+import com.alibaba.cola.dto.Executor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,21 +23,26 @@ import org.springframework.stereotype.Component;
 public class PreInterceptorRegister extends AbstractRegister {
 
     @Autowired
-    private CommandHub commandHub;
+    private ExecutorHub executorHub;
     
     @Override
     public void doRegistration(Class<?> targetClz) {
-        CommandInterceptorI commandInterceptor = (CommandInterceptorI) ApplicationContextHelper.getBean(targetClz);
+        ExecutorInterceptorI commandInterceptor = (ExecutorInterceptorI) ApplicationContextHelper.getBean(targetClz);
         PreInterceptor preInterceptorAnn = targetClz.getDeclaredAnnotation(PreInterceptor.class);
-        Class<? extends Command>[] supportClasses = preInterceptorAnn.commands();
+        Class<? extends Executor>[] supportClasses = preInterceptorAnn.commands();
         registerInterceptor(supportClasses, commandInterceptor);        
     }
 
-    private void registerInterceptor(Class<? extends Command>[] supportClasses, CommandInterceptorI commandInterceptor) {
+    private void registerInterceptor(Class<? extends Executor>[] supportClasses, ExecutorInterceptorI commandInterceptor) {
         if (null == supportClasses || supportClasses.length == 0) {
-            commandHub.getGlobalPreInterceptors().add(commandInterceptor);
-            order(commandHub.getGlobalPreInterceptors());
+            executorHub.getGlobalPreInterceptors().add(commandInterceptor);
+            order(executorHub.getGlobalPreInterceptors());
             return;
         }
+    }
+
+    @Override
+    public Class annotationType() {
+        return PreInterceptor.class;
     }
 }

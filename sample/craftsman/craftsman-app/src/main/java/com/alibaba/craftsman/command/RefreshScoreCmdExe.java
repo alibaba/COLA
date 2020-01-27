@@ -1,9 +1,9 @@
 package com.alibaba.craftsman.command;
 
-import com.alibaba.cola.command.Command;
-import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.Assert;
+import com.alibaba.cola.executor.Executor;
+import com.alibaba.cola.executor.ExecutorI;
 import com.alibaba.cola.logger.Logger;
 import com.alibaba.cola.logger.LoggerFactory;
 import com.alibaba.craftsman.domain.metrics.SubMetric;
@@ -22,8 +22,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-@Command
-public class RefreshScoreCmdExe implements CommandExecutorI<Response, RefreshScoreCmd> {
+@Executor
+public class RefreshScoreCmdExe implements ExecutorI<Response, RefreshScoreCmd> {
     private Logger logger = LoggerFactory.getLogger(MetricItemCreatedHandler.class);
 
     @Autowired

@@ -1,6 +1,6 @@
-package com.alibaba.cola.command;
+package com.alibaba.cola.executor;
 
-import com.alibaba.cola.dto.Command;
+import com.alibaba.cola.dto.Executor;
 import com.alibaba.cola.dto.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,14 +11,14 @@ import org.springframework.stereotype.Component;
  * @author fulan.zjf 2017年10月24日 上午12:47:18
  */
 @Component
-public class CommandBus implements CommandBusI{
+public class ExecutorBus implements ExecutorBusI {
 
     @Autowired
-    private CommandHub commandHub;
+    private ExecutorHub executorHub;
 
     @Override
-    public Response send(Command cmd) {
-            return commandHub.getCommandInvocation(cmd.getClass()).invoke(cmd);
+    public Response send(Executor cmd) {
+            return executorHub.getCommandInvocation(cmd.getClass()).invoke(cmd);
     }
 
 }

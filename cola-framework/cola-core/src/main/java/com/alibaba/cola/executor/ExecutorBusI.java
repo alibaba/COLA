@@ -1,6 +1,6 @@
-package com.alibaba.cola.command;
+package com.alibaba.cola.executor;
 
-import com.alibaba.cola.dto.Command;
+import com.alibaba.cola.dto.Executor;
 import com.alibaba.cola.dto.Response;
 
 /**
@@ -9,7 +9,7 @@ import com.alibaba.cola.dto.Response;
  * 
  * @author fulan.zjf 2017年10月21日 下午11:00:58
  */
-public interface CommandBusI {
+public interface ExecutorBusI {
 
     /**
      * Send command to CommandBus, then the command will be executed by CommandExecutor
@@ -17,5 +17,5 @@ public interface CommandBusI {
      * @param Command or Query
      * @return Response
      */
-    public Response send(Command cmd);
+    public Response send(Executor cmd);
 }

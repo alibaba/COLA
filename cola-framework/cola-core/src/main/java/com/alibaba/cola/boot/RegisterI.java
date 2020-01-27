@@ -13,5 +13,12 @@ package com.alibaba.cola.boot;
  * @author fulan.zjf 2017-11-04
  */
 public interface RegisterI {
+
     public void doRegistration(Class<?> targetClz);
+
+    /**
+     * 处理的泛型
+     * @return
+     */
+    Class annotationType();
 }

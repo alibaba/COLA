@@ -1,9 +1,8 @@
 package com.alibaba.cola.test.customer;
 
-import com.alibaba.cola.command.Command;
-import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.Response;
-import com.alibaba.cola.extension.ExtensionCoordinate;
+import com.alibaba.cola.executor.Executor;
+import com.alibaba.cola.executor.ExecutorI;
 import com.alibaba.cola.extension.ExtensionExecutor;
 import com.alibaba.cola.logger.Logger;
 import com.alibaba.cola.logger.LoggerFactory;
@@ -17,8 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Frank Zhang 2018-01-06 7:48 PM
  */
-@Command
-public class AddCustomerCmdExe implements CommandExecutorI<Response, AddCustomerCmd> {
+@Executor
+public class AddCustomerCmdExe implements ExecutorI<Response, AddCustomerCmd> {
 
     private Logger logger = LoggerFactory.getLogger(AddCustomerCmd.class);
 

@@ -7,15 +7,14 @@
  */
 package com.alibaba.cola.boot;
 
-import com.alibaba.cola.command.CommandHub;
-import com.alibaba.cola.command.CommandInterceptorI;
-import com.alibaba.cola.command.PostInterceptor;
+import com.alibaba.cola.executor.ExecutorHub;
+import com.alibaba.cola.executor.ExecutorInterceptorI;
+import com.alibaba.cola.executor.PostInterceptor;
 import com.alibaba.cola.common.ApplicationContextHelper;
-import com.alibaba.cola.dto.Command;
+import com.alibaba.cola.dto.Executor;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,20 +25,20 @@ import org.springframework.stereotype.Component;
 public class PostInterceptorRegister extends AbstractRegister {
 
     @Autowired
-    private CommandHub commandHub;
+    private ExecutorHub executorHub;
     
     @Override
     public void doRegistration(Class<?> targetClz) {
-        CommandInterceptorI commandInterceptor = (CommandInterceptorI) ApplicationContextHelper.getBean(targetClz);
+        ExecutorInterceptorI commandInterceptor = (ExecutorInterceptorI) ApplicationContextHelper.getBean(targetClz);
         PostInterceptor postInterceptorAnn = targetClz.getDeclaredAnnotation(PostInterceptor.class);
-        Class<? extends Command>[] supportClasses = postInterceptorAnn.commands();
+        Class<? extends Executor>[] supportClasses = postInterceptorAnn.commands();
         registerInterceptor(supportClasses, commandInterceptor);        
     }
 
-    private void registerInterceptor(Class<? extends Command>[] supportClasses, CommandInterceptorI commandInterceptor) {
+    private void registerInterceptor(Class<? extends Executor>[] supportClasses, ExecutorInterceptorI commandInterceptor) {
         if (null == supportClasses || supportClasses.length == 0) {
-            commandHub.getGlobalPostInterceptors().add(commandInterceptor);
-            order(commandHub.getGlobalPostInterceptors());
+            executorHub.getGlobalPostInterceptors().add(commandInterceptor);
+            order(executorHub.getGlobalPostInterceptors());
             return;
         }
     }    
@@ -47,5 +46,10 @@ public class PostInterceptorRegister extends AbstractRegister {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
+    }
+
+    @Override
+    public Class annotationType() {
+        return PostInterceptor.class;
     }
 }

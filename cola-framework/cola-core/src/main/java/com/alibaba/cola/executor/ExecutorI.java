@@ -1,6 +1,6 @@
-package com.alibaba.cola.command;
+package com.alibaba.cola.executor;
 
-import com.alibaba.cola.dto.Command;
+import com.alibaba.cola.dto.Executor;
 import com.alibaba.cola.dto.Response;
 
 /**
@@ -9,7 +9,7 @@ import com.alibaba.cola.dto.Response;
  * 
  * @author fulan.zjf 2017年10月21日 下午11:01:05
  */
-public interface CommandExecutorI<R extends Response, C extends Command> {
+public interface ExecutorI<R extends Response, C extends Executor> {
 
     public R execute(C cmd);
 }

@@ -7,13 +7,10 @@
  */
 package com.alibaba.cola.boot;
 
-import com.alibaba.cola.command.CommandExecutorI;
-import com.alibaba.cola.command.CommandHub;
-import com.alibaba.cola.command.CommandInterceptorI;
-import com.alibaba.cola.command.CommandInvocation;
+import com.alibaba.cola.executor.*;
 import com.alibaba.cola.common.ApplicationContextHelper;
 import com.alibaba.cola.common.ColaConstant;
-import com.alibaba.cola.dto.Command;
+import com.alibaba.cola.dto.Executor;
 import com.alibaba.cola.exception.framework.ColaException;
 import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,29 +26,28 @@ import java.lang.reflect.Method;
  */
 
 @Component
-public class CommandRegister implements RegisterI {
+public class ExecutorRegister implements RegisterI {
 
     @Autowired
-
-    private CommandHub         commandHub;
+    private ExecutorHub executorHub;
 
     @Override
     public void doRegistration(Class<?> targetClz) {
-        Class<? extends Command> commandClz = getCommandFromExecutor(targetClz);
-        CommandInvocation commandInvocation = ApplicationContextHelper.getBean(CommandInvocation.class);
-        commandInvocation.setCommandExecutor((CommandExecutorI) ApplicationContextHelper.getBean(targetClz));
-        commandInvocation.setPreInterceptors(collectInterceptors(commandClz, true));
-        commandInvocation.setPostInterceptors(collectInterceptors(commandClz, false));
-        commandHub.getCommandRepository().put(commandClz, commandInvocation);
+        Class<? extends Executor> commandClz = getCommandFromExecutor(targetClz);
+        ExecutorInvocation executorInvocation = ApplicationContextHelper.getBean(ExecutorInvocation.class);
+        executorInvocation.setCommandExecutor((ExecutorI) ApplicationContextHelper.getBean(targetClz));
+        executorInvocation.setPreInterceptors(collectInterceptors(commandClz, true));
+        executorInvocation.setPostInterceptors(collectInterceptors(commandClz, false));
+        executorHub.getCommandRepository().put(commandClz, executorInvocation);
     }
 
-    private Class<? extends Command> getCommandFromExecutor(Class<?> commandExecutorClz) {
+    private Class<? extends Executor> getCommandFromExecutor(Class<?> commandExecutorClz) {
         Method[] methods = commandExecutorClz.getDeclaredMethods();
         for (Method method : methods) {
             if (isExecuteMethod(method)){
                 Class commandClz = checkAndGetCommandParamType(method);
-                commandHub.getResponseRepository().put(commandClz, method.getReturnType());
-                return (Class<? extends Command>) commandClz;
+                executorHub.getResponseRepository().put(commandClz, method.getReturnType());
+                return (Class<? extends Executor>) commandClz;
             }
         }
         throw new ColaException(" There is no " + ColaConstant.EXE_METHOD + "() in "+ commandExecutorClz);
@@ -66,19 +62,23 @@ public class CommandRegister implements RegisterI {
         if (exeParams.length == 0){
             throw new ColaException("Execute method in "+method.getDeclaringClass()+" should at least have one parameter");
         }
-        if(!Command.class.isAssignableFrom(exeParams[0]) ){
+        if(!Executor.class.isAssignableFrom(exeParams[0]) ){
             throw new ColaException("Execute method in "+method.getDeclaringClass()+" should be the subClass of Command");
         }
         return exeParams[0];
     }
 
-    private Iterable<CommandInterceptorI> collectInterceptors(Class<? extends Command> commandClass, boolean pre) {
+    private Iterable<ExecutorInterceptorI> collectInterceptors(Class<? extends Executor> commandClass, boolean pre) {
         /**
          * add 通用的Interceptors
          */
-        Iterable<CommandInterceptorI> commandItr = Iterables.concat((pre ? commandHub.getGlobalPreInterceptors() : commandHub.getGlobalPostInterceptors()));
+        Iterable<ExecutorInterceptorI> commandItr = Iterables.concat((pre ? executorHub.getGlobalPreInterceptors() : executorHub.getGlobalPostInterceptors()));
 
         return commandItr;
     }
 
+    @Override
+    public Class annotationType() {
+        return com.alibaba.cola.executor.Executor.class;
+    }
 }

@@ -56,4 +56,8 @@ public class ExtensionRegister implements RegisterI{
         throw new ColaException("Your name of ExtensionPoint for "+targetClz+" is not valid, must be end of "+ ColaConstant.EXTENSION_EXTPT_NAMING);
     }
 
+    @Override
+    public Class annotationType() {
+        return Extension.class;
+    }
 }

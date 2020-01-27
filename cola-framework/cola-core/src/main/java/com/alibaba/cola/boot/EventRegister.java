@@ -9,6 +9,7 @@ package com.alibaba.cola.boot;
 
 import com.alibaba.cola.common.ApplicationContextHelper;
 import com.alibaba.cola.common.ColaConstant;
+import com.alibaba.cola.event.EventHandler;
 import com.alibaba.cola.event.EventI;
 import com.alibaba.cola.event.EventHandlerI;
 import com.alibaba.cola.event.EventHub;
@@ -61,5 +62,10 @@ public class EventRegister implements RegisterI {
             throw new ColaException("Execute method in "+method.getDeclaringClass()+" should be the subClass of Event");
         }
         return exeParams[0];
+    }
+
+    @Override
+    public Class annotationType() {
+        return EventHandler.class;
     }
 }
