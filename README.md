@@ -7,6 +7,50 @@
 
 也可以购买我的新书[《代码精进之路：从码农到工匠》](https://detail.tmall.com/item.htm?id=610042416451)，里面有关于COLA比较详细的描述和使用。
 
+# 调整部分
+1. 修改Command为Executor。
+2. 定义对Repository的CQRS标准。
+3. 添加Domain的构造工厂,Domain可通过RepositoryBus、EventBus访问数据资源。
+
+思路：
+https://github.com/alibaba/COLA/issues/61
+
+参考Domain
+```java 
+//Domain 需要继承DomainObject对象
+class XXXDomain extends DomainObject{
+    //初始化数据
+    private Object init;
+    //资源对象，有DomainFactory构建传入，对象在DomainObject中，子类可直接使用。
+    protected EventBus eventBus;
+    protected RepositoryBus repositoryBus;
+    //临时对象，用于业务处理过程中
+    private Object temp;
+    
+    //构造函数 初始化数据
+    public XXXDomain(Object init){
+        this.init = init;
+    }
+    
+    //domain的main函数，也可以执行其他的public方法。
+    public void execute(){
+        //...
+    }
+    
+    
+    public void test(){
+        //...
+    }
+    
+    
+    private void temp(){
+        //temp doing...
+    }
+
+}
+```
+
+
 # 项目说明
 **COLA既是框架，也是架构。创建COLA的主要目的是为应用架构提供一套简单的可以复制、可以理解、可以落地、可以控制复杂性的”指导和约束"。**
 - 框架部分主要是以二方库的形式被应用依赖和使用。
@@ -24,7 +68,7 @@ com
     └── cola
         ├── assembler  \\提供Assembler标准
         ├── boot \\这是框架的核心启动包，负责框架组件的注册、发现
-        ├── command  \\提供Command标准
+        ├── executor  \\提供executor标准
         ├── common
         ├── context  \\提供框架执行所需要的上下文
         ├── domain  \\提供Domain Entity标准
