@@ -49,7 +49,13 @@ class XXXDomain extends DomainObject{
 
 }
 ```
+### 安装脚本
 
+```
+
+mvn clean install -Dtest.skip=true 
+
+```
 
 # 项目说明
 **COLA既是框架，也是架构。创建COLA的主要目的是为应用架构提供一套简单的可以复制、可以理解、可以落地、可以控制复杂性的”指导和约束"。**
