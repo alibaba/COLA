@@ -20,17 +20,25 @@ https://github.com/alibaba/COLA/issues/61
 //Domain 需要继承DomainObject对象
 class XXXDomain extends DomainObject{
     //初始化数据
-    private Object init;
+    private XXX domain;
+    
     //资源对象，有DomainFactory构建传入，对象在DomainObject中，子类可直接使用。
-    protected EventBus eventBus;
-    protected RepositoryBus repositoryBus;
-    //临时对象，用于业务处理过程中
-    private Object temp;
+    protected static EventBus eventBus;
+    protected static RepositoryBus repositoryBus;
+   
     
     //构造函数 初始化数据
-    public XXXDomain(Object init){
-        this.init = init;
+    public XXXDomain(XXX domain){
+        this.domain = domain;
     }
+    
+     //构造函数 初始化数据
+    public XXXDomain(String domainId){
+        this.domain = repositoryBus.execute(new XXXHandler.GetById(domainId));
+    }
+    
+    //临时对象，用于业务处理过程中
+    private Object temp;
     
     //domain的main函数，也可以执行其他的public方法。
     public void execute(){
