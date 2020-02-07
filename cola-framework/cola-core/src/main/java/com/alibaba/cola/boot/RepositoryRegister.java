@@ -1,7 +1,6 @@
 package com.alibaba.cola.boot;
 
 import com.alibaba.cola.common.ApplicationContextHelper;
-import com.alibaba.cola.exception.framework.ColaException;
 import com.alibaba.cola.repository.CommandI;
 import com.alibaba.cola.repository.RepositoryHandler;
 import com.alibaba.cola.repository.RepositoryHandlerI;
@@ -56,20 +55,20 @@ public class RepositoryRegister implements RegisterI {
             methods = targetClz.getDeclaredMethods();
         }
 
-        private boolean hasParameter(Method method){
+        private boolean haveOneParameter(Method method){
             Class<?>[] exeParams = method.getParameterTypes();
-            if (exeParams.length == 0){
-                throw new ColaException("Execute method in "+method.getDeclaringClass()+" should at least have one parameter");
+            if (exeParams.length == 1 ){
+                return true;
             }
-            return true;
+            return false;
         }
 
         private boolean parameter0IsPresentationI(Method method){
             Class<?>[] exeParams = method.getParameterTypes();
-            if(!CommandI.class.isAssignableFrom(exeParams[0]) ){
-                throw new ColaException("Execute method in "+method.getDeclaringClass()+" should be the subClass of PresentationI");
+            if(CommandI.class.isAssignableFrom(exeParams[0]) ){
+                return true;
             }
-            return true;
+            return false;
         }
 
 
@@ -82,7 +81,7 @@ public class RepositoryRegister implements RegisterI {
         List<Class<? extends CommandI> > getCommandPresentationFromExecutor(){
             List<Class<? extends CommandI>> list = new ArrayList<>();
             for (Method method : methods) {
-                if (hasParameter(method) && parameter0IsPresentationI(method)){
+                if (haveOneParameter(method) && parameter0IsPresentationI(method)){
                     list.add(getPresentationI(method));
                 }
             }

@@ -1,5 +1,7 @@
 package com.alibaba.cola.repository;
 
+import com.alibaba.cola.common.ColaConstant;
+
 /**
  * @author lorne
  */
@@ -11,7 +13,7 @@ public interface CommandI<R> {
      * @return method name
      */
     default String command() {
-        return "command";
+        return ColaConstant.COMMAND_METHOD;
     }
 
 }

@@ -20,6 +20,4 @@ public class ColaConstant {
 
     public final static String COMMAND_METHOD = "command";
 
-    public final static String QUERY_METHOD = "query";
-
 }
