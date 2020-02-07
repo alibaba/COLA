@@ -3,7 +3,7 @@ package com.alibaba.cola.repository;
 /**
  * @author lorne
  */
-public interface CommandI {
+public interface CommandI<R> {
 
     /**
      * 执行RepositoryHandler的method方法，

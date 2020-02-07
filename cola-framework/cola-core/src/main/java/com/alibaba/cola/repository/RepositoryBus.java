@@ -18,10 +18,10 @@ public class RepositoryBus {
     private RepositoryHub repositoryHub;
 
 
-    public Object command(CommandI command){
+    public <R> R execute(CommandI<R> command){
         RepositoryHandlerI presentationHandler =  repositoryHub.getPresentationRepository(command.getClass());
         try {
-            return MethodUtils.invokeExactMethod(presentationHandler,command.command(),command);
+            return (R)MethodUtils.invokeExactMethod(presentationHandler,command.command(),command);
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         } catch (IllegalAccessException e) {
@@ -31,6 +31,19 @@ public class RepositoryBus {
         }
     }
 
+
+    public void command(CommandI command){
+        RepositoryHandlerI presentationHandler =  repositoryHub.getPresentationRepository(command.getClass());
+        try {
+            MethodUtils.invokeExactMethod(presentationHandler,command.command(),command);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 
