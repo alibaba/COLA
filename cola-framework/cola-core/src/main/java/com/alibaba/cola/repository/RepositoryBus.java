@@ -1,8 +1,10 @@
 package com.alibaba.cola.repository;
 
-import com.alibaba.cola.common.ApplicationContextHelper;
 import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.reflect.MethodUtils;
 import org.springframework.stereotype.Component;
+
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * @author lorne
@@ -12,25 +14,24 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class RepositoryBus {
 
+
     private RepositoryHub repositoryHub;
 
-    public void command(CommandI presentation){
-        RepositoryCommandHandler presentationHandler =  repositoryHub.getCommandPresentationHandler(presentation.getClass());
-        presentationHandler.command(presentation);
+
+    public Object command(CommandI command){
+        RepositoryHandlerI presentationHandler =  repositoryHub.getPresentationRepository(command.getClass());
+        try {
+            return MethodUtils.invokeExactMethod(presentationHandler,command.command(),command);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public Object query(CommandI presentation){
-        RepositoryQueryHandler presentationHandler =  repositoryHub.getQueryPresentationHandler(presentation.getClass());
-        return presentationHandler.query(presentation);
-    }
 
-    public Object onlyQuery(Class<? extends RepositoryOnlyQueryHandler> clazz){
-        RepositoryOnlyQueryHandler presentationHandler = ApplicationContextHelper.getBean(clazz);
-        return presentationHandler.query();
-    }
 
-    public Object commandResponse(CommandI presentation){
-        RepositoryCommandResponseHandler presentationHandler =  repositoryHub.getCommandResponsePresentationHandler(presentation.getClass());
-        return presentationHandler.command(presentation);
-    }
+
 }

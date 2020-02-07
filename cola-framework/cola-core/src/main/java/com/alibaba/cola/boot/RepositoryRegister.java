@@ -1,13 +1,17 @@
 package com.alibaba.cola.boot;
 
 import com.alibaba.cola.common.ApplicationContextHelper;
-import com.alibaba.cola.common.ColaConstant;
 import com.alibaba.cola.exception.framework.ColaException;
-import com.alibaba.cola.repository.*;
+import com.alibaba.cola.repository.CommandI;
+import com.alibaba.cola.repository.RepositoryHandler;
+import com.alibaba.cola.repository.RepositoryHandlerI;
+import com.alibaba.cola.repository.RepositoryHub;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author lorne
@@ -27,22 +31,12 @@ public class RepositoryRegister implements RegisterI {
        Class<?>[] interfaces = targetClz.getInterfaces();
        for(Class<?> aInterface:interfaces){
 
-           if(aInterface.isAssignableFrom(RepositoryCommandHandler.class)){
-               Class<? extends CommandI> commandPresentation = classParameterCheck.getCommandPresentationFromExecutor();
-               RepositoryCommandHandler commandHandler = (RepositoryCommandHandler) ApplicationContextHelper.getBean(targetClz);
-               repositoryHub.getPresentationCommandRepository().put(commandPresentation, commandHandler);
-           }
-
-           if(aInterface.isAssignableFrom(RepositoryCommandResponseHandler.class)){
-               Class<? extends CommandI> commandResponsePresentation = classParameterCheck.getCommandResponsePresentationFromExecutor();
-               RepositoryCommandResponseHandler commandResponseHandler = (RepositoryCommandResponseHandler) ApplicationContextHelper.getBean(targetClz);
-               repositoryHub.getPresentationCommandResponseRepository().put(commandResponsePresentation, commandResponseHandler);
-           }
-
-           if(aInterface.isAssignableFrom(RepositoryQueryHandler.class)){
-               Class<? extends CommandI> queryPresentation = classParameterCheck.getQueryPresentationFromExecutor();
-               RepositoryQueryHandler queryHandler = (RepositoryQueryHandler) ApplicationContextHelper.getBean(targetClz);
-               repositoryHub.getPresentationQueryRepository().put(queryPresentation, queryHandler);
+           if(aInterface.isAssignableFrom(RepositoryHandlerI.class)){
+               List<Class<? extends CommandI>> commandPresentations = classParameterCheck.getCommandPresentationFromExecutor();
+               for(Class<? extends CommandI> commandPresentation:commandPresentations) {
+                   RepositoryHandlerI repositoryHandler = (RepositoryHandlerI) ApplicationContextHelper.getBean(targetClz);
+                   repositoryHub.getPresentationRepository().put(commandPresentation, repositoryHandler);
+               }
            }
         }
 
@@ -62,7 +56,6 @@ public class RepositoryRegister implements RegisterI {
             methods = targetClz.getDeclaredMethods();
         }
 
-
         private boolean hasParameter(Method method){
             Class<?>[] exeParams = method.getParameterTypes();
             if (exeParams.length == 0){
@@ -70,7 +63,6 @@ public class RepositoryRegister implements RegisterI {
             }
             return true;
         }
-
 
         private boolean parameter0IsPresentationI(Method method){
             Class<?>[] exeParams = method.getParameterTypes();
@@ -80,48 +72,22 @@ public class RepositoryRegister implements RegisterI {
             return true;
         }
 
+
         private Class getPresentationI(Method method){
             Class<?>[] exeParams = method.getParameterTypes();
             return exeParams[0];
         }
 
-        Class<? extends CommandI> getCommandResponsePresentationFromExecutor(){
+
+        List<Class<? extends CommandI> > getCommandPresentationFromExecutor(){
+            List<Class<? extends CommandI>> list = new ArrayList<>();
             for (Method method : methods) {
-                if (isCommandMethod(method)&&hasParameter(method) && parameter0IsPresentationI(method)){
-                    return getPresentationI(method);
+                if (hasParameter(method) && parameter0IsPresentationI(method)){
+                    list.add(getPresentationI(method));
                 }
             }
-            throw new ColaException("Event param in " + targetClz + " command() is not detected");
+            return list;
         }
-
-        Class<? extends CommandI> getQueryPresentationFromExecutor(){
-            for (Method method : methods) {
-                if (isQueryMethod(method)&&hasParameter(method) && parameter0IsPresentationI(method)){
-                    return getPresentationI(method);
-                }
-            }
-            throw new ColaException("Event param in " + targetClz + " command() is not detected");
-        }
-
-        Class<? extends CommandI> getCommandPresentationFromExecutor(){
-            for (Method method : methods) {
-                if (isCommandMethod(method)&&hasParameter(method) && parameter0IsPresentationI(method)){
-                    return getPresentationI(method);
-                }
-            }
-            throw new ColaException("Event param in " + targetClz + " command() is not detected");
-        }
-
-
-        private boolean isCommandMethod(Method method){
-            return ColaConstant.COMMAND_METHOD.equals(method.getName()) && !method.isBridge();
-        }
-
-        private boolean isQueryMethod(Method method){
-            return ColaConstant.QUERY_METHOD.equals(method.getName()) && !method.isBridge();
-        }
-
-
     }
 
 }
