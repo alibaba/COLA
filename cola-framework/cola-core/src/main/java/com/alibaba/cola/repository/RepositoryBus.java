@@ -19,17 +19,17 @@ public class RepositoryBus {
         presentationHandler.command(presentation);
     }
 
-    public CmdResponseI query(CommandI presentation){
+    public Object query(CommandI presentation){
         RepositoryQueryHandler presentationHandler =  repositoryHub.getQueryPresentationHandler(presentation.getClass());
         return presentationHandler.query(presentation);
     }
 
-    public CmdResponseI onlyQuery(Class<? extends RepositoryOnlyQueryHandler> clazz){
+    public Object onlyQuery(Class<? extends RepositoryOnlyQueryHandler> clazz){
         RepositoryOnlyQueryHandler presentationHandler = ApplicationContextHelper.getBean(clazz);
         return presentationHandler.query();
     }
 
-    public CmdResponseI commandResponse(CommandI presentation){
+    public Object commandResponse(CommandI presentation){
         RepositoryCommandResponseHandler presentationHandler =  repositoryHub.getCommandResponsePresentationHandler(presentation.getClass());
         return presentationHandler.command(presentation);
     }

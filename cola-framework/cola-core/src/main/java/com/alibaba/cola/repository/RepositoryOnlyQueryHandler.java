@@ -5,7 +5,7 @@ package com.alibaba.cola.repository;
  * @date 2020/1/27
  * @description
  */
-public interface RepositoryOnlyQueryHandler<Res extends CmdResponseI> extends RepositoryHandlerI {
+public interface RepositoryOnlyQueryHandler<Res> extends RepositoryHandlerI {
 
     Res query();
 

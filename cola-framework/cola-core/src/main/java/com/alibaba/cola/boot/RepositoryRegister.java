@@ -71,25 +71,11 @@ public class RepositoryRegister implements RegisterI {
             return true;
         }
 
-        private boolean noParameter(Method method){
-            Class<?>[] exeParams = method.getParameterTypes();
-            if (exeParams.length >0 ){
-                throw new ColaException("Execute method in "+method.getDeclaringClass()+" should at have parameters");
-            }
-            return true;
-        }
 
         private boolean parameter0IsPresentationI(Method method){
             Class<?>[] exeParams = method.getParameterTypes();
             if(!CommandI.class.isAssignableFrom(exeParams[0]) ){
                 throw new ColaException("Execute method in "+method.getDeclaringClass()+" should be the subClass of PresentationI");
-            }
-            return true;
-        }
-
-        private boolean returnTypeIsResponse(Method method){
-            if(!CmdResponseI.class.isAssignableFrom(method.getReturnType()) ){
-                throw new ColaException("Execute method in "+method.getReturnType()+" should be the return type of Response");
             }
             return true;
         }
@@ -101,7 +87,7 @@ public class RepositoryRegister implements RegisterI {
 
         Class<? extends CommandI> getCommandResponsePresentationFromExecutor(){
             for (Method method : methods) {
-                if (isCommandMethod(method)&&hasParameter(method) && parameter0IsPresentationI(method) && returnTypeIsResponse(method)){
+                if (isCommandMethod(method)&&hasParameter(method) && parameter0IsPresentationI(method)){
                     return getPresentationI(method);
                 }
             }
@@ -110,7 +96,7 @@ public class RepositoryRegister implements RegisterI {
 
         Class<? extends CommandI> getQueryPresentationFromExecutor(){
             for (Method method : methods) {
-                if (isQueryMethod(method)&&hasParameter(method) && parameter0IsPresentationI(method) && returnTypeIsResponse(method)){
+                if (isQueryMethod(method)&&hasParameter(method) && parameter0IsPresentationI(method)){
                     return getPresentationI(method);
                 }
             }
