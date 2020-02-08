@@ -14,8 +14,9 @@ public interface ExecutorBusI {
     /**
      * Send command to CommandBus, then the command will be executed by CommandExecutor
      * 
-     * @param Command or Query
+     * @param command
      * @return Response
      */
-    public Response send(Executor cmd);
+    public <T extends Response> T send(Executor<T> command);
+
 }

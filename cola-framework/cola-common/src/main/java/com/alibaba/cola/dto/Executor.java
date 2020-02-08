@@ -8,7 +8,7 @@ import com.alibaba.cola.extension.BizScenario;
  *
  * @author fulan.zjf 2017年10月27日 下午12:28:24
  */
-public abstract class Executor extends DTO{
+public abstract class Executor<R> extends DTO{
 
     private static final long serialVersionUID = 1L;
 

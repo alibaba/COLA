@@ -17,8 +17,8 @@ public class ExecutorBus implements ExecutorBusI {
     private ExecutorHub executorHub;
 
     @Override
-    public Response send(Executor cmd) {
-            return executorHub.getCommandInvocation(cmd.getClass()).invoke(cmd);
+    public <T extends Response> T send(Executor<T> cmd) {
+            return (T)executorHub.getCommandInvocation(cmd.getClass()).invoke(cmd);
     }
 
 }
