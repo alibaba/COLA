@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class MetricDO {
+public class MetricDO{
     private String id;
     /**
      * 域账号
