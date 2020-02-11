@@ -3,7 +3,6 @@ package com.alibaba.cola.statemachine.impl;
 import com.alibaba.cola.statemachine.State;
 import com.alibaba.cola.statemachine.Transition;
 import com.alibaba.cola.statemachine.Visitor;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -15,7 +14,6 @@ import java.util.Optional;
  * @author Frank Zhang
  * @date 2020-02-07 11:19 PM
  */
-@Slf4j
 public class StateImpl<S,E,C> implements State<S,E,C> {
     protected final S stateId;
     private HashMap<E, Transition<S, E,C>> transitions = new HashMap<>();
@@ -32,7 +30,7 @@ public class StateImpl<S,E,C> implements State<S,E,C> {
         newTransition.setEvent(event);
         newTransition.setType(transitionType);
 
-        log.debug("Begin to add new transition: "+ newTransition);
+        Debugger.debug("Begin to add new transition: "+ newTransition);
         verify(event, newTransition);
         transitions.put(event, newTransition);
         return newTransition;

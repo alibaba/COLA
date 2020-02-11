@@ -6,7 +6,6 @@ import com.alibaba.cola.statemachine.State;
 import com.alibaba.cola.statemachine.Transition;
 import com.alibaba.cola.statemachine.impl.StateHelper;
 import com.alibaba.cola.statemachine.impl.TransitionType;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 
@@ -16,7 +15,6 @@ import java.util.Map;
  * @author Frank Zhang
  * @date 2020-02-07 10:20 PM
  */
-@Slf4j
 class TransitionBuilderImpl<S,E,C> implements ExternalTransitionBuilder<S,E,C>, InternalTransitionBuilder<S,E,C>, From<S,E,C>, On<S,E,C>, To<S,E,C> {
 
     final Map<S, State<S, E, C>> stateMap;

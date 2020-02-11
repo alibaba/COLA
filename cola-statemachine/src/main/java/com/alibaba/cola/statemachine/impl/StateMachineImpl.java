@@ -4,9 +4,6 @@ import com.alibaba.cola.statemachine.State;
 import com.alibaba.cola.statemachine.StateMachine;
 import com.alibaba.cola.statemachine.Transition;
 import com.alibaba.cola.statemachine.Visitor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 import java.util.Optional;
@@ -21,16 +18,12 @@ import java.util.Optional;
  * @author Frank Zhang
  * @date 2020-02-07 5:40 PM
  */
-@Slf4j
 public class StateMachineImpl<S,E,C> implements StateMachine<S, E, C> {
 
-    @Getter
-    @Setter
     private String machineId;
 
     private final Map<S, State<S,E,C>> stateMap;
 
-    @Setter
     private boolean ready;
 
     public StateMachineImpl(Map<S, State< S, E, C>> stateMap){
@@ -48,7 +41,7 @@ public class StateMachineImpl<S,E,C> implements StateMachine<S, E, C> {
         if(transition.isPresent()){
             return transition.get().transit(ctx);
         }
-        log.warn("There is no Transition for " + event);
+        Debugger.debug("There is no Transition for " + event);
         return sourceState;
     }
 
@@ -88,4 +81,16 @@ public class StateMachineImpl<S,E,C> implements StateMachine<S, E, C> {
         accept(plantUMLVisitor);
     }
 
+    @Override
+    public String getMachineId() {
+        return machineId;
+    }
+
+    public void setMachineId(String machineId) {
+        this.machineId = machineId;
+    }
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
+    }
 }

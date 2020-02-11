@@ -4,7 +4,6 @@ import com.alibaba.cola.statemachine.Action;
 import com.alibaba.cola.statemachine.Condition;
 import com.alibaba.cola.statemachine.State;
 import com.alibaba.cola.statemachine.Transition;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * TransitionImpl。
@@ -14,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
  * @author Frank Zhang
  * @date 2020-02-07 10:32 PM
  */
-@Slf4j
 public class TransitionImpl<S,E,C> implements Transition<S,E,C> {
 
     private State<S, E, C> source;
@@ -86,7 +84,7 @@ public class TransitionImpl<S,E,C> implements Transition<S,E,C> {
 
     @Override
     public State<S, E, C> transit(C ctx) {
-        log.debug("Do transition: "+this);
+        Debugger.debug("Do transition: "+this);
         this.verify();
         if(condition == null || condition.isSatisfied(ctx)){
             if(action != null){
@@ -95,7 +93,7 @@ public class TransitionImpl<S,E,C> implements Transition<S,E,C> {
             return target;
         }
 
-        log.debug("Condition is not satisfied, stay at the "+source+" state ");
+        Debugger.debug("Condition is not satisfied, stay at the "+source+" state ");
         return source;
     }
 

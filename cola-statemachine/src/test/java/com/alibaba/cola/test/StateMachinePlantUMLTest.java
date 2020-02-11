@@ -5,6 +5,8 @@ import com.alibaba.cola.statemachine.Condition;
 import com.alibaba.cola.statemachine.StateMachine;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilder;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilderFactory;
+import com.alibaba.cola.statemachine.impl.Debugger;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.stream.Stream;
@@ -79,6 +81,11 @@ public class StateMachinePlantUMLTest {
                     this == P0_Changed ||
                     this == Page_Price_changed;
         }
+    }
+
+    @Before
+    public void init(){
+        Debugger.enableDebug();
     }
 
     @Test
