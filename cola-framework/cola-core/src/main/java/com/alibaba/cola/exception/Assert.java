@@ -1,5 +1,7 @@
 package com.alibaba.cola.exception;
 
+import com.alibaba.cola.dto.ErrorCodeI;
+import com.alibaba.cola.exception.framework.BasicErrorCode;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Collection;
@@ -46,7 +48,7 @@ public abstract class Assert {
     }
 
     public static void isTrue(boolean expression, String message) {
-        isTrue(expression, BasicErrorCode.B_COMMON_ERROR, message);
+        isTrue(expression, BasicErrorCode.BIZ_ERROR, message);
     }
 
     public static void isTrue(boolean expression) {
@@ -60,11 +62,11 @@ public abstract class Assert {
     }
 
     public static void notNull(Object object, String message) {
-        notNull(object, BasicErrorCode.B_COMMON_ERROR, message);
+        notNull(object, BasicErrorCode.BIZ_ERROR, message);
     }
 
     public static void notNull(Object object){
-        notNull(object, BasicErrorCode.B_COMMON_ERROR, "[Assertion failed] - the argument "+object+" must not be null");
+        notNull(object, BasicErrorCode.BIZ_ERROR, "[Assertion failed] - the argument "+object+" must not be null");
     }
 
     public static void notEmpty(Collection<?> collection) {

@@ -5,10 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This is the simple data object used to transfer data between application and caller.
- *
- * Typical caller includes controller, RPC, MTop and so on.
- *
+ * This is the object communicate with Client.
+ * The clients could be view layer or other HSF Consumers
  * @author fulan.zjf 2017-10-27 PM 12:19:15
  */
 public abstract class ClientObject implements Serializable{

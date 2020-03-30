@@ -1,10 +1,11 @@
 package com.alibaba.cola.test;
 
 import com.alibaba.cola.TestConfig;
-import com.alibaba.cola.context.Context;
 import com.alibaba.cola.dto.Response;
-import com.alibaba.cola.exception.BasicErrorCode;
+import com.alibaba.cola.exception.framework.BasicErrorCode;
+import com.alibaba.cola.extension.BizScenario;
 import com.alibaba.cola.test.customer.*;
+import com.alibaba.cola.test.customer.entity.SourceType;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -31,27 +32,24 @@ public class CustomerCommandTest {
     @Autowired
     private CustomerServiceI customerService;
 
-    @Value("${bizCode}")
+    @Value("${bizScenarioUniqueIdentity}")
     private String bizCode;
-
-    private Context context;
 
     @Before
     public void setUp() {
-        context = new Context();
     }
 
     @Test
     public void testBizOneAddCustomerSuccess(){
         //1. Prepare
         AddCustomerCmd addCustomerCmd = new AddCustomerCmd();
-        context.setBizCode(Constants.BIZ_ONE);
-        addCustomerCmd.setContext(context);
         CustomerCO customerCO = new CustomerCO();
         customerCO.setCompanyName("alibaba");
         customerCO.setSource(Constants.SOURCE_RFQ);
         customerCO.setCustomerType(CustomerType.IMPORTANT);
         addCustomerCmd.setCustomerCO(customerCO);
+        BizScenario scenario = BizScenario.valueOf(Constants.BIZ_1);
+        addCustomerCmd.setBizScenario(scenario);
 
         //2. Execute
         Response response = customerService.addCustomer(addCustomerCmd);
@@ -64,34 +62,32 @@ public class CustomerCommandTest {
     public void testBizOneAddCustomerFailure(){
         //1. Prepare
         AddCustomerCmd addCustomerCmd = new AddCustomerCmd();
-        context.setBizCode(Constants.BIZ_ONE);
-        addCustomerCmd.setContext(context);
         CustomerCO customerCO = new CustomerCO();
         customerCO.setCompanyName("alibaba");
         customerCO.setSource(Constants.SOURCE_AD);
-        customerCO.setCustomerType(CustomerType.IMPORTANT);
         addCustomerCmd.setCustomerCO(customerCO);
+        BizScenario scenario = BizScenario.valueOf(Constants.BIZ_2);
+        addCustomerCmd.setBizScenario(scenario);
 
         //2. Execute
         Response response = customerService.addCustomer(addCustomerCmd);
 
         //3. Expect exception
         Assert.assertFalse(response.isSuccess());
-        Assert.assertEquals(response.getErrCode(),ErrorCode.B_CUSTOMER_advNotAllowed.getErrCode());
+        Assert.assertEquals(response.getErrCode(), BasicErrorCode.BIZ_ERROR.getErrCode());
     }
 
     @Test
     public void testBizTwoAddCustomer(){
         //1. Prepare
         AddCustomerCmd addCustomerCmd = new AddCustomerCmd();
-        context.setBizCode(Constants.BIZ_TWO);
-        addCustomerCmd.setContext(context);
         CustomerCO customerCO = new CustomerCO();
         customerCO.setCompanyName("alibaba");
         customerCO.setSource(Constants.SOURCE_AD);
         customerCO.setCustomerType(CustomerType.IMPORTANT);
         addCustomerCmd.setCustomerCO(customerCO);
-
+        BizScenario scenario = BizScenario.valueOf(Constants.BIZ_2);
+        addCustomerCmd.setBizScenario(scenario);
         //2. Execute
         Response response = customerService.addCustomer(addCustomerCmd);
 
@@ -100,30 +96,31 @@ public class CustomerCommandTest {
     }
 
     @Test
-    public void testBizTwoAddCustomerFailure(){
+    public void testCompanyTypeViolation(){
         AddCustomerCmd addCustomerCmd = new AddCustomerCmd();
-        addCustomerCmd.setContext(context);
-        context.setBizCode(Constants.BIZ_TWO);
         CustomerCO customerCO = new CustomerCO();
         customerCO.setCompanyName("alibaba");
-        customerCO.setSource("p4p");
+        customerCO.setSource(SourceType.AD.name());
         customerCO.setCustomerType(CustomerType.VIP);
         addCustomerCmd.setCustomerCO(customerCO);
+        BizScenario scenario = BizScenario.valueOf(Constants.BIZ_1);
+        addCustomerCmd.setBizScenario(scenario);
         Response response = customerService.addCustomer(addCustomerCmd);
 
         //Expect biz exception
         Assert.assertFalse(response.isSuccess());
-        Assert.assertEquals(response.getErrCode(), ErrorCode.B_CUSTOMER_vipNeedApproval.getErrCode());
+        Assert.assertEquals(response.getErrCode(), BasicErrorCode.BIZ_ERROR.getErrCode());
     }
 
     @Test
     public void testParamValidationFail(){
         AddCustomerCmd addCustomerCmd = new AddCustomerCmd();
-        addCustomerCmd.setContext(context);
+        BizScenario scenario = BizScenario.valueOf(Constants.BIZ_1);
+        addCustomerCmd.setBizScenario(scenario);
         Response response = customerService.addCustomer(addCustomerCmd);
 
         //Expect parameter validation error
         Assert.assertFalse(response.isSuccess());
-        Assert.assertEquals(response.getErrCode(), BasicErrorCode.B_COMMON_ERROR.getErrCode());
+        Assert.assertEquals(response.getErrCode(), BasicErrorCode.BIZ_ERROR.getErrCode());
     }
 }

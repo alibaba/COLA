@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
  * @author Frank Zhang 2018-01-06 7:30 PM
  */
 @Data
-public class CustomerCO extends ClientObject {
+public class CustomerCO extends ClientObject{
 
     @NotEmpty
     private String companyName;

@@ -1,7 +1,6 @@
 package com.alibaba.cola;
 
 import com.alibaba.cola.boot.Bootstrap;
-import com.alibaba.cola.logger.LoggerFactory;
 import org.springframework.context.annotation.*;
 
 import java.util.ArrayList;

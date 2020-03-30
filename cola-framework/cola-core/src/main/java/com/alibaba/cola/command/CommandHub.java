@@ -1,9 +1,6 @@
 package com.alibaba.cola.command;
 
-import com.alibaba.cola.dto.Command;
-import com.alibaba.cola.exception.ColaException;
-import com.google.common.collect.LinkedListMultimap;
-import com.google.common.collect.ListMultimap;
+import com.alibaba.cola.exception.framework.ColaException;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
@@ -24,16 +21,16 @@ public class CommandHub{
 
     @Getter
     @Setter
-    private ListMultimap<Class/*CommandClz*/, CommandInterceptorI> preInterceptors = LinkedListMultimap.create();
+    /**
+     * 全局通用的PreInterceptors
+     */
+    private List<CommandInterceptorI> globalPreInterceptors = new ArrayList<>();
     @Getter
     @Setter
-    private ListMultimap<Class/*CommandClz*/, CommandInterceptorI> postInterceptors = LinkedListMultimap.create();
-    @Getter
-    @Setter
-    private List<CommandInterceptorI> globalPreInterceptors = new ArrayList<>(); //全局通用的PreInterceptors
-    @Getter
-    @Setter
-    private List<CommandInterceptorI> globalPostInterceptors = new ArrayList<>(); //全局通用的PostInterceptors
+    /**
+     * 全局通用的PostInterceptors
+     */
+    private List<CommandInterceptorI> globalPostInterceptors = new ArrayList<>();
     @Getter
     @Setter
     private Map<Class/*CommandClz*/, CommandInvocation> commandRepository = new HashMap<>();

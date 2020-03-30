@@ -1,0 +1,18 @@
+{"initialized":true,"version":"1.0.0"}
+com.alibaba.craftsman.tunnel.database.MetricTunnel_create
+=================method_params_separator================
+[
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"id":"1075",
+			"mainMetric":"tech-contribution",
+			"metricItem":"{\"codeUrl\":\"codeUrl\",\"content\":\"Highlight content\",\"docUrl\":\"docUrl\",\"name\":\"Tech highlight\"}",
+			"modifier":"System",
+			"subMetric":"Misc",
+			"userId":"MiscMetricAddCmdExeTest_09888"
+		}
+	]
+]
+=======================different_method_separator=============================

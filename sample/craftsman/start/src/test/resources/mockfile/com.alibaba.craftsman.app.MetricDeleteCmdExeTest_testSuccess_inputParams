@@ -1,0 +1,10 @@
+{"initialized":true,"version":"1.0.0"}
+com.alibaba.craftsman.tunnel.database.MetricTunnel_delete
+=================method_params_separator================
+[
+	[
+		"1013",
+		"MetricDeleteCmdExeTest"
+	]
+]
+=======================different_method_separator=============================

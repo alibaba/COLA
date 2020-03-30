@@ -1,22 +1,20 @@
 package com.alibaba.cola.domain;
 
-import com.alibaba.cola.dto.event.DomainEvent;
+
+import com.alibaba.cola.event.DomainEventI;
 
 /**
- * DomainEventServiceI
+ * DomainEventServiceI 领域事件服务
  *
  * @author Frank Zhang
- * @date 2019-01-03 12:25 PM
+ * @date 2018-07-30 11:39 AM
  */
 public interface DomainEventServiceI {
-
     /**
-     * Publish Domain Event
+     * 发布领域事件
      *
-     * The implementation should be provided by application, depends on what kind of Messaging mechanism you are using
-     *
-     * It could be RocketMQ, ActiveMQ, Kafka etc.
+     * 具体的事件处理机制，由应用自己实现，在sofa-extension中，我们提供了MetaQ的实现
      * @param domainEvent
      */
-    public void publish(DomainEvent domainEvent);
+    public void publish(DomainEventI domainEvent);
 }

@@ -1,6 +1,6 @@
 package com.alibaba.cola.dto;
 
-import com.alibaba.cola.context.Context;
+import com.alibaba.cola.extension.BizScenario;
 
 /**
  * Command stands for a request from Client.
@@ -12,13 +12,13 @@ public abstract class Command extends DTO{
 
     private static final long serialVersionUID = 1L;
 
-	private Context context;
+    private BizScenario bizScenario;
 
-	public Context getContext() {
-		return context;
+	public BizScenario getBizScenario() {
+		return bizScenario;
 	}
 
-	public void setContext(Context context) {
-		this.context = context;
+	public void setBizScenario(BizScenario bizScenario) {
+		this.bizScenario = bizScenario;
 	}
 }

@@ -10,6 +10,5 @@ import com.alibaba.cola.dto.Response;
  * @date 2019-01-02 11:25 PM
  */
 public interface ExceptionHandlerI {
-
     public void handleException(Command cmd, Response response, Exception exception);
 }

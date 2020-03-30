@@ -34,6 +34,7 @@ public class RegisterFactory{
     @Autowired
     private EventRegister eventRegister;
 
+
     public RegisterI getRegister(Class<?> targetClz) {
         PreInterceptor preInterceptorAnn = targetClz.getDeclaredAnnotation(PreInterceptor.class);
         if (preInterceptorAnn != null) {
@@ -57,5 +58,4 @@ public class RegisterFactory{
         }
         return null;
     }
-
 }

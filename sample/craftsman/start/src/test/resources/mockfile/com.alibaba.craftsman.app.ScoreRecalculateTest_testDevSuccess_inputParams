@@ -1,0 +1,167 @@
+{"initialized":false,"version":"1.0.0"}
+com.alibaba.craftsman.tunnel.database.UserProfileTunnel_create
+=================method_params_separator================
+[
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO",
+			"appQualityScore":0.0D,
+			"checkinCodeQuantity":0.0D,
+			"creator":"testSuccessAdd",
+			"dep":"ICBU",
+			"devQualityScore":0.0D,
+			"isManager":"y",
+			"modifier":"testSuccessAdd",
+			"role":"DEV",
+			"techContributionScore":0.0D,
+			"techInfluenceScore":0.0D,
+			"totalScore":0.0D,
+			"userId":"ScoreRecalculateTest1552554289036",
+			"userName":"Frank"
+		}
+	]
+]
+=======================different_method_separator=============================
+com.alibaba.craftsman.tunnel.database.MetricTunnel_create
+=================method_params_separator================
+[
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"id":"1080",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"commentCount\":14,\"favoriteCount\":49,\"hitCount\":299,\"thumbsUpCount\":89,\"title\":\"testATAMetricAddSuccess\",\"url\":\"sharingLink\"}",
+			"modifier":"System",
+			"subMetric":"ATA",
+			"userId":"ScoreRecalculateTest1552554289036"
+		}
+	],
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"id":"1081",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"commentCount\":14,\"favoriteCount\":49,\"hitCount\":299,\"thumbsUpCount\":89,\"title\":\"testATAMetricAddSuccess\",\"url\":\"sharingLink\"}",
+			"modifier":"System",
+			"subMetric":"ATA",
+			"userId":"ScoreRecalculateTest1552554289036"
+		}
+	],
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"id":"1082",
+			"mainMetric":"tech-influence",
+			"metricItem":"{\"commentCount\":14,\"favoriteCount\":49,\"hitCount\":299,\"thumbsUpCount\":89,\"title\":\"testATAMetricAddSuccess\",\"url\":\"sharingLink\"}",
+			"modifier":"System",
+			"subMetric":"ATA",
+			"userId":"ScoreRecalculateTest1552554289036"
+		}
+	]
+]
+=======================different_method_separator=============================
+com.alibaba.craftsman.tunnel.database.UserProfileTunnel_getByUserId
+=================method_params_separator================
+[
+	[
+		"ScoreRecalculateTest1552554289036"
+	],
+	[
+		"ScoreRecalculateTest1552554289036"
+	],
+	[
+		"ScoreRecalculateTest1552554289036"
+	]
+]
+=======================different_method_separator=============================
+com.alibaba.craftsman.tunnel.database.MetricTunnel_listByMainMetric
+=================method_params_separator================
+[
+	[
+		"ScoreRecalculateTest1552554289036",
+		"tech-influence"
+	],
+	[
+		"ScoreRecalculateTest1552554289036",
+		"tech-contribution"
+	],
+	[
+		"ScoreRecalculateTest1552554289036",
+		"tech-influence"
+	],
+	[
+		"ScoreRecalculateTest1552554289036",
+		"tech-contribution"
+	],
+	[
+		"ScoreRecalculateTest1552554289036",
+		"tech-influence"
+	],
+	[
+		"ScoreRecalculateTest1552554289036",
+		"tech-contribution"
+	]
+]
+=======================different_method_separator=============================
+com.alibaba.craftsman.tunnel.database.UserProfileTunnel_update
+=================method_params_separator================
+[
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO",
+			"appQualityScore":79.0D,
+			"checkinCodeQuantity":0.0D,
+			"dep":"ICBU",
+			"devQualityScore":90.0D,
+			"id":"1067",
+			"isManager":"y",
+			"modifier":"System",
+			"role":"DEV",
+			"techContributionScore":0.0D,
+			"techInfluenceScore":3.75D,
+			"totalScore":34.925D,
+			"userId":"ScoreRecalculateTest1552554289036",
+			"userName":"Frank"
+		}
+	],
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO",
+			"appQualityScore":79.0D,
+			"checkinCodeQuantity":0.0D,
+			"dep":"ICBU",
+			"devQualityScore":90.0D,
+			"id":"1067",
+			"isManager":"y",
+			"modifier":"System",
+			"role":"DEV",
+			"techContributionScore":0.0D,
+			"techInfluenceScore":7.5D,
+			"totalScore":36.05D,
+			"userId":"ScoreRecalculateTest1552554289036",
+			"userName":"Frank"
+		}
+	],
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO",
+			"appQualityScore":79.0D,
+			"checkinCodeQuantity":0.0D,
+			"dep":"ICBU",
+			"devQualityScore":90.0D,
+			"id":"1067",
+			"isManager":"y",
+			"modifier":"System",
+			"role":"DEV",
+			"techContributionScore":0.0D,
+			"techInfluenceScore":11.25D,
+			"totalScore":37.175D,
+			"userId":"ScoreRecalculateTest1552554289036",
+			"userName":"Frank"
+		}
+	]
+]
+=======================different_method_separator=============================

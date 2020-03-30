@@ -1,0 +1,18 @@
+{"initialized":true,"version":"1.0.0"}
+com.alibaba.craftsman.tunnel.database.MetricTunnel_create
+=================method_params_separator================
+[
+	[
+		{
+			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"creator":"System",
+			"id":"1074",
+			"mainMetric":"tech-contribution",
+			"metricItem":"{\"noteCount\":8,\"reviewDocLink\":\"http://www.alibaba.com \",\"reviewId\":\"72376263\"}",
+			"modifier":"System",
+			"subMetric":"CodeReview",
+			"userId":"CodeReviewMetricAddCmdExeTest_098873"
+		}
+	]
+]
+=======================different_method_separator=============================

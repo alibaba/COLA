@@ -1,10 +1,8 @@
 package com.alibaba.cola.event;
 
-import com.alibaba.cola.dto.event.Event;
-import com.alibaba.cola.exception.ColaException;
+import com.alibaba.cola.exception.framework.ColaException;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
@@ -23,14 +21,18 @@ import java.util.Map;
  */
 @SuppressWarnings("rawtypes")
 @Component
-@Data
 public class EventHub {
 
     private Logger logger= LoggerFactory.getLogger(this.getClass());
     /**
      * one event could have multiple event handlers
      */
+    @Getter
+    @Setter
     private ListMultimap<Class, EventHandlerI> eventRepository = ArrayListMultimap.create();
+
+    @Getter
+    private Map<Class, Class> responseRepository = new HashMap<>();
 
     public List<EventHandlerI> getEventHandler(Class eventClass) {
         List<EventHandlerI> eventHandlerIList = findHandler(eventClass);
@@ -46,12 +48,15 @@ public class EventHub {
      * @param eventClz
      * @param executor
      */
-    public void register(Class<? extends Event> eventClz, EventHandlerI executor){
+    public void register(Class<? extends EventI> eventClz, EventHandlerI executor){
         eventRepository.put(eventClz, executor);
     }
 
-    private List<EventHandlerI> findHandler(Class<? extends Event> eventClass){
-        return eventRepository.get(eventClass);
+    private List<EventHandlerI> findHandler(Class<? extends EventI> eventClass){
+        List<EventHandlerI> eventHandlerIList = null;
+        Class cls = eventClass;
+        eventHandlerIList = eventRepository.get(cls);
+        return eventHandlerIList;
     }
 
 }

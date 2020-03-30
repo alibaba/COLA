@@ -14,15 +14,15 @@
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<mockito-all.version>1.10.19</mockito-all.version>
+		<mockito.version>2.23.4</mockito.version>
 		<mybatis-starter.version>1.1.1</mybatis-starter.version>
-		<spring-version>4.3.5.RELEASE</spring-version>
+		<spring-version>5.2.0.RELEASE</spring-version>
 		<spring-boot.version>1.4.3.RELEASE</spring-boot.version>
 		<spring-test.version>4.3.2.RELEASE</spring-test.version>
 		<junit.version>4.12</junit.version>
 		<logback.version>1.2.3</logback.version>
 		<slf4j.version>1.7.22</slf4j.version>
-		<cola.framework.version>1.0.0-SNAPSHOT</cola.framework.version>
+		<cola.framework.version>2.0.0</cola.framework.version>
 		<toolkit.common.lang.version>1.0</toolkit.common.lang.version>
 		<jakarta.commons.beanutils.version>1.8.3</jakarta.commons.beanutils.version>
 	</properties>
@@ -117,21 +117,18 @@
 			<!-- 测试依赖 -->
 			<dependency>
 				<groupId>org.mockito</groupId>
-				<artifactId>mockito-all</artifactId>
-				<version>${mockito-all.version}</version>
-				<scope>test</scope>
+				<artifactId>mockito-core</artifactId>
+				<version>${mockito.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
-				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-test</artifactId>
 				<version>${spring-test.version}</version>
-				<scope>test</scope>
 			</dependency>
 			<!-- 测试依赖 End -->
 			<!-- Commons依赖 -->
@@ -151,6 +148,13 @@
 				<version>0.9.10</version>
 			</dependency>
 			<!-- Commons依赖End -->
+			<!-- AspectJ-->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>1.8.6</version>
+			</dependency>
+			<!-- AspectJ End-->
 			<!--Validation API-->
 			<dependency>
 				<groupId>javax.validation</groupId>
@@ -172,7 +176,17 @@
 				<artifactId>javax.el</artifactId>
 				<version>2.2.6</version>
 			</dependency>
-			<!--Validation API End -->
+			<!--Others-->
+			<dependency>
+				<groupId>uk.co.jemos.podam</groupId>
+				<artifactId>podam</artifactId>
+				<version>7.2.1.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.2.48</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

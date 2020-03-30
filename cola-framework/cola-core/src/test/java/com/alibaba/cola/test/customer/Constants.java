@@ -8,8 +8,8 @@ package com.alibaba.cola.test.customer;
  */
 public class Constants {
 
-    public static final String BIZ_ONE = "BIZ_ONE";
-    public static final String BIZ_TWO = "BIZ_TWO";
+    public static final String BIZ_1 = "BIZ_ONE";
+    public static final String BIZ_2 = "BIZ_TWO";
 
     public static final String TENANT_ID = "122344";
 

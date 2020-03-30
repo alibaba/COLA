@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.alibaba.craftsman.tunnel.database.MetricTunnel">
+    <sql id="ALL_COLUMNS">
+        id,
+        user_id,
+        main_metric,
+        sub_metric,
+        metric_item,
+        creator,
+        modifier,
+        gmt_create,
+        gmt_modified,
+        is_deleted
+    </sql>
+
+    <sql id="COMMON_SELECT">
+        SELECT
+        <include refid="ALL_COLUMNS"/>
+        FROM metric
+    </sql>
+
+    <insert id="create" useGeneratedKeys="true" keyProperty="id" parameterType="MetricDO">
+        INSERT INTO metric(
+            <include refid="ALL_COLUMNS"/>
+        ) VALUES (
+        null,
+        #{userId},
+        #{mainMetric},
+        #{subMetric},
+        #{metricItem},
+        #{creator},
+        #{modifier},
+        now(),
+        now(),
+        'n'
+        )
+    </insert>
+
+    <delete id="delete" parameterType="map">
+        UPDATE metric SET is_deleted='y', modifier = #{modifier} WHERE id = #{id} and IS_DELETED = 'n'
+    </delete>
+
+    <select id="listByUserId" resultType="MetricDO" parameterType="map">
+        <include refid="COMMON_SELECT"/>
+        WHERE user_id = #{userId} and IS_DELETED = 'n'
+    </select>
+
+    <select id="listByMainMetric" resultType="MetricDO" parameterType="map">
+        <include refid="COMMON_SELECT"/>
+        WHERE user_id = #{userId} and main_metric= #{mainMetric} and IS_DELETED = 'n'
+    </select>
+
+    <select id="listBySubMetric" resultType="MetricDO" parameterType="map">
+        <include refid="COMMON_SELECT"/>
+        WHERE user_id = #{userId} and sub_metric= #{subMetric} and IS_DELETED = 'n'
+    </select>
+
+    <select id="getById" resultType="MetricDO" parameterType="map">
+        <include refid="COMMON_SELECT"/>
+        WHERE id = #{id} and IS_DELETED = 'n'
+    </select>
+</mapper>

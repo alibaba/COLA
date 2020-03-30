@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.alibaba.craftsman.tunnel.database.UserProfileTunnel">
+    <sql id="ALL_COLUMNS">
+        id,
+        user_id,
+        user_name,
+        is_manager,
+        dep,
+        role,
+        total_score,
+        app_quality_score,
+        tech_influence_score,
+        tech_contribution_score,
+        dev_quality_score,
+        checkin_code_quantity,
+        creator,
+        modifier,
+        gmt_create,
+        gmt_modified,
+        is_deleted
+    </sql>
+
+    <sql id="COMMON_SELECT">
+        SELECT
+        <include refid="ALL_COLUMNS"/>
+        FROM user_profile
+    </sql>
+
+    <insert id="create" parameterType="UserProfileDO">
+        INSERT INTO user_profile(
+        <include refid="ALL_COLUMNS"/>
+        ) VALUES (
+        null,
+        #{userId},
+        #{userName},
+        #{isManager},
+        #{dep},
+        #{role},
+        #{totalScore},
+        #{appQualityScore},
+        #{techInfluenceScore},
+        #{techContributionScore},
+        #{devQualityScore},
+        #{checkinCodeQuantity},
+        #{creator},
+        #{modifier},
+        now(),
+        now(),
+        'n'
+        )
+    </insert>
+
+    <delete id="delete" parameterType="map">
+        UPDATE user_profile SET is_deleted='y' WHERE user_id = #{userId} and IS_DELETED = 'n'
+    </delete>
+
+    <select id="getByUserId" resultType="UserProfileDO" parameterType="map">
+        SELECT * FROM user_profile
+        WHERE user_id = #{userId} and IS_DELETED = 'n' LIMIT 1
+    </select>
+
+    <select id="listByDep" resultType="UserProfileDO" parameterType="map">
+        <include refid="COMMON_SELECT"/>
+        WHERE dep like '${dep}%' and IS_DELETED = 'n'
+    </select>
+
+    <update id="update" parameterType="UserProfileDO">
+        UPDATE user_profile SET GMT_MODIFIED = now()
+        <if test="userName != null">
+            ,user_name = #{userName}
+        </if>
+        <if test="dep != null">
+            ,dep = #{dep}
+        </if>
+        <if test="role != null">
+            ,role = #{role}
+        </if>
+        <if test="isManager != null">
+            ,is_manager = #{isManager}
+        </if>
+        <if test="totalScore != null and totalScore != 0">
+            ,total_score = #{totalScore}
+        </if>
+        <if test="appQualityScore != null and appQualityScore != 0">
+            ,app_quality_score = #{appQualityScore}
+        </if>
+        <if test="techInfluenceScore != null and techInfluenceScore != 0">
+            ,tech_influence_score = #{techInfluenceScore}
+        </if>
+        <if test="techContributionScore != null and techContributionScore != 0">
+            ,tech_contribution_score = #{techContributionScore}
+        </if>
+        <if test="devQualityScore != null and devQualityScore != 0">
+            ,dev_quality_score = #{devQualityScore}
+        </if>
+        <if test="checkinCodeQuantity != null and checkinCodeQuantity != 0">
+            ,checkin_code_quantity = #{checkinCodeQuantity}
+        </if>
+        <if test="modifier != null">
+            ,modifier = #{modifier}
+        </if>
+        where user_id = #{userId} and is_deleted='n'
+    </update>
+
+</mapper>

@@ -1,11 +1,13 @@
 package com.alibaba.cola.dto;
 
+import java.io.Serializable;
+
 /**
  * Order Description
  *
  * @author Danny.Lee 2017/12/19
  */
-public class OrderDesc {
+public class OrderDesc implements Serializable{
 
     private String col;
     private boolean asc = true;

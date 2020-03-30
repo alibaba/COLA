@@ -2,7 +2,7 @@ package com.alibaba.cola.command;
 
 import com.alibaba.cola.dto.Command;
 import com.alibaba.cola.dto.Response;
-import com.alibaba.cola.exception.ExceptionHandlerFactory;
+import com.alibaba.cola.exception.framework.ExceptionHandlerFactory;
 import com.alibaba.cola.logger.Logger;
 import com.alibaba.cola.logger.LoggerFactory;
 import com.google.common.collect.FluentIterable;

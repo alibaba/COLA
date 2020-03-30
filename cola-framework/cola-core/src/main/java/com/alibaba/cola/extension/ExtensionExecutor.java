@@ -7,9 +7,9 @@
  */
 package com.alibaba.cola.extension;
 
+import com.alibaba.cola.boot.AbstractComponentExecutor;
 import com.alibaba.cola.common.ColaConstant;
-import com.alibaba.cola.context.Context;
-import com.alibaba.cola.exception.ColaException;
+import com.alibaba.cola.exception.framework.ColaException;
 import com.alibaba.cola.logger.Logger;
 import com.alibaba.cola.logger.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
  * @author fulan.zjf 2017-11-05
  */
 @Component
-public class ExtensionExecutor extends AbstractExecutorFacade {
+public class ExtensionExecutor extends AbstractComponentExecutor {
 
     private Logger logger = LoggerFactory.getLogger(ExtensionExecutor.class);
 
@@ -28,14 +28,14 @@ public class ExtensionExecutor extends AbstractExecutorFacade {
     private ExtensionRepository extensionRepository;
 
     @Override
-    protected <C> C locateComponent(Class<C> targetClz, Context context) {
-        C extension = locateExtension(targetClz, context);
+    protected <C> C locateComponent(Class<C> targetClz, BizScenario bizScenario) {
+        C extension = locateExtension(targetClz, bizScenario);
         logger.debug("[Located Extension]: "+extension.getClass().getSimpleName());
         return extension;
     }
 
     /**
-     * if the bizCode is "ali.tmall.supermarket"
+     * if the bizScenarioUniqueIdentity is "ali.tmall.supermarket"
      *
      * the search path is as below:
      * 1、first try to get extension by "ali.tmall.supermarket", if get, return it.
@@ -44,61 +44,53 @@ public class ExtensionExecutor extends AbstractExecutorFacade {
      * 4、if not found, try the default extension
      * @param targetClz
      */
-    protected <Ext> Ext locateExtension(Class<Ext> targetClz, Context context) {
+    protected <Ext> Ext locateExtension(Class<Ext> targetClz, BizScenario bizScenario) {
+        checkNull(bizScenario);
+
         Ext extension;
-        checkNull(context);
-        String bizCode =  context.getBizCode();
-        logger.debug("Biz Code in locateExtension is : " + bizCode);
+        String bizScenarioUniqueIdentity = bizScenario.getUniqueIdentity();
+        logger.debug("BizScenario in locateExtension is : " + bizScenarioUniqueIdentity);
 
         // first try
-        extension = firstTry(targetClz, bizCode);
+        extension = firstTry(targetClz, bizScenarioUniqueIdentity);
         if (extension != null) {
             return extension;
         }
 
         // loop try
-        extension = loopTry(targetClz, bizCode);
+        extension = loopTry(targetClz, bizScenarioUniqueIdentity);
         if (extension != null) {
             return extension;
         }
 
-        // last try
-        extension = tryDefault(targetClz);
-        if (extension != null) {
-            return extension;
-        }
-
-        throw new ColaException("Can not find extension with ExtensionPoint: "+targetClz+" BizCode:"+bizCode);
+        throw new ColaException("Can not find extension with ExtensionPoint: "+targetClz+" BizScenario:"+bizScenarioUniqueIdentity);
     }
 
-    private  <Ext> Ext firstTry(Class<Ext> targetClz, String bizCode) {
-        return (Ext)extensionRepository.getExtensionRepo().get(new ExtensionCoordinate(targetClz.getName(), bizCode));
+    private  <Ext> Ext firstTry(Class<Ext> targetClz, String bizScenario) {
+        return (Ext)extensionRepository.getExtensionRepo().get(new ExtensionCoordinate(targetClz.getName(), bizScenario));
     }
 
-    private <Ext> Ext loopTry(Class<Ext> targetClz, String bizCode){
+    private <Ext> Ext loopTry(Class<Ext> targetClz, String bizScenario){
         Ext extension;
-        if (bizCode == null){
+        if (bizScenario == null){
             return null;
         }
-        int lastDotIndex = bizCode.lastIndexOf(ColaConstant.BIZ_CODE_SEPARATOR);
+        int lastDotIndex = bizScenario.lastIndexOf(ColaConstant.DOT_SEPARATOR);
         while(lastDotIndex != -1){
-            bizCode = bizCode.substring(0, lastDotIndex);
-            extension =(Ext)extensionRepository.getExtensionRepo().get(new ExtensionCoordinate(targetClz.getName(), bizCode));
+            bizScenario = bizScenario.substring(0, lastDotIndex);
+            extension =(Ext)extensionRepository.getExtensionRepo().get(new ExtensionCoordinate(targetClz.getName(), bizScenario));
             if (extension != null) {
                 return extension;
             }
+            lastDotIndex = bizScenario.lastIndexOf(ColaConstant.DOT_SEPARATOR);
         }
         return null;
     }
 
-    private <Ext> Ext tryDefault(Class<Ext> targetClz) {
-        return (Ext)extensionRepository.getExtensionRepo().get(new ExtensionCoordinate(targetClz.getName(), ColaConstant.DEFAULT_BIZ_CODE));
-    }
 
-
-    private void checkNull(Context context){
-        if(context == null){
-            throw new ColaException("Context can not be null for extension");
+    private void checkNull(BizScenario bizScenario){
+        if(bizScenario == null){
+            throw new ColaException("BizScenario can not be null for extension");
         }
     }
 
