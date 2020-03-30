@@ -50,7 +50,7 @@ public class CommandInvocation{
             response = commandExecutor.execute(command);  
         }
         catch(Exception e){
-            logger.error("执行command fail,bizCode:[{}],",command.getContext().getBizCode(),e);
+            logger.error("执行command fail,BizScenario:[{}],",command.getBizScenario().getUniqueIdentity(),e);
             response = getResponseInstance(command);
             response.setSuccess(false);
             ExceptionHandlerFactory.getExceptionHandler().handleException(command, response, e);
