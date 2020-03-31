@@ -1,3 +1,5 @@
+package com.alibaba.cola.validator;
+
 /**
  * Validator Interface
  * @author fulan.zjf 2017-11-04
