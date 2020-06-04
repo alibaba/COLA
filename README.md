@@ -41,7 +41,7 @@ com
 该Module主要是提供一些开发测试的工具，可以使用TDD来进行开发。
 
 ## COLA架构
-COLA作为架构，组要是制定了一套指导和约束，并将这套规范沉淀成Archetype。以便通过Archetype可以快速的生成符合COLA规范的应用。满足COLA的应用是一个有清晰的依赖关系的分层架构，如下图所示：
+COLA作为架构，主要是制定了一套指导和约束，并将这套规范沉淀成Archetype。以便通过Archetype可以快速的生成符合COLA规范的应用。满足COLA的应用是一个有清晰的依赖关系的分层架构，如下图所示：
 
 ![image.png](https://ata2-img.cn-hangzhou.oss-pub.aliyun-inc.com/a33b80bcac5ec73d0d1358d6b49a119c.png)
 
