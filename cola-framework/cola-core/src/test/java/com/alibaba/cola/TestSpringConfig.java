@@ -1,19 +1,21 @@
-package com.alibaba.craftsman.config;
+package com.alibaba.cola;
 
 import com.alibaba.cola.boot.SpringBootstrap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.context.annotation.PropertySource;
 
 /**
- * Configuration for COLA framework
+ * TestSpringConfig
+ *
+ * @author Frank Zhang
+ * @date 2020-06-18 8:03 PM
  */
 @Configuration
-@ComponentScan(value = {"com.alibaba.cola","com.alibaba.craftsman"})
-public class ColaConfig {
+@ComponentScan(value = {"com.alibaba.cola","com.alibaba.cola.test"})
+@PropertySource(value = {"/sample.properties"})
+public class TestSpringConfig {
 
     @Bean(initMethod = "init")
     public SpringBootstrap bootstrap() {

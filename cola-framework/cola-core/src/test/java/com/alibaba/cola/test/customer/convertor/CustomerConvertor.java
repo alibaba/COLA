@@ -1,7 +1,6 @@
 package com.alibaba.cola.test.customer.convertor;
 
 import com.alibaba.cola.common.ApplicationContextHelper;
-import com.alibaba.cola.convertor.ConvertorI;
 import com.alibaba.cola.test.customer.AddCustomerCmd;
 import com.alibaba.cola.test.customer.CustomerCO;
 import com.alibaba.cola.test.customer.entity.CustomerEntity;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @date 2018-01-07 3:08 AM
  */
 @Component
-public class CustomerConvertor implements ConvertorI{
+public class CustomerConvertor{
 
     public CustomerEntity clientToEntity(Object clientObject){
         AddCustomerCmd addCustomerCmd = (AddCustomerCmd)clientObject;

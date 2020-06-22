@@ -1,7 +1,5 @@
 package com.alibaba.craftsman.command;
 
-import com.alibaba.cola.command.Command;
-import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.Assert;
 import com.alibaba.cola.logger.Logger;
@@ -18,21 +16,21 @@ import com.alibaba.craftsman.dto.RefreshScoreCmd;
 import com.alibaba.craftsman.event.handler.MetricItemCreatedHandler;
 import com.alibaba.craftsman.repository.MetricRepository;
 import com.alibaba.craftsman.repository.UserProfileRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
-@Command
-public class RefreshScoreCmdExe implements CommandExecutorI<Response, RefreshScoreCmd> {
+@Component
+public class RefreshScoreCmdExe{
     private Logger logger = LoggerFactory.getLogger(MetricItemCreatedHandler.class);
 
-    @Autowired
+    @Resource
     private UserProfileRepository userProfileRepository;
 
-    @Autowired
+    @Resource
     private MetricRepository metricRepository;
 
-    @Override
     public Response execute(RefreshScoreCmd cmd) {
         UserProfile userProfile = getUserProfile(cmd);
         calculateScore(userProfile);

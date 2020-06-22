@@ -22,7 +22,7 @@
 		<junit.version>4.12</junit.version>
 		<logback.version>1.2.3.5-struct</logback.version>
 		<slf4j.version>1.7.22</slf4j.version>
-		<cola.framework.version>2.0.0</cola.framework.version>
+		<cola.framework.version>3.0.0</cola.framework.version>
 		<toolkit.common.lang.version>1.0</toolkit.common.lang.version>
 		<jakarta.commons.beanutils.version>1.8.3</jakarta.commons.beanutils.version>
 	</properties>
@@ -70,26 +70,31 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
 				<version>${spring-version}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-beans</artifactId>
 				<version>${spring-version}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aop</artifactId>
 				<version>${spring-version}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
 				<version>${spring-version}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context-support</artifactId>
 				<version>${spring-version}</version>
+				<scope>provided</scope>
 			</dependency>
 			<!-- Spring框架 End -->
 			<!-- 日志依赖 -->

@@ -16,28 +16,29 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+
 /**
  * ExtensionRegister 
  * @author fulan.zjf 2017-11-05
  */
 @Component
-public class ExtensionRegister implements RegisterI{
+public class ExtensionRegister{
 
-    @Autowired
+    @Resource
     private ExtensionRepository extensionRepository;
-    
 
-    @Override
-    public void doRegistration(Class<?> targetClz) {
-        ExtensionPointI extension = (ExtensionPointI) ApplicationContextHelper.getBean(targetClz);
-        Extension extensionAnn = targetClz.getDeclaredAnnotation(Extension.class);
-        String extPtClassName = calculateExtensionPoint(targetClz);
+
+    public void doRegistration(ExtensionPointI extensionObject){
+        Class<?>  extensionClz = extensionObject.getClass();
+        Extension extensionAnn = extensionClz.getDeclaredAnnotation(Extension.class);
         BizScenario bizScenario = BizScenario.valueOf(extensionAnn.bizId(), extensionAnn.useCase(), extensionAnn.scenario());
-        ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(extPtClassName, bizScenario.getUniqueIdentity());
-        ExtensionPointI preVal = extensionRepository.getExtensionRepo().put(extensionCoordinate, extension);
+        ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(calculateExtensionPoint(extensionClz), bizScenario.getUniqueIdentity());
+        ExtensionPointI preVal = extensionRepository.getExtensionRepo().put(extensionCoordinate, extensionObject);
         if (preVal != null) {
             throw new ColaException("Duplicate registration is not allowed for :" + extensionCoordinate);
         }
+
     }
 
     /**

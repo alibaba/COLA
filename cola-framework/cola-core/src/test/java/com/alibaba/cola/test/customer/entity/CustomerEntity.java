@@ -41,5 +41,6 @@ public class CustomerEntity extends EntityObject {
 
         //Persist customer
         customerRepository.persist(this);
+
     }
 }

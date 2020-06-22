@@ -16,6 +16,7 @@ import com.alibaba.cola.exception.framework.ColaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.lang.reflect.Method;
 
 /**
@@ -25,17 +26,10 @@ import java.lang.reflect.Method;
  * @date 2017/11/20
  */
 @Component
-public class EventRegister implements RegisterI {
+public class EventRegister{
 
-    @Autowired
+    @Resource
     private EventHub eventHub;
-
-    @Override
-    public void doRegistration(Class<?> targetClz) {
-        Class<? extends EventI> eventClz = getEventFromExecutor(targetClz);
-        EventHandlerI executor = (EventHandlerI) ApplicationContextHelper.getBean(targetClz);
-        eventHub.register(eventClz, executor);
-    }
 
     private Class<? extends EventI> getEventFromExecutor(Class<?> eventExecutorClz) {
         Method[] methods = eventExecutorClz.getDeclaredMethods();
@@ -46,6 +40,11 @@ public class EventRegister implements RegisterI {
         }
         throw new ColaException("Event param in " + eventExecutorClz + " " + ColaConstant.EXE_METHOD
                                  + "() is not detected");
+    }
+
+    public void doRegistration(EventHandlerI eventHandler){
+        Class<? extends EventI> eventClz = getEventFromExecutor(eventHandler.getClass());
+        eventHub.register(eventClz, eventHandler);
     }
 
     private boolean isExecuteMethod(Method method){

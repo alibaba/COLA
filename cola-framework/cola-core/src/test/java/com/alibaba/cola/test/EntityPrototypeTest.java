@@ -1,6 +1,6 @@
 package com.alibaba.cola.test;
 
-import com.alibaba.cola.TestConfig;
+import com.alibaba.cola.TestSpringConfig;
 import com.alibaba.cola.common.ApplicationContextHelper;
 import com.alibaba.cola.test.customer.entity.CustomerEntity;
 import org.junit.Assert;
@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {TestConfig.class})
+@ContextConfiguration(classes = {TestSpringConfig.class})
 public class EntityPrototypeTest {
 
     @Test

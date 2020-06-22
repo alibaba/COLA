@@ -23,6 +23,10 @@ public class ApplicationContextHelper implements ApplicationContextAware{
         ApplicationContextHelper.applicationContext = applicationContext;
     }
 
+    public static ApplicationContext getApplicationContext(){
+        return  ApplicationContextHelper.applicationContext;
+    }
+
     public static<T> T getBean(Class<T> targetClz){
         T beanInstance = null;
         //优先按type查

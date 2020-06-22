@@ -1,10 +1,10 @@
 package com.alibaba.cola.test.customer;
 
-import com.alibaba.cola.command.CommandBusI;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * CustomerServiceImpl
@@ -14,16 +14,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerServiceImpl implements CustomerServiceI{
 
-    @Autowired
-    private CommandBusI commandBus;
+    @Resource
+    private AddCustomerCmdExe addCustomerCmdExe;
+
+    @Resource
+    private GetOneCustomerQryExe getOneCustomerQryExe;
+
 
     @Override
     public Response addCustomer(AddCustomerCmd addCustomerCmd) {
-        return (Response)commandBus.send(addCustomerCmd);
+        return addCustomerCmdExe.execute(addCustomerCmd);
     }
 
     @Override
     public SingleResponse<CustomerCO> getCustomer(GetOneCustomerQry getOneCustomerQry) {
-        return null;
+        return getOneCustomerQryExe.execute(getOneCustomerQry);
     }
 }

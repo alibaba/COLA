@@ -1,15 +1,13 @@
 package com.alibaba.craftsman.convertor;
 
 
-import com.alibaba.cola.convertor.ConvertorI;
-import com.alibaba.craftsman.context.UserContext;
 import com.alibaba.craftsman.domain.metrics.MetricItem;
 import com.alibaba.craftsman.tunnel.database.dataobject.MetricDO;
 
 /**
  * @author frankzhang
  */
-public class MetricConvertor implements ConvertorI {
+public class MetricConvertor{
 
     public static MetricDO toDataObject(MetricItem metricItem){
         MetricDO metricDO = new MetricDO();

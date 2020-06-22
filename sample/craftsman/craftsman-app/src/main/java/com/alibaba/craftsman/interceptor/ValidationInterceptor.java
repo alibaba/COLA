@@ -1,7 +1,5 @@
 package com.alibaba.craftsman.interceptor;
 
-import com.alibaba.cola.command.CommandInterceptorI;
-import com.alibaba.cola.command.PreInterceptor;
 import com.alibaba.cola.dto.Command;
 import com.alibaba.cola.exception.BizException;
 import com.alibaba.cola.logger.Logger;
@@ -14,7 +12,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.lang.reflect.Field;
 import java.util.Set;
 
 /**
@@ -22,8 +19,7 @@ import java.util.Set;
  *
  * @author Frank Zhang 2018-01-06 8:27 PM
  */
-@PreInterceptor
-public class ValidationInterceptor extends AbstractValidationInterceptor implements CommandInterceptorI {
+public class ValidationInterceptor extends AbstractValidationInterceptor {
 
     private static Logger logger = LoggerFactory.getLogger(ValidationInterceptor.class);
 
@@ -31,7 +27,6 @@ public class ValidationInterceptor extends AbstractValidationInterceptor impleme
     private ValidatorFactory factory = Validation.byProvider(HibernateValidator.class).configure().failFast(true)
             .messageInterpolator(new ColaMessageInterpolator()).buildValidatorFactory();
 
-    @Override
     public void preIntercept(Command command) {
         super.validate(command);
     }
