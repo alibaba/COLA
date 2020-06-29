@@ -13,7 +13,7 @@ import org.springframework.cglib.proxy.MethodProxy;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/02
+ * @since 2018/09/02
  */
 public class FactoryBeanProxy implements MethodInterceptor,InvocationHandler {
     private Class<?> mapperInterface;

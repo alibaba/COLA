@@ -7,7 +7,7 @@ import com.alibaba.cola.mock.exceptions.ErrorCodes;
 
 /**
  * @author bei.fengb
- * @date 2018/09/04
+ * @since 2018/09/04
  */
 public class InputListOfSameNameMethod {
     private String dataId;

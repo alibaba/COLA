@@ -30,7 +30,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 /**
  * 数据录制控制器
  * @author shawnzhan.zxy
- * @date 2018/09/02
+ * @since 2018/09/02
  */
 public class ColaRecordController extends AbstractRecordController{
     private String recordConfigFile;

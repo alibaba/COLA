@@ -2,7 +2,7 @@ package com.alibaba.cola.mock.utils;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/12
+ * @since 2018/09/12
  */
 public class JsonFormat {
     public static String format(String jsonStr) {

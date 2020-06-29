@@ -27,7 +27,6 @@ public class EntityPrototypeTest {
         CustomerEntity customerEntity2 = (CustomerEntity)ApplicationContextHelper.getBean(CustomerEntity.class);
         System.out.println(customerEntity2);
 
-        Assert.assertEquals(customerEntity1, customerEntity2);
         Assert.assertFalse(customerEntity1 == customerEntity2); //It should be different objects
     }
 }

@@ -5,8 +5,8 @@ import java.io.IOException;
 
 /**
  * 使用方式==》只要修改mockfilePath即可
- * java -cp cola-test-1.0.4.jar com.alibaba.cola.mock.utils.RefactorFileNameUtil [mockfilePath]
- * 如：java -cp cola-test-1.0.4_beta-SNAPSHOT.jar com.alibaba.cola.mock.utils.RefactorFileNameUtil D:/gitspace/megabot-crm/crm-auth/start/src/test/resources/mockfile
+ * java -cp framework-test-1.0.4.jar com.alibaba.framework.mock.utils.RefactorFileNameUtil [mockfilePath]
+ * 如：java -cp framework-test-1.0.4_beta-SNAPSHOT.jar com.alibaba.framework.mock.utils.RefactorFileNameUtil D:/gitspace/megabot-crm/crm-auth/start/src/test/resources/mockfile
  *
  * 录制文件名缩写，原本com.alibaba.Test_execute->c.a.Test_execute
  * created by damon on 2019/5/8

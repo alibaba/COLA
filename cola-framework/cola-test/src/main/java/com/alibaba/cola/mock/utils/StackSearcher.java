@@ -10,7 +10,7 @@ import static com.alibaba.cola.mock.utils.Constants.COLAMOCK_PROXY_FLAG;
 /**
  * 栈检索器
  * @author shawnzhan.zxy
- * @date 2019/05/22
+ * @since 2019/05/22
  */
 public class StackSearcher {
 
@@ -41,7 +41,7 @@ public class StackSearcher {
         throws ClassNotFoundException {
         for(int i = stackTraceElements.length - 1; i > 0; i--){
             StackTraceElement element = stackTraceElements[i];
-            if(element.getClassName().indexOf("com.alibaba.cola") >= 0){
+            if(isConstantsExcludeStack(element)){
                 continue;
             }
             if(colaTestModel.matchMockFilter(Class.forName(element.getClassName()))){
@@ -75,7 +75,7 @@ public class StackSearcher {
     }
 
     private static boolean isConstantsExcludeStack(StackTraceElement element){
-        if(element.getClassName().indexOf("com.alibaba.cola") >= 0
+        if(element.getClassName().indexOf("com.alibaba.framework") >= 0
             || element.getClassName().indexOf("org.junit") >= 0
             || element.getClassName().indexOf("org.springframework") >= 0
             || element.getClassName().indexOf("java.") >= 0

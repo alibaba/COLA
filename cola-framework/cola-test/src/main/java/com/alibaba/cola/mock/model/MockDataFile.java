@@ -7,7 +7,7 @@ import java.util.TreeMap;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/04
+ * @since 2018/09/04
  */
 public class MockDataFile {
     private String fileId;

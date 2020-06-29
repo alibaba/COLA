@@ -22,7 +22,7 @@ import static org.mockito.Mockito.withSettings;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/01/04
+ * @since 2019/01/04
  */
 public class IntegrateColaTest extends AbstractColaTest {
 

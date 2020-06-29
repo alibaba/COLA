@@ -28,7 +28,7 @@ import org.springframework.test.context.support.DefaultTestContext;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/02
+ * @since 2018/09/02
  */
 public class ColaTestRunner extends SpringJUnit4ClassRunner{
     public static AtomicBoolean init = new AtomicBoolean(false);

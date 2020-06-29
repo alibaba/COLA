@@ -6,7 +6,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/10/07
+ * @since 2018/10/07
  */
 public class AnnotationTypeFilter implements TypeFilter{
     private String uid;

@@ -2,7 +2,7 @@ package com.alibaba.cola.mock.scan;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/24
+ * @since 2018/09/24
  */
 public class AssignableTypeFilter implements TypeFilter{
     private final String uid;

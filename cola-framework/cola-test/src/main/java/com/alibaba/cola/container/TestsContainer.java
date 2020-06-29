@@ -18,9 +18,9 @@ import static com.alibaba.cola.mock.utils.Constants.GUIDE_HELP;
 /**
  * 这是一个轻量级的TDD测试工具，可以敏捷的在开发过程中，运行测试，功能如下：
  * 1.测试单个方法，请在控制台输入方法全称
- *   例如：com.alibaba.cola.sales.service.test.CustomerServiceTest.testCheckConflict()
+ *   例如：com.alibaba.framework.sales.service.test.CustomerServiceTest.testCheckConflict()
  * 2.测试整个测试类，请在控制台输入类全称
- *   例如：com.alibaba.cola.sales.service.test.CustomerServiceTest
+ *   例如：com.alibaba.framework.sales.service.test.CustomerServiceTest
  * 3.重复上一次测试，只需在控制台输入字母 - ‘r’
  *
  * @author fulan.zjf
@@ -29,9 +29,9 @@ import static com.alibaba.cola.mock.utils.Constants.GUIDE_HELP;
 /**
  * 这是一个轻量级的TDD测试工具，可以敏捷的在开发过程中，运行测试，功能如下：
  * 1.测试单个方法，请在控制台输入方法全称
- *   例如：com.alibaba.cola.sales.service.test.CustomerServiceTest.testCheckConflict()
+ *   例如：com.alibaba.framework.sales.service.test.CustomerServiceTest.testCheckConflict()
  * 2.测试整个测试类，请在控制台输入类全称
- *   例如：com.alibaba.cola.sales.service.test.CustomerServiceTest
+ *   例如：com.alibaba.framework.sales.service.test.CustomerServiceTest
  * 3.重复上一次测试，只需在控制台输入字母 - ‘r’
  * 
  * @author fulan.zjf

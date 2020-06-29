@@ -23,7 +23,7 @@ import static com.alibaba.cola.mock.utils.Constants.NOTE_SYMBOL;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/01/12
+ * @since 2019/01/12
  */
 public class TestClass {
     private static Map<Object, String> DEFAULT_PARAM_VALUE = new HashMap<>();

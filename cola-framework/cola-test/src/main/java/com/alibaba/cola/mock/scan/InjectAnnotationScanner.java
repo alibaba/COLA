@@ -4,16 +4,18 @@ import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.alibaba.cola.mock.utils.Constants;
+
 /**
  * @author shawnzhan.zxy
- * @date 2019/01/10
+ * @since 2019/01/10
  */
 public class InjectAnnotationScanner {
-    private final Class<?> clazz;
+    private final Class<?> ownerClazz;
     private final Class annotation;
 
-    public InjectAnnotationScanner(Class<?> clazz, Class annotation) {
-        this.clazz = clazz;
+    public InjectAnnotationScanner(Class<?> ownerClazz, Class annotation) {
+        this.ownerClazz = ownerClazz;
         this.annotation = annotation;
     }
 
@@ -24,7 +26,7 @@ public class InjectAnnotationScanner {
 
     private Set<Field> scan() {
         Set<Field> mockDependentFields = new HashSet<Field>();
-        Field[] fields = clazz.getDeclaredFields();
+        Field[] fields = ownerClazz.getDeclaredFields();
         for (Field field : fields) {
             if (null != field.getAnnotation(annotation)) {
                 mockDependentFields.add(field);

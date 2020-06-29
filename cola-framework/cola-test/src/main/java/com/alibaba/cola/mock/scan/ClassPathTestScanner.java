@@ -26,7 +26,7 @@ import org.springframework.util.ClassUtils;
 /**
  * mapper scanner
  * @author shawnzhan.zxy
- * @date 2018/09/24
+ * @since 2018/09/24
  */
 public class ClassPathTestScanner {
     private Environment environment = new StandardEnvironment();

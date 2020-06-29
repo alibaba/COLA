@@ -13,7 +13,7 @@ import org.springframework.cglib.proxy.MethodProxy;
 /**
  * 解决多任务同时并发问题，同时不支持异步录制
  * @author shawnzhan.zxy
- * @date 2018/09/02
+ * @since 2018/09/02
  */
 public class OnlineDataRecordProxy extends DataRecordProxy{
 

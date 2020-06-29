@@ -17,7 +17,7 @@ import static com.alibaba.cola.mock.exceptions.ErrorCodes.HAS_REMAIN_DATA;
 /**
  * 文件存储引擎
  * @author shawnzhan.zxy
- * @date 2018/09/02
+ * @since 2018/09/02
  */
 public class FileDataEngine {
     private static final Logger logger = LoggerFactory.getLogger(FileDataEngine.class);

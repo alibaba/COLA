@@ -32,10 +32,10 @@ import org.springframework.core.type.MethodMetadata;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/10/28
+ * @since 2018/10/28
  */
-public abstract class AbstractRecordController
-    implements BeanPostProcessor,BeanDefinitionRegistryPostProcessor,ApplicationListener<ContextRefreshedEvent>,InitializingBean {
+public abstract class AbstractRecordController implements BeanPostProcessor,BeanDefinitionRegistryPostProcessor
+    ,ApplicationListener<ContextRefreshedEvent>,InitializingBean {
     private static final Integer UN_START = 0;
     private static final Integer STARTING = 1;
     private static final Integer END = 2;

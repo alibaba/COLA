@@ -22,9 +22,9 @@ import org.springframework.cglib.proxy.MethodProxy;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/02
+ * @since 2018/09/02
  */
-public class DataRecordProxy implements MethodInterceptor,InvocationHandler {
+public class DataRecordProxy implements MethodInterceptor,InvocationHandler,ColaProxyI {
     protected Class<?> mapperInterface;
     private Object instance;
     private MockDataProxy mockDataProxy;
@@ -211,5 +211,10 @@ public class DataRecordProxy implements MethodInterceptor,InvocationHandler {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public Object getInstance() {
+        return instance;
     }
 }

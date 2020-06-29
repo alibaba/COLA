@@ -4,7 +4,7 @@ import org.springframework.beans.factory.FactoryBean;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/10/18
+ * @since 2018/10/18
  */
 public class ServiceModel {
     private String serviceName;

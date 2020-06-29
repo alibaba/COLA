@@ -8,7 +8,7 @@ import javassist.CtMethod;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/05/10
+ * @since 2019/05/10
  */
 public class OnlineRecordTransformlet extends AbstractTransformlet{
 
@@ -30,7 +30,7 @@ public class OnlineRecordTransformlet extends AbstractTransformlet{
 
     private String berforeCode(CtMethod method){
         StringBuilder sb = new StringBuilder();
-        sb.append("com.alibaba.cola.mock.agent.proxy.OnlineRecordProxy proxy = com.alibaba.cola.mock.agent.proxy.OnlineRecordProxy.get(this.getClass());");
+        sb.append("com.alibaba.framework.mock.agent.proxy.OnlineRecordProxy proxy = com.alibaba.framework.mock.agent.proxy.OnlineRecordProxy.get(this.getClass());");
         sb.append("proxy.buildParamterValues($args);");
         sb.append("proxy.beforeMethod(this,\""+method.getName()+"\");");
         return sb.toString();
@@ -38,9 +38,9 @@ public class OnlineRecordTransformlet extends AbstractTransformlet{
 
     private String afterCode(CtMethod method){
         StringBuilder sb = new StringBuilder();
-        sb.append("com.alibaba.cola.mock.agent.proxy.OnlineRecordProxy proxy = com.alibaba.cola.mock.agent.proxy.OnlineRecordProxy.get(this.getClass());");
+        sb.append("com.alibaba.framework.mock.agent.proxy.OnlineRecordProxy proxy = com.alibaba.framework.mock.agent.proxy.OnlineRecordProxy.get(this.getClass());");
         sb.append("proxy.afterMethod(this,\""+method.getName()+"\");");
-        sb.append("com.alibaba.cola.mock.agent.proxy.OnlineRecordProxy.remove();");
+        sb.append("com.alibaba.framework.mock.agent.proxy.OnlineRecordProxy.remove();");
         return sb.toString();
     }
 }

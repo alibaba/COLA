@@ -7,7 +7,7 @@ import com.alibaba.cola.mock.scan.FilterManager;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/01/04
+ * @since 2019/01/04
  */
 public abstract class AbstractColaTest {
     protected ColaMockito colaMockito;

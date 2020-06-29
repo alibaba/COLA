@@ -1,17 +1,19 @@
 package com.alibaba.cola.event;
 
-import com.alibaba.cola.dto.Response;
-import com.alibaba.cola.exception.framework.BasicErrorCode;
-import com.alibaba.cola.exception.framework.BaseException;
 import com.alibaba.cola.dto.ErrorCodeI;
+import com.alibaba.cola.dto.Response;
+import com.alibaba.cola.exception.framework.BaseException;
+import com.alibaba.cola.exception.framework.BasicErrorCode;
 import com.alibaba.cola.exception.framework.ColaException;
 import com.alibaba.cola.logger.Logger;
 import com.alibaba.cola.logger.LoggerFactory;
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -31,7 +33,7 @@ public class EventBus implements EventBusI{
     ExecutorService defaultExecutor = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors() + 1,
                                    Runtime.getRuntime().availableProcessors() + 1,
                                    0L,TimeUnit.MILLISECONDS,
-                           new LinkedBlockingQueue<Runnable>(1000),new ThreadFactoryBuilder().setNameFormat("event-bus-pool-%d").build());
+                           new LinkedBlockingQueue<Runnable>(1000));
 
     @Autowired
     private EventHub eventHub;

@@ -20,7 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/02/12
+ * @since 2019/02/12
  */
 public class ColaMockConfigPrettyHelper {
     ColaTestModel colaTestModel;

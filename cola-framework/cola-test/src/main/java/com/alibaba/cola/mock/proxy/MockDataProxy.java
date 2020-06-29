@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 
 import com.alibaba.cola.mock.ColaMockito;
 import com.alibaba.cola.mock.annotation.ExcludeCompare;
@@ -32,9 +33,9 @@ import static com.alibaba.cola.mock.ColaMockito.g;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/02
+ * @since 2018/09/02
  */
-public class MockDataProxy implements MethodInterceptor,InvocationHandler {
+public class MockDataProxy implements MethodInterceptor,InvocationHandler,ColaProxyI {
     private static final Logger logger = LoggerFactory.getLogger(MockDataProxy.class);
     private Class<?> mapperInterface;
     private Object instance;
@@ -173,6 +174,8 @@ public class MockDataProxy implements MethodInterceptor,InvocationHandler {
                     "mock interface input params compare wrong,size is unmatch, class_method is:" + mockdDataId);
             }
 
+            Boolean isAutoCompareSuccess = true;
+            String compareFailReason = "";
             for(int i=0; i< objects.length ;i++){
                 Object currentInput = objects[i];
                 Object recordInput = recordInputParams[i];
@@ -180,10 +183,16 @@ public class MockDataProxy implements MethodInterceptor,InvocationHandler {
                 String compareResult  = CompareUtils.compareFields(currentInput, recordInput, getNoNeedComparedFields());
 
                 if(!StringUtils.isEmpty(compareResult)){
-                    throw new RuntimeException(String.format(Constants.DATA_CURSOR_DESC, inputMethod.getCurIndex(), i)
-                        + compareResult);
+                    isAutoCompareSuccess = false;
+                    compareFailReason += compareResult + ":" + String.format(Constants.DATA_CURSOR_DESC, inputMethod.getCurIndex(), i) + "\n";
                 }
             }
+
+            if(!isAutoCompareSuccess){
+                throw new RuntimeException(compareFailReason);
+            }
+
+
 
         }
 
@@ -286,11 +295,22 @@ public class MockDataProxy implements MethodInterceptor,InvocationHandler {
     private Object convertResultIfEnum(Class clazz, Object value){
         if(clazz.isEnum() && value != null){
             return Enum.valueOf(clazz, value.toString());
+        }else if(clazz.equals(Optional.class)){
+            return Optional.of(value);
         }
         return value;
     }
 
     private String getMockDataStorageKey(Method method) {
         return mapperInterface.getName() + "_" + method.getName();
+    }
+
+    @Override
+    public Object getInstance() {
+        return instance;
+    }
+
+    public Class<?> getMapperInterface() {
+        return mapperInterface;
     }
 }

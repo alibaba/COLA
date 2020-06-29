@@ -28,7 +28,7 @@ import org.springframework.util.CollectionUtils;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/12
+ * @since 2018/09/12
  */
 public class JsonStore implements DataStore {
 
@@ -159,7 +159,7 @@ public class JsonStore implements DataStore {
             + "\t[\n"
             + "        \"i m a string\",\n"
             + "            {\n"
-            + "                \"@type\":\"com.alibaba.cola.mock.persist.JsonStore$TestA\",\n"
+            + "                \"@type\":\"com.alibaba.framework.mock.persist.JsonStore$TestA\",\n"
             + "            \"field1\":\"111\",\n"
             + "            \"field2\":\"222\"\n"
             + "\t\t},\n"
@@ -168,7 +168,7 @@ public class JsonStore implements DataStore {
             + "\t[\n"
             + "        \"i m a string\",\n"
             + "            {\n"
-            + "                \"@type\":\"com.alibaba.cola.mock.persist.JsonStore$TestA\",\n"
+            + "                \"@type\":\"com.alibaba.framework.mock.persist.JsonStore$TestA\",\n"
             + "            \"field1\":\"111\",\n"
             + "            \"field2\":\"222\"\n"
             + "\t\t},\n"

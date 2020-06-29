@@ -7,13 +7,9 @@
  */
 package com.alibaba.cola.boot;
 
-import com.alibaba.cola.common.ApplicationContextHelper;
 import com.alibaba.cola.common.ColaConstant;
 import com.alibaba.cola.exception.framework.ColaException;
 import com.alibaba.cola.extension.*;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -47,11 +43,11 @@ public class ExtensionRegister{
      */
     private String calculateExtensionPoint(Class<?> targetClz) {
         Class[] interfaces = targetClz.getInterfaces();
-        if (ArrayUtils.isEmpty(interfaces))
+        if (interfaces == null || interfaces.length == 0)
             throw new ColaException("Please assign a extension point interface for "+targetClz);
         for (Class intf : interfaces) {
             String extensionPoint = intf.getSimpleName();
-            if (StringUtils.contains(extensionPoint, ColaConstant.EXTENSION_EXTPT_NAMING))
+            if (extensionPoint.contains(ColaConstant.EXTENSION_EXTPT_NAMING))
                 return intf.getName();
         }
         throw new ColaException("Your name of ExtensionPoint for "+targetClz+" is not valid, must be end of "+ ColaConstant.EXTENSION_EXTPT_NAMING);

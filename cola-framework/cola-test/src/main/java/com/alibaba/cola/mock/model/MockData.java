@@ -8,7 +8,7 @@ import com.alibaba.cola.mock.utils.Constants;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/04
+ * @since 2018/09/04
  */
 public class MockData {
     private String dataId;

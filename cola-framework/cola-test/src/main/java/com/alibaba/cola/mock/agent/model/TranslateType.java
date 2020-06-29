@@ -2,7 +2,7 @@ package com.alibaba.cola.mock.agent.model;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/04/30
+ * @since 2019/04/30
  */
 public enum TranslateType {
     DEFAULT_CONSTRUCTOR("DEFAULT_CONSTRUCTOR"),

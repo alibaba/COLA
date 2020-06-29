@@ -14,7 +14,7 @@ import static com.alibaba.cola.container.command.CommandEnum.TestMethodSegRecord
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/03/19
+ * @since 2019/03/19
  */
 public abstract class AbstractCommand {
     private static CommandLineParser parser = new DefaultParser();

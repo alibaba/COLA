@@ -18,7 +18,7 @@ import static com.alibaba.cola.mock.ColaMockito.g;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/13
+ * @since 2018/09/13
  */
 public class DataRecordListener extends RunListener{
     private static final Logger logger = LoggerFactory.getLogger(DataRecordListener.class);

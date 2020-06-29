@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/13
+ * @since 2018/09/13
  */
 public class UnitTestListener extends RunListener{
     private static final Logger logger = LoggerFactory.getLogger(UnitTestListener.class);

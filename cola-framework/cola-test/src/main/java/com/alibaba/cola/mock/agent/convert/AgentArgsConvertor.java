@@ -9,7 +9,7 @@ import com.alibaba.fastjson.JSONException;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/05/06
+ * @since 2019/05/06
  */
 public class AgentArgsConvertor {
     private static Pattern DEFAULT_CONSTRUCTOR_JSONEXECPTION = Pattern.compile("autoType is not support. (.*)");

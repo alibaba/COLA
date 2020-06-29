@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * 格式=》new com.alibaba.crm.sales.domain.customer.entity.CustomerE#addContact 1 2 3
  * @author shawnzhan.zxy
- * @date 2019/03/19
+ * @since 2019/03/19
  */
 public class TestClassCreateCmd extends AbstractCommand {
     private static final String INPUT_PARAMS = "inputParams";

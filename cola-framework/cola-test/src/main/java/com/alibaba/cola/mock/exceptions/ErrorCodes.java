@@ -4,7 +4,7 @@ import com.alibaba.cola.mock.utils.Constants;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/02/20
+ * @since 2019/02/20
  */
 public enum ErrorCodes {
     INDEX_OUT_OF_BOUNDS("INDEX_OUT_OF_BOUNDS", "数组越界"),

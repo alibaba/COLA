@@ -12,9 +12,9 @@ import org.springframework.cglib.proxy.MethodProxy;
  * 弃用
  *    对于transcation类 继承、接口 有些方法private/final好像并不能生成代理方法，导致proxy 始终报nosuchmethod
  * @author shawnzhan.zxy
- * @date 2018/09/02
+ * @since 2018/09/02
  */
-public class MainRecordProxy implements MethodInterceptor {
+public class MainRecordProxy implements MethodInterceptor,ColaProxyI {
     private Class<?> mapperInterface;
     private Object instance;
 
@@ -53,5 +53,8 @@ public class MainRecordProxy implements MethodInterceptor {
         return result;
     }
 
-
+    @Override
+    public Object getInstance() {
+        return instance;
+    }
 }

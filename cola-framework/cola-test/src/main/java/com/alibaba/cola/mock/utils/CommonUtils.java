@@ -13,7 +13,7 @@ import static com.alibaba.cola.mock.utils.Constants.OS_WINDOWS;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/01/08
+ * @since 2019/01/08
  */
 public class CommonUtils {
 
@@ -120,8 +120,8 @@ public class CommonUtils {
 
     public static void main(String[] args) {
         Set<String> s = new HashSet<>();
-        s.add("com.alibaba.cola.mock.utils.CommonUtils");
-        s.add("com.alibaba.cola.mock.utils.AA");
+        s.add("com.alibaba.framework.mock.utils.CommonUtils");
+        s.add("com.alibaba.framework.mock.utils.AA");
         System.out.println(CommonUtils.format2ColaConfigClazz(s));
     }
 

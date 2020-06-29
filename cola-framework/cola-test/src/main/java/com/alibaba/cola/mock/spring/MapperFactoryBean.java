@@ -21,7 +21,7 @@ import org.springframework.beans.factory.FactoryBean;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/04/25
+ * @since 2019/04/25
  */
 public class MapperFactoryBean<T> implements FactoryBean<T> {
 

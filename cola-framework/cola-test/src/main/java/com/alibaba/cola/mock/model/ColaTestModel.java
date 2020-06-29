@@ -14,7 +14,7 @@ import com.alibaba.cola.mock.utils.FileUtils;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/24
+ * @since 2018/09/24
  * 测试类的配置元数据
  */
 public class ColaTestModel implements Serializable{

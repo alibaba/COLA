@@ -7,21 +7,28 @@
  */
 package com.alibaba.cola.extension;
 
-import lombok.Data;
-
 /**
  * Extension Coordinate(扩展坐标) is used to uniquely position an Extension
  * @author fulan.zjf 2017-11-05
  */
-@Data
 public class ExtensionCoordinate {
     
     private String extensionPointName;
     private String bizScenarioUniqueIdentity;
 
+
+
     //Wrapper
     private Class extensionPointClass;
     private BizScenario bizScenario;
+
+    public Class getExtensionPointClass() {
+        return extensionPointClass;
+    }
+
+    public BizScenario getBizScenario() {
+        return bizScenario;
+    }
 
     public static ExtensionCoordinate valueOf(Class extPtClass, BizScenario bizScenario){
         return new ExtensionCoordinate(extPtClass, bizScenario);
@@ -33,6 +40,7 @@ public class ExtensionCoordinate {
         this.bizScenario = bizScenario;
         this.bizScenarioUniqueIdentity = bizScenario.getUniqueIdentity();
     }
+
     /**
      * @param extensionPoint
      * @param bizScenario

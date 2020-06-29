@@ -2,7 +2,7 @@ package com.alibaba.cola.mock.model;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/12/15
+ * @since 2018/12/15
  */
 public class HeaderVersion {
     String version;

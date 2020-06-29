@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/03/12
+ * @since 2019/03/12
  */
 public class BeanMetaUtils {
     public static Method findMethod(Class clazz, Class<? extends Annotation> annotationType){

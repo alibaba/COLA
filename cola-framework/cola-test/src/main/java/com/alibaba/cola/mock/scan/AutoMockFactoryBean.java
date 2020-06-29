@@ -12,7 +12,7 @@ import org.springframework.beans.factory.FactoryBean;
  * mapper factory bean
  *
  * @author shawnzhan.zxy
- * @date 2018/09/24
+ * @since 2018/09/24
  */
 public class AutoMockFactoryBean<T> implements FactoryBean<T> {
 

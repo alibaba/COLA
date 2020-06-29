@@ -6,7 +6,7 @@ import org.springframework.util.Assert;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/24
+ * @since 2018/09/24
  */
 public class RegexPatternTypeFilter implements TypeFilter{
     private final Pattern pattern;

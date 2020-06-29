@@ -7,12 +7,10 @@
  */
 package com.alibaba.cola.extension;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.stereotype.Component;
 
-import lombok.Getter;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * ExtensionRepository 
@@ -21,7 +19,11 @@ import lombok.Getter;
 @Component
 public class ExtensionRepository {
 
-    @Getter
+    public Map<ExtensionCoordinate, ExtensionPointI> getExtensionRepo() {
+        return extensionRepo;
+    }
+
     private Map<ExtensionCoordinate, ExtensionPointI> extensionRepo = new HashMap<>();
+
 
 }

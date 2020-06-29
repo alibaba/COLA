@@ -8,7 +8,7 @@ import com.alibaba.cola.mock.utils.StackSearcher;
 /**
  * 调用栈树
  * @author shawnzhan.zxy
- * @date 2019/05/22
+ * @since 2019/05/22
  */
 public class StackTree {
 
@@ -31,7 +31,7 @@ public class StackTree {
 
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("\n============cola trace============\n");
+        StringBuilder sb = new StringBuilder("\n============framework trace============\n");
         for(StackNode node : nodeList){
             sb.append(node.toString()).append("\n");
         }

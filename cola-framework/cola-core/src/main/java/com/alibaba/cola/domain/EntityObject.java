@@ -2,7 +2,6 @@ package com.alibaba.cola.domain;
 
 
 import com.alibaba.cola.extension.BizScenario;
-import lombok.Data;
 /**
  * Entity Object
  *
@@ -10,7 +9,15 @@ import lombok.Data;
  * @author fulan.zjf 2017年10月27日 上午10:16:10
  */
 
-@Data
 public abstract class EntityObject {
-	private BizScenario bizScenario;
+    public BizScenario getBizScenario() {
+        return bizScenario;
+    }
+
+    public void setBizScenario(BizScenario bizScenario) {
+        this.bizScenario = bizScenario;
+    }
+
+    private BizScenario bizScenario;
+
 }

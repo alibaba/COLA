@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/02
+ * @since 2018/09/02
  */
 public class MockServiceModel implements Serializable{
     /** 服务接口*/

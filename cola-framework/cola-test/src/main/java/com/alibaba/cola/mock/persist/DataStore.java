@@ -5,7 +5,7 @@ import com.alibaba.cola.mock.model.MockDataFile;
 
 /**
  * @author shawnzhan.zxy
- * @date 2018/09/12
+ * @since 2018/09/12
  */
 public interface DataStore {
 

@@ -5,7 +5,7 @@ import java.lang.reflect.Type;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/05/16
+ * @since 2019/05/16
  */
 public class ParameterizedTypeImpl implements ParameterizedType {
 

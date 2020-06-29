@@ -10,6 +10,7 @@ import java.util.Set;
 import com.alibaba.cola.mock.ColaMockito;
 import com.alibaba.cola.mock.annotation.Inject;
 import com.alibaba.cola.mock.annotation.InjectOnlyTest;
+import com.alibaba.cola.mock.mockito.MockInjection;
 import com.alibaba.cola.mock.scan.InjectAnnotationScanner;
 
 import org.mockito.Mock;
@@ -17,7 +18,6 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.configuration.AnnotationEngine;
 import org.mockito.internal.configuration.DefaultAnnotationEngine;
-import org.mockito.internal.configuration.DefaultInjectionEngine;
 import org.mockito.internal.configuration.SpyAnnotationEngine;
 import org.mockito.internal.configuration.injection.scanner.MockScanner;
 import org.mockito.internal.util.MockUtil;
@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/01/05
+ * @since 2019/01/05
  */
 public class SpyHelper {
     Object owner;
@@ -89,7 +89,7 @@ public class SpyHelper {
                 e.printStackTrace();
             }
         }
-        new DefaultInjectionEngine().injectMocksOnFields(mockDependentFields, mocks, owner);
+        MockInjection.injectMocksOnFields(mockDependentFields, mocks, owner);
     }
 
     @Deprecated
@@ -145,7 +145,7 @@ public class SpyHelper {
             return;
         }
         Set<Object> oriTargetSet = getOriTargetSet();
-        new DefaultInjectionEngine().injectMocksOnFields(mockDependentFields, oriTargetSet, owner);
+        MockInjection.injectMocksOnFields(mockDependentFields, oriTargetSet, owner);
     }
 
     private Set<Object> getOriTargetSet(){

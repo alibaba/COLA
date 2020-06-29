@@ -6,7 +6,7 @@ import org.apache.commons.cli.Options;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/03/19
+ * @since 2019/03/19
  */
 public class TestClassRunCmd extends AbstractCommand {
     private String className;

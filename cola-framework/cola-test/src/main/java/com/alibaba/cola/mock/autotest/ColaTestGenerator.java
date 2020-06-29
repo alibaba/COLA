@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author shawnzhan.zxy
- * @date 2019/01/12
+ * @since 2019/01/12
  */
 public class ColaTestGenerator {
     private static final Logger logger = LoggerFactory.getLogger(ColaTestGenerator.class);
