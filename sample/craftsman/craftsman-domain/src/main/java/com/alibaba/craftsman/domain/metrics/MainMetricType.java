@@ -1,7 +1,5 @@
 package com.alibaba.craftsman.domain.metrics;
 
-import org.apache.commons.lang3.StringUtils;
-
 public enum MainMetricType {
     APP_QUALITY("app-quality","应用质量"),
     TECH_INFLUENCE("tech-influence","技术影响力"),
@@ -25,7 +23,7 @@ public enum MainMetricType {
     }
 
     public static MainMetricType of(String metricCode){
-        if(StringUtils.isBlank(metricCode)){
+        if(metricCode == null){
             return null;
         }
         for (MainMetricType metricMainType : MainMetricType.values()) {
