@@ -29,7 +29,7 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-    
+
     <scm>
         <connection>github</connection>
         <developerConnection>github</developerConnection>
@@ -52,7 +52,6 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<spring-version>5.2.0.RELEASE</spring-version>
-		<spring-boot.version>1.4.3.RELEASE</spring-boot.version>
 		<spring-test.version>4.3.2.RELEASE</spring-test.version>
 		<junit.version>4.12</junit.version>
 		<logback.version>1.2.3.5-struct</logback.version>
