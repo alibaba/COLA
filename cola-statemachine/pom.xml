@@ -98,7 +98,7 @@
                     <doclint>none</doclint>
                 </configuration>
             </plugin>
-            <!-- This is for central repository, comment it when build at local
+            <!-- This is for central repository, comment it when build at local-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -113,7 +113,7 @@
                     </execution>
                 </executions>
             </plugin>
--->
+
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
