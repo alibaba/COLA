@@ -20,8 +20,8 @@
 			<artifactId>craftsman-client</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.alibaba.cola</groupId>
-			<artifactId>cola-test</artifactId>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -30,12 +30,14 @@ public class MybatisTest {
         Mybatis3Utils.closeCurrentSession();
     }
 
-    @Test
+    //@Test
     public void insert() {
         MetricDO metricDO = new MetricDO();
         metricDO.setMainMetric("mainTest");
         metricDO.setSubMetric("subTest");
         metricDO.setUserId("12345");
+        metricDO.setCreator("Frank");
+        metricDO.setModifier("Frank");
         metricDO.setMetricItem("{\"patentName\": \"Leads重构\", \"level\": \"PROJECT\"}");
 
         metricTunnel.create(metricDO);

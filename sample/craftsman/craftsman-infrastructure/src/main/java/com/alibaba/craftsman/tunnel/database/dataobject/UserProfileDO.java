@@ -11,7 +11,7 @@ import java.util.Date;
  * @date 2019-02-27 5:00 PM
  */
 
-public class UserProfileDO {
+public class UserProfileDO extends BaseDO{
 
     /**
      * 域账号

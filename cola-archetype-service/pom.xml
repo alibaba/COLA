@@ -27,12 +27,4 @@
     </pluginManagement>
   </build>
 
-  <!-- already in parent
-    <distributionManagement>
-      <snapshotRepository>
-        <id>snapshots</id>
-        <url>http://repo.alibaba-inc.com/mvn/snapshots</url>
-      </snapshotRepository>
-    </distributionManagement>
-   -->
 </project>

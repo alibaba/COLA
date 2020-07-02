@@ -1,9 +1,10 @@
 #set( $symbol_pound = '#' )
-        #set( $symbol_dollar = '$' )
-        #set( $symbol_escape = '\' )
-        package ${package}.test;
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+package ${package}.test;
 
 import com.alibaba.cola.dto.Response;
+import com.alibaba.cola.exception.BizException;
 import ${package}.api.CustomerServiceI;
 import ${package}.common.BizCode;
 import ${package}.dto.CustomerAddCmd;
@@ -50,7 +51,7 @@ public class CustomerServiceTest {
         Assert.assertTrue(response.isSuccess());
     }
 
-    @Test
+    @Test(expected = BizException.class)
     public void testCustomerAddCompanyNameConflict(){
         //1.prepare
         CustomerAddCmd customerAddCmd = new CustomerAddCmd();
@@ -61,8 +62,8 @@ public class CustomerServiceTest {
         //2.execute
         Response response = customerService.addCustomer(customerAddCmd);
 
-        //3.assert
-        Assert.assertEquals(ErrorCode.B_CUSTOMER_companyNameConflict.getErrCode(), response.getErrCode());
+        //3.Exception
+        //Assert.assertEquals(ErrorCode.B_CUSTOMER_companyNameConflict.getErrCode(), response.getErrCode());
 
     }
 }

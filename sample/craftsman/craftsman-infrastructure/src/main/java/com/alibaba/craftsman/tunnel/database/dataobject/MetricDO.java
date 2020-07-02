@@ -1,7 +1,7 @@
 package com.alibaba.craftsman.tunnel.database.dataobject;
 
 
-public class MetricDO{
+public class MetricDO extends BaseDO{
     private String id;
     /**
      * 域账号
