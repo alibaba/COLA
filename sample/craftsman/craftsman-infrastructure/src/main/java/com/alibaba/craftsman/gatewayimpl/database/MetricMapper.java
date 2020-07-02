@@ -1,15 +1,13 @@
-package com.alibaba.craftsman.tunnel.database;
+package com.alibaba.craftsman.gatewayimpl.database;
 
-import com.alibaba.craftsman.tunnel.database.dataobject.MetricDO;
-import org.apache.ibatis.annotations.InsertProvider;
+import com.alibaba.craftsman.gatewayimpl.database.dataobject.MetricDO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
-public interface MetricTunnel {
+public interface MetricMapper {
 
     int create(MetricDO dataObject);
 

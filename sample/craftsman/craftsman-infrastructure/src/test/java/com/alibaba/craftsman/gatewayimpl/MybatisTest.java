@@ -1,13 +1,10 @@
-package com.alibaba.craftsman.tunnel;
+package com.alibaba.craftsman.gatewayimpl;
 
-import com.alibaba.craftsman.tunnel.database.MetricTunnel;
-import com.alibaba.craftsman.tunnel.database.dataobject.MetricDO;
+import com.alibaba.craftsman.gatewayimpl.database.MetricMapper;
+import com.alibaba.craftsman.gatewayimpl.database.dataobject.MetricDO;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
-
-import java.util.Date;
 
 /**
  * MybatisTest
@@ -17,12 +14,12 @@ import java.util.Date;
  */
 public class MybatisTest {
     SqlSession sqlSession;
-    MetricTunnel metricTunnel;
+    MetricMapper metricMapper;
 
     @Before
     public void before() {
         sqlSession = Mybatis3Utils.getCurrentSqlSession();
-        metricTunnel = sqlSession.getMapper(MetricTunnel.class);
+        metricMapper = sqlSession.getMapper(MetricMapper.class);
     }
 
     @After
@@ -40,7 +37,7 @@ public class MybatisTest {
         metricDO.setModifier("Frank");
         metricDO.setMetricItem("{\"patentName\": \"Leads重构\", \"level\": \"PROJECT\"}");
 
-        metricTunnel.create(metricDO);
+        metricMapper.create(metricDO);
         sqlSession.commit();
     }
 

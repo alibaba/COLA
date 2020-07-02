@@ -1,13 +1,13 @@
-package com.alibaba.craftsman.tunnel.rpc;
+package com.alibaba.craftsman.gatewayimpl.rpc;
 
-import com.alibaba.craftsman.tunnel.rpc.dataobject.AppMetricDO;
+import com.alibaba.craftsman.gatewayimpl.rpc.dataobject.AppMetricDO;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class AppMetricTunnel {
+public class AppMetricMapper {
 
     /**
      *  Dummy RPC Call

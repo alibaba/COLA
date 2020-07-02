@@ -1,4 +1,4 @@
-package com.alibaba.craftsman.tunnel.database.dataobject;
+package com.alibaba.craftsman.gatewayimpl.database.dataobject;
 
 
 public class MetricDO extends BaseDO{

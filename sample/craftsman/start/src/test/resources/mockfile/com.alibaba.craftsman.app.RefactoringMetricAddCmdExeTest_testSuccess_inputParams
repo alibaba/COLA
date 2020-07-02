@@ -1,10 +1,10 @@
 {"initialized":true,"version":"1.0.0"}
-com.alibaba.craftsman.tunnel.database.MetricTunnel_create
+com.alibaba.craftsman.gatewayimpl.database.MetricTunnel_create
 =================method_params_separator================
 [
 	[
 		{
-			"@type":"com.alibaba.craftsman.tunnel.database.dataobject.MetricDO",
+			"@type":"com.alibaba.craftsman.gatewayimpl.database.dataobject.MetricDO",
 			"creator":"Lucy",
 			"id":"1078",
 			"mainMetric":"tech-contribution",

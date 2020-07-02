@@ -14,8 +14,8 @@ import com.alibaba.craftsman.domain.metrics.techinfluence.InfluenceMetric;
 import com.alibaba.craftsman.domain.user.UserProfile;
 import com.alibaba.craftsman.dto.RefreshScoreCmd;
 import com.alibaba.craftsman.event.handler.MetricItemCreatedHandler;
-import com.alibaba.craftsman.repository.MetricRepository;
-import com.alibaba.craftsman.repository.UserProfileRepository;
+import com.alibaba.craftsman.domain.gateway.MetricGateway;
+import com.alibaba.craftsman.domain.gateway.UserProfileGateway;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -26,10 +26,10 @@ public class RefreshScoreCmdExe{
     private Logger logger = LoggerFactory.getLogger(MetricItemCreatedHandler.class);
 
     @Resource
-    private UserProfileRepository userProfileRepository;
+    private UserProfileGateway userProfileGateway;
 
     @Resource
-    private MetricRepository metricRepository;
+    private MetricGateway metricGateway;
 
     public Response execute(RefreshScoreCmd cmd) {
         UserProfile userProfile = getUserProfile(cmd);
@@ -39,7 +39,7 @@ public class RefreshScoreCmdExe{
     }
 
     private UserProfile getUserProfile(RefreshScoreCmd cmd) {
-        UserProfile userProfile = userProfileRepository.getByUserId(cmd.getUserId());
+        UserProfile userProfile = userProfileGateway.getByUserId(cmd.getUserId());
         Assert.notNull(userProfile, "There is no User Profile for "+cmd.getUserId()+" to update");
         return userProfile;
     }
@@ -54,29 +54,29 @@ public class RefreshScoreCmdExe{
 
     private void loadAppQualityMetrics(UserProfile userProfile) {
         AppQualityMetric appQualityMetric = new AppQualityMetric(userProfile);
-        AppMetric appMetric = metricRepository.getAppMetric(userProfile.getUserId());
+        AppMetric appMetric = metricGateway.getAppMetric(userProfile.getUserId());
         appMetric.setParent(appQualityMetric);
     }
 
     private void loadDevQualityMetrics(UserProfile userProfile) {
         DevQualityMetric devQualityMetric = new DevQualityMetric(userProfile);
-        BugMetric bugMetric = metricRepository.getBugMetric(userProfile.getUserId());
+        BugMetric bugMetric = metricGateway.getBugMetric(userProfile.getUserId());
         bugMetric.setParent(devQualityMetric);
     }
 
     private void loadContributionMetrics(UserProfile userProfile) {
         ContributionMetric contributionMetric = new ContributionMetric(userProfile);
-        List<SubMetric> subMetricList = metricRepository.listByTechContribution(userProfile.getUserId());
+        List<SubMetric> subMetricList = metricGateway.listByTechContribution(userProfile.getUserId());
         subMetricList.forEach(subMetric -> subMetric.setParent(contributionMetric));
     }
 
     private void loadInfluenceMetric(UserProfile userProfile) {
         InfluenceMetric influenceMetric = new InfluenceMetric(userProfile);
-        List<SubMetric> subMetricList = metricRepository.listByTechInfluence(userProfile.getUserId());
+        List<SubMetric> subMetricList = metricGateway.listByTechInfluence(userProfile.getUserId());
         subMetricList.forEach(subMetric -> subMetric.setParent(influenceMetric));
     }
 
     private void update(UserProfile userProfile) {
-        userProfileRepository.update(userProfile);
+        userProfileGateway.update(userProfile);
     }
 }

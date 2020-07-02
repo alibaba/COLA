@@ -1,14 +1,9 @@
-package com.alibaba.craftsman.tunnel;
+package com.alibaba.craftsman.gatewayimpl;
 
-import com.alibaba.craftsman.tunnel.database.UserProfileTunnel;
-import com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO;
+import com.alibaba.craftsman.gatewayimpl.database.UserProfileMapper;
+import com.alibaba.craftsman.gatewayimpl.database.dataobject.UserProfileDO;
 import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * This is Tunnel Test, no need to mock, and no regression needed as well
@@ -18,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 public class UserProfileTunnelTest {
     @Autowired
-    private UserProfileTunnel userProfileTunnel;
+    private UserProfileMapper userProfileMapper;
 
     public void testCRUD(){
         String userId = Math.random()+"UserProfileTunnelTest";
@@ -30,12 +25,12 @@ public class UserProfileTunnelTest {
         userProfileDO.setUserName("Frank");
         userProfileDO.setRole("DEV");
 
-        userProfileTunnel.create(userProfileDO);
+        userProfileMapper.create(userProfileDO);
 
-        userProfileDO = userProfileTunnel.getByUserId(userId);
+        userProfileDO = userProfileMapper.getByUserId(userId);
         Assert.assertEquals(userId, userProfileDO.getUserId());
 
-        userProfileTunnel.delete(userId);
-        Assert.assertNull(userProfileTunnel.getByUserId(userId));
+        userProfileMapper.delete(userId);
+        Assert.assertNull(userProfileMapper.getByUserId(userId));
     }
 }

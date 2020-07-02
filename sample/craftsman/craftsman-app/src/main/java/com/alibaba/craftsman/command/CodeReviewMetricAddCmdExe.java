@@ -6,7 +6,7 @@ import com.alibaba.craftsman.domain.metrics.techcontribution.CodeReviewMetricIte
 import com.alibaba.craftsman.domain.metrics.techcontribution.ContributionMetric;
 import com.alibaba.craftsman.domain.user.UserProfile;
 import com.alibaba.craftsman.dto.CodeReviewMetricAddCmd;
-import com.alibaba.craftsman.repository.MetricRepository;
+import com.alibaba.craftsman.domain.gateway.MetricGateway;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,13 +21,13 @@ import org.springframework.stereotype.Component;
 public class CodeReviewMetricAddCmdExe{
 
     @Autowired
-    private MetricRepository metricRepository;
+    private MetricGateway metricGateway;
 
     public Response execute(CodeReviewMetricAddCmd cmd) {
         CodeReviewMetricItem codeReviewMetricItem = new CodeReviewMetricItem();
         BeanUtils.copyProperties(cmd, codeReviewMetricItem);
         codeReviewMetricItem.setSubMetric(new CodeReviewMetric(new ContributionMetric(new UserProfile(cmd.getOwnerId()))));
-        metricRepository.save(codeReviewMetricItem);
+        metricGateway.save(codeReviewMetricItem);
         return Response.buildSuccess();
     }
 }

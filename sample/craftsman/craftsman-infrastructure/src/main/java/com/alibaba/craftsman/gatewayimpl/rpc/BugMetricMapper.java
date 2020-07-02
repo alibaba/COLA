@@ -1,6 +1,6 @@
-package com.alibaba.craftsman.tunnel.rpc;
+package com.alibaba.craftsman.gatewayimpl.rpc;
 
-import com.alibaba.craftsman.tunnel.rpc.dataobject.BugMetricDO;
+import com.alibaba.craftsman.gatewayimpl.rpc.dataobject.BugMetricDO;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class BugMetricTunnel {
+public class BugMetricMapper {
 
     /**
      *  Dummy RPC Call

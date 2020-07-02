@@ -1,4 +1,4 @@
-package com.alibaba.craftsman.tunnel;
+package com.alibaba.craftsman.gatewayimpl;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;

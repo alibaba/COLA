@@ -1,4 +1,4 @@
-package com.alibaba.craftsman.common.util;
+package com.alibaba.craftsman.domain.metrics;
 
 import com.alibaba.fastjson.serializer.PropertyFilter;
 
@@ -8,7 +8,7 @@ import com.alibaba.fastjson.serializer.PropertyFilter;
  * @author Frank Zhang
  * @date 2019-03-02 10:53 PM
  */
-public class JSONPropertyFilter implements PropertyFilter{
+public class JSONPropertyFilter implements PropertyFilter {
 
     public static JSONPropertyFilter singleton = new JSONPropertyFilter();
 

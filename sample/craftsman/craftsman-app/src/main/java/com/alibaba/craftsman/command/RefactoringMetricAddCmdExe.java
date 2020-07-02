@@ -7,7 +7,7 @@ import com.alibaba.craftsman.domain.metrics.techcontribution.RefactoringMetric;
 import com.alibaba.craftsman.domain.metrics.techcontribution.RefactoringMetricItem;
 import com.alibaba.craftsman.domain.user.UserProfile;
 import com.alibaba.craftsman.dto.RefactoringMetricAddCmd;
-import com.alibaba.craftsman.repository.MetricRepository;
+import com.alibaba.craftsman.domain.gateway.MetricGateway;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,14 +22,14 @@ import org.springframework.stereotype.Component;
 public class RefactoringMetricAddCmdExe{
 
     @Autowired
-    private MetricRepository metricRepository;
+    private MetricGateway metricGateway;
 
     public Response execute(RefactoringMetricAddCmd cmd) {
         RefactoringMetricItem refactoringMetricItem = new RefactoringMetricItem();
         BeanUtils.copyProperties(cmd.getRefactoringMetricCO(), refactoringMetricItem);
         refactoringMetricItem.setSubMetric(new RefactoringMetric(new ContributionMetric(new UserProfile(cmd.getRefactoringMetricCO().getOwnerId()))));
         refactoringMetricItem.setRefactoringLevel(RefactoringLevel.valueOf(cmd.getRefactoringMetricCO().getRefactoringLevel()));
-        metricRepository.save(refactoringMetricItem);
+        metricGateway.save(refactoringMetricItem);
         return Response.buildSuccess();
     }
 }

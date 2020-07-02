@@ -6,7 +6,7 @@ import com.alibaba.craftsman.domain.metrics.techcontribution.MiscMetric;
 import com.alibaba.craftsman.domain.metrics.techcontribution.MiscMetricItem;
 import com.alibaba.craftsman.domain.user.UserProfile;
 import com.alibaba.craftsman.dto.MiscMetricAddCmd;
-import com.alibaba.craftsman.repository.MetricRepository;
+import com.alibaba.craftsman.domain.gateway.MetricGateway;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
@@ -22,13 +22,13 @@ import javax.annotation.Resource;
 public class MiscMetricAddCmdExe{
 
     @Resource
-    private MetricRepository metricRepository;
+    private MetricGateway metricGateway;
 
     public Response execute(MiscMetricAddCmd cmd) {
         MiscMetricItem miscMetricItem = new MiscMetricItem();
         BeanUtils.copyProperties(cmd.getMiscMetricCO(), miscMetricItem);
         miscMetricItem.setSubMetric(new MiscMetric(new ContributionMetric(new UserProfile(cmd.getMiscMetricCO().getOwnerId()))));
-        metricRepository.save(miscMetricItem);
+        metricGateway.save(miscMetricItem);
         return Response.buildSuccess();
     }
 }

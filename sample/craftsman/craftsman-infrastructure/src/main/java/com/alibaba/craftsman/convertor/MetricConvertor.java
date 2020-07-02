@@ -2,7 +2,7 @@ package com.alibaba.craftsman.convertor;
 
 
 import com.alibaba.craftsman.domain.metrics.MetricItem;
-import com.alibaba.craftsman.tunnel.database.dataobject.MetricDO;
+import com.alibaba.craftsman.gatewayimpl.database.dataobject.MetricDO;
 
 /**
  * @author frankzhang

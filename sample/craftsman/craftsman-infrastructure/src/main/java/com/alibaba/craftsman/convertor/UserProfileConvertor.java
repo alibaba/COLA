@@ -3,7 +3,7 @@ package com.alibaba.craftsman.convertor;
 import com.alibaba.craftsman.domain.user.Role;
 import com.alibaba.craftsman.domain.user.UserProfile;
 import com.alibaba.craftsman.dto.clientobject.UserProfileCO;
-import com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO;
+import com.alibaba.craftsman.gatewayimpl.database.dataobject.UserProfileDO;
 import org.springframework.beans.BeanUtils;
 
 public class UserProfileConvertor{

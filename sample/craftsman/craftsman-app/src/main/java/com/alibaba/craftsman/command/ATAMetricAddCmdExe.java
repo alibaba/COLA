@@ -6,7 +6,7 @@ import com.alibaba.craftsman.domain.metrics.techinfluence.ATAMetricItem;
 import com.alibaba.craftsman.domain.metrics.techinfluence.InfluenceMetric;
 import com.alibaba.craftsman.domain.user.UserProfile;
 import com.alibaba.craftsman.dto.ATAMetricAddCmd;
-import com.alibaba.craftsman.repository.MetricRepository;
+import com.alibaba.craftsman.domain.gateway.MetricGateway;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,13 +21,13 @@ import org.springframework.stereotype.Component;
 public class ATAMetricAddCmdExe{
 
     @Autowired
-    private MetricRepository metricRepository;
+    private MetricGateway metricGateway;
 
     public Response execute(ATAMetricAddCmd cmd) {
         ATAMetricItem ataMetricItem = new ATAMetricItem();
         BeanUtils.copyProperties(cmd.getAtaMetricCO(), ataMetricItem);
         ataMetricItem.setSubMetric(new ATAMetric(new InfluenceMetric(new UserProfile(cmd.getAtaMetricCO().getOwnerId()))));
-        metricRepository.save(ataMetricItem);
+        metricGateway.save(ataMetricItem);
         return Response.buildSuccess();
     }
 }

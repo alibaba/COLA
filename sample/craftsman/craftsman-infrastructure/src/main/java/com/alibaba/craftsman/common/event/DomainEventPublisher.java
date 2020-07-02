@@ -1,4 +1,4 @@
-package com.alibaba.craftsman.common.util;
+package com.alibaba.craftsman.common.event;
 
 import com.alibaba.cola.event.DomainEventI;
 import com.alibaba.cola.event.EventBusI;

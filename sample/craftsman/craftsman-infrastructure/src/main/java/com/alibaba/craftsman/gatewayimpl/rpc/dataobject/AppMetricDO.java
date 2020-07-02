@@ -1,4 +1,4 @@
-package com.alibaba.craftsman.tunnel.rpc.dataobject;
+package com.alibaba.craftsman.gatewayimpl.rpc.dataobject;
 
 
 public class AppMetricDO {

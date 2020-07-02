@@ -3,8 +3,8 @@ package com.alibaba.craftsman.command.query;
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.craftsman.dto.UserProfileListQry;
 import com.alibaba.craftsman.dto.clientobject.UserProfileCO;
-import com.alibaba.craftsman.tunnel.database.UserProfileTunnel;
-import com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO;
+import com.alibaba.craftsman.gatewayimpl.database.UserProfileMapper;
+import com.alibaba.craftsman.gatewayimpl.database.dataobject.UserProfileDO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
@@ -16,10 +16,10 @@ import java.util.List;
 public class UserProfileListQryExe{
 
     @Resource
-    private UserProfileTunnel userProfileTunnel;
+    private UserProfileMapper userProfileMapper;
 
     public MultiResponse<UserProfileCO> execute(UserProfileListQry qry) {
-        List<UserProfileDO> userProfileDOList = userProfileTunnel.listByDep(qry.getDep());
+        List<UserProfileDO> userProfileDOList = userProfileMapper.listByDep(qry.getDep());
         List<UserProfileCO> userProfileCOList = new ArrayList<>();
         userProfileDOList.forEach(userDO -> {
             UserProfileCO userProfileCO = new UserProfileCO();
