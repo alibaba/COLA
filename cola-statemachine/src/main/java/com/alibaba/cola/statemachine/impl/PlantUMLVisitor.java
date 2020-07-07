@@ -20,25 +20,34 @@ public class PlantUMLVisitor implements Visitor {
      * otherwise it will be recognized as a sequence diagram.
      *
      * @param visitable the element to be visited.
+     * @return
      */
     @Override
-    public void visitOnEntry(StateMachine<?, ?, ?> visitable) {
-        System.out.println("@startuml");
+    public String visitOnEntry(StateMachine<?, ?, ?> visitable) {
+        return "@startuml" + LF;
     }
 
     @Override
-    public void visitOnExit(StateMachine<?, ?, ?> visitable) {
-        System.out.println("@enduml");
+    public String visitOnExit(StateMachine<?, ?, ?> visitable) {
+        return "@enduml";
     }
 
     @Override
-    public void visitOnEntry(State<?, ?, ?> state) {
+    public String visitOnEntry(State<?, ?, ?> state) {
+        StringBuilder sb = new StringBuilder();
         for(Transition transition: state.getTransitions()){
-            System.out.println(transition.getSource().getId()+" --> "+transition.getTarget().getId()+" : "+transition.getEvent());
+            sb.append(transition.getSource().getId())
+                    .append(" --> ")
+                    .append(transition.getTarget().getId())
+                    .append(" : ")
+                    .append(transition.getEvent())
+                    .append(LF);
         }
+        return sb.toString();
     }
 
     @Override
-    public void visitOnExit(State<?, ?, ?> state) {
+    public String visitOnExit(State<?, ?, ?> state) {
+        return "";
     }
 }

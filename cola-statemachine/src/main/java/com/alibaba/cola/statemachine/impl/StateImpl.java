@@ -66,9 +66,10 @@ public class StateImpl<S,E,C> implements State<S,E,C> {
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visitOnEntry(this);
-        visitor.visitOnExit(this);
+    public String accept(Visitor visitor) {
+        String entry = visitor.visitOnEntry(this);
+        String exit = visitor.visitOnExit(this);
+        return entry + exit;
     }
 
     @Override

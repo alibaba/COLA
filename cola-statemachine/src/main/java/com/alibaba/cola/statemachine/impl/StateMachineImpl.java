@@ -61,12 +61,14 @@ public class StateMachineImpl<S,E,C> implements StateMachine<S, E, C> {
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visitOnEntry(this);
+    public String accept(Visitor visitor) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(visitor.visitOnEntry(this));
         for(State state: stateMap.values()){
-            state.accept(visitor);
+            sb.append(state.accept(visitor));
         }
-        visitor.visitOnExit(this);
+        sb.append(visitor.visitOnExit(this));
+        return sb.toString();
     }
 
     @Override
@@ -76,9 +78,9 @@ public class StateMachineImpl<S,E,C> implements StateMachine<S, E, C> {
     }
 
     @Override
-    public void generatePlantUML(){
+    public String generatePlantUML(){
         PlantUMLVisitor plantUMLVisitor = new PlantUMLVisitor();
-        accept(plantUMLVisitor);
+        return accept(plantUMLVisitor);
     }
 
     @Override

@@ -33,5 +33,5 @@ public interface StateMachine<S, E, C> extends Visitable{
      */
     void showStateMachine();
 
-    void generatePlantUML();
+    String generatePlantUML();
 }
