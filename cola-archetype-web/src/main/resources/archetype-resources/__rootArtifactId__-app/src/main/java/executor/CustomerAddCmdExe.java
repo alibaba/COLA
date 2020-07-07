@@ -3,7 +3,6 @@
 #set( $symbol_escape = '\' )
 package ${package}.executor;
 
-import com.alibaba.cola.domain.DomainEventServiceI;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.BizException;
 import ${package}.dto.CustomerAddCmd;

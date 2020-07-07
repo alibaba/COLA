@@ -22,13 +22,13 @@ COLA首先是作为架构的存在，是一种应用架构思想，主要是制�
 ### cola-archetype-service
 用来生成纯后端应用（没有Controller），生成应用的命令为：
 ```
-mvn archetype:generate  -DgroupId=com.alibaba.demo -DartifactId=demo -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.demo -DarchetypeArtifactId=cola-framework-archetype-service -DarchetypeGroupId=com.alibaba.cola -DarchetypeVersion=3.0.0
+mvn archetype:generate  -DgroupId=com.alibaba.demo -DartifactId=demoService -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.demo -DarchetypeArtifactId=cola-framework-archetype-service -DarchetypeGroupId=com.aliyun -DarchetypeVersion=3.0.0
 ```
 
 ### cola-archetype-web
 用来生成Web后端应用（有Controller），生成应用的命令为：
 ```
-mvn archetype:generate  -DgroupId=com.alibaba.demo -DartifactId=demo -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.demo -DarchetypeArtifactId=cola-framework-archetype-web -DarchetypeGroupId=com.alibaba.cola -DarchetypeVersion=3.0.0
+mvn archetype:generate  -DgroupId=com.alibaba.demo -DartifactId=demoWeb -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.demo -DarchetypeArtifactId=cola-framework-archetype-web -DarchetypeGroupId=com.aliyun -DarchetypeVersion=3.0.0
 ```
 
 ## COLA框架
@@ -73,7 +73,7 @@ com
 
 **2、启动SpringBoot：**
 
-首先在demo目录下运行mvn install（如果不想运行测试，可以加上-DskipTests参数）。然后进入start目录，执行mvn spring-boot:run。
+首先在demoWeb目录下运行mvn install（如果不想运行测试，可以加上-DskipTests参数）。然后进入start目录，执行mvn spring-boot:run。
 运行成功的话，可以看到SpringBoot启动成功的界面。
 
 **3、 执行测试：**
