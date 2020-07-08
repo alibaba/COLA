@@ -1,14 +1,17 @@
 package com.alibaba.craftsman.command;
 
-import com.alibaba.cola.command.Command;
-import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.Response;
-import com.alibaba.craftsman.repository.MetricRepository;
-import com.alibaba.craftsman.domain.metrics.techinfluence.*;
+import com.alibaba.craftsman.domain.metrics.techinfluence.AuthorType;
+import com.alibaba.craftsman.domain.metrics.techinfluence.InfluenceMetric;
+import com.alibaba.craftsman.domain.metrics.techinfluence.PatentMetric;
+import com.alibaba.craftsman.domain.metrics.techinfluence.PatentMetricItem;
 import com.alibaba.craftsman.domain.user.UserProfile;
 import com.alibaba.craftsman.dto.PatentMetricAddCmd;
+import com.alibaba.craftsman.domain.gateway.MetricGateway;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * PatentMetricAddCmdExe
@@ -16,19 +19,18 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Frank Zhang
  * @date 2019-03-03 11:41 AM
  */
-@Command
-public class PatentMetricAddCmdExe implements CommandExecutorI<Response, PatentMetricAddCmd> {
+@Component
+public class PatentMetricAddCmdExe{
 
-    @Autowired
-    private MetricRepository metricRepository;
+    @Resource
+    private MetricGateway metricGateway;
 
-    @Override
     public Response execute(PatentMetricAddCmd cmd) {
         PatentMetricItem patentMetricItem = new PatentMetricItem();
         BeanUtils.copyProperties(cmd.getPatentMetricCO(), patentMetricItem);
         patentMetricItem.setSubMetric(new PatentMetric(new InfluenceMetric(new UserProfile(cmd.getPatentMetricCO().getOwnerId()))));
         patentMetricItem.setAuthorType(AuthorType.valueOf(cmd.getPatentMetricCO().getAuthorType()));
-        metricRepository.save(patentMetricItem);
+        metricGateway.save(patentMetricItem);
         return Response.buildSuccess();
     }
 }

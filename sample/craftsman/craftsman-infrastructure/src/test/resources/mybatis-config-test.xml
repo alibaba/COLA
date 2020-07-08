@@ -6,7 +6,7 @@
 <configuration>
     <typeAliases>
         <!--项目DataObject对应的包名-->
-        <package name="com.alibaba.craftsman.tunnel.database.dataobject"/>
+        <package name="com.alibaba.craftsman.gatewayimpl.database.dataobject"/>
     </typeAliases>
     <!--myql数据库连接信息-->
     <environments default="development">

@@ -17,7 +17,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba.craftsman</groupId>
-			<artifactId>craftsman-domain</artifactId>
+			<artifactId>craftsman-infrastructure</artifactId>
 		</dependency>
 		<!-- JSR 303 Validation -->
 		<dependency>

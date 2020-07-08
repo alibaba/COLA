@@ -50,7 +50,7 @@ public class CustomerServiceTest {
         Assert.assertTrue(response.isSuccess());
     }
 
-    @Test
+    @Test(expected = BizException.class)
     public void testCustomerAddCompanyNameConflict(){
         //1.prepare
         CustomerAddCmd customerAddCmd = new CustomerAddCmd();

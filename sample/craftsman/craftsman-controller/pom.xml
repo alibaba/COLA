@@ -24,10 +24,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-test</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

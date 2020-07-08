@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.alibaba.cola</groupId>
   <artifactId>cola-framework-archetype-service</artifactId>
-  <version>2.0.0</version>
+  <version>3.0.0</version>
   <packaging>maven-archetype</packaging>
 
   <name>cola framework archetype</name>
@@ -27,12 +27,4 @@
     </pluginManagement>
   </build>
 
-  <!-- already in parent
-    <distributionManagement>
-      <snapshotRepository>
-        <id>snapshots</id>
-        <url>http://repo.alibaba-inc.com/mvn/snapshots</url>
-      </snapshotRepository>
-    </distributionManagement>
-   -->
 </project>

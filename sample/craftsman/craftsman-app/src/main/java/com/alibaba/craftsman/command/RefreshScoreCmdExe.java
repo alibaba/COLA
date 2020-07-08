@@ -1,7 +1,5 @@
 package com.alibaba.craftsman.command;
 
-import com.alibaba.cola.command.Command;
-import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.Assert;
 import com.alibaba.cola.logger.Logger;
@@ -16,23 +14,23 @@ import com.alibaba.craftsman.domain.metrics.techinfluence.InfluenceMetric;
 import com.alibaba.craftsman.domain.user.UserProfile;
 import com.alibaba.craftsman.dto.RefreshScoreCmd;
 import com.alibaba.craftsman.event.handler.MetricItemCreatedHandler;
-import com.alibaba.craftsman.repository.MetricRepository;
-import com.alibaba.craftsman.repository.UserProfileRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.alibaba.craftsman.domain.gateway.MetricGateway;
+import com.alibaba.craftsman.domain.gateway.UserProfileGateway;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
-@Command
-public class RefreshScoreCmdExe implements CommandExecutorI<Response, RefreshScoreCmd> {
+@Component
+public class RefreshScoreCmdExe{
     private Logger logger = LoggerFactory.getLogger(MetricItemCreatedHandler.class);
 
-    @Autowired
-    private UserProfileRepository userProfileRepository;
+    @Resource
+    private UserProfileGateway userProfileGateway;
 
-    @Autowired
-    private MetricRepository metricRepository;
+    @Resource
+    private MetricGateway metricGateway;
 
-    @Override
     public Response execute(RefreshScoreCmd cmd) {
         UserProfile userProfile = getUserProfile(cmd);
         calculateScore(userProfile);
@@ -41,7 +39,7 @@ public class RefreshScoreCmdExe implements CommandExecutorI<Response, RefreshSco
     }
 
     private UserProfile getUserProfile(RefreshScoreCmd cmd) {
-        UserProfile userProfile = userProfileRepository.getByUserId(cmd.getUserId());
+        UserProfile userProfile = userProfileGateway.getByUserId(cmd.getUserId());
         Assert.notNull(userProfile, "There is no User Profile for "+cmd.getUserId()+" to update");
         return userProfile;
     }
@@ -56,29 +54,29 @@ public class RefreshScoreCmdExe implements CommandExecutorI<Response, RefreshSco
 
     private void loadAppQualityMetrics(UserProfile userProfile) {
         AppQualityMetric appQualityMetric = new AppQualityMetric(userProfile);
-        AppMetric appMetric = metricRepository.getAppMetric(userProfile.getUserId());
+        AppMetric appMetric = metricGateway.getAppMetric(userProfile.getUserId());
         appMetric.setParent(appQualityMetric);
     }
 
     private void loadDevQualityMetrics(UserProfile userProfile) {
         DevQualityMetric devQualityMetric = new DevQualityMetric(userProfile);
-        BugMetric bugMetric = metricRepository.getBugMetric(userProfile.getUserId());
+        BugMetric bugMetric = metricGateway.getBugMetric(userProfile.getUserId());
         bugMetric.setParent(devQualityMetric);
     }
 
     private void loadContributionMetrics(UserProfile userProfile) {
         ContributionMetric contributionMetric = new ContributionMetric(userProfile);
-        List<SubMetric> subMetricList = metricRepository.listByTechContribution(userProfile.getUserId());
+        List<SubMetric> subMetricList = metricGateway.listByTechContribution(userProfile.getUserId());
         subMetricList.forEach(subMetric -> subMetric.setParent(contributionMetric));
     }
 
     private void loadInfluenceMetric(UserProfile userProfile) {
         InfluenceMetric influenceMetric = new InfluenceMetric(userProfile);
-        List<SubMetric> subMetricList = metricRepository.listByTechInfluence(userProfile.getUserId());
+        List<SubMetric> subMetricList = metricGateway.listByTechInfluence(userProfile.getUserId());
         subMetricList.forEach(subMetric -> subMetric.setParent(influenceMetric));
     }
 
     private void update(UserProfile userProfile) {
-        userProfileRepository.update(userProfile);
+        userProfileGateway.update(userProfile);
     }
 }

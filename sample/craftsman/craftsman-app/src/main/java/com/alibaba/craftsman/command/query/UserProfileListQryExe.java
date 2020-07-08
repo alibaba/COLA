@@ -1,30 +1,25 @@
 package com.alibaba.craftsman.command.query;
 
-import com.alibaba.cola.command.Command;
-import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.MultiResponse;
-import com.alibaba.cola.dto.Response;
-import com.alibaba.cola.dto.SingleResponse;
-import com.alibaba.craftsman.dto.UserProfileGetQry;
 import com.alibaba.craftsman.dto.UserProfileListQry;
 import com.alibaba.craftsman.dto.clientobject.UserProfileCO;
-import com.alibaba.craftsman.tunnel.database.UserProfileTunnel;
-import com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO;
+import com.alibaba.craftsman.gatewayimpl.database.UserProfileMapper;
+import com.alibaba.craftsman.gatewayimpl.database.dataobject.UserProfileDO;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-@Command
-public class UserProfileListQryExe implements CommandExecutorI<Response, UserProfileListQry> {
+@Component
+public class UserProfileListQryExe{
 
-    @Autowired
-    private UserProfileTunnel userProfileTunnel;
+    @Resource
+    private UserProfileMapper userProfileMapper;
 
-    @Override
     public MultiResponse<UserProfileCO> execute(UserProfileListQry qry) {
-        List<UserProfileDO> userProfileDOList = userProfileTunnel.listByDep(qry.getDep());
+        List<UserProfileDO> userProfileDOList = userProfileMapper.listByDep(qry.getDep());
         List<UserProfileCO> userProfileCOList = new ArrayList<>();
         userProfileDOList.forEach(userDO -> {
             UserProfileCO userProfileCO = new UserProfileCO();
