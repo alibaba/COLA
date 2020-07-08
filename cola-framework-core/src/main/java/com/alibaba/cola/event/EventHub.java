@@ -1,10 +1,6 @@
 package com.alibaba.cola.event;
 
 import com.alibaba.cola.exception.framework.ColaException;
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.ListMultimap;
-import lombok.Getter;
-import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
