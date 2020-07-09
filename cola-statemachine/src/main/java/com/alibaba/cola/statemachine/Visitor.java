@@ -7,23 +7,30 @@ package com.alibaba.cola.statemachine;
  * @date 2020-02-08 8:41 PM
  */
 public interface Visitor {
-    /**
-     * @param visitable the element to be visited.
-     */
-    void visitOnEntry(StateMachine<?, ?, ?> visitable);
+
+    char LF = '\n';
 
     /**
      * @param visitable the element to be visited.
+     * @return
      */
-    void visitOnExit(StateMachine<?, ?, ?> visitable);
+    String visitOnEntry(StateMachine<?, ?, ?> visitable);
 
     /**
      * @param visitable the element to be visited.
+     * @return
      */
-    void visitOnEntry(State<?, ?, ?> visitable);
+    String visitOnExit(StateMachine<?, ?, ?> visitable);
 
     /**
      * @param visitable the element to be visited.
+     * @return
      */
-    void visitOnExit(State<?, ?, ?> visitable);
+    String visitOnEntry(State<?, ?, ?> visitable);
+
+    /**
+     * @param visitable the element to be visited.
+     * @return
+     */
+    String visitOnExit(State<?, ?, ?> visitable);
 }

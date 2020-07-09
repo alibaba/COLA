@@ -12,27 +12,37 @@ import com.alibaba.cola.statemachine.Visitor;
  * @date 2020-02-08 8:48 PM
  */
 public class SysOutVisitor implements Visitor {
+
     @Override
-    public void visitOnEntry(StateMachine<?, ?, ?> stateMachine) {
-        System.out.println("-----StateMachine:"+stateMachine.getMachineId()+"-------");
+    public String visitOnEntry(StateMachine<?, ?, ?> stateMachine) {
+        String entry = "-----StateMachine:"+stateMachine.getMachineId()+"-------";
+        System.out.println(entry);
+        return entry;
     }
 
     @Override
-    public void visitOnExit(StateMachine<?, ?, ?> stateMachine) {
-        System.out.println("------------------------");
+    public String visitOnExit(StateMachine<?, ?, ?> stateMachine) {
+        String exit = "------------------------";
+        System.out.println(exit);
+        return exit;
     }
 
     @Override
-    public void visitOnEntry(State<?, ?, ?> state) {
-        System.out.println("State:"+state.getId());
+    public String visitOnEntry(State<?, ?, ?> state) {
+        StringBuilder sb = new StringBuilder();
+        String stateStr = "State:"+state.getId();
+        sb.append(stateStr).append(LF);
+        System.out.println(stateStr);
         for(Transition transition: state.getTransitions()){
-            System.out.println("    Transition:"+transition);
+            String transitionStr = "    Transition:"+transition;
+            sb.append(transitionStr).append(LF);
+            System.out.println(transitionStr);
         }
-
+        return sb.toString();
     }
 
     @Override
-    public void visitOnExit(State<?, ?, ?> visitable) {
-
+    public String visitOnExit(State<?, ?, ?> visitable) {
+        return "";
     }
 }

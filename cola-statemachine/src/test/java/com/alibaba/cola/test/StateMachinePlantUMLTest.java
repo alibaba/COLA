@@ -169,7 +169,8 @@ public class StateMachinePlantUMLTest {
                         .perform(doAction()));
 
         StateMachine stateMachine = builder.build("AdjustPriceTask");
-        stateMachine.generatePlantUML();
+        String plantUML = stateMachine.generatePlantUML();
+        System.out.println(plantUML);
 
     }
 
