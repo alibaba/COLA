@@ -13,15 +13,15 @@
 	<dependencies>
 		<!-- COLA Framework -->
 		<dependency>
-			<groupId>com.alibaba.cola</groupId>
+			<groupId>com.aliyun</groupId>
 			<artifactId>cola-core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.alibaba.cola</groupId>
+			<groupId>com.aliyun</groupId>
 			<artifactId>cola-common</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.alibaba.cola</groupId>
+			<groupId>com.aliyun</groupId>
 			<artifactId>cola-test</artifactId>
 		</dependency>
 		<!-- COLA Framework End-->
