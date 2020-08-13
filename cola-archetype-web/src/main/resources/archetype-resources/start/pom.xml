@@ -24,7 +24,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.cola</groupId>
+            <groupId>com.aliyun</groupId>
             <artifactId>cola-test</artifactId>
         </dependency>
         <dependency>
