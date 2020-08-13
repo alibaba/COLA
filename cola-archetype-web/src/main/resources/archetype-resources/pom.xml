@@ -32,12 +32,6 @@
                 <artifactId>cola-core</artifactId>
                 <version>${cola.framework.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.aliyun</groupId>
-                <artifactId>cola-test</artifactId>
-                <version>${cola.framework.version}</version>
-                <scope>test</scope>
-            </dependency>
             <!--Framework End-->
             <!--Project modules-->
             <dependency>
