@@ -20,10 +20,6 @@
 			<groupId>com.aliyun</groupId>
 			<artifactId>cola-common</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.aliyun</groupId>
-			<artifactId>cola-test</artifactId>
-		</dependency>
 		<!-- COLA Framework End-->
 		<dependency>
 			<groupId>${groupId}</groupId>
@@ -32,15 +28,15 @@
 	</dependencies>
 
 	<build>
-			<pluginManagement>
-					<plugins>
-							<plugin>
-								<artifactId>maven-deploy-plugin</artifactId>
-								<configuration>
-									<skip>true</skip>
-								</configuration>
-							</plugin>
-					</plugins>
-			</pluginManagement>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<configuration>
+					<skip>true</skip>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>
