@@ -6,6 +6,7 @@ package ${package}.test;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.BizException;
 import ${package}.api.CustomerServiceI;
+import com.alibaba.cola.exception.BizException;
 import ${package}.common.BizCode;
 import ${package}.dto.CustomerAddCmd;
 import ${package}.dto.domainmodel.Customer;
