@@ -83,3 +83,12 @@ com
 **4、查看运行日志：**
 
 请求执行成功的话，可以在浏览器中的返回值中看到："customerName":"Hello, World"。同时观察启动SpringBoot的控制台，可以看到LoggerInterceptor打印出来的日志。
+
+
+# 版本迭代
+## 3.0.1 版本
+之前的扩展点在locate扩展实现的时候，没有寻找默认实现的能力。增强之后，可以去寻找默认实现了。
+比如，"tmall.placeOrder.88vip"这个场景，其寻找扩展点的路径是：
+1. 尝试寻找"tmall.placeOrder.88vip"实现
+2. 如果没有，继续寻找"tmall.placeOrder"实现
+3. 如果没有，继续寻找"tmall"实现
