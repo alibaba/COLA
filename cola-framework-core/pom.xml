@@ -7,7 +7,7 @@
     <groupId>com.aliyun</groupId>
     <artifactId>cola-core</artifactId>
     <packaging>jar</packaging>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
 
     <name>Cola core</name>
     <url>https://github.com/alibaba/COLA</url>
@@ -58,7 +58,7 @@
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>cola-common</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.1</version>
         </dependency>
 
         <dependency>
@@ -151,6 +151,7 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- end -->
 
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>

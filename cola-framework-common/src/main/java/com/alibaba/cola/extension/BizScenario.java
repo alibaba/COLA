@@ -8,9 +8,9 @@ package com.alibaba.cola.extension;
  * @date 2019-08-20 12:07
  */
 public class BizScenario {
-    public final static String DEFAULT_BIZ_ID = "defaultBizId";
-    public final static String DEFAULT_USE_CASE = "defaultUseCase";
-    public final static String DEFAULT_SCENARIO = "defaultScenario";
+    public final static String DEFAULT_BIZ_ID = "#defaultBizId#";
+    public final static String DEFAULT_USE_CASE = "#defaultUseCase#";
+    public final static String DEFAULT_SCENARIO = "#defaultScenario#";
     private final static String DOT_SEPARATOR = ".";
 
     /**
@@ -46,15 +46,26 @@ public class BizScenario {
         return bizScenario;
     }
 
+    public static BizScenario valueOf(String bizId, String useCase){
+        return BizScenario.valueOf(bizId, useCase, DEFAULT_SCENARIO);
+    }
+
     public static BizScenario valueOf(String bizId){
         return BizScenario.valueOf(bizId, DEFAULT_USE_CASE, DEFAULT_SCENARIO);
     }
 
-    public static BizScenario valueOf(String useCase, String scenario){
-        return BizScenario.valueOf(DEFAULT_BIZ_ID, useCase, scenario);
-    }
-
     public static BizScenario newDefault(){
         return BizScenario.valueOf(DEFAULT_BIZ_ID, DEFAULT_USE_CASE, DEFAULT_SCENARIO);
+    }
+
+    public String getIdentityWithDefaultScenario(){
+        this.scenario = DEFAULT_SCENARIO;
+        return getUniqueIdentity();
+    }
+
+    public String getIdentityWithDefaultUseCase(){
+        this.scenario = DEFAULT_SCENARIO;
+        this.useCase = DEFAULT_USE_CASE;
+        return getUniqueIdentity();
     }
 }
