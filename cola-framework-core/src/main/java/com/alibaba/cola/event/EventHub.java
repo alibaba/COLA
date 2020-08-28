@@ -69,9 +69,6 @@ public class EventHub {
     }
 
     private List<EventHandlerI> findHandler(Class<? extends EventI> eventClass){
-        List<EventHandlerI> eventHandlerList;
-        eventHandlerList = eventRepository.get(eventClass);
-        return eventHandlerList;
+        return eventRepository.get(eventClass);
     }
-
 }
