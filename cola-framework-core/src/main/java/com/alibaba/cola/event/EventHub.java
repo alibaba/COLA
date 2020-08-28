@@ -1,5 +1,6 @@
 package com.alibaba.cola.event;
 
+import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.framework.ColaException;
 import org.springframework.stereotype.Component;
 
@@ -33,18 +34,20 @@ public class EventHub {
         return responseRepository;
     }
 
+    @SuppressWarnings("unchecked")
     public List<EventHandlerI> getEventHandler(Class eventClass) {
-        List<EventHandlerI> eventHandlerIList = findHandler(eventClass);
-        if (eventHandlerIList == null || eventHandlerIList.size() == 0) {
+        List<EventHandlerI> eventHandlerList = findHandler(eventClass);
+        if (eventHandlerList == null || eventHandlerList.size() == 0) {
             throw new ColaException(eventClass + "is not registered in eventHub, please register first");
         }
-        return eventHandlerIList;
+        return eventHandlerList;
     }
 
     /**
      * 注册事件
-     * @param eventClz
-     * @param executor
+     *
+     * @param eventClz 领域事件实体clazz
+     * @param executor 领域事件处理器
      */
     public void register(Class<? extends EventI> eventClz, EventHandlerI executor){
         List<EventHandlerI> eventHandlers = eventRepository.get(eventClz);
@@ -55,11 +58,20 @@ public class EventHub {
         eventRepository.put(eventClz, eventHandlers);
     }
 
+    /**
+     * 注册事件处理器的返回类
+     *
+     * @param eventHandlerClz 事件处理器clazz
+     * @param responseClz 事件处理器返回实体clazz
+     */
+    public void register(Class<? extends EventHandlerI> eventHandlerClz, Class<? extends Response> responseClz) {
+        responseRepository.put(eventHandlerClz, responseClz);
+    }
+
     private List<EventHandlerI> findHandler(Class<? extends EventI> eventClass){
-        List<EventHandlerI> eventHandlerIList = null;
-        Class cls = eventClass;
-        eventHandlerIList = eventRepository.get(cls);
-        return eventHandlerIList;
+        List<EventHandlerI> eventHandlerList;
+        eventHandlerList = eventRepository.get(eventClass);
+        return eventHandlerList;
     }
 
 }
