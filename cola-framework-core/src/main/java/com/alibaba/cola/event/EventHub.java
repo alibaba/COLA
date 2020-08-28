@@ -50,9 +50,10 @@ public class EventHub {
         List<EventHandlerI> eventHandlers = eventRepository.get(eventClz);
         if(eventHandlers == null){
             eventHandlers = new ArrayList<>();
+            eventRepository.put(eventClz, eventHandlers);
         }
         eventHandlers.add(executor);
-        eventRepository.put(eventClz, eventHandlers);
+
     }
 
     private List<EventHandlerI> findHandler(Class<? extends EventI> eventClass){
