@@ -7,6 +7,10 @@
 
 如果你有技术热情，对阿里有兴趣，可以email：fulan.zjf@alibaba-inc.com
 
+# 阿里云COLA应用生成器
+https://start.aliyun.com/bootstrap.html
+![image.png](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/48f870b98d6cea7f06864e17387e0717.png)
+
 # 项目说明
 **COLA既是框架，也是架构。创建COLA的主要目的是为应用架构提供一套简单的可以复制、可以理解、可以落地、可以控制复杂性的”指导和约束"。**
 - 架构部分主要是提供了创建符合COLA要求的应用Archetype。
