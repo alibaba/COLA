@@ -19,22 +19,29 @@ import javax.annotation.Resource;
  * @author fulan.zjf 2017-11-05
  */
 @Component
-public class ExtensionRegister{
+public class ExtensionRegister implements RegisterI<ExtensionPointI>{
+
+    private static final Class<Extension> SUPPORT_ANNOTATION = Extension.class;
 
     @Resource
     private ExtensionRepository extensionRepository;
 
 
+    @Override
     public void doRegistration(ExtensionPointI extensionObject){
         Class<?>  extensionClz = extensionObject.getClass();
-        Extension extensionAnn = extensionClz.getDeclaredAnnotation(Extension.class);
+        Extension extensionAnn = extensionClz.getDeclaredAnnotation(SUPPORT_ANNOTATION);
         BizScenario bizScenario = BizScenario.valueOf(extensionAnn.bizId(), extensionAnn.useCase(), extensionAnn.scenario());
         ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(calculateExtensionPoint(extensionClz), bizScenario.getUniqueIdentity());
         ExtensionPointI preVal = extensionRepository.getExtensionRepo().put(extensionCoordinate, extensionObject);
         if (preVal != null) {
             throw new ColaException("Duplicate registration is not allowed for :" + extensionCoordinate);
         }
+    }
 
+    @Override
+    public Class<Extension> registrationAnnotation() {
+        return SUPPORT_ANNOTATION;
     }
 
     /**

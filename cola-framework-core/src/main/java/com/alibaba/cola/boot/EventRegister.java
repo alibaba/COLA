@@ -7,13 +7,12 @@
  */
 package com.alibaba.cola.boot;
 
-import com.alibaba.cola.common.ApplicationContextHelper;
 import com.alibaba.cola.common.ColaConstant;
-import com.alibaba.cola.event.EventI;
+import com.alibaba.cola.event.EventHandler;
 import com.alibaba.cola.event.EventHandlerI;
 import com.alibaba.cola.event.EventHub;
+import com.alibaba.cola.event.EventI;
 import com.alibaba.cola.exception.framework.ColaException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -26,7 +25,7 @@ import java.lang.reflect.Method;
  * @date 2017/11/20
  */
 @Component
-public class EventRegister{
+public class EventRegister implements RegisterI<EventHandlerI>{
 
     @Resource
     private EventHub eventHub;
@@ -42,6 +41,12 @@ public class EventRegister{
                                  + "() is not detected");
     }
 
+    @Override
+    public Class<EventHandler> registrationAnnotation() {
+        return EventHandler.class;
+    }
+
+    @Override
     public void doRegistration(EventHandlerI eventHandler){
         Class<? extends EventI> eventClz = getEventFromExecutor(eventHandler.getClass());
         eventHub.register(eventClz, eventHandler);
