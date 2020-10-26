@@ -10,7 +10,7 @@
     </settings>
     <typeAliases>
         <!--项目DataObject对应的包名-->
-        <package name="com.alibaba.craftsman.tunnel.database.dataobject"/>
+        <package name="com.alibaba.craftsman.gatewayimpl.database.dataobject"/>
     </typeAliases>
     <mappers>
         <mapper resource="mybatis/MetricMapper.xml"></mapper>

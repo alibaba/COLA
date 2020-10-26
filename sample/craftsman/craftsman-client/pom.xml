@@ -12,7 +12,7 @@
 	<name>craftsman-client</name>
 	<dependencies>
 		<dependency>
-			<groupId>com.alibaba.cola</groupId>
+			<groupId>com.aliyun</groupId>
 			<artifactId>cola-common</artifactId>
 		</dependency>
 		<dependency>

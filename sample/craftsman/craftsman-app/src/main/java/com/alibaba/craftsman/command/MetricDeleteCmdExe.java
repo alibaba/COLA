@@ -1,11 +1,11 @@
 package com.alibaba.craftsman.command;
 
-import com.alibaba.cola.command.Command;
-import com.alibaba.cola.command.CommandExecutorI;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.craftsman.dto.MetricDeleteCmd;
-import com.alibaba.craftsman.tunnel.database.MetricTunnel;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.alibaba.craftsman.gatewayimpl.database.MetricMapper;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * MetricDeleteCmdExe
@@ -13,16 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Frank Zhang
  * @date 2019-03-04 3:01 PM
  */
-@Command
-public class MetricDeleteCmdExe implements CommandExecutorI<Response, MetricDeleteCmd> {
+@Component
+public class MetricDeleteCmdExe{
 
-    @Autowired
-    private MetricTunnel metricTunnel;
+    @Resource
+    private MetricMapper metricMapper;
 
-    @Override
     public Response execute(MetricDeleteCmd cmd) {
 
-        metricTunnel.delete(cmd.getMetricId(), cmd.getOperater());
+        metricMapper.delete(cmd.getMetricId(), cmd.getOperater());
 
         return Response.buildSuccess();
     }

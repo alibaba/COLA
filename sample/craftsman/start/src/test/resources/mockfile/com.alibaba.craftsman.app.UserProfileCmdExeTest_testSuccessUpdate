@@ -1,15 +1,15 @@
 {"initialized":true,"version":"1.0.0"}
-com.alibaba.craftsman.tunnel.database.UserProfileTunnel_create
+com.alibaba.craftsman.gatewayimpl.database.UserProfileTunnel_create
 ---------------------------
 [
 	1
 ]
 ===========================
-com.alibaba.craftsman.tunnel.database.UserProfileTunnel_getByUserId
+com.alibaba.craftsman.gatewayimpl.database.UserProfileTunnel_getByUserId
 ---------------------------
 [
 	{
-		"@type":"com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO",
+		"@type":"com.alibaba.craftsman.gatewayimpl.database.dataobject.UserProfileDO",
 		"appQualityScore":0.0D,
 		"checkinCodeQuantity":0.0D,
 		"creator":"testSuccessAdd",
@@ -28,7 +28,7 @@ com.alibaba.craftsman.tunnel.database.UserProfileTunnel_getByUserId
 		"userName":"Frank"
 	},
 	{
-		"@type":"com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO",
+		"@type":"com.alibaba.craftsman.gatewayimpl.database.dataobject.UserProfileDO",
 		"appQualityScore":79.0D,
 		"checkinCodeQuantity":0.0D,
 		"creator":"testSuccessAdd",
@@ -47,7 +47,7 @@ com.alibaba.craftsman.tunnel.database.UserProfileTunnel_getByUserId
 		"userName":"Frank"
 	},
 	{
-		"@type":"com.alibaba.craftsman.tunnel.database.dataobject.UserProfileDO",
+		"@type":"com.alibaba.craftsman.gatewayimpl.database.dataobject.UserProfileDO",
 		"appQualityScore":79.0D,
 		"checkinCodeQuantity":0.0D,
 		"creator":"testSuccessAdd",
@@ -67,14 +67,14 @@ com.alibaba.craftsman.tunnel.database.UserProfileTunnel_getByUserId
 	}
 ]
 ===========================
-com.alibaba.craftsman.tunnel.database.MetricTunnel_listByMainMetric
+com.alibaba.craftsman.gatewayimpl.database.MetricTunnel_listByMainMetric
 ---------------------------
 [
 	[],
 	[]
 ]
 ===========================
-com.alibaba.craftsman.tunnel.database.UserProfileTunnel_update
+com.alibaba.craftsman.gatewayimpl.database.UserProfileTunnel_update
 ---------------------------
 [
 	1,

@@ -24,10 +24,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-test</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>

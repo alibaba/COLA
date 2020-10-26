@@ -11,17 +11,27 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<name>craftsman-domain</name>
 	<dependencies>
+		<!-- COLA Framework -->
 		<dependency>
-			<groupId>com.alibaba.craftsman</groupId>
-			<artifactId>craftsman-infrastructure</artifactId>
+			<groupId>com.aliyun</groupId>
+			<artifactId>cola-core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba.craftsman</groupId>
 			<artifactId>craftsman-client</artifactId>
 		</dependency>
+		<!-- COLA Framework End-->
 		<dependency>
-			<groupId>com.alibaba.cola</groupId>
-			<artifactId>cola-test</artifactId>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
 		</dependency>
 	</dependencies>
 

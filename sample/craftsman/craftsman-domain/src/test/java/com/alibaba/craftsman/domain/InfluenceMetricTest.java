@@ -31,7 +31,7 @@ public class InfluenceMetricTest {
         Assert.assertEquals(124.5, influenceMetric.calculateScore(), 0.01);
     }
 
-    private void prepareSubMetrics(InfluenceMetric influenceMetric) {
+    public static void prepareSubMetrics(InfluenceMetric influenceMetric) {
         ATAMetric ataMetric = new ATAMetric(influenceMetric);
         ataMetric.addMetricItem( new ATAMetricItem("article",19,99,14,2));
         ataMetric.addMetricItem( new ATAMetricItem("article",20,100,15,3) );

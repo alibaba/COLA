@@ -41,7 +41,7 @@ public class UserProfile extends EntityObject{
     private DevQualityMetric devQualityMetric;
 
     private static double MAXIMUM_SCORE = 100;
-    private static double MINUMUM_SCORE = 0;
+    private static double MINIMUM_SCORE = 0;
 
     public void calculateScore(){
         calculateTechInfluenceScore();
@@ -62,12 +62,12 @@ public class UserProfile extends EntityObject{
     }
 
     private void calculateTechInfluenceScore(){
-        Assert.notNull(devQualityMetric, "influenceMetric is null, initialize it before calculating");
+        Assert.notNull(influenceMetric, "influenceMetric is null, initialize it before calculating");
         techInfluenceScore = influenceMetric.calculateScore();
     }
 
     private void calculateTechContributionScore(){
-        Assert.notNull(devQualityMetric, "contributionMetric is null, initialize it before calculating");
+        Assert.notNull(contributionMetric, "contributionMetric is null, initialize it before calculating");
         techContributionScore = contributionMetric.calculateScore();
     }
 
@@ -81,8 +81,8 @@ public class UserProfile extends EntityObject{
     private double round(double score){
         if(score > MAXIMUM_SCORE){
             score = MAXIMUM_SCORE;
-        }else if(score < MINUMUM_SCORE){
-            score = MINUMUM_SCORE;
+        }else if(score < MINIMUM_SCORE){
+            score = MINIMUM_SCORE;
         }
         return score;
     }

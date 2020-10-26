@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.alibaba.craftsman.tunnel.database.MetricTunnel">
+<mapper namespace="com.alibaba.craftsman.gatewayimpl.database.MetricMapper">
     <sql id="ALL_COLUMNS">
         id,
         user_id,
