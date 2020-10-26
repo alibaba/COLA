@@ -1,16 +1,16 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.repository;
+package ${package}.customer;
 
 import ${package}.domain.customer.Customer;
-import ${package}.domain.gateway.CustomerGateway;
+import ${package}.domain.customer.gateway.CustomerGateway;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerRepository implements CustomerGateway {
+public class CustomerGatewayImpl implements CustomerGateway {
     @Autowired
     private CustomerMapper customerMapper;
 

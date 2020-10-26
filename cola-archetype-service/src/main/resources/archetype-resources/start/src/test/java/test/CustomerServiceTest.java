@@ -6,10 +6,8 @@ package ${package}.test;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.BizException;
 import ${package}.api.CustomerServiceI;
-import ${package}.common.BizCode;
 import ${package}.dto.CustomerAddCmd;
-import ${package}.dto.domainmodel.Customer;
-import ${package}.dto.domainmodel.ErrorCode;
+import ${package}.dto.data.CustomerDTO;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,9 +38,9 @@ public class CustomerServiceTest {
     public void testCustomerAddSuccess(){
         //1.prepare
         CustomerAddCmd customerAddCmd = new CustomerAddCmd();
-        Customer customer = new Customer();
-        customer.setCompanyName("NormalName");
-        customerAddCmd.setCustomer(customer);
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setCompanyName("NormalName");
+        customerAddCmd.setCustomerDTO(customerDTO);
 
         //2.execute
         Response response = customerService.addCustomer(customerAddCmd);
@@ -55,9 +53,9 @@ public class CustomerServiceTest {
     public void testCustomerAddCompanyNameConflict(){
         //1.prepare
         CustomerAddCmd customerAddCmd = new CustomerAddCmd();
-        Customer customer = new Customer();
-        customer.setCompanyName("ConflictCompanyName");
-        customerAddCmd.setCustomer(customer);
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setCompanyName("ConflictCompanyName");
+        customerAddCmd.setCustomerDTO(customerDTO);
 
         //2.execute
         Response response = customerService.addCustomer(customerAddCmd);

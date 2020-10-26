@@ -3,13 +3,12 @@
 #set( $symbol_escape = '\' )
 package ${package}.dto;
 
-import com.alibaba.cola.dto.Command;
-import ${package}.dto.domainmodel.Customer;
+import ${package}.dto.data.CustomerDTO;
 import lombok.Data;
 
 @Data
-public class CustomerAddCmd extends Command{
+public class CustomerAddCmd{
 
-    private Customer customer;
+    private CustomerDTO customerDTO;
 
 }

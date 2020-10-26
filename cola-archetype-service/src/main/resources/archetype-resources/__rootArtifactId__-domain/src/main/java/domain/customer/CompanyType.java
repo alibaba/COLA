@@ -1,15 +1,15 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.dto.domainmodel;
+package ${package}.domain.customer;
 
 /**
- * CustomerType
+ * CompanyType
  *
  * @author Frank Zhang
- * @date 2018-01-08 8:51 AM
+ * @date 2018-01-08 11:02 AM
  */
-public enum CustomerType {
+public enum CompanyType {
     POTENTIAL,
     INTENTIONAL,
     IMPORTANT,

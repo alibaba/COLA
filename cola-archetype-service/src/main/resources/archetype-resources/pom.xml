@@ -21,7 +21,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--Framework-->
+            <!--Framework, this is optional-->
             <dependency>
                 <groupId>com.aliyun</groupId>
                 <artifactId>cola-common</artifactId>
@@ -32,7 +32,7 @@
                 <artifactId>cola-core</artifactId>
                 <version>${cola.framework.version}</version>
             </dependency>
-            <!--Framework End-->
+            <!--Framework Ended-->
             <!--Project modules-->
             <dependency>
                 <groupId>${groupId}</groupId>

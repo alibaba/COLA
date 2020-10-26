@@ -7,11 +7,11 @@ import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
 import ${package}.dto.CustomerAddCmd;
 import ${package}.dto.CustomerListByNameQry;
-import ${package}.dto.domainmodel.Customer;
+import ${package}.dto.data.CustomerDTO;
 
 public interface CustomerServiceI {
 
     public Response addCustomer(CustomerAddCmd customerAddCmd);
 
-    public MultiResponse<Customer> listByName(CustomerListByNameQry customerListByNameQry);
+    public MultiResponse<CustomerDTO> listByName(CustomerListByNameQry customerListByNameQry);
 }

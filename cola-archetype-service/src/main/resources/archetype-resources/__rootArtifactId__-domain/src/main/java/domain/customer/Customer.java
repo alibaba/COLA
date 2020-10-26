@@ -7,12 +7,10 @@ import com.alibaba.cola.domain.Entity;
 import com.alibaba.cola.exception.BizException;
 import lombok.Data;
 
-import ${package}.dto.domainmodel.*;
-
 //Domain Entity can choose to extends the domain model which is used for DTO
 @Data
 @Entity
-public class Customer extends ${package}.dto.domainmodel.Customer{
+public class Customer{
 
     private String customerId;
     private String memberId;

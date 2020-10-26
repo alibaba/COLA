@@ -1,19 +1,19 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.service;
+package ${package}.customer;
 
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
 import ${package}.api.CustomerServiceI;
 import ${package}.dto.CustomerAddCmd;
 import ${package}.dto.CustomerListByNameQry;
-import ${package}.dto.domainmodel.Customer;
+import ${package}.dto.data.CustomerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ${package}.executor.CustomerAddCmdExe;
-import ${package}.executor.query.CustomerListByNameQryExe;
+import ${package}.customer.executor.CustomerAddCmdExe;
+import ${package}.customer.executor.query.CustomerListByNameQryExe;
 
 import javax.annotation.Resource;
 
@@ -32,7 +32,7 @@ public class CustomerServiceImpl implements CustomerServiceI {
     }
 
     @Override
-    public MultiResponse<Customer> listByName(CustomerListByNameQry customerListByNameQry) {
+    public MultiResponse<CustomerDTO> listByName(CustomerListByNameQry customerListByNameQry) {
         return customerListByNameQryExe.execute(customerListByNameQry);
     }
 
