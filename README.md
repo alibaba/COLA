@@ -24,13 +24,13 @@ COLA首先是作为架构的存在，是一种应用架构思想，主要是制�
 我们提供了两个Archetype，分别是cola-archetype-service和cola-archetype-web
 
 ### cola-archetype-service
-用来生成纯后端应用（没有Controller），生成应用的命令为：
+用来生成纯后端应用（没有Adaptor），生成应用的命令为：
 ```
 mvn archetype:generate  -DgroupId=com.alibaba.demo -DartifactId=demoService -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.demo -DarchetypeArtifactId=cola-framework-archetype-service -DarchetypeGroupId=com.aliyun -DarchetypeVersion=3.1.0
 ```
 
 ### cola-archetype-web
-用来生成Web后端应用（有Controller），生成应用的命令为：
+用来生成Web后端应用（有Adatpor），生成应用的命令为：
 ```
 mvn archetype:generate  -DgroupId=com.alibaba.demo -DartifactId=demoWeb -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.demo -DarchetypeArtifactId=cola-framework-archetype-web -DarchetypeGroupId=com.aliyun -DarchetypeVersion=3.1.0
 ```
