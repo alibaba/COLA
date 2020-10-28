@@ -1,5 +1,5 @@
 # COLA 3.0架构
-<strong>COLA是Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”，也叫“可乐”架构，目前COLA已经发展到[COLA 3.0](https://blog.csdn.net/significantfrank/article/details/106976804)。</strong>  需要访问老版本，请使用[COLA 2.0 TAG](https://github.com/alibaba/COLA/tree/COLA2.0), [COLA 1.0 TAG](https://github.com/alibaba/COLA/tree/COLA1.0)
+<strong>COLA是Clean Object-Oriented and Layered Architecture的缩写，表示“整洁面向对象分层架构”，目前COLA已经发展到[COLA 3.0](https://blog.csdn.net/significantfrank/article/details/106976804)。</strong>  需要访问老版本，请使用[COLA 2.0 TAG](https://github.com/alibaba/COLA/tree/COLA2.0), [COLA 1.0 TAG](https://github.com/alibaba/COLA/tree/COLA1.0)
 
 关于COLA的更多信息，请关注微信公众号：
 
@@ -19,18 +19,18 @@ https://start.aliyun.com/bootstrap.html
 ## COLA架构
 COLA首先是作为架构的存在，是一种应用架构思想，主要是制定了一套指导和约束，并将这套规范沉淀成Archetype。以便通过Archetype可以快速的生成符合COLA规范的应用。满足COLA的应用是一个有清晰的依赖关系的分层架构，如下图所示：
 
-![image.png](https://ata2-img.cn-hangzhou.oss-pub.aliyun-inc.com/a33b80bcac5ec73d0d1358d6b49a119c.png)
+![image.png](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/4c44010acb28a8b06608372243ed99ad.png)
 
 我们提供了两个Archetype，分别是cola-archetype-service和cola-archetype-web
 
 ### cola-archetype-service
-用来生成纯后端应用（没有Adaptor），生成应用的命令为：
+用来生成纯后端应用（没有Adapter），生成应用的命令为：
 ```
 mvn archetype:generate  -DgroupId=com.alibaba.demo -DartifactId=demoService -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.demo -DarchetypeArtifactId=cola-framework-archetype-service -DarchetypeGroupId=com.aliyun -DarchetypeVersion=3.1.0
 ```
 
 ### cola-archetype-web
-用来生成Web后端应用（有Adatpor），生成应用的命令为：
+用来生成Web后端应用（有Adapter），生成应用的命令为：
 ```
 mvn archetype:generate  -DgroupId=com.alibaba.demo -DartifactId=demoWeb -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.demo -DarchetypeArtifactId=cola-framework-archetype-web -DarchetypeGroupId=com.aliyun -DarchetypeVersion=3.1.0
 ```
@@ -55,8 +55,7 @@ com
         ├── logger  \\提供DIP的日志接口
 ```
 ### cola-framework-common
-该Module提供了框架中Client Object, Entity Object和Data Object的定义，二方库会依赖该Module。
-
+该Module提供了应用中通用DTO, Exception的定义，二方库会依赖该Module。
 
 
 # 如何使用COLA
@@ -64,12 +63,14 @@ com
 ## 第一步：生成COLA应用
 **1、使用Archetype生成应用：**
 
-直接运行上面提供的Archetype命令就可以生成应用，如果你的Remote Maven Repository里面没有Archetype的Jar包，也可以自己下载Archetype到本地，然后本地运行 mvn install安装。
+直接运行上面提供的Archetype命令就可以生成应用，默认，你可以在中央仓库获取到[cola-archetype-service](https://oss.sonatype.org/#nexus-search;quick~cola-framework-archetype-service) 和 [cola-archetype-web](https://oss.sonatype.org/#nexus-search;quick~cola-framework-archetype-web)
+
+如果downloading有问题，也可以自己下载Archetype源码到本地，然后本地运行mvn install安装。
 
 **2、 检查应用里的模块和组件：**
 
-如果命令执行成功的话，我们可以看到如下的代码结构，**它们就是COLA应用架构。**
-![image.png](https://ata2-img.cn-hangzhou.oss-pub.aliyun-inc.com/27569bf9d656f89a32e18d9ef15c85c6.png)
+如果命令执行成功的话，我们可以看到如下的代码结构：
+![image.png](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/05ba0b4af13ff693ecd9615b54c2aa6a.png)
 
 ## 第二步：运行Demo
 **1、进入在第一步中生成的应用目录。**
@@ -85,7 +86,7 @@ com
 
 **4、查看运行日志：**
 
-请求执行成功的话，可以在浏览器中的返回值中看到："customerName":"Hello, World"。同时观察启动SpringBoot的控制台，可以看到LoggerInterceptor打印出来的日志。
+请求执行成功的话，可以在浏览器中的返回值中看到："Hello, welcome to cola world"。
 
 
 # 版本迭代
