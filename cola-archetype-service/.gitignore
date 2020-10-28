@@ -1,6 +1,6 @@
 target/
 
-### STS ###
+### eclipse ###
 .apt_generated
 .classpath
 .factorypath

@@ -27,6 +27,7 @@
                 <artifactId>cola-common</artifactId>
                 <version>${cola.framework.version}</version>
             </dependency>
+            <!--This is optional-->
             <dependency>
                 <groupId>com.aliyun</groupId>
                 <artifactId>cola-core</artifactId>
