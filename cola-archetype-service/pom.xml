@@ -8,6 +8,8 @@
     <packaging>jar</packaging>
 
     <name>cola framework archetype</name>
+    <url>https://github.com/alibaba/COLA</url>
+    <description>Cola framework archetype-service</description>
 
     <distributionManagement>
         <snapshotRepository>

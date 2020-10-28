@@ -7,6 +7,9 @@
   <packaging>maven-archetype</packaging>
 
   <name>cola framework archetype</name>
+  <url>https://github.com/alibaba/COLA</url>
+  <description>Cola framework archetype-web</description>
+
   <distributionManagement>
     <snapshotRepository>
       <id>sonatype-nexus-snapshots</id>
