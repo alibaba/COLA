@@ -15,5 +15,8 @@ public class Constants {
 
 
     public static final String SOURCE_AD = "Advertisement";
+    public static final String SOURCE_WB = "Web site";
     public static final String SOURCE_RFQ = "Request For Quota";
+    public static final String SOURCE_MARKETING = "Marketing";
+    public static final String SOURCE_OFFLINE = "Off Line";
 }

@@ -16,17 +16,18 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mybatis-starter.version>1.3.1</mybatis-starter.version>
         <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
-        <cola.framework.version>3.0.0</cola.framework.version>
+        <cola.framework.version>3.1.0</cola.framework.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <!--Framework, this is optional-->
+            <!--Framework-->
             <dependency>
                 <groupId>com.aliyun</groupId>
                 <artifactId>cola-common</artifactId>
                 <version>${cola.framework.version}</version>
             </dependency>
+            <!-- cola extension,this is optional -->
             <dependency>
                 <groupId>com.aliyun</groupId>
                 <artifactId>cola-core</artifactId>

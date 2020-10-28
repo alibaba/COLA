@@ -1,8 +1,10 @@
 package com.alibaba.cola.test.customer.validator.extension;
 
+import com.alibaba.cola.exception.BizException;
 import com.alibaba.cola.extension.Extension;
 import com.alibaba.cola.test.customer.AddCustomerCmd;
 import com.alibaba.cola.test.customer.Constants;
+import com.alibaba.cola.test.customer.CustomerType;
 import com.alibaba.cola.test.customer.validator.extensionpoint.AddCustomerValidatorExtPt;
 
 /**

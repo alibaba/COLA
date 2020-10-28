@@ -41,7 +41,7 @@ public class AddCustomerCmdExe {
         logger.info("Call Domain Entity for business logic processing..."+customerEntity);
         customerEntity.addNewCustomer();
 
-        domainEventPublisher.publish(new CustomerCreatedEvent());
+        //domainEventPublisher.publish(new CustomerCreatedEvent());
         logger.info("End processing command:" + cmd);
         return Response.buildSuccess();
     }

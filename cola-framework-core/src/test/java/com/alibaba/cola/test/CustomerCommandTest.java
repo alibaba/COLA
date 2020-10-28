@@ -107,7 +107,7 @@ public class CustomerCommandTest {
 
         //Expect biz exception
         Assert.assertFalse(response.isSuccess());
-        Assert.assertEquals(response.getErrCode(), BasicErrorCode.BIZ_ERROR.getErrCode());
+        Assert.assertEquals(response.getErrCode(), ColaErrorCode.BIZ_ERROR.getErrCode());
     }
  */
 
@@ -121,6 +121,6 @@ public class CustomerCommandTest {
 
         //Expect parameter validation error
         Assert.assertFalse(response.isSuccess());
-        Assert.assertEquals(response.getErrCode(), BasicErrorCode.BIZ_ERROR.getErrCode());
+        Assert.assertEquals(response.getErrCode(), ColaErrorCode.BIZ_ERROR.getErrCode());
     }*/
 }

@@ -8,7 +8,7 @@
 package com.alibaba.cola.extension;
 
 import com.alibaba.cola.boot.AbstractComponentExecutor;
-import com.alibaba.cola.exception.framework.ColaException;
+import com.alibaba.cola.exception.ColaException;
 import com.alibaba.cola.logger.Logger;
 import com.alibaba.cola.logger.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 
 /**
- * ExtensionExecutor
+ * ExtensionExecutor 
  * @author fulan.zjf 2017-11-05
  */
 @Component
@@ -35,12 +35,12 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
     }
 
     /**
-     * if the bizScenarioUniqueIdentity is "ali.tmall.88vip"
+     * if the bizScenarioUniqueIdentity is "ali.tmall.supermarket"
      *
      * the search path is as below:
-     * 1、first try to get extension by "ali.tmall.88vip", if get, return it.
-     * 2、second try to get extension by "ali.tmall.#defaultScenario#", if get, return it.
-     * 3、third try to get extension by "ali.#defaultUseCase#.#defaultScenario#", if get, return it.
+     * 1、first try to get extension by "ali.tmall.supermarket", if get, return it.
+     * 2、loop try to get extension by "ali.tmall", if get, return it.
+     * 3、loop try to get extension by "ali", if get, return it.
      * 4、if not found, try the default extension
      * @param targetClz
      */

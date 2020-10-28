@@ -7,7 +7,7 @@
     <groupId>com.aliyun</groupId>
     <artifactId>cola-common</artifactId>
     <packaging>jar</packaging>
-    <version>3.0.1</version>
+    <version>3.1.0</version>
 
     <name>cola common</name>
     <url>https://github.com/alibaba/COLA</url>

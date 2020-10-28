@@ -8,7 +8,7 @@
 package com.alibaba.cola.boot;
 
 import com.alibaba.cola.common.ColaConstant;
-import com.alibaba.cola.exception.framework.ColaException;
+import com.alibaba.cola.exception.ColaException;
 import com.alibaba.cola.extension.*;
 import org.springframework.stereotype.Component;
 

@@ -58,7 +58,7 @@
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>cola-common</artifactId>
-            <version>3.0.1</version>
+            <version>3.1.0</version>
         </dependency>
 
         <dependency>
@@ -136,6 +136,7 @@
                     <doclint>none</doclint>
                 </configuration>
             </plugin>
+
             <!-- This is for central repository, comment it when build at local-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -151,7 +152,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- end -->
+
 
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
