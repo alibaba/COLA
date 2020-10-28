@@ -32,7 +32,7 @@ mvn archetype:generate  -DgroupId=com.alibaba.demo -DartifactId=demoService -Dve
 ### cola-archetype-web
 用来生成Web后端应用（有Controller），生成应用的命令为：
 ```
-mvn archetype:generate  -DgroupId=com.alibaba.demo -DartifactId=demoWeb -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.demo -DarchetypeArtifactId=cola-framework-archetype-web -DarchetypeGroupId=com.alibaba.aliyun -DarchetypeVersion=3.0.0
+mvn archetype:generate  -DgroupId=com.alibaba.demo -DartifactId=demoWeb -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.demo -DarchetypeArtifactId=cola-framework-archetype-web -DarchetypeGroupId=com.aliyun -DarchetypeVersion=3.1.0
 ```
 
 ## COLA框架
@@ -50,7 +50,6 @@ com
         ├── boot \\这是框架的核心启动包，负责框架组件的注册、发现
         ├── common
         ├── domain  \\提供Domain Entity标准
-        ├── event
         ├── exception \\提供Exception标准
         ├── extension  \\负责扩展机制中的重要概念-扩展(Extension)的定义和执行
         ├── logger  \\提供DIP的日志接口
@@ -82,7 +81,7 @@ com
 
 **3、 执行测试：**
 
-生成的应用中，已经实现了一个简单的Rest请求，可以在浏览器中输入 http://localhost:8080/customer?name=World 进行测试。
+生成的应用中，已经实现了一个简单的Rest请求，可以在浏览器中输入 http://localhost:8080/helloworld 进行测试。
 
 **4、查看运行日志：**
 
@@ -90,9 +89,24 @@ com
 
 
 # 版本迭代
+## 1.0.0 版本
+https://blog.csdn.net/significantfrank/article/details/85785565
+
+## 2.0.0 版本
+https://blog.csdn.net/significantfrank/article/details/100074716
+
+## 3.0.0 版本
+https://blog.csdn.net/significantfrank/article/details/106976804
+
 ## 3.0.1 版本
 之前的扩展点在locate扩展实现的时候，没有寻找默认实现的能力。增强之后，可以去寻找默认实现了。
 比如，"tmall.placeOrder.88vip"这个场景，其寻找扩展点的路径是：
 1. 尝试寻找"tmall.placeOrder.88vip"实现
 2. 如果没有，继续寻找"tmall.placeOrder"实现
 3. 如果没有，继续寻找"tmall"实现
+
+## 3.1.0 版本
+1. 进一步简化了cola-core，只保留了扩展能力。
+2. 将exception从cola-core移入到cola-common。
+3. 对archetype中的分包逻辑进行重构，改成按照domain做划分。
+4. 将cola-archetype-web中的controller改名为adaptor，为了呼应六边形架构的命名。
