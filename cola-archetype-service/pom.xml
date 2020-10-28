@@ -98,7 +98,7 @@
                     <doclint>none</doclint>
                 </configuration>
             </plugin>
-            <!-- This is for central repository, comment it when build at local
+            <!-- This is for central repository, comment it when build at local-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -112,7 +112,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
 
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
