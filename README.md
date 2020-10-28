@@ -70,7 +70,7 @@ com
 **2、 检查应用里的模块和组件：**
 
 如果命令执行成功的话，我们可以看到如下的代码结构：
-![image.png](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/05ba0b4af13ff693ecd9615b54c2aa6a.png)
+![image.png](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/f25164a8e08ae7af26e89b6ff896a49e.png)
 
 ## 第二步：运行Demo
 **1、进入在第一步中生成的应用目录。**
