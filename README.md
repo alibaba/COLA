@@ -3,13 +3,13 @@
 
 关于COLA的更多信息，请关注微信公众号：
 
-![qrcode_60.jpg](https://ata2-img.cn-hangzhou.oss-pub.aliyun-inc.com/9434d30a2db4c6036e1ba37be55b2c6e.jpg)
+![qrcode_60.jpg](https://img-blog.csdnimg.cn/2020110314110321.png#pic_center)
 
 如果你有技术热情，对阿里有兴趣，可以email：fulan.zjf@alibaba-inc.com
 
 # 阿里云COLA应用生成器
 https://start.aliyun.com/bootstrap.html
-![image.png](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/48f870b98d6cea7f06864e17387e0717.png)
+![image.png](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9hdGEyLWltZy5vc3MtY24temhhbmdqaWFrb3UuYWxpeXVuY3MuY29tLzQ4Zjg3MGI5OGQ2Y2VhN2YwNjg2NGUxNzM4N2UwNzE3LnBuZw?x-oss-process=image/format,png)
 
 # 项目说明
 **COLA既是框架，也是架构。创建COLA的主要目的是为应用架构提供一套简单的可以复制、可以理解、可以落地、可以控制复杂性的”指导和约束"。**
@@ -19,7 +19,7 @@ https://start.aliyun.com/bootstrap.html
 ## COLA架构
 COLA首先是作为架构的存在，是一种应用架构思想，主要是制定了一套指导和约束，并将这套规范沉淀成Archetype。以便通过Archetype可以快速的生成符合COLA规范的应用。满足COLA的应用是一个有清晰的依赖关系的分层架构，如下图所示：
 
-![image.png](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/4c44010acb28a8b06608372243ed99ad.png)
+![image.png](https://img-blog.csdnimg.cn/20201103141447661.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpZ25pZmljYW50ZnJhbms=,size_16,color_FFFFFF,t_70#pic_center)
 
 我们提供了两个Archetype，分别是cola-archetype-service和cola-archetype-web
 
@@ -70,7 +70,7 @@ com
 **2、 检查应用里的模块和组件：**
 
 如果命令执行成功的话，我们可以看到如下的代码结构：
-![image.png](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/f25164a8e08ae7af26e89b6ff896a49e.png)
+![image.png](https://img-blog.csdnimg.cn/20201103141618978.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpZ25pZmljYW50ZnJhbms=,size_16,color_FFFFFF,t_70#pic_center)
 
 ## 第二步：运行Demo
 **1、进入在第一步中生成的应用目录。**
