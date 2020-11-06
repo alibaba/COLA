@@ -19,7 +19,7 @@ https://start.aliyun.com/bootstrap.html
 ## COLA架构
 COLA首先是作为架构的存在，是一种应用架构思想，主要是制定了一套指导和约束，并将这套规范沉淀成Archetype。以便通过Archetype可以快速的生成符合COLA规范的应用。满足COLA的应用是一个有清晰的依赖关系的分层架构，如下图所示：
 
-![image.png](https://img-blog.csdnimg.cn/20201103141447661.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpZ25pZmljYW50ZnJhbms=,size_16,color_FFFFFF,t_70#pic_center)
+![COLA3.1](https://img-blog.csdnimg.cn/20201106130015912.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpZ25pZmljYW50ZnJhbms=,size_16,color_FFFFFF,t_70#pic_center)
 
 我们提供了两个Archetype，分别是cola-archetype-service和cola-archetype-web
 
@@ -70,7 +70,8 @@ com
 **2、 检查应用里的模块和组件：**
 
 如果命令执行成功的话，我们可以看到如下的代码结构：
-![image.png](https://img-blog.csdnimg.cn/20201103141618978.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpZ25pZmljYW50ZnJhbms=,size_16,color_FFFFFF,t_70#pic_center)
+
+![ComponentDiag](https://img-blog.csdnimg.cn/20201106134114574.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpZ25pZmljYW50ZnJhbms=,size_16,color_FFFFFF,t_70#pic_center)
 
 ## 第二步：运行Demo
 **1、进入在第一步中生成的应用目录。**
@@ -107,7 +108,9 @@ https://blog.csdn.net/significantfrank/article/details/106976804
 3. 如果没有，继续寻找"tmall"实现
 
 ## 3.1.0 版本
+https://blog.csdn.net/significantfrank/article/details/109529311
 1. 进一步简化了cola-core，只保留了扩展能力。
 2. 将exception从cola-core移入到cola-common。
 3. 对archetype中的分包逻辑进行重构，改成按照domain做划分。
-4. 将cola-archetype-web中的controller改名为adaptor，为了呼应六边形架构的命名。
+4. 将cola-archetype-web中的controller改名为adapter，为了呼应六边形架构的命名。
+
