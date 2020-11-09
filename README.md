@@ -19,7 +19,7 @@ https://start.aliyun.com/bootstrap.html
 ## COLA架构
 COLA首先是作为架构的存在，是一种应用架构思想，主要是制定了一套指导和约束，并将这套规范沉淀成Archetype。以便通过Archetype可以快速的生成符合COLA规范的应用。满足COLA的应用是一个有清晰的依赖关系的分层架构，如下图所示：
 
-![COLA3.1](https://img-blog.csdnimg.cn/20201106130015912.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpZ25pZmljYW50ZnJhbms=,size_16,color_FFFFFF,t_70#pic_center)
+![COLA3.1](https://img-blog.csdnimg.cn/20201106130015912.png#pic_center)
 
 我们提供了两个Archetype，分别是cola-archetype-service和cola-archetype-web
 
