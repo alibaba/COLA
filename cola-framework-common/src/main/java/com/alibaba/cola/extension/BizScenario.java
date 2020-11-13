@@ -59,13 +59,10 @@ public class BizScenario {
     }
 
     public String getIdentityWithDefaultScenario(){
-        this.scenario = DEFAULT_SCENARIO;
-        return getUniqueIdentity();
+        return bizId + DOT_SEPARATOR + useCase + DOT_SEPARATOR + DEFAULT_SCENARIO;
     }
 
     public String getIdentityWithDefaultUseCase(){
-        this.scenario = DEFAULT_SCENARIO;
-        this.useCase = DEFAULT_USE_CASE;
-        return getUniqueIdentity();
+        return bizId + DOT_SEPARATOR + DEFAULT_USE_CASE + DOT_SEPARATOR + DEFAULT_SCENARIO;
     }
 }
