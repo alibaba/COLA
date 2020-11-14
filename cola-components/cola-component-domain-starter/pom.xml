@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>cola-component-catchlog-starter</name>
+    <name>cola-component-domain-starter</name>
     <groupId>com.alibaba.cola</groupId>
-    <artifactId>cola-component-catchlog-starter</artifactId>
+    <artifactId>cola-component-domain-starter</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
@@ -13,7 +13,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring.boot.version>2.2.6.RELEASE</spring.boot.version>
-        <cola.version>1.0.0</cola.version>
     </properties>
 
     <dependencies>
@@ -29,27 +28,6 @@
             <version>${spring.boot.version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-            <version>${spring.boot.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- 工具包 -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.10</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.60</version>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- 测试包 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -62,25 +40,6 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
-        </dependency>
-
-        <!-- 日志包 -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.9</version>
-        </dependency>
-
-        <!-- cola组件依赖 -->
-        <dependency>
-            <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-component-dto</artifactId>
-            <version>${cola.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-component-exception</artifactId>
-            <version>${cola.version}</version>
         </dependency>
 
     </dependencies>

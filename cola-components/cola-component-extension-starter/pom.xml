@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>cola-component-catchlog-starter</name>
+    <name>cola-component-extension-starter</name>
     <groupId>com.alibaba.cola</groupId>
-    <artifactId>cola-component-catchlog-starter</artifactId>
+    <artifactId>cola-component-extension-starter</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
@@ -64,11 +64,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- 日志包 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.9</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- cola组件依赖 -->
@@ -76,13 +76,20 @@
             <groupId>com.alibaba.cola</groupId>
             <artifactId>cola-component-dto</artifactId>
             <version>${cola.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cola</groupId>
             <artifactId>cola-component-exception</artifactId>
             <version>${cola.version}</version>
+            <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.alibaba.cola</groupId>
+            <artifactId>cola-component-domain-starter</artifactId>
+            <version>${cola.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>
