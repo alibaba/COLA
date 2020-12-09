@@ -4,6 +4,7 @@
 COLA分为两个部分，COLA架构和COLA组件。
 
 # COLA架构
+## COLA 概述
 架构的意义就是要素结构，要素是组成架构的重要元素，结构是要素之间的关系。应用架构的意义就在于定义一套良好的结构，治理应用复杂度，
 降低系统熵值，从随心所欲的混乱状态，走向紧紧有条的有序状态。
 ![archWhy](https://img-blog.csdnimg.cn/20201209182220206.png)
@@ -15,7 +16,7 @@ COLA架构就是为此而生，其核心职责就是定义良好的应用结构�
 经过多次迭代，我们定义出了相对稳定、可靠的应用架构：COLA 4.0
 ![cola](https://img-blog.csdnimg.cn/20201209182934838.png)
 
-# COLA Archetype
+## COLA Archetype
 好的应用架构，都遵循一些共同模式，不管是六边形架构、洋葱圈架构、整洁架构、还是COLA架构，**都提倡以业务为核心，解耦外部依赖，分离业务复杂度和技术复杂度等**。
 
 COLA架构区别于这些架构的地方，在于除了思想之外，我们还提供了可落地的工具和实践指导。
@@ -88,6 +89,7 @@ https://blog.csdn.net/significantfrank/article/details/85785565
 
 
 关于COLA的更多信息，请关注微信公众号：
+
 ![qrcode_60.jpg](https://img-blog.csdnimg.cn/2020110314110321.png#pic_center)
 
 如果你有技术热情，对阿里有兴趣，可以email：fulan.zjf@alibaba-inc.com
