@@ -16,7 +16,7 @@ public class DomainAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(ApplicationContextHelper.class)
-    public ApplicationContextHelper initCatchLogAspect() {
+    public ApplicationContextHelper applicationContextHelper() {
         return new ApplicationContextHelper();
     }
 }

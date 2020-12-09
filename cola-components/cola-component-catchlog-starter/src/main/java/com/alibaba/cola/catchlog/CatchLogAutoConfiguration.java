@@ -17,7 +17,7 @@ public class CatchLogAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(CatchLogAspect.class)
-    public CatchLogAspect initCatchLogAspect() {
+    public CatchLogAspect catchLogAspect() {
         return new CatchLogAspect();
     }
 }
