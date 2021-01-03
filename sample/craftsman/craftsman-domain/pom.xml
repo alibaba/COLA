@@ -7,9 +7,11 @@
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
+
 	<artifactId>craftsman-domain</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>craftsman-domain</name>
+
 	<dependencies>
 		<!-- COLA Framework -->
 		<dependency>
