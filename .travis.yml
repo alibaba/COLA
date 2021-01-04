@@ -1,0 +1,47 @@
+language: java
+# Building a Java project
+#   https://docs.travis-ci.com/user/languages/java
+#
+# how to install and set jdk on travis:
+# - Testing Against Multiple JDKs
+#   https://docs.travis-ci.com/user/languages/java/#Testing-Against-Multiple-JDKs
+# - JVM images
+#   https://docs.travis-ci.com/user/reference/trusty/#JVM-(Clojure%2C-Groovy%2C-Java%2C-Scala)-images
+# - Customizing the Build / Build Matrix
+#   https://docs.travis-ci.com/user/customizing-the-build/#Build-Matrix
+
+dist: bionic
+
+# JVM (Clojure, Groovy, Java, Scala) support
+#   https://docs.travis-ci.com/user/reference/bionic#jvm-clojure-groovy-java-scala-support
+jdk:
+  - openjdk8
+  - openjdk10
+  - openjdk11
+
+# Job Lifecycle
+#   https://docs.travis-ci.com/user/job-lifecycle/
+
+before_install:
+  # output env info
+  - ls -la
+  - ls -l /usr/lib/jvm && ls /usr/lib/jvm/*
+  - echo -e "JAVA_HOME=$JAVA_HOME\nPATH=$PATH\nSHELL=$SHELL"
+
+script:
+  - scripts/integration-test.sh
+
+after_script:
+  - git status --ignored
+
+before_cache:
+  # clear self maven install
+  - rm -rf $HOME/.m2/repository/com/alibaba/cola
+  - rm -rf $HOME/.m2/repository/com/alibaba/craftsman
+
+# Caching Dependencies and Directories
+# https://docs.travis-ci.com/user/caching/
+cache:
+  directories:
+    - $HOME/.m2
+    - $HOME/.cache/pip
