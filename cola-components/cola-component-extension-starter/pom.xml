@@ -76,7 +76,6 @@
             <groupId>com.alibaba.cola</groupId>
             <artifactId>cola-component-dto</artifactId>
             <version>${cola.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cola</groupId>
