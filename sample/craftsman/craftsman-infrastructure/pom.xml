@@ -7,9 +7,11 @@
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
+
 	<artifactId>craftsman-infrastructure</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>craftsman-infrastructure</name>
+
 	<dependencies>
 		<!--DIP here, Infrastructure depends on Domain-->
 		<dependency>
