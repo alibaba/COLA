@@ -4,7 +4,7 @@
 
     <groupId>com.alibaba.cola</groupId>
     <artifactId>cola-component-test-container</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>4.0.0</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <description>${project.artifactId}</description>
