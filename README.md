@@ -1,5 +1,13 @@
 # COLA 4.0
 
+[![Build Status](https://travis-ci.org/alibaba/COLA.svg?branch=master)](https://travis-ci.org/alibaba/COLA)
+[![Maven Central](https://img.shields.io/maven-central/v/com.alibaba.cola/cola-component-dto.svg?color=2d545e)](https://search.maven.org/search?q=g:com.alibaba.cola)
+[![GitHub release](https://img.shields.io/github/release/alibaba/COLA.svg) ![JDK support](https://img.shields.io/badge/JDK-8+-green.svg)](https://github.com/alibaba/COLA/releases)  
+[![License](https://img.shields.io/badge/license-LGPL%202.1-4EB1BA.svg)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/alibaba/COLA)](https://github.com/alibaba/COLA/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/alibaba/COLA)](https://github.com/alibaba/COLA/fork)
+[![GitHub issues](https://img.shields.io/github/issues/alibaba/COLA.svg)](https://github.com/alibaba/COLA/issues)
+
 <strong>COLA 是 Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”。目前COLA已经发展到[COLA 4.0](https://blog.csdn.net/significantfrank/article/details/110934799)。</strong>
 
 COLA分为两个部分，COLA架构和COLA组件。
@@ -58,21 +66,15 @@ COLA架构区别于这些架构的地方，在于除了思想之外，我们还�
 
 # 如何使用COLA
 
-## 第一步：安装 cola archetype
-
-下载`cola-archetypes`下的源码到本地，然后本地运行`mvn install`安装。
-
-## 第二步：安装 cola components
-
-下载`cola-components`下的源码到本地，然后本地运行`mvn install`安装。
-
-## 第三步：创建应用
+## 1. 创建应用
 
 执行以下命令：
 
 ```bash
 mvn archetype:generate  \
-    -DgroupId=com.alibaba.demo -DartifactId=demo-web -Dversion=1.0.0-SNAPSHOT \
+    -DgroupId=com.alibaba.cola.demo.service \
+    -DartifactId=demo-web \
+    -Dversion=1.0.0-SNAPSHOT \
     -Dpackage=com.alibaba.demo \
     -DarchetypeArtifactId=cola-framework-archetype-web \
     -DarchetypeGroupId=com.alibaba.cola \
@@ -85,12 +87,25 @@ mvn archetype:generate  \
 
 注：也可以使用阿里云的应用生成器：https://start.aliyun.com/bootstrap.html 生成cola应用。
 
-## 第四步：运行应用
+## 2. 运行应用
 
-- 在`demoWeb`目录下运行`mvn install`（如果不想运行测试，可以加上`-DskipTests`参数）。
+- 在`demo-web`目录下运行`mvn install`（如果不想运行测试，可以加上`-DskipTests`参数）。
 - 进入`start`目录，执行`mvn spring-boot:run`。  
   运行成功的话，可以看到`SpringBoot`启动成功的界面。
 - 生成的应用中，已经实现了一个简单的`Rest`请求，可以在浏览器中输入 http://localhost:8080/helloworld 进行测试。
+
+如果要生成不是`web`工程而是`service`工程也类似，执行的是下面的命令：
+
+```bash
+mvn archetype:generate  \
+    -DgroupId=com.alibaba.cola.demo.service \
+    -DartifactId=demo-service \
+    -Dversion=1.0.0-SNAPSHOT \
+    -Dpackage=com.alibaba.demo \
+    -DarchetypeArtifactId=cola-framework-archetype-service \
+    -DarchetypeGroupId=com.alibaba.cola \
+    -DarchetypeVersion=4.0.0
+```
 
 # 版本迭代
 
