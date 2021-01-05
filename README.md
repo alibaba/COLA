@@ -17,7 +17,7 @@ COLA分为两个部分，COLA架构和COLA组件。
 
 - 定义一套良好的结构；
 - 治理应用复杂度，降低系统熵值；
-- 从随心所欲的混乱状态，走向紧紧有条的有序状态。
+- 从随心所欲的混乱状态，走向井井有条的有序状态。
 
 ![archWhy](https://img-blog.csdnimg.cn/20201209182220206.png)
 
@@ -72,7 +72,7 @@ COLA架构区别于这些架构的地方，在于除了思想之外，我们还�
 
 ```bash
 mvn archetype:generate  \
-    -DgroupId=com.alibaba.demo -DartifactId=demoWeb -Dversion=1.0.0-SNAPSHOT \
+    -DgroupId=com.alibaba.demo -DartifactId=demo-web -Dversion=1.0.0-SNAPSHOT \
     -Dpackage=com.alibaba.demo \
     -DarchetypeArtifactId=cola-framework-archetype-web \
     -DarchetypeGroupId=com.alibaba.cola \
