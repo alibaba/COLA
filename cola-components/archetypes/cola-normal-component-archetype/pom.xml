@@ -7,7 +7,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>cola-normal-component-archetype</name>
-    <description>COLA normal componet archetype</description>
+    <description>COLA normal component archetype</description>
 
     <build>
         <extensions>

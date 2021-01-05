@@ -12,8 +12,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <spring.boot.version>2.2.6.RELEASE</spring.boot.version>
-        <cola.version>1.0.0</cola.version>
     </properties>
 
     <dependencies>
@@ -49,6 +49,25 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- 日志包 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.9</version>
+        </dependency>
+
+        <!-- cola组件依赖 -->
+        <dependency>
+            <groupId>com.alibaba.cola</groupId>
+            <artifactId>cola-component-dto</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cola</groupId>
+            <artifactId>cola-component-exception</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- 测试包 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -61,25 +80,6 @@
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
             <scope>test</scope>
-        </dependency>
-
-        <!-- 日志包 -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.9</version>
-        </dependency>
-
-        <!-- cola组件依赖 -->
-        <dependency>
-            <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-component-dto</artifactId>
-            <version>${cola.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-component-exception</artifactId>
-            <version>${cola.version}</version>
         </dependency>
 
     </dependencies>
