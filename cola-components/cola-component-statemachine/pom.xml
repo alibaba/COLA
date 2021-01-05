@@ -5,7 +5,7 @@
     <groupId>com.alibaba.cola</groupId>
     <artifactId>cola-component-statemachine</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0</version>
+    <version>4.1.0-SNAPSHOT</version>
     <name>${project.artifactId}</name>
     <description>${project.artifactId}</description>
     <url>https://github.com/alibaba/COLA</url>

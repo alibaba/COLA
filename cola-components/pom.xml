@@ -4,7 +4,7 @@
 
     <groupId>com.alibaba.cola</groupId>
     <artifactId>cola-components</artifactId>
-    <version>1.0.0</version>
+    <version>4.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>${project.artifactId}</description>
