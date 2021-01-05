@@ -4,8 +4,8 @@
 
     <groupId>${groupId}</groupId>
     <artifactId>${artifactId}</artifactId>
-    <packaging>pom</packaging>
     <version>${version}</version>
+    <packaging>pom</packaging>
     <name>${artifactId}</name>
 
     <properties>
@@ -13,6 +13,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <mybatis-starter.version>1.3.1</mybatis-starter.version>
         <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
         <cola.component.version>1.0.0</cola.component.version>

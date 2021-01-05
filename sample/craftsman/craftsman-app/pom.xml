@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>craftsman-app</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>craftsman-app</name>
 
 	<dependencies>
@@ -38,15 +38,15 @@
 	</dependencies>
 
 	<build>
-			<pluginManagement>
-					<plugins>
-							<plugin>
-								<artifactId>maven-deploy-plugin</artifactId>
-								<configuration>
-									<skip>true</skip>
-								</configuration>
-							</plugin>
-					</plugins>
-			</pluginManagement>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>

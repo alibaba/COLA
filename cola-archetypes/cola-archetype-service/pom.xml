@@ -7,10 +7,9 @@
     <artifactId>cola-framework-archetype-service</artifactId>
     <version>4.0.0</version>
     <packaging>jar</packaging>
-
     <name>cola-archetype-service</name>
-    <url>https://github.com/alibaba/COLA</url>
     <description>Cola framework archetype-service</description>
+    <url>https://github.com/alibaba/COLA</url>
 
     <distributionManagement>
         <snapshotRepository>

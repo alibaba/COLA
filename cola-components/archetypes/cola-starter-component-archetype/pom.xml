@@ -6,7 +6,6 @@
   <artifactId>cola-starter-component-archetype</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
-
   <name>cola-starter-component-archetype</name>
 
   <build>

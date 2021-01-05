@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>${artifactId}</artifactId>
-	<version>${version}</version>
+	<packaging>jar</packaging>
 	<name>${artifactId}</name>
 
 	<dependencies>
