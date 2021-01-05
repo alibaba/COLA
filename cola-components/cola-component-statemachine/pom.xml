@@ -6,10 +6,9 @@
     <artifactId>cola-component-statemachine</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0</version>
-
     <name>Cola component statemachine</name>
-    <url>https://github.com/alibaba/COLA</url>
     <description>Cola component statemachine</description>
+    <url>https://github.com/alibaba/COLA</url>
 
     <distributionManagement>
         <snapshotRepository>

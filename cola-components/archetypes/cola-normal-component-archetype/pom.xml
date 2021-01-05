@@ -6,7 +6,6 @@
     <artifactId>cola-normal-component-archetype</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-
     <name>cola-normal-component-archetype</name>
     <description>COLA normal componet archetype</description>
 

@@ -6,10 +6,9 @@
   <artifactId>cola-framework-archetype-web</artifactId>
   <version>4.0.0</version>
   <packaging>maven-archetype</packaging>
-
   <name>cola-archetype-web</name>
-  <url>https://github.com/alibaba/COLA</url>
   <description>Cola framework archetype-web</description>
+  <url>https://github.com/alibaba/COLA</url>
 
   <distributionManagement>
     <snapshotRepository>
