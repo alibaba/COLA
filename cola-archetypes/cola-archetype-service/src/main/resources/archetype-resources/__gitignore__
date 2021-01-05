@@ -1,6 +1,6 @@
 target/
 
-### eclipse###
+### eclipse ###
 .apt_generated
 .classpath
 .factorypath
