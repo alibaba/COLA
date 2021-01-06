@@ -10,6 +10,7 @@ source "$(dirname "$(readlink -f "$BASH_SOURCE")")/common.sh"
 
 readonly -a MVN_OPTIONS=(
     -V --no-transfer-progress
+    -DperformRelease -P'!gen-sign'
 )
 
 MVN() {
