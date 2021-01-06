@@ -3,6 +3,7 @@ package com.alibaba.cola.statemachine;
 import com.alibaba.cola.statemachine.impl.TransitionType;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -31,7 +32,7 @@ public interface State<S,E,C> extends Visitable{
      */
     Transition<S,E,C> addTransition(E event, State<S, E, C> target, TransitionType transitionType);
 
-    Optional<Transition<S,E,C>> getTransition(E event);
+    List<Transition<S,E,C>> getTransition(E event);
 
     Collection<Transition<S,E,C>> getTransitions();
 
