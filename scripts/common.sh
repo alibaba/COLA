@@ -43,6 +43,18 @@ headInfo() {
     colorEcho "0;34;46" ================================================================================
 }
 
+# How to compare a program's version in a shell script?
+#   https://unix.stackexchange.com/questions/285924
+versionLessThan() {
+    (($# == 2)) || die "versionLessThan must 2 arguments"
+    local ver=$1
+    local destVer=$2
+
+    [ "$ver" = "$destVer" ] && return 0
+
+    [ "$(printf '%s\n' "$ver" "$destVer" | sort -V | head -n1)" = "$ver" ]
+}
+
 logAndRun() {
     local simple_mode=false
     [ "$1" = "-s" ] && {

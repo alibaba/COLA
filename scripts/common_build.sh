@@ -8,12 +8,7 @@ source "$(dirname "$(readlink -f "$BASH_SOURCE")")/common.sh"
 # build util functions
 ################################################################################
 
-readonly -a MVN_OPTIONS=(
-    -V --no-transfer-progress
-    -DperformRelease -P'!gen-sign'
-)
-
-MVN() {
+__getMvnwExe() {
     local maven_wrapper_name="mvnw"
 
     local d="$PWD"
@@ -24,7 +19,34 @@ MVN() {
         d=$(dirname "$d")
     done
 
-    logAndRun "$d/$maven_wrapper_name" "${MVN_OPTIONS[@]}" "$@"
+    echo "$d/$maven_wrapper_name"
+}
+
+__getJavaVersion() {
+    cd $(dirname "$(readlink -f "$BASH_SOURCE")")/../cola-components/ &&
+        ./mvnw -v | awk -F': |,' '/^Java version/ {print $2}'
+}
+
+getMoreMvnOptionsWhenJdk11() {
+    if ! versionLessThan $(__getJavaVersion) 11 && versionLessThan $(__getJavaVersion) 12; then
+        echo -DperformRelease -P'!gen-sign'
+    fi
+}
+
+readonly -a _MVN_BASIC_OPTIONS=(
+    -V --no-transfer-progress
+)
+readonly -a _MVN_OPTIONS=(
+    "${_MVN_BASIC_OPTIONS[@]}"
+    $(getMoreMvnOptionsWhenJdk11)
+)
+
+MVN() {
+    logAndRun "$(__getMvnwExe)" "${_MVN_OPTIONS[@]}" "$@"
+}
+
+MVN_WITH_BASIC_OPTIONS() {
+    logAndRun "$(__getMvnwExe)" "${_MVN_BASIC_OPTIONS[@]}" "$@"
 }
 
 # Where is Maven local repository?

@@ -60,7 +60,7 @@ cleanMavenInstallOfColaInMavenLocalRepository
         -DinteractiveMode=false
 
     cd "$artifactId"
-    MVN install
+    MVN_WITH_BASIC_OPTIONS install
 )
 
 (
@@ -88,12 +88,12 @@ cleanMavenInstallOfColaInMavenLocalRepository
         -DinteractiveMode=false
 
     cd "$artifactId"
-    MVN install
+    MVN_WITH_BASIC_OPTIONS install
 )
 
 (
     headInfo "CI: sample/craftsman"
 
     cd sample/craftsman/
-    MVN clean install
+    MVN_WITH_BASIC_OPTIONS clean install
 )
