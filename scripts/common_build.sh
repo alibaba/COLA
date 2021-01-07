@@ -1,8 +1,9 @@
 #!/bin/bash
-[ -z "${_source_mark_of_common_build:+dummy}" ] || return 0
-_source_mark_of_common_build=true
+[ -z "${__source_guard_7D8ED8FF_636B_4D66_95D7_9D46FE180F0F:+dummy}" ] || return 0
+__source_guard_7D8ED8FF_636B_4D66_95D7_9D46FE180F0F=true
 
-source "$(dirname "$(readlink -f "$BASH_SOURCE")")/common.sh"
+# shellcheck source=common.sh
+source "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/common.sh"
 
 ################################################################################
 # build util functions
@@ -23,12 +24,14 @@ __getMvnwExe() {
 }
 
 __getJavaVersion() {
-    cd $(dirname "$(readlink -f "$BASH_SOURCE")")/../cola-components/ &&
+    cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/../cola-components/" &&
         ./mvnw -v | awk -F': |,' '/^Java version/ {print $2}'
 }
 
-getMoreMvnOptionsWhenJdk11() {
-    if ! versionLessThan $(__getJavaVersion) 11 && versionLessThan $(__getJavaVersion) 12; then
+__getMoreMvnOptionsWhenJdk11() {
+    local javaVersion
+    javaVersion=$(__getJavaVersion)
+    if ! versionLessThan $javaVersion 11 && versionLessThan $javaVersion 12; then
         echo -DperformRelease -P'!gen-sign'
     fi
 }
@@ -38,7 +41,7 @@ readonly -a _MVN_BASIC_OPTIONS=(
 )
 readonly -a _MVN_OPTIONS=(
     "${_MVN_BASIC_OPTIONS[@]}"
-    $(getMoreMvnOptionsWhenJdk11)
+    $(__getMoreMvnOptionsWhenJdk11)
 )
 
 MVN() {
@@ -54,7 +57,7 @@ MVN_WITH_BASIC_OPTIONS() {
 
 # NOTE: DO NOT declare mvn_local_repository_dir var as readonly, its value is supplied by subshell.
 mvn_local_repository_dir="$(
-    cd $(dirname "$(readlink -f "$BASH_SOURCE")")/../cola-components/ &&
+    cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/../cola-components/" &&
         ./mvnw --no-transfer-progress help:evaluate -Dexpression=settings.localRepository |
         grep '^/'
 )"

@@ -17,5 +17,6 @@ for jhm_var_name in "${java_home_var_names[@]}"; do
     echo
     headInfo "test with $jhm_var_name: $JAVA_HOME"
     echo
+
     logAndRun ./integration-test.sh
 done

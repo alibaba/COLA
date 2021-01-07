@@ -1,25 +1,34 @@
 #!/bin/bash
 # SDKMAN! with Travis
 # https://objectcomputing.com/news/2019/01/07/sdkman-travis
+
+[ -z "${__source_guard_81039D15_3DA9_4EA3_A751_E83DBA84C038:+dummy}" ] || return 0
+__source_guard_81039D15_3DA9_4EA3_A751_E83DBA84C038=true
+
 set -eEuo pipefail
 
-[ -z "${_source_mark_of_prepare_jdk:+dummy}" ] || return 0
-export _source_mark_of_prepare_jdk=true
+# shellcheck source=common.sh
+source "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/common.sh"
 
-source "$(dirname "$(readlink -f "$BASH_SOURCE")")/common.sh"
+__loadSdkman() {
+    local this_time_install_sdk_man=false
+    # install sdkman
+    if [ ! -f "$HOME/.sdkman/bin/sdkman-init.sh" ]; then
+        [ -d "$HOME/.sdkman" ] && rm -rf "$HOME/.sdkman"
 
-if [ ! -f "$HOME/.sdkman/bin/sdkman-init.sh" ]; then
-    [ -d "$HOME/.sdkman" ] && rm -rf "$HOME/.sdkman"
-    curl -s get.sdkman.io | bash || die "fail to install sdkman"
-    echo sdkman_auto_answer=true >>"$HOME/.sdkman/etc/config"
+        curl -s get.sdkman.io | bash || die "fail to install sdkman"
+        echo sdkman_auto_answer=true >>"$HOME/.sdkman/etc/config"
 
-    this_time_install_sdk_man=true
-fi
-set +u
-# shellcheck disable=SC1090
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-[ -n "$this_time_install_sdk_man" ] && logAndRun sdk ls java
-set -u
+        this_time_install_sdk_man=true
+    fi
+
+    set +u
+    # shellcheck disable=SC1090
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+    "$this_time_install_sdk_man" && logAndRun sdk ls java
+    set -u
+}
+__loadSdkman
 
 jdks_install_by_sdkman=(
     8.0.275-amzn

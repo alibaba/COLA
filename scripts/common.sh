@@ -1,6 +1,6 @@
 #!/bin/bash
-[ -z "${_source_mark_of_common:+dummy}" ] || return 0
-_source_mark_of_common=true
+[ -z "${__source_guard_309D8FD8_7655_42EE_B32A_9604A082BD9E:+dummy}" ] || return 0
+__source_guard_309D8FD8_7655_42EE_B32A_9604A082BD9E=true
 
 set -eEuo pipefail
 

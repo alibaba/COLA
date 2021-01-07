@@ -10,7 +10,10 @@
 
 set -eEuo pipefail
 
-source "$(dirname "$(readlink -f "$BASH_SOURCE")")/common_build.sh"
+# shellcheck source=common.sh
+source "$(dirname "$(readlink -f "$0")")/common.sh"
+# shellcheck source=common_build.sh
+source "$(dirname "$(readlink -f "$0")")/common_build.sh"
 
 # adjust current dir to project root dir
 cd "$(dirname "$0")/.."
@@ -44,10 +47,12 @@ cleanMavenInstallOfColaInMavenLocalRepository
             awk -F'</?version>' 'NR==1 {print $2}'
     )
 
+    # shellcheck disable=SC2030
     readonly demo_dir="cola-archetypes/target/cola-framework-archetype-service-demo"
     mkdir -p "$demo_dir"
     cd "$demo_dir"
 
+    # shellcheck disable=SC2030
     readonly artifactId=demo-service
 
     MVN archetype:generate \
@@ -72,10 +77,12 @@ cleanMavenInstallOfColaInMavenLocalRepository
             awk -F'</?version>' 'NR==1 {print $2}'
     )
 
+    # shellcheck disable=SC2031
     readonly demo_dir="cola-archetypes/target/cola-framework-archetype-web-demo"
     mkdir -p "$demo_dir"
     cd "$demo_dir"
 
+    # shellcheck disable=SC2031
     readonly artifactId=demo-web
 
     MVN archetype:generate \
