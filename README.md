@@ -1,4 +1,4 @@
-# COLA 4.0
+# 🥤 COLA 4.0
 
 [![Build Status](https://travis-ci.org/alibaba/COLA.svg?branch=master)](https://travis-ci.org/alibaba/COLA)
 [![Maven Central](https://img.shields.io/maven-central/v/com.alibaba.cola/cola-component-dto.svg?color=2d545e)](https://search.maven.org/search?q=g:com.alibaba.cola)
@@ -8,7 +8,8 @@
 [![GitHub Forks](https://img.shields.io/github/forks/alibaba/COLA)](https://github.com/alibaba/COLA/fork)
 [![GitHub issues](https://img.shields.io/github/issues/alibaba/COLA.svg)](https://github.com/alibaba/COLA/issues)
 
-<strong>COLA 是 Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”。目前COLA已经发展到[COLA 4.0](https://blog.csdn.net/significantfrank/article/details/110934799)。</strong>
+<strong>COLA 是 Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”。
+目前COLA已经发展到[COLA 4.0](https://blog.csdn.net/significantfrank/article/details/110934799)。</strong>
 
 COLA分为两个部分，COLA架构和COLA组件。
 
@@ -72,7 +73,7 @@ COLA架构区别于这些架构的地方，在于除了思想之外，我们还�
 
 ```bash
 mvn archetype:generate  \
-    -DgroupId=com.alibaba.cola.demo.service \
+    -DgroupId=com.alibaba.cola.demo.web \
     -DartifactId=demo-web \
     -Dversion=1.0.0-SNAPSHOT \
     -Dpackage=com.alibaba.demo \
