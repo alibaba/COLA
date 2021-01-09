@@ -55,22 +55,22 @@
             <dependency>
                 <groupId>${groupId}</groupId>
                 <artifactId>${rootArtifactId}-client</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${groupId}</groupId>
                 <artifactId>${rootArtifactId}-app</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${groupId}</groupId>
                 <artifactId>${rootArtifactId}-domain</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${groupId}</groupId>
                 <artifactId>${rootArtifactId}-infrastructure</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
             <!--Project modules End-->
             <!--Spring Boot-->
