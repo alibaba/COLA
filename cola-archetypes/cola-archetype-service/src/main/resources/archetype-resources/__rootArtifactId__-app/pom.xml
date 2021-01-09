@@ -18,10 +18,6 @@
             <artifactId>${rootArtifactId}-client</artifactId>
         </dependency>
         <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-infrastructure</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba.cola</groupId>
             <artifactId>cola-component-catchlog-starter</artifactId>
         </dependency>
