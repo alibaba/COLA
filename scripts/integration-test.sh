@@ -56,7 +56,9 @@ cleanMavenInstallOfColaInMavenLocalRepository
     readonly artifactId=demo-service
 
     MVN archetype:generate \
-        -DgroupId=com.alibaba.cola.demo.archetype-service -DartifactId="$artifactId" -Dversion=1.0.0-SNAPSHOT \
+        -DgroupId=com.alibaba.cola.demo.archetype-service \
+        -DartifactId="$artifactId" \
+        -Dversion=1.0.0-SNAPSHOT \
         -Dpackage=com.alibaba.cola.demo.service \
         -DarchetypeGroupId=com.alibaba.cola \
         -DarchetypeArtifactId=cola-framework-archetype-service \
@@ -86,7 +88,9 @@ cleanMavenInstallOfColaInMavenLocalRepository
     readonly artifactId=demo-web
 
     MVN archetype:generate \
-        -DgroupId=com.alibaba.cola.demo.archetype-web -DartifactId="$artifactId" -Dversion=1.0.0-SNAPSHOT \
+        -DgroupId=com.alibaba.cola.demo.archetype-web \
+        -DartifactId="$artifactId" \
+        -Dversion=1.0.0-SNAPSHOT \
         -Dpackage=com.alibaba.cola.demo.web \
         -DarchetypeGroupId=com.alibaba.cola \
         -DarchetypeArtifactId=cola-framework-archetype-web \
