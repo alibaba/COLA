@@ -16,7 +16,7 @@ source "$(dirname "$(readlink -f "$0")")/common.sh"
 source "$(dirname "$(readlink -f "$0")")/common_build.sh"
 
 # adjust current dir to project root dir
-cd "$(dirname "$0")/.."
+cd "$(dirname "$(readlink -f "$0")")/.."
 
 ################################################################################
 # CI operations
@@ -63,8 +63,8 @@ cleanMavenInstallOfColaInMavenLocalRepository
         -DarchetypeGroupId=com.alibaba.cola \
         -DarchetypeArtifactId=cola-framework-archetype-service \
         -DarchetypeVersion="$archetypeVersion" \
-        -DarchetypeCatalog=local \
-        -DinteractiveMode=false
+        -DinteractiveMode=false \
+        -DarchetypeCatalog=local
 
     cd "$artifactId"
     MVN_WITH_BASIC_OPTIONS install
@@ -95,8 +95,8 @@ cleanMavenInstallOfColaInMavenLocalRepository
         -DarchetypeGroupId=com.alibaba.cola \
         -DarchetypeArtifactId=cola-framework-archetype-web \
         -DarchetypeVersion="$archetypeVersion" \
-        -DarchetypeCatalog=local \
-        -DinteractiveMode=false
+        -DinteractiveMode=false \
+        -DarchetypeCatalog=local
 
     cd "$artifactId"
     MVN_WITH_BASIC_OPTIONS install
