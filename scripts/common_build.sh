@@ -55,19 +55,21 @@ MVN_WITH_BASIC_OPTIONS() {
 # Where is Maven local repository?
 #   https://mkyong.com/maven/where-is-maven-local-repository/
 
-# NOTE: DO NOT declare mvn_local_repository_dir var as readonly, its value is supplied by subshell.
-mvn_local_repository_dir="$(
-    cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/../cola-components/" &&
-        ./mvnw --no-transfer-progress help:evaluate -Dexpression=settings.localRepository |
-        grep '^/'
-)"
-[ -n "$mvn_local_repository_dir" ] || die "Fail to find find maven local repository directory: $mvn_local_repository_dir"
-
-echo "find maven local repository directory: $mvn_local_repository_dir"
-
 cleanMavenInstallOfColaInMavenLocalRepository() {
+    if [ -z "${__mvn_local_repository_dir:-}" ]; then
+        # NOTE: DO NOT declare __mvn_local_repository_dir var as readonly, its value is supplied by subshell.
+        __mvn_local_repository_dir="$(
+            cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/../cola-components/" &&
+                ./mvnw --no-transfer-progress help:evaluate -Dexpression=settings.localRepository |
+                grep '^/'
+        )"
+
+        [ -n "$__mvn_local_repository_dir" ] || die "Fail to find maven local repository directory: $__mvn_local_repository_dir"
+        echo "found maven local repository directory: $__mvn_local_repository_dir"
+    fi
+
     headInfo "clean maven build and install of COLA in maven local repository:"
-    logAndRun -s rm -rf "$mvn_local_repository_dir/com/alibaba/demo"
-    logAndRun -s rm -rf "$mvn_local_repository_dir/com/alibaba/cola"
-    logAndRun -s rm -rf "$mvn_local_repository_dir/com/alibaba/craftsman"
+    logAndRun -s rm -rf "$__mvn_local_repository_dir/com/alibaba/demo"
+    logAndRun -s rm -rf "$__mvn_local_repository_dir/com/alibaba/cola"
+    logAndRun -s rm -rf "$__mvn_local_repository_dir/com/alibaba/craftsman"
 }
