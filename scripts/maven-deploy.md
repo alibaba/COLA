@@ -64,19 +64,19 @@ TODO：这个约束应该要去掉。使用`JDK 8`能发布挺好 :")
 
 ## 3. 使用发布版本的COLA Archetype重新生成Sample
 
-在[Sample目录](../sample)执行：
+在[Samples目录](../samples)执行：
 
 ```bash
 rm -rf craftsman
 
 ./mvnw archetype:generate \
     -DgroupId=com.alibaba.craftsman \
-    -DartifactId="craftsman" \
+    -DartifactId=craftsman \
     -Dversion=1.0.0-SNAPSHOT \
     -Dpackage=com.alibaba.craftsman \
     -DarchetypeGroupId=com.alibaba.cola \
     -DarchetypeArtifactId=cola-framework-archetype-web \
-    -DarchetypeVersion="4.x.y" \
+    -DarchetypeVersion=4.x.y \
     -DinteractiveMode=false
 ```
 

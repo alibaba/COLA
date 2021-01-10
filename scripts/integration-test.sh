@@ -103,8 +103,8 @@ cleanMavenInstallOfColaInMavenLocalRepository
 )
 
 (
-    headInfo "CI: sample/craftsman"
+    headInfo "CI: samples/craftsman"
 
-    cd sample/craftsman/
+    cd samples/craftsman/
     MVN_WITH_BASIC_OPTIONS clean install
 )
