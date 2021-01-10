@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>${groupId}</groupId>
-            <artifactId>${rootArtifactId}-infrastructure</artifactId>
+            <artifactId>${rootArtifactId}-domain</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cola</groupId>

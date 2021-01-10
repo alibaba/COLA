@@ -18,6 +18,10 @@
             <artifactId>${rootArtifactId}-adapter</artifactId>
         </dependency>
         <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-infrastructure</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
             <scope>test</scope>
