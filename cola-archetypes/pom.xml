@@ -202,5 +202,91 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>gen-git-properties</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!--
+                        Maven plugin which includes build-time git repository information into an POJO / *.properties).
+                        Make your apps tell you which version exactly they were built from! Priceless in large distributed deployments.
+                            https://github.com/ktoso/maven-git-commit-id-plugin
+                    -->
+                    <plugin>
+                        <groupId>pl.project13.maven</groupId>
+                        <artifactId>git-commit-id-plugin</artifactId>
+                        <version>4.0.3</version>
+                        <executions>
+                            <execution>
+                                <id>get-the-git-infos</id>
+                                <goals>
+                                    <goal>revision</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>validate-the-git-infos</id>
+                                <goals>
+                                    <goal>validateRevision</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <validationProperties>
+                                <!-- verify that the current repository is not dirty -->
+                                <validationProperty>
+                                    <name>validating git dirty</name>
+                                    <value>${git.dirty}</value>
+                                    <shouldMatchTo>false</shouldMatchTo>
+                                </validationProperty>
+                            </validationProperties>
+                            <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                            <generateGitPropertiesFilename>${project.build.outputDirectory}/META-INF/scm/${project.groupId}/${project.artifactId}/git.properties</generateGitPropertiesFilename>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>force-jdk11-when-release</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!--
+                        add maven-enforce-plugin to make sure the right jdk is used
+                        https://stackoverflow.com/a/18420462/922688
+                    -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <version>3.0.0-M3</version>
+                        <executions>
+                            <execution>
+                                <id>enforce-jdk-versions</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <requireJavaVersion>
+                                            <version>11</version>
+                                        </requireJavaVersion>
+                                    </rules>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>
