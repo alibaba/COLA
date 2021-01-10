@@ -34,13 +34,24 @@
         <developer>
             <id>significantfrank</id>
             <name>Frank Zhang</name>
-            <email>25216348@qq.com</email>
+            <email>25216348(at)qq.com</email>
             <roles>
                 <role>Developer</role>
                 <role>Architect</role>
             </roles>
             <timezone>+8</timezone>
             <url>https://github.com/significantfrank</url>
+        </developer>
+        <developer>
+            <id>oldratlee</id>
+            <name>Jerry Lee</name>
+            <email>oldratlee(at)gmail.com</email>
+            <roles>
+                <role>Developer</role>
+                <role>CI/SCM Engineer</role>
+            </roles>
+            <timezone>+8</timezone>
+            <url>https://github.com/oldratlee</url>
         </developer>
     </developers>
 </project>
