@@ -42,10 +42,7 @@ cleanMavenInstallOfColaInMavenLocalRepository
     headInfo "CI: archetype:generate by cola-framework-archetype-service"
 
     # NOTE: DO NOT declare archetypeVersion var as readonly, its value is supplied by subshell.
-    archetypeVersion=$(
-        grep '<version>.*</version>' cola-archetypes/cola-archetype-service/pom.xml |
-            awk -F'</?version>' 'NR==1 {print $2}'
-    )
+    archetypeVersion=$(extractFirstElementValueFromPom version cola-archetypes/cola-archetype-service/pom.xml)
 
     # shellcheck disable=SC2030
     readonly demo_dir="cola-archetypes/target/cola-framework-archetype-service-demo"
@@ -74,10 +71,7 @@ cleanMavenInstallOfColaInMavenLocalRepository
     headInfo "CI: archetype:generate by cola-framework-archetype-web"
 
     # NOTE: DO NOT declare archetypeVersion var as readonly, its value is supplied by subshell.
-    archetypeVersion=$(
-        grep '<version>.*</version>' cola-archetypes/cola-archetype-web/pom.xml |
-            awk -F'</?version>' 'NR==1 {print $2}'
-    )
+    archetypeVersion=$(extractFirstElementValueFromPom version cola-archetypes/cola-archetype-web/pom.xml)
 
     # shellcheck disable=SC2031
     readonly demo_dir="cola-archetypes/target/cola-framework-archetype-web-demo"

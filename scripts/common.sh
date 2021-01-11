@@ -47,6 +47,7 @@ headInfo() {
 #   https://unix.stackexchange.com/questions/285924
 versionLessThan() {
     (($# == 2)) || die "${FUNCNAME[0]} need only 2 arguments, actual arguments: $*"
+
     local ver=$1
     local destVer=$2
 
