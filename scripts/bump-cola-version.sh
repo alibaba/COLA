@@ -4,13 +4,11 @@ set -eEuo pipefail
 cd "$(dirname "$(readlink -f "$0")")"
 
 source common.sh
+source common_build.sh
 
 # shellcheck disable=SC2154
-[ $# -ne 1 ] && die "need 1 argument for version!$nl${nl}usage:$nl  $0 4.x.y"
-
+[ $# -ne 1 ] && die "need only 1 argument for version!$nl${nl}usage:$nl  $0 4.x.y"
 readonly bump_version="$1"
-
-source common_build.sh
 
 (
     headInfo "bump cola version of cola-components to $bump_version"
