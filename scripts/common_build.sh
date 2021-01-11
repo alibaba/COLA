@@ -52,6 +52,14 @@ MVN_WITH_BASIC_OPTIONS() {
     logAndRun "$(__getMvnwExe)" "${_MVN_BASIC_OPTIONS[@]}" "$@"
 }
 
+extractFirstElementValueFromPom() {
+    (($# == 2)) || die "${FUNCNAME[0]} need only 2 arguments, actual arguments: $*"
+
+    local element=$1
+    local pom_file=$2
+    grep \<"$element"'>.*</'"$element"\> "$pom_file" | awk -F'</?'"$element"\> 'NR==1 {print $2}'
+}
+
 # Where is Maven local repository?
 #   https://mkyong.com/maven/where-is-maven-local-repository/
 
