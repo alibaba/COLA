@@ -53,12 +53,4 @@
             <url>https://github.com/oldratlee</url>
         </developer>
     </developers>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 </project>
