@@ -2,8 +2,6 @@ package com.alibaba.craftsman.command;
 
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.Assert;
-import com.alibaba.cola.logger.Logger;
-import com.alibaba.cola.logger.LoggerFactory;
 import com.alibaba.craftsman.domain.metrics.SubMetric;
 import com.alibaba.craftsman.domain.metrics.appquality.AppMetric;
 import com.alibaba.craftsman.domain.metrics.appquality.AppQualityMetric;
@@ -13,7 +11,6 @@ import com.alibaba.craftsman.domain.metrics.techcontribution.ContributionMetric;
 import com.alibaba.craftsman.domain.metrics.techinfluence.InfluenceMetric;
 import com.alibaba.craftsman.domain.user.UserProfile;
 import com.alibaba.craftsman.dto.RefreshScoreCmd;
-import com.alibaba.craftsman.event.handler.MetricItemCreatedHandler;
 import com.alibaba.craftsman.domain.gateway.MetricGateway;
 import com.alibaba.craftsman.domain.gateway.UserProfileGateway;
 import org.springframework.stereotype.Component;
@@ -23,7 +20,6 @@ import java.util.List;
 
 @Component
 public class RefreshScoreCmdExe{
-    private Logger logger = LoggerFactory.getLogger(MetricItemCreatedHandler.class);
 
     @Resource
     private UserProfileGateway userProfileGateway;

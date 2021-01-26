@@ -27,7 +27,7 @@ public class ATAMetricQryExe{
             ataMetricCO.setOwnerId(metricDO.getUserId());
             ataMetricCOList.add(ataMetricCO);
         });
-        return MultiResponse.ofWithoutTotal(ataMetricCOList);
+        return MultiResponse.of(ataMetricCOList);
     }
 
 }

@@ -14,8 +14,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.aliyun</groupId>
-            <artifactId>cola-common</artifactId>
+            <groupId>com.alibaba.cola</groupId>
+            <artifactId>cola-component-dto</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

@@ -1,7 +1,5 @@
 package com.alibaba.craftsman.domain.metrics.techinfluence;
 
-import com.alibaba.cola.logger.Logger;
-import com.alibaba.cola.logger.LoggerFactory;
 import com.alibaba.craftsman.domain.metrics.MetricItem;
 import com.alibaba.fastjson.JSON;
 import lombok.Data;
@@ -16,8 +14,6 @@ import java.util.Date;
  */
 @Data
 public class SharingMetricItem extends MetricItem {
-
-    private static Logger logger = LoggerFactory.getLogger(SharingMetricItem.class);
 
     private String sharingName;
     private SharingScope sharingScope;

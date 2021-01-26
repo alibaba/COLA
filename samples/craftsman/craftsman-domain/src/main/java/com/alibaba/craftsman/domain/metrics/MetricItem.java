@@ -1,12 +1,11 @@
 package com.alibaba.craftsman.domain.metrics;
 
-import com.alibaba.cola.domain.EntityObject;
-import com.alibaba.cola.logger.Logger;
-import com.alibaba.cola.logger.LoggerFactory;
+import com.alibaba.cola.domain.Entity;
 import com.alibaba.craftsman.domain.user.UserProfile;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * MetricItem
@@ -15,9 +14,9 @@ import lombok.Data;
  * @date 2018-07-04 1:23 PM
  */
 @Data
-public abstract class MetricItem extends EntityObject implements Measurable{
-
-    private static Logger logger = LoggerFactory.getLogger(MetricItem.class);
+@Entity
+@Slf4j
+public abstract class MetricItem implements Measurable{
 
     /**
      * The metric this MetricItem belongs to
@@ -41,7 +40,7 @@ public abstract class MetricItem extends EntityObject implements Measurable{
      */
     public String toJsonString() {
         String jsonStr = JSON.toJSONString(this, JSONPropertyFilter.singleton);
-        logger.debug("\n From : " + this + " \n To: " + jsonStr);
+        log.debug("\n From : " + this + " \n To: " + jsonStr);
         return jsonStr;
     }
 

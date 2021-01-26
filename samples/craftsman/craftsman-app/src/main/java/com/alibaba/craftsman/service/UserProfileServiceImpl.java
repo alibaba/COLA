@@ -1,5 +1,6 @@
 package com.alibaba.craftsman.service;
 
+import com.alibaba.cola.catchlog.CatchAndLog;
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
@@ -22,6 +23,7 @@ import javax.annotation.Resource;
  * @date 2019-02-28 6:22 PM
  */
 @Service
+@CatchAndLog
 public class UserProfileServiceImpl implements UserProfileServiceI{
     @Resource
     private UserProfileAddCmdExe userProfileAddCmdExe;

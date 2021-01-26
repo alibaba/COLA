@@ -8,9 +8,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>craftsman-controller</artifactId>
+    <artifactId>craftsman-adapter</artifactId>
     <packaging>jar</packaging>
-    <name>craftsman-controller</name>
+    <name>craftsman-adapter</name>
 
     <dependencies>
         <dependency>

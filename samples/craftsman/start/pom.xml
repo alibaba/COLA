@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>com.alibaba.craftsman</groupId>
-            <artifactId>craftsman-controller</artifactId>
+            <artifactId>craftsman-adapter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

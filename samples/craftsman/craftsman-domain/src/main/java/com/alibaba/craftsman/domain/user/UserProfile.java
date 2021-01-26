@@ -1,9 +1,7 @@
 package com.alibaba.craftsman.domain.user;
 
-import com.alibaba.cola.domain.EntityObject;
+import com.alibaba.cola.domain.Entity;
 import com.alibaba.cola.exception.Assert;
-import com.alibaba.cola.logger.Logger;
-import com.alibaba.cola.logger.LoggerFactory;
 import com.alibaba.craftsman.domain.metrics.appquality.AppQualityMetric;
 import com.alibaba.craftsman.domain.metrics.devquality.DevQualityMetric;
 import com.alibaba.craftsman.domain.metrics.weight.Weight;
@@ -11,6 +9,7 @@ import com.alibaba.craftsman.domain.metrics.techcontribution.ContributionMetric;
 import com.alibaba.craftsman.domain.metrics.techinfluence.InfluenceMetric;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 员工档案
@@ -18,8 +17,9 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-public class UserProfile extends EntityObject{
-    private static Logger logger = LoggerFactory.getLogger(UserProfile.class);
+@Entity
+@Slf4j
+public class UserProfile {
 
     private String id;
     private String userId;
