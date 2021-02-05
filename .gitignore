@@ -26,3 +26,4 @@ doc/
 target/
 out/
 .DS_Store
+.vscode/settings.json
