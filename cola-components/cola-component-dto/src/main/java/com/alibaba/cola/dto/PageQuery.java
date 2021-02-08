@@ -7,6 +7,8 @@ package com.alibaba.cola.dto;
  */
 public abstract class PageQuery extends Query {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String ASC = "ASC";
 
     public static final String DESC = "DESC";
