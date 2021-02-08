@@ -7,7 +7,7 @@ package com.alibaba.cola.exception;
  */
 public class SysException extends BaseException {
 
-    private static final long serialVersionUID = 4355163994767354840L;
+    private static final long serialVersionUID = 1L;
 
     private static final String DEFAULT_ERR_CODE = "SYS_ERROR";
 
