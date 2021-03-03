@@ -75,7 +75,7 @@ public class PageResponse<T> extends Response {
     }
 
     public boolean isEmpty() {
-        return data == null || data.size() == 0;
+        return data == null || data.isEmpty();
     }
 
     public boolean isNotEmpty() {
