@@ -95,13 +95,13 @@ public abstract class Assert {
     }
 
     public static void notEmpty(Collection<?> collection, String errorCode, String errMessage) {
-        if (collection == null || collection.size() <= 0) {
+        if (collection == null || collection.isEmpty()) {
             throw new BizException(errorCode, errMessage);
         }
     }
 
     public static void notEmpty(Collection<?> collection, String errMessage) {
-        if (collection == null || collection.size() <= 0) {
+        if (collection == null || collection.isEmpty()) {
             throw new BizException(errMessage);
         }
     }
