@@ -35,7 +35,7 @@ public class PlantUMLVisitor implements Visitor {
     @Override
     public String visitOnEntry(State<?, ?, ?> state) {
         StringBuilder sb = new StringBuilder();
-        for(Transition transition: state.getTransitions()){
+        for(Transition transition: state.getAllTransitions()){
             sb.append(transition.getSource().getId())
                     .append(" --> ")
                     .append(transition.getTarget().getId())

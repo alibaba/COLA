@@ -33,7 +33,7 @@ public class SysOutVisitor implements Visitor {
         String stateStr = "State:"+state.getId();
         sb.append(stateStr).append(LF);
         System.out.println(stateStr);
-        for(Transition transition: state.getTransitions()){
+        for(Transition transition: state.getAllTransitions()){
             String transitionStr = "    Transition:"+transition;
             sb.append(transitionStr).append(LF);
             System.out.println(transitionStr);

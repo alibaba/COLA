@@ -3,12 +3,9 @@ package com.alibaba.cola.statemachine.impl;
 import com.alibaba.cola.statemachine.State;
 import com.alibaba.cola.statemachine.Transition;
 import com.alibaba.cola.statemachine.Visitor;
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.ListMultimap;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * StateImpl
@@ -18,7 +15,7 @@ import java.util.Optional;
  */
 public class StateImpl<S,E,C> implements State<S,E,C> {
     protected final S stateId;
-    private ListMultimap<E, Transition<S, E, C>> transitions = ArrayListMultimap.create();
+    private EventTransitions eventTransitions = new EventTransitions();
 
     StateImpl(S stateId){
         this.stateId = stateId;
@@ -33,33 +30,19 @@ public class StateImpl<S,E,C> implements State<S,E,C> {
         newTransition.setType(transitionType);
 
         Debugger.debug("Begin to add new transition: "+ newTransition);
-        verify(event, newTransition);
-        transitions.put(event, newTransition);
+
+        eventTransitions.put(event, newTransition);
         return newTransition;
     }
 
-    /**
-     * Per one source and target state, there is only one transition is allowed
-     * @param event
-     * @param newTransition
-     */
-    private void verify(E event, Transition<S,E,C> newTransition) {
-        List<Transition<S, E, C>> existingTransitions = transitions.get(event);
-        for (Transition transition : existingTransitions) {
-            if (transition.equals(newTransition)) {
-                throw new StateMachineException(transition + " already Exist, you can not add another one");
-            }
-        }
+    @Override
+    public List<Transition<S, E, C>> getEventTransitions(E event) {
+        return eventTransitions.get(event);
     }
 
     @Override
-    public List<Transition<S, E, C>> getTransition(E event) {
-        return transitions.get(event);
-    }
-
-    @Override
-    public Collection<Transition<S, E, C>> getTransitions() {
-        return transitions.values();
+    public Collection<Transition<S, E, C>> getAllTransitions() {
+        return eventTransitions.allTransitions();
     }
 
     @Override

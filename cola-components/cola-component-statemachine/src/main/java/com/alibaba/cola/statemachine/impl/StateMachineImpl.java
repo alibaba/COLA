@@ -7,7 +7,6 @@ import com.alibaba.cola.statemachine.Visitor;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * For performance consideration,
@@ -47,7 +46,7 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
     private Transition<S, E, C> routeTransition(S sourceStateId, E event, C ctx) {
         State sourceState = getState(sourceStateId);
 
-        List<Transition<S, E, C>> transitions = sourceState.getTransition(event);
+        List<Transition<S, E, C>> transitions = sourceState.getEventTransitions(event);
 
         if (transitions == null || transitions.size() == 0) {
             return null;
