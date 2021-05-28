@@ -3,9 +3,11 @@ package com.alibaba.cola.statemachine.impl;
 import com.alibaba.cola.statemachine.State;
 import com.alibaba.cola.statemachine.Transition;
 import com.alibaba.cola.statemachine.Visitor;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ListMultimap;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -16,7 +18,7 @@ import java.util.Optional;
  */
 public class StateImpl<S,E,C> implements State<S,E,C> {
     protected final S stateId;
-    private HashMap<E, Transition<S, E,C>> transitions = new HashMap<>();
+    private ListMultimap<E, Transition<S, E, C>> transitions = ArrayListMultimap.create();
 
     StateImpl(S stateId){
         this.stateId = stateId;
@@ -42,17 +44,17 @@ public class StateImpl<S,E,C> implements State<S,E,C> {
      * @param newTransition
      */
     private void verify(E event, Transition<S,E,C> newTransition) {
-        Transition existingTransition = transitions.get(event);
-        if(existingTransition != null){
-            if(existingTransition.equals(newTransition)){
-                throw new StateMachineException(existingTransition+" already Exist, you can not add another one");
+        List<Transition<S, E, C>> existingTransitions = transitions.get(event);
+        for (Transition transition : existingTransitions) {
+            if (transition.equals(newTransition)) {
+                throw new StateMachineException(transition + " already Exist, you can not add another one");
             }
         }
     }
 
     @Override
-    public Optional<Transition<S, E, C>> getTransition(E event) {
-        return Optional.ofNullable(transitions.get(event));
+    public List<Transition<S, E, C>> getTransition(E event) {
+        return transitions.get(event);
     }
 
     @Override
