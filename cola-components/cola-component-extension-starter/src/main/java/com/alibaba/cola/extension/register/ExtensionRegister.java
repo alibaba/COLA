@@ -9,6 +9,7 @@ package com.alibaba.cola.extension.register;
 
 import com.alibaba.cola.extension.*;
 
+import org.springframework.aop.support.AopUtils;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
@@ -30,6 +31,9 @@ public class ExtensionRegister{
 
     public void doRegistration(ExtensionPointI extensionObject){
         Class<?>  extensionClz = extensionObject.getClass();
+        if (AopUtils.isAopProxy(extensionObject)) {
+            extensionClz = ClassUtils.getUserClass(extensionObject);
+        }
         Extension extensionAnn = AnnotationUtils.findAnnotation(extensionClz, Extension.class);
         BizScenario bizScenario = BizScenario.valueOf(extensionAnn.bizId(), extensionAnn.useCase(), extensionAnn.scenario());
         ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(calculateExtensionPoint(extensionClz), bizScenario.getUniqueIdentity());
