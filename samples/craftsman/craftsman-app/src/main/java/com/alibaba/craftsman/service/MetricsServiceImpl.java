@@ -1,5 +1,6 @@
 package com.alibaba.craftsman.service;
 
+import com.alibaba.cola.catchlog.CatchAndLog;
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.craftsman.api.MetricsServiceI;
@@ -18,6 +19,7 @@ import javax.annotation.Resource;
  * @date 2019-03-01 11:41 AM
  */
 @Service
+@CatchAndLog
 public class MetricsServiceImpl implements MetricsServiceI{
 
     @Resource

@@ -1,0 +1,3 @@
+GET http://localhost:8080/metrics/ata?ownerId=12345
+Content-Type: application/json
+Cache-Control: no-cache

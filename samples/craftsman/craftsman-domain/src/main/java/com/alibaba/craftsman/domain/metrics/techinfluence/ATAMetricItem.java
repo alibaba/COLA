@@ -1,10 +1,9 @@
 package com.alibaba.craftsman.domain.metrics.techinfluence;
 
-import com.alibaba.cola.logger.Logger;
-import com.alibaba.cola.logger.LoggerFactory;
 import com.alibaba.craftsman.domain.metrics.MetricItem;
 import com.alibaba.fastjson.JSON;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ATAMetricItem
@@ -13,9 +12,8 @@ import lombok.Data;
  * @date 2018-07-04 3:20 PM
  */
 @Data
+@Slf4j
 public class ATAMetricItem extends MetricItem {
-
-    private static Logger logger = LoggerFactory.getLogger(ATAMetricItem.class);
 
     private String authorId;//作者
     private String title;//文章标题
@@ -51,13 +49,13 @@ public class ATAMetricItem extends MetricItem {
 
     @Override
     public double calculateScore() {
-        logger.debug("calculate score for : " + this);
+        log.debug("calculate score for : " + this);
         double score = BASIC_SCORE;
         score = addScoreByHitCount(score);
         score = addScoreByThumbsupCount(score);
         score = addScoreByFavoriteCount(score);
         score = addScoreByCommentCount(score);
-        logger.debug("calculated score is : " + score);
+        log.debug("calculated score is : " + score);
         return score;
     }
 

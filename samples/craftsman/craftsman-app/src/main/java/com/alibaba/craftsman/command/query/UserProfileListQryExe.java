@@ -26,7 +26,7 @@ public class UserProfileListQryExe{
             BeanUtils.copyProperties(userDO, userProfileCO);
             userProfileCOList.add(userProfileCO);
         });
-        return MultiResponse.ofWithoutTotal(userProfileCOList);
+        return MultiResponse.of(userProfileCOList);
     }
 
 }

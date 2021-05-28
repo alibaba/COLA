@@ -14,6 +14,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.alibaba.cola</groupId>
+            <artifactId>cola-component-catchlog-starter</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba.craftsman</groupId>
             <artifactId>craftsman-client</artifactId>
         </dependency>

@@ -15,8 +15,16 @@
     <dependencies>
         <!-- COLA Framework -->
         <dependency>
-            <groupId>com.aliyun</groupId>
-            <artifactId>cola-core</artifactId>
+            <groupId>com.alibaba.cola</groupId>
+            <artifactId>cola-component-dto</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cola</groupId>
+            <artifactId>cola-component-domain-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cola</groupId>
+            <artifactId>cola-component-exception</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alibaba.craftsman</groupId>

@@ -1,4 +1,4 @@
-package com.alibaba.craftsman.controller;
+package com.alibaba.craftsman.web;
 
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;

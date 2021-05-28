@@ -1,13 +1,12 @@
 package com.alibaba.craftsman.domain.metrics.appquality;
 
-import com.alibaba.cola.logger.Logger;
-import com.alibaba.cola.logger.LoggerFactory;
 import com.alibaba.craftsman.domain.metrics.MetricItem;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
+@Slf4j
 public class AppMetricItem extends MetricItem {
-    private final static Logger logger = LoggerFactory.getLogger(AppMetricItem.class);
 
     private String appName;//应用名称
     private int cyclomaticComplexityCount;//圈复杂度超标的数目
@@ -26,7 +25,7 @@ public class AppMetricItem extends MetricItem {
         score = duductScore(score, duplicatedMethodCount);
         score = duductScore(score, longMethodCount);
         score = duductScore(score, blockedCodeConductCount);
-        logger.debug("Calculated App score is "+score );
+        log.debug("Calculated App score is "+score );
         return score;
     }
 
