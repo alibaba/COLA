@@ -6,6 +6,7 @@ package com.alibaba.cola.dto;
  * @author jacky
  */
 public abstract class PageQuery extends Query {
+    private static final long serialVersionUID = 1L;
 
     public static final String ASC = "ASC";
 

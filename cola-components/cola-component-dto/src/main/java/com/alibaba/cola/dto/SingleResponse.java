@@ -7,6 +7,8 @@ package com.alibaba.cola.dto;
  */
 public class SingleResponse<T> extends Response {
 
+    private static final long serialVersionUID = 1L;
+
     private T data;
 
     public T getData() {
