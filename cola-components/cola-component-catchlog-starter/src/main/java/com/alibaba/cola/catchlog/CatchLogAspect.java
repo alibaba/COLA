@@ -4,6 +4,7 @@ import com.alibaba.cola.exception.BaseException;
 import com.alibaba.cola.exception.BizException;
 import com.alibaba.cola.exception.SysException;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -88,10 +89,13 @@ public class CatchLogAspect {
 
     private void logRequest(ProceedingJoinPoint joinPoint) {
         try {
+            if (!log.isDebugEnabled()) {
+                return;
+            }
             log.debug("START PROCESSING: " + joinPoint.getSignature().toShortString());
             Object[] args = joinPoint.getArgs();
             for (Object arg : args) {
-                log.debug("REQUEST : " + JSON.toJSONString(arg));
+                log.debug("REQUEST : " + JSON.toJSONString(arg, SerializerFeature.IgnoreErrorGetter));
             }
         }
         catch (Exception e){
