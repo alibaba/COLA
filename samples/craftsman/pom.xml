@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.alibaba.craftsman</groupId>
@@ -15,7 +14,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mybatis-starter.version>1.3.1</mybatis-starter.version>
         <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
-        <cola.framework.version>4.1.0-SNAPSHOT</cola.framework.version>
+        <cola.framework.version>4.0.1</cola.framework.version>
     </properties>
 
     <modules>
@@ -33,7 +32,7 @@
             <dependency>
                 <groupId>com.alibaba.cola</groupId>
                 <artifactId>cola-component-dto</artifactId>
-                <version>4.1.0-SNAPSHOT</version>
+                <version>4.0.1</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.cola</groupId>
