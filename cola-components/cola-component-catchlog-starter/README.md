@@ -4,8 +4,8 @@
 通过Spring Boot的autoConfig机制进行加载，无需手动配置，只需要添加如下依赖即可：
 ```xml
         <dependency>
-            <groupId>com.alibaba.lst.tech.shared</groupId>
-            <artifactId>catch-log-starter</artifactId>
+            <groupId>com.alibaba.cola</groupId>
+            <artifactId>cola-component-catchlog-starter</artifactId>
         </dependency>
 ```
 
@@ -38,15 +38,15 @@ public class GrouponServiceImpl implements GrouponService
 2、logback-test.xml为组件开启DEGUG level的日志输出
 ```xml
    <!--这个是统一异常处理，日志记录组件的日志-->
-    <logger name="com.alibaba.lst.tech.shared" level="DEBUG"/>
+    <logger name="com.alibaba.cola.catchlog" level="DEBUG"/>
 ```
 
 3、如果在控制台看到如下的日志输出，说明CatchAndLog已经在做AOP拦截
 ```xml
-DEBUG c.a.l.t.s.catchlog.CatchLogAspect - Start processing: GrouponServiceImpl.queryGrouponItemDetail(..)
-DEBUG c.a.l.t.s.catchlog.CatchLogAspect - REQUEST : 257
+DEBUG c.a.c.catchlog.CatchLogAspect - Start processing: GrouponServiceImpl.queryGrouponItemDetail(..)
+DEBUG c.a.c.catchlog.CatchLogAspect - REQUEST : 257
 
-DEBUG c.a.l.t.s.catchlog.CatchLogAspect - RESPONSE : {"errCode":"UNKNOWN_ERROR"...}
-DEBUG c.a.l.t.s.catchlog.CatchLogAspect - COST : 1329ms
+DEBUG c.a.c.catchlog.CatchLogAspect - RESPONSE : {"errCode":"UNKNOWN_ERROR"...}
+DEBUG c.a.c.catchlog.CatchLogAspect - COST : 1329ms
 ```
 
