@@ -31,7 +31,7 @@ public class Customer{
         return registeredCapital > 10000 && registeredCapital < 1000000; //注册资金大于10万小于100万的为中小企业
     }
 
-    public void checkConfilict(){
+    public void checkConflict(){
         //Per different biz, the check policy could be different, if so, use ExtensionPoint
         if("ConflictCompanyName".equals(this.companyName)){
             throw new BizException(this.companyName+" has already existed, you can not add it");
