@@ -9,8 +9,16 @@ import com.alibaba.craftsman.command.query.ATAMetricQryExe;
 import com.alibaba.craftsman.dto.*;
 import com.alibaba.craftsman.dto.clientobject.ATAMetricCO;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+
+import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
+import javax.validation.Validator;
 
 /**
  * MetricsServiceImpl
@@ -19,6 +27,7 @@ import javax.annotation.Resource;
  * @date 2019-03-01 11:41 AM
  */
 @Service
+@Validated
 @CatchAndLog
 public class MetricsServiceImpl implements MetricsServiceI{
 
@@ -40,10 +49,15 @@ public class MetricsServiceImpl implements MetricsServiceI{
     private MetricDeleteCmdExe metricDeleteCmdExe;
     @Resource
     private ATAMetricQryExe ataMetricQryExe;
-
+    @Resource
+    Validator validator;
 
     @Override
-    public Response addATAMetric(ATAMetricAddCmd cmd) {
+    public Response addATAMetric(@Valid ATAMetricAddCmd cmd) {
+        // Set<ConstraintViolation<ATAMetricAddCmd>> violations =  validator.validate(cmd);
+        // if (!violations.isEmpty()) {
+        //     throw new ConstraintViolationException(violations);
+        // }
         return ataMetricAddCmdExe.execute(cmd);
     }
 

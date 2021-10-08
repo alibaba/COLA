@@ -14,6 +14,6 @@ import org.springframework.stereotype.Component;
 public class DomainEventPublisher{
 
     public void publish(Object domainEvent) {
-        //eventBus.fire(domainEvent);
+        // eventBus.fire(domainEvent);
     }
 }

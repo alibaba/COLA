@@ -1,11 +1,15 @@
 package com.alibaba.craftsman.gatewayimpl.database.dataobject;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class MetricDO extends BaseDO{
     private String id;
     /**
      * 域账号
      */
+    @NotBlank
+    @NotNull
     private String userId;
     /**
      * 主度量

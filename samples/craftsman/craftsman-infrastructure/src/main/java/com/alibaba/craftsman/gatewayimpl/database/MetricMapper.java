@@ -6,10 +6,12 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @Mapper
 public interface MetricMapper {
 
-    int create(MetricDO dataObject);
+    int create(@Valid MetricDO dataObject);
 
     List<MetricDO> listByUserId(@Param("userId") String userId);
 

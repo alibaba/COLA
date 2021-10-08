@@ -1,6 +1,9 @@
 package com.alibaba.craftsman.dto.clientobject;
 
 import com.alibaba.cola.dto.ClientObject;
+
+// import org.springframework.validation.annotation.Validated;
+
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;

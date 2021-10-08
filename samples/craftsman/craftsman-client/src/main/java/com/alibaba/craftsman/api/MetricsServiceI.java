@@ -1,5 +1,7 @@
 package com.alibaba.craftsman.api;
 
+import javax.validation.Valid;
+
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.craftsman.dto.*;
