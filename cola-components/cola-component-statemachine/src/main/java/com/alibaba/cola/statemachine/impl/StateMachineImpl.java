@@ -66,7 +66,7 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
     }
 
     private State getState(S currentStateId) {
-        State state = StateHelper.getState(stateMap, currentStateId);
+        State state = StateHelper.getExistingState(stateMap, currentStateId);
         if (state == null) {
             showStateMachine();
             throw new StateMachineException(currentStateId + " is not found, please check state machine");

@@ -19,4 +19,8 @@ public class StateHelper {
         }
         return state;
     }
+
+    public static <S, E, C> State<S, E, C> getExistingState(Map<S, State<S, E, C>> stateMap, S stateId){
+        return stateMap.get(stateId);
+    }
 }
