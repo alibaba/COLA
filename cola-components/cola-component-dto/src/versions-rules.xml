@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset comparisonMethod="maven"
+         xmlns="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0 http://mojo.codehaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd">
+
+    <!-- config example: https://github.com/mojohaus/versions-maven-plugin/issues/157#issuecomment-306041074 -->
+    <ignoreVersions>
+        <ignoreVersion type="regex">(?i).*[-.]alpha([-.]?\d+)?</ignoreVersion>
+        <!-- ignore like junit 4.13-beta-3, rxkotlin 2.4.0-beta.1, spotbugs-annotations 4.0.0-beta3 -->
+        <ignoreVersion type="regex">(?i).*[-.]beta([-.]?\d+)?</ignoreVersion>
+        <ignoreVersion type="regex">(?i).*-eap-\d+</ignoreVersion>
+        <!-- ignore like kotlinx-coroutines-core 1.3.0-M1 -->
+        <ignoreVersion type="regex">.*-M\d+(-.*)?</ignoreVersion>
+        <!-- ignore like kotlin-stdlib 1.3.0-rc-190, scala-library 2.13.0-RC1, kotlinx-coroutines-core 1.3.0-RC -->
+        <ignoreVersion type="regex">(?i).*-rc(-?\d+(-.*)?)?</ignoreVersion>
+        <ignoreVersion>.*-does-not-exist</ignoreVersion>
+        <!-- ignore like kotlin-stdlib 1.3.50-dev-1896 -->
+        <ignoreVersion type="regex">(?i).*-dev-?\d+(-.*)?</ignoreVersion>
+        <ignoreVersion type="regex">.*(-does)?-not-exist</ignoreVersion>
+    </ignoreVersions>
+    <rules>
+        <rule groupId="org.jetbrains.kotlinx">
+            <!-- ignore native dependency version like org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5-native-mt -->
+            <ignoreVersions>
+                <ignoreVersion type="regex">.*-native-.*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+    </rules>
+</ruleset>
