@@ -7,7 +7,7 @@ import com.alibaba.cola.domain.Entity;
 import com.alibaba.cola.exception.BizException;
 import lombok.Data;
 
-//Domain Entity can choose to extends the domain model which is used for DTO
+//Domain Entity can choose to extend the domain model which is used for DTO
 @Data
 @Entity
 public class Customer{
