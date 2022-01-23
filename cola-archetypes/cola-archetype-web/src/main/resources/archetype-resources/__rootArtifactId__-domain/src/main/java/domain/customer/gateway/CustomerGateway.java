@@ -6,5 +6,5 @@ package ${package}.domain.customer.gateway;
 import ${package}.domain.customer.Customer;
 
 public interface CustomerGateway {
-    public Customer getByById(String customerId);
+    Customer getByById(String customerId);
 }
