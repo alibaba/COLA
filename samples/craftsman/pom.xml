@@ -33,7 +33,7 @@
             <dependency>
                 <groupId>com.alibaba.cola</groupId>
                 <artifactId>cola-component-dto</artifactId>
-                <version>4.1.0-SNAPSHOT</version>
+                <version>${cola.framework.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.cola</groupId>
