@@ -34,3 +34,12 @@ readonly bump_version="$1"
         cola-archetype-service/src/main/resources/archetype-resources/pom.xml \
         cola-archetype-web/src/main/resources/archetype-resources/pom.xml
 )
+
+(
+    headInfo "bump cola version of samples to $bump_version"
+    cd ../samples/
+
+    logAndRun -s \
+        sed -ri 's~(<cola.framework.version>)(.*)(</cola.framework.version>)~\1'"$bump_version"'\3~' \
+        craftsman/pom.xml
+)
