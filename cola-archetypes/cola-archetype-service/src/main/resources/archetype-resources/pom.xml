@@ -51,7 +51,7 @@
                 <artifactId>cola-component-catchlog-starter</artifactId>
                 <version>${cola.components.version}</version>
             </dependency>
-            <!--cola components Ended-->
+            <!--COLA components End-->
             <!--Project modules-->
             <dependency>
                 <groupId>${groupId}</groupId>

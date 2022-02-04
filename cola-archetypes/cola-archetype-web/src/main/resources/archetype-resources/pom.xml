@@ -31,7 +31,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--COLA Components-->
+            <!--COLA components-->
             <dependency>
                 <groupId>com.alibaba.cola</groupId>
                 <artifactId>cola-component-domain-starter</artifactId>
@@ -52,7 +52,7 @@
                 <artifactId>cola-component-catchlog-starter</artifactId>
                 <version>${cola.components.version}</version>
             </dependency>
-            <!--COLA Components End-->
+            <!--COLA components End-->
 
             <!--Project modules-->
             <dependency>
