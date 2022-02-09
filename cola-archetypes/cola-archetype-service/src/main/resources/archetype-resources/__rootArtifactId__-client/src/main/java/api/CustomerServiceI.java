@@ -11,7 +11,7 @@ import ${package}.dto.data.CustomerDTO;
 
 public interface CustomerServiceI {
 
-    public Response addCustomer(CustomerAddCmd customerAddCmd);
+    Response addCustomer(CustomerAddCmd customerAddCmd);
 
-    public MultiResponse<CustomerDTO> listByName(CustomerListByNameQry customerListByNameQry);
+    MultiResponse<CustomerDTO> listByName(CustomerListByNameQry customerListByNameQry);
 }

@@ -13,7 +13,7 @@
         <package name="com.alibaba.craftsman.gatewayimpl.database.dataobject"/>
     </typeAliases>
     <mappers>
-        <mapper resource="mybatis/MetricMapper.xml"></mapper>
-        <mapper resource="mybatis/UserProfileMapper.xml"></mapper>
+        <mapper resource="mybatis/MetricMapper.xml" />
+        <mapper resource="mybatis/UserProfileMapper.xml" />
     </mappers>
 </configuration>

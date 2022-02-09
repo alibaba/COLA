@@ -64,7 +64,6 @@ public class MetricGatewayImpl implements MetricGateway {
         domainEventPublisher.publish(metricItemCreatedEvent);
     }
 
-
     public List<SubMetric> listByTechContribution(String userId){
         List<MetricDO> metricDOList = metricMapper.listByMainMetric(userId, MainMetricType.TECH_CONTRIBUTION.getMetricCode());
         RefactoringMetric refactoringMetric = new RefactoringMetric();

@@ -74,7 +74,6 @@ public class CatchLogAspect {
         return ResponseHandler.handle(returnType, "UNKNOWN_ERROR", e.getMessage());
     }
 
-
     private void logResponse(long startTime, Object response) {
         try{
             long endTime =  System.currentTimeMillis();

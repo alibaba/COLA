@@ -14,9 +14,9 @@ import com.alibaba.craftsman.dto.clientobject.UserProfileCO;
  * @date 2019-02-28 6:15 PM
  */
 public interface UserProfileServiceI {
-    public Response addUserProfile(UserProfileAddCmd cmd);
-    public Response updateUserProfile(UserProfileUpdateCmd cmd);
-    public Response refreshScore(RefreshScoreCmd cmd);
-    public SingleResponse<UserProfileCO> getUserProfileBy(UserProfileGetQry qry);
-    public MultiResponse<UserProfileCO>  listUserProfileBy(UserProfileListQry qry);
+    Response addUserProfile(UserProfileAddCmd cmd);
+    Response updateUserProfile(UserProfileUpdateCmd cmd);
+    Response refreshScore(RefreshScoreCmd cmd);
+    SingleResponse<UserProfileCO> getUserProfileBy(UserProfileGetQry qry);
+    MultiResponse<UserProfileCO>  listUserProfileBy(UserProfileListQry qry);
 }
