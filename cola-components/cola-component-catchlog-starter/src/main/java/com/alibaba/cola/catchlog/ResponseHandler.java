@@ -26,7 +26,6 @@ public class ResponseHandler {
     }
 
 
-
     private static Object handleColaResponse(Class returnType, String errCode, String errMsg) {
         try {
             Response response = (Response)returnType.newInstance();
@@ -40,7 +39,6 @@ public class ResponseHandler {
             return  null;
         }
     }
-
 
     private static boolean isColaResponse(Class returnType) {
         return  returnType == Response.class || returnType.getGenericSuperclass() == Response.class;

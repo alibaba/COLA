@@ -40,8 +40,8 @@ public class UserProfile {
     private ContributionMetric contributionMetric;
     private DevQualityMetric devQualityMetric;
 
-    private static double MAXIMUM_SCORE = 100;
-    private static double MINIMUM_SCORE = 0;
+    private static final double MAXIMUM_SCORE = 100;
+    private static final double MINIMUM_SCORE = 0;
 
     public void calculateScore(){
         calculateTechInfluenceScore();
