@@ -1,0 +1,83 @@
+# appveyor.yml Reference
+# https://www.appveyor.com/docs/appveyor-yml/
+#
+# How to use AppVeyor to build a multi-arch Docker image for Linux and Windows
+# https://stefanscherer.github.io/use-appveyor-to-build-multi-arch-docker-image/
+#
+# Building ASP.NET Core apps on both Windows and Linux using AppVeyor
+# https://andrewlock.net/building-asp-net-core-apps-on-both-windows-and-linux-using-appveyor/
+#
+# appveyor.yml Example:
+# https://github.com/cdcseacave/openMVS/blob/master/.appveyor.yml
+
+version: '{build}'
+branches:
+  except:
+    - gh-pages
+
+image:
+  - Ubuntu2004
+  - Visual Studio 2017
+
+build: false
+clone_depth: 50
+
+environment:
+  APPVEYOR_YML_DISABLE_PS_LINUX: true
+  MAVEN_OPTS: "-Xmx768m -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2"
+  JAVA_OPTS: "-Xmx768m"
+
+for:
+  -
+    #------------------
+    # Ubuntu
+    #------------------
+    matrix:
+      only:
+        - image: Ubuntu2004
+
+    test_script:
+      - git submodule update --init
+      - scripts/integration-test.sh
+
+    after_test:
+      # clear self maven install
+      - rm -rf $HOME/.m2/repository/com/alibaba/cola
+      - rm -rf $HOME/.m2/repository/com/alibaba/craftsman
+      - rm -rf $HOME/.m2/repository/com/alibaba/demo
+      - rm -rf $HOME/.m2/wrapper/dists/*/*/*.zip
+      - rm -rf $HOME/.sdkman/archives/*
+
+    cache:
+      # if cache size is exceed appveyor limit:
+      #   Compressed cache item cannot exceed 1,048,576,000 bytes
+      # skip below maven cache:
+      - $HOME/.m2/
+      - $HOME/.sdkman/
+  -
+    #------------------
+    # Windows
+    #------------------
+    matrix:
+      only:
+        - image: Visual Studio 2017
+    install:
+      - ps: "ls 'C:/Program Files/Java/jdk*'"
+      - ps: "ls 'C:/Program Files (x86)/Java/jdk*'"
+      - cmd: echo JAVA_HOME=%JAVA_HOME%, HOMEPATH=%HOMEPATH%, PATH=%PATH%
+
+    test_script:
+      # test under java 8
+      - cmd: set JAVA_HOME=C:\Program Files\Java\jdk1.8.0
+      - ./mvnw.cmd -V --no-transfer-progress clean install
+      # test under java 11
+      - cmd: set JAVA_HOME=C:\Program Files\Java\jdk11
+      - ./mvnw.cmd -V --no-transfer-progress clean install
+
+    after_test:
+      - ps: Remove-Item -r -fo $home\.m2\repository\com\alibaba\cola
+      - ps: Remove-Item -r -fo $home\.m2\repository\com\alibaba\craftsman
+
+    cache:
+      # https://www.appveyor.com/docs/build-cache/
+      - '%HOMEDRIVE%%HOMEPATH%\.m2\'
