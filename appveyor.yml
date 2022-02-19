@@ -38,7 +38,7 @@ for:
 
     test_script:
       - git submodule update --init
-      - scripts/integration-test.sh
+      - scripts/integration_test
 
     after_test:
       # clear self maven install

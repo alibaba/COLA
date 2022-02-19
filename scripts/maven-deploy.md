@@ -37,7 +37,7 @@ TODO：这个约束应该要去掉。使用`JDK 8`能发布挺好 :")
 ## 1. 发布 COLA Components
 
 先确认版本号，去掉`SNAPSHOT`，如`4.x.y`。  
-更新版本操作可以通过脚本[`bump-cola-vesion.sh`](bump-cola-version.sh)来统一完成。
+更新版本操作可以通过脚本[`bump_cola_version`](bump_cola_version)来统一完成。
 
 在[COLA Components的根目录](../cola-components)，执行发布
 
@@ -57,7 +57,7 @@ TODO：这个约束应该要去掉。使用`JDK 8`能发布挺好 :")
     - [`cola-archetypes/cola-archetype-service/src/main/resources/archetype-resources/pom.xml`](../cola-archetypes/cola-archetype-service/src/main/resources/archetype-resources/pom.xml)
     - [`cola-archetypes/cola-archetype-web/src/main/resources/archetype-resources/pom.xml`](../cola-archetypes/cola-archetype-web/src/main/resources/archetype-resources/pom.xml)
 
-更新版本操作可以通过脚本[`bump-cola-vesion.sh`](bump-cola-version.sh)来统一完成。
+更新版本操作可以通过脚本[`bump_cola_version`](bump_cola_version)来统一完成。
 
 在[COLA Archetype的根目录](../cola-archetypes)，执行发布
 
