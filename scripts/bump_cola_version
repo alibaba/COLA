@@ -3,43 +3,46 @@ set -eEuo pipefail
 # adjust current dir to script dir
 cd "$(dirname "$(readlink -f "$0")")"
 
-source common.sh
-source common_build.sh
+source bash-buddy/lib/trap_error_info.sh
+source bash-buddy/lib/common_utils.sh
+source bash-buddy/lib/java_build_utils.sh
+
+readonly nl=$'\n' # new line
 
 # shellcheck disable=SC2154
-[ $# -ne 1 ] && die "need only 1 argument for version!$nl${nl}usage:$nl  $0 4.x.y"
+[ $# -ne 1 ] && cu::die "need only 1 argument for version!$nl${nl}usage:$nl  $0 4.x.y"
 readonly bump_version="$1"
 
 (
-    headInfo "bump cola version of cola-components to $bump_version"
+    cu::head_line_echo "bump cola version of cola-components to $bump_version"
     cd ../cola-components/
 
-    MVN_WITH_BASIC_OPTIONS \
+    jvb::mvn_cmd \
         org.codehaus.mojo:versions-maven-plugin:2.8.1:set \
         -DgenerateBackupPoms=false \
         -DnewVersion="$bump_version"
 )
 
 (
-    headInfo "bump cola version of cola-archetypes to $bump_version"
+    cu::head_line_echo "bump cola version of cola-archetypes to $bump_version"
     cd ../cola-archetypes/
 
-    MVN_WITH_BASIC_OPTIONS \
+    jvb::mvn_cmd \
         org.codehaus.mojo:versions-maven-plugin:2.8.1:set \
         -DgenerateBackupPoms=false \
         -DnewVersion="$bump_version"
 
-    logAndRun -s \
+    cu::log_then_run -s \
         sed -ri 's~(<cola.components.version>)(.*)(</cola.components.version>)~\1'"$bump_version"'\3~' \
         cola-archetype-service/src/main/resources/archetype-resources/pom.xml \
         cola-archetype-web/src/main/resources/archetype-resources/pom.xml
 )
 
 (
-    headInfo "bump cola version of samples to $bump_version"
+    cu::head_line_echo "bump cola version of samples to $bump_version"
     cd ../samples/
 
-    logAndRun -s \
-        sed -ri 's~(<cola.framework.version>)(.*)(</cola.framework.version>)~\1'"$bump_version"'\3~' \
+    cu::log_then_run -s \
+        sed -ri 's~(<cola.components.version>)(.*)(</cola.components.version>)~\1'"$bump_version"'\3~' \
         craftsman/pom.xml
 )

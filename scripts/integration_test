@@ -117,9 +117,6 @@ test_cola_archetype() {
 # default jdk 11, do build and test
 ########################################
 
-export CI_TEST_MODE=true
-export DCM_AGENT_SUPRESS_EXCEPTION_STACK=true
-
 default_build_jdk_version=11
 
 prepare_jdks::switch_java_home_to_jdk "$default_build_jdk_version"
@@ -132,7 +129,6 @@ test_cola_archetype
 
 ########################################
 # test multi-version java
-# shellcheck disable=SC2154
 ########################################
 for jhome_var_name in "${JDK_HOME_VAR_NAMES[@]}"; do
     # already tested by above `mvn install`
