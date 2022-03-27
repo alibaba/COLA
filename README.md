@@ -11,9 +11,15 @@
 <strong>COLA 是 Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”。
 目前COLA已经发展到[COLA 4.0](https://blog.csdn.net/significantfrank/article/details/110934799)。</strong>
 
+想了解更多COLA信息，请关注微信公众号：
+
+![qrcode_60.jpg](https://img-blog.csdnimg.cn/2020110314110321.png#pic_center)
+
+想了解更多COLA背后的故事，请支持我的新书[《程序员的底层思维》](https://item.jd.com/13652002.html)
+
 COLA分为两个部分，COLA架构和COLA组件。
 
-# COLA架构
+# 一、COLA架构
 
 ## COLA 概述
 
@@ -49,7 +55,7 @@ COLA架构区别于这些架构的地方，在于除了思想之外，我们还�
 1. `cola-archetype-service`：用来创建纯后端服务的`archetype`。
 2. `cola-archetype-web`：用来创建`adapter`和后端服务一体的`web`应用`archetype`。
 
-# COLA Components
+# 二、COLA组件
 
 此外，我们还提供了一些非常有用的通用组件，这些组件可以帮助我们提升研发效率。
 
@@ -65,7 +71,7 @@ COLA架构区别于这些架构的地方，在于除了思想之外，我们还�
 `cola-component-extension-starter` | 扩展点组件 | 1.0.0 |无
 `cola-component-test-container` | 测试容器组件 | 1.0.0 |无
 
-# 如何使用COLA
+# 三、如何使用COLA
 
 ## 1. 创建应用
 
@@ -135,8 +141,4 @@ https://blog.csdn.net/significantfrank/article/details/100074716
 
 https://blog.csdn.net/significantfrank/article/details/85785565
 
-关于COLA的更多信息，请关注微信公众号：
 
-![qrcode_60.jpg](https://img-blog.csdnimg.cn/2020110314110321.png#pic_center)
-
-如果你有技术热情，对阿里有兴趣，可以email：fulan.zjf@alibaba-inc.com
