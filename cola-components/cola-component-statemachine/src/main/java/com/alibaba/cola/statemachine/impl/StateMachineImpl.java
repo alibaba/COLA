@@ -40,7 +40,7 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
             return sourceStateId;
         }
 
-        return transition.transit(ctx).getId();
+        return transition.transit(ctx, false).getId();
     }
 
     private Transition<S, E, C> routeTransition(S sourceStateId, E event, C ctx) {
