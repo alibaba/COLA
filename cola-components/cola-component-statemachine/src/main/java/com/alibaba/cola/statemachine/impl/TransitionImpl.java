@@ -83,10 +83,10 @@ public class TransitionImpl<S,E,C> implements Transition<S,E,C> {
     }
 
     @Override
-    public State<S, E, C> transit(C ctx) {
+    public State<S, E, C> transit(C ctx, boolean checkCondition) {
         Debugger.debug("Do transition: "+this);
         this.verify();
-        if(condition == null || condition.isSatisfied(ctx)){
+        if (!checkCondition || condition == null || condition.isSatisfied(ctx)) {
             if(action != null){
                 action.execute(source.getId(), target.getId(), event, ctx);
             }
