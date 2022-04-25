@@ -42,7 +42,7 @@ COLA架构就是为此而生，其核心职责就是定义良好的应用结构�
 
 经过多次迭代，我们定义出了相对稳定、可靠的应用架构：COLA 4.0
 
-![cola](https://img-blog.csdnimg.cn/20201209182934838.png)
+![cola](https://img-blog.csdnimg.cn/6549230c6723448fb3ab51ca74829e80.png)
 
 ## COLA Archetype
 
