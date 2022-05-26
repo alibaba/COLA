@@ -18,6 +18,10 @@
             <groupId>com.alibaba.craftsman</groupId>
             <artifactId>craftsman-domain</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba.craftsman</groupId>
+            <artifactId>craftsman-client</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
