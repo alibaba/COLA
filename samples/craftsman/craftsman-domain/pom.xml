@@ -26,10 +26,6 @@
             <groupId>com.alibaba.cola</groupId>
             <artifactId>cola-component-exception</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba.craftsman</groupId>
-            <artifactId>craftsman-client</artifactId>
-        </dependency>
         <!-- COLA Framework End-->
         <dependency>
             <groupId>junit</groupId>
@@ -42,6 +38,10 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 
