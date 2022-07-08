@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = {CatchLogAutoConfiguration.class, Demo.class, CatchLogAspect.class})
+@SpringBootTest(classes = {CatchLogAutoConfiguration.class, Demo.class, CatchLogAspect.class, Application.class})
 public class CatchLogTest {
 
     @Resource

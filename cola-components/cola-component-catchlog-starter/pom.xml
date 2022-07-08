@@ -102,7 +102,6 @@
             <artifactId>cola-component-exception</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!-- 测试包 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

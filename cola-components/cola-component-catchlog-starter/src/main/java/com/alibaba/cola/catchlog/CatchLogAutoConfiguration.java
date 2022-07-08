@@ -20,4 +20,6 @@ public class CatchLogAutoConfiguration {
     public CatchLogAspect catchLogAspect() {
         return new CatchLogAspect();
     }
+
+
 }

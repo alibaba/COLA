@@ -171,7 +171,13 @@ public class StateMachineTest {
 
 
     private Condition<Context> checkCondition() {
-        return (ctx) -> {return true;};
+        return new Condition<Context>() {
+            @Override
+            public boolean isSatisfied(Context context) {
+                System.out.println("Check condition : "+context);
+                return true;
+            }
+        };
     }
 
     private Action<States, Events, Context> doAction() {

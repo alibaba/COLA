@@ -94,8 +94,12 @@ public class Demo implements ApplicationContextAware {
     }
 
     @AllArgsConstructor
-    public static class DemoResponse {
+    public static class DemoResponse extends Response{
         public String name;
         public boolean isSuccess;
+
+        public DemoResponse(){
+
+        }
     }
 }

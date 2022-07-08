@@ -4,6 +4,7 @@ package com.alibaba.cola.catchlog;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
  * ResponseHandler
@@ -12,16 +13,17 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2020-11-10 3:18 PM
  */
 @Slf4j
-public class ResponseHandler {
+public class DefaultResponseHandler implements ResponseHandlerI{
 
-    public static Object handle(Class returnType, String errCode, String errMsg){
+    @Override
+    public  Object handle(Class returnType, String errCode, String errMsg){
         if (isColaResponse(returnType)){
             return handleColaResponse(returnType, errCode, errMsg);
         }
         return null;
     }
 
-    public static Object handle(Class returnType, BaseException e){
+    public  Object handle(Class returnType, BaseException e){
         return handle(returnType, e.getErrCode(), e.getMessage());
     }
 
