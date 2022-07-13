@@ -19,7 +19,7 @@
         <module>cola-components</module>
         <module>cola-archetypes</module>
 
-        <module>samples/craftsman</module>
+        <module>cola-samples/craftsman</module>
     </modules>
 
     <properties>
