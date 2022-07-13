@@ -22,12 +22,4 @@
         <module>cola-samples/craftsman</module>
         <module>cola-samples/charge</module>
     </modules>
-
-    <properties>
-        <!--
-            skip maven deploy for cola-dump-aggregation-parent
-            https://maven.apache.org/plugins/maven-deploy-plugin/deploy-mojo.html#skip
-        -->
-        <maven.deploy.skip>true</maven.deploy.skip>
-    </properties>
 </project>
