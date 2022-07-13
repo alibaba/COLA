@@ -41,12 +41,15 @@ for:
       - scripts/integration_test
 
     after_test:
-      # clear self maven install
+      # clear self maven install files
       - rm -rf $HOME/.m2/repository/com/alibaba/cola
       - rm -rf $HOME/.m2/repository/com/alibaba/craftsman
       - rm -rf $HOME/.m2/repository/com/alibaba/demo
+      # remove maven install files
       - rm -rf $HOME/.m2/wrapper/dists/*/*/*.zip
+      # remove sdkman install files
       - rm -rf $HOME/.sdkman/archives/*
+      - rm -rf $HOME/.sdkman/tmp/*
 
     cache:
       # if cache size is exceed appveyor limit:
