@@ -12,7 +12,7 @@
     -->
     <groupId>com.alibaba.cola</groupId>
     <artifactId>cola-dummy-aggregation-parent</artifactId>
-    <version>dummy</version>
+    <version>dummy-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -20,6 +20,7 @@
         <module>cola-archetypes</module>
 
         <module>cola-samples/craftsman</module>
+        <module>cola-samples/charge</module>
     </modules>
 
     <properties>
