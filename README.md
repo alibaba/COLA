@@ -1,9 +1,11 @@
 # 🥤 COLA 4.0
 
-[![Build Status](https://img.shields.io/appveyor/ci/oldratlee/cola/master?logo=appveyor&logoColor=white)](https://ci.appveyor.com/project/oldratlee/cola)
+[![Github Workflow Build Status](https://img.shields.io/github/workflow/status/alibaba/cola/CI/master?logo=github&logoColor=white)](https://github.com/alibaba/cola/actions/workflows/ci.yaml)
+[![Appveyor Build Status](https://img.shields.io/appveyor/ci/oldratlee/cola/master?logo=appveyor&logoColor=white)](https://ci.appveyor.com/project/oldratlee/cola)
 [![Maven Central](https://img.shields.io/maven-central/v/com.alibaba.cola/cola-component-dto.svg?logo=apache-maven&color=2d545e)](https://search.maven.org/search?q=g:com.alibaba.cola)
-[![GitHub release](https://img.shields.io/github/release/alibaba/COLA.svg) ![Java support](https://img.shields.io/badge/Java-8+-green?logo=java&logoColor=white)](https://github.com/alibaba/COLA/releases)  
-[![License](https://img.shields.io/badge/license-LGPL%202.1-4EB1BA.svg)](LICENSE)
+[![GitHub release](https://img.shields.io/github/release/alibaba/COLA.svg)
+![Java support](https://img.shields.io/badge/Java-8+-green?logo=OpenJDK&logoColor=white)](https://openjdk.java.net/)  
+[![License](https://img.shields.io/badge/license-LGPL%202.1-4EB1BA.svg?color=4D7A97&logo=apache)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/alibaba/COLA)](https://github.com/alibaba/COLA/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/alibaba/COLA)](https://github.com/alibaba/COLA/fork)
 [![GitHub issues](https://img.shields.io/github/issues/alibaba/COLA.svg)](https://github.com/alibaba/COLA/issues)
