@@ -9,7 +9,7 @@
 
     <artifactId>${artifactId}</artifactId>
     <packaging>jar</packaging>
-    <name>${project.artifactId}:${project.version}</name>
+    <name>${project.artifactId}</name>
     <description>${project.artifactId}</description>
     <url>https://github.com/alibaba/COLA</url>
 
