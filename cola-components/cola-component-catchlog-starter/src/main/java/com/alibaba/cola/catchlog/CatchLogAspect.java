@@ -67,7 +67,7 @@ public class CatchLogAspect {
         if (e instanceof SysException) {
             log.error("SYS EXCEPTION :");
             log.error(e.getMessage(), e);
-            return ResponseHandlerFactory.get().handle(returnType, ((BizException) e).getErrCode(), e.getMessage());
+            return ResponseHandlerFactory.get().handle(returnType, ((SysException) e).getErrCode(), e.getMessage());
         }
 
         log.error("UNKNOWN EXCEPTION :");

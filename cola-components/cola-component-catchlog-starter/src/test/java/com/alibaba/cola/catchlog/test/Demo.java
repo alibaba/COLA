@@ -68,7 +68,7 @@ public class Demo implements ApplicationContextAware {
         }
     }
 
-    public SingleResponse executeWithBizExceptionAndResponse(){
+    public Response executeWithBizExceptionAndResponse(){
         if(true){
             throw new BizException("execute With BizException And Response");
         }
