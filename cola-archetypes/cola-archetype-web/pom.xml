@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.alibaba.cola</groupId>
-        <artifactId>cola-archetypes-parent</artifactId>
+        <artifactId>cola-framework-archetypes-parent</artifactId>
         <version>4.2.0-SNAPSHOT</version>
     </parent>
 
