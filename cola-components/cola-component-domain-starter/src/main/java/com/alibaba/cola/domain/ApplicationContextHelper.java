@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @author Frank Zhang
  * @date 2020-11-14 1:58 PM
  */
-@Component
+@Component("colaDomainApplicationContextHelper")
 public class ApplicationContextHelper implements ApplicationContextAware {
     private static ApplicationContext applicationContext;
 
