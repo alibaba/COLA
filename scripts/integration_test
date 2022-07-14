@@ -29,8 +29,8 @@ source bash-buddy/lib/java_build_utils.sh
 #
 # shellcheck disable=SC2034
 JVB_MVN_OPTS=(
-    "${JVB_DEFAULT_MVN_OPTS[@]}"
-    -DperformRelease -P'!gen-sign'
+  "${JVB_DEFAULT_MVN_OPTS[@]}"
+  -DperformRelease -P'!gen-sign'
 )
 
 ################################################################################
@@ -40,78 +40,79 @@ JVB_MVN_OPTS=(
 cd ..
 
 extractFirstElementValueFromPom() {
-    (($# == 2)) || die "${FUNCNAME[0]} need only 2 arguments, actual arguments: $*"
+  (($# == 2)) || die "${FUNCNAME[0]} need only 2 arguments, actual arguments: $*"
 
-    local element=$1
-    local pom_file=$2
-    grep \<"$element"'>.*</'"$element"\> "$pom_file" | awk -F'</?'"$element"\> 'NR==1 {print $2}'
+  local element=$1
+  local pom_file=$2
+  grep \<"$element"'>.*</'"$element"\> "$pom_file" | awk -F'</?'"$element"\> 'NR==1 {print $2}'
 }
 
 test_cola_archetype() {
-    local bkp_mvn_opts=("${JVB_MVN_OPTS[@]}")
+  (
     JVB_MVN_OPTS=("${JVB_DEFAULT_MVN_OPTS[@]}")
+    readonly archetype_name=cola-framework-archetype-service
 
-    (
-        cu::head_line_echo "test archetype:generate by cola-framework-archetype-service"
+    cu::head_line_echo "test archetype:generate by $archetype_name"
 
-        # NOTE: DO NOT declare archetypeVersion var as readonly, its value is supplied by subshell.
-        archetypeVersion=$(extractFirstElementValueFromPom version cola-archetypes/cola-archetype-service/pom.xml)
+    # NOTE: DO NOT declare archetypeVersion var as readonly, its value is supplied by subshell.
+    archetypeVersion=$(extractFirstElementValueFromPom version cola-archetypes/cola-archetype-service/pom.xml)
 
-        # shellcheck disable=SC2030
-        readonly demo_dir="cola-archetypes/target/cola-framework-archetype-service-demo"
-        rm -rf "$demo_dir"
-        mkdir -p "$demo_dir"
-        cd "$demo_dir"
+    # shellcheck disable=SC2030
+    readonly demo_dir="cola-archetypes/target/$archetype_name-demo"
+    rm -rf "$demo_dir"
+    mkdir -p "$demo_dir"
+    cd "$demo_dir"
 
-        # shellcheck disable=SC2030
-        readonly artifactId=demo-service
+    # shellcheck disable=SC2030
+    readonly artifactId=demo-service
 
-        jvb::mvn_cmd archetype:generate \
-            -DgroupId=com.alibaba.cola.demo.archetype-service \
-            -DartifactId="$artifactId" \
-            -Dversion=1.0.0-SNAPSHOT \
-            -Dpackage=com.alibaba.cola.demo.service \
-            -DarchetypeGroupId=com.alibaba.cola \
-            -DarchetypeArtifactId=cola-framework-archetype-service \
-            -DarchetypeVersion="$archetypeVersion" \
-            -DinteractiveMode=false \
-            -DarchetypeCatalog=local
+    jvb::mvn_cmd archetype:generate \
+      -DgroupId=com.alibaba.cola.demo.archetype-service \
+      -DartifactId="$artifactId" \
+      -Dversion=1.0.0-SNAPSHOT \
+      -Dpackage=com.alibaba.cola.demo.service \
+      -DarchetypeGroupId=com.alibaba.cola \
+      -DarchetypeArtifactId=$archetype_name \
+      -DarchetypeVersion="$archetypeVersion" \
+      -DinteractiveMode=false \
+      -DarchetypeCatalog=local
 
-        cd "$artifactId"
-        jvb::mvn_cmd install
-    )
+    cd "$artifactId"
+    jvb::mvn_cmd install
+  )
 
-    (
-        cu::head_line_echo "test archetype:generate by cola-framework-archetype-web"
+  (
+    JVB_MVN_OPTS=("${JVB_DEFAULT_MVN_OPTS[@]}")
+    readonly archetype_name=cola-framework-archetype-web
 
-        # NOTE: DO NOT declare archetypeVersion var as readonly, its value is supplied by subshell.
-        archetypeVersion=$(extractFirstElementValueFromPom version cola-archetypes/cola-archetype-web/pom.xml)
+    cu::head_line_echo "test archetype:generate by $archetype_name"
 
-        # shellcheck disable=SC2031
-        readonly demo_dir="cola-archetypes/target/cola-framework-archetype-web-demo"
-        rm -rf "$demo_dir"
-        mkdir -p "$demo_dir"
-        cd "$demo_dir"
+    # NOTE: DO NOT declare archetypeVersion var as readonly, its value is supplied by subshell.
+    archetypeVersion=$(extractFirstElementValueFromPom version cola-archetypes/cola-archetype-web/pom.xml)
 
-        # shellcheck disable=SC2031
-        readonly artifactId=demo-web
+    # shellcheck disable=SC2031
+    readonly demo_dir="cola-archetypes/target/$archetype_name-demo"
+    rm -rf "$demo_dir"
+    mkdir -p "$demo_dir"
+    cd "$demo_dir"
 
-        jvb::mvn_cmd archetype:generate \
-            -DgroupId=com.alibaba.cola.demo.archetype-web \
-            -DartifactId="$artifactId" \
-            -Dversion=1.0.0-SNAPSHOT \
-            -Dpackage=com.alibaba.cola.demo.web \
-            -DarchetypeGroupId=com.alibaba.cola \
-            -DarchetypeArtifactId=cola-framework-archetype-web \
-            -DarchetypeVersion="$archetypeVersion" \
-            -DinteractiveMode=false \
-            -DarchetypeCatalog=local
+    # shellcheck disable=SC2031
+    readonly artifactId=demo-web
 
-        cd "$artifactId"
-        jvb::mvn_cmd install
-    )
+    jvb::mvn_cmd archetype:generate \
+      -DgroupId=com.alibaba.cola.demo.archetype-web \
+      -DartifactId="$artifactId" \
+      -Dversion=1.0.0-SNAPSHOT \
+      -Dpackage=com.alibaba.cola.demo.web \
+      -DarchetypeGroupId=com.alibaba.cola \
+      -DarchetypeArtifactId=$archetype_name \
+      -DarchetypeVersion="$archetypeVersion" \
+      -DinteractiveMode=false \
+      -DarchetypeCatalog=local
 
-    JVB_MVN_OPTS=("${bkp_mvn_opts[@]}")
+    cd "$artifactId"
+    jvb::mvn_cmd install
+  )
 }
 
 ########################################
@@ -130,15 +131,15 @@ test_cola_archetype
 # test multi-version java
 ########################################
 for jdk in "${PREPARE_JDKS_INSTALL_BY_SDKMAN[@]}"; do
-    # default jdk already tested above
-    [ "$jdk" = "$default_build_jdk_version" ] && continue
+  # default jdk already tested above
+  [ "$jdk" = "$default_build_jdk_version" ] && continue
 
-    prepare_jdks::switch_to_jdk "$jdk"
+  prepare_jdks::switch_to_jdk "$jdk"
 
-    cu::head_line_echo "test with Java: $JAVA_HOME"
+  cu::head_line_echo "test with Java: $JAVA_HOME"
 
-    # just test without build
-    jvb::mvn_cmd surefire:test
+  # just test without build
+  jvb::mvn_cmd surefire:test
 
-    test_cola_archetype
+  test_cola_archetype
 done
