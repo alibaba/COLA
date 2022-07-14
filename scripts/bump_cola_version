@@ -40,7 +40,7 @@ readonly bump_version="$1"
 
 (
     cu::head_line_echo "bump cola version of samples to $bump_version"
-    cd ../samples/
+    cd ../cola-samples/
 
     cu::log_then_run -s \
         sed -ri 's~(<cola.components.version>)(.*)(</cola.components.version>)~\1'"$bump_version"'\3~' \
