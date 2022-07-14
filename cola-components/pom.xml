@@ -67,7 +67,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <spring.boot.version>2.2.6.RELEASE</spring.boot.version>
-        <spring.version>5.2.2.RELEASE</spring.version>
+        <spring.version>5.3.22</spring.version>
         <lombok.version>1.18.22</lombok.version>
         <logback.version>1.2.10</logback.version>
     </properties>
