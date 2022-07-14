@@ -3,8 +3,8 @@
 [![Github Workflow Build Status](https://img.shields.io/github/workflow/status/alibaba/cola/CI/master?logo=github&logoColor=white)](https://github.com/alibaba/cola/actions/workflows/ci.yaml)
 [![Appveyor Build Status](https://img.shields.io/appveyor/ci/oldratlee/cola/master?logo=appveyor&logoColor=white)](https://ci.appveyor.com/project/oldratlee/cola)
 [![Maven Central](https://img.shields.io/maven-central/v/com.alibaba.cola/cola-component-dto.svg?logo=apache-maven&color=2d545e)](https://search.maven.org/search?q=g:com.alibaba.cola)
-[![GitHub release](https://img.shields.io/github/release/alibaba/COLA.svg)
-![Java support](https://img.shields.io/badge/Java-8+-green?logo=OpenJDK&logoColor=white)](https://openjdk.java.net/)  
+[![GitHub release](https://img.shields.io/github/release/alibaba/COLA.svg)](https://github.com/alibaba/COLA/releases)
+[![Java support](https://img.shields.io/badge/Java-8+-green?logo=OpenJDK&logoColor=white)](https://openjdk.java.net/)
 [![License](https://img.shields.io/badge/license-LGPL%202.1-4EB1BA.svg?color=4D7A97&logo=apache)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/alibaba/COLA)](https://github.com/alibaba/COLA/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/alibaba/COLA)](https://github.com/alibaba/COLA/fork)
@@ -13,11 +13,9 @@
 <strong>COLA 是 Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”。
 目前COLA已经发展到[COLA 4.0](https://blog.csdn.net/significantfrank/article/details/110934799)。</strong>
 
-想了解更多COLA信息，请关注微信公众号：
-
-![qrcode_60.jpg](https://img-blog.csdnimg.cn/2020110314110321.png#pic_center)
-
-想了解更多COLA背后的故事，请支持我的新书[《程序员的底层思维》](https://item.jd.com/13652002.html)
+> - 想了解更多COLA信息，请关注微信公众号：  
+> ![qrcode_60.jpg](https://img-blog.csdnimg.cn/2020110314110321.png#pic_center)
+> - 想了解更多COLA背后的故事，请支持我的新书[《程序员的底层思维》](https://item.jd.com/13652002.html)
 
 COLA分为两个部分，COLA架构和COLA组件。
 
