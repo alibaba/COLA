@@ -1,4 +1,4 @@
-# 🥤 COLA 4.0
+# 🥤 COLA v4
 
 [![Github Workflow Build Status](https://img.shields.io/github/workflow/status/alibaba/cola/CI/master?logo=github&logoColor=white)](https://github.com/alibaba/cola/actions/workflows/ci.yaml)
 [![Appveyor Build Status](https://img.shields.io/appveyor/ci/oldratlee/cola/master?logo=appveyor&logoColor=white)](https://ci.appveyor.com/project/oldratlee/cola)
@@ -11,7 +11,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/alibaba/COLA.svg)](https://github.com/alibaba/COLA/issues)
 
 <strong>COLA 是 Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”。
-目前COLA已经发展到[COLA 4.0](https://blog.csdn.net/significantfrank/article/details/110934799)。</strong>
+目前COLA已经发展到[COLA v4](https://blog.csdn.net/significantfrank/article/details/110934799)。</strong>
 
 > - 想了解更多COLA信息，请关注微信公众号：  
 > ![qrcode_60.jpg](https://img-blog.csdnimg.cn/2020110314110321.png#pic_center)
@@ -40,7 +40,7 @@ COLA架构就是为此而生，其核心职责就是定义良好的应用结构�
 
 ![cure](https://img-blog.csdnimg.cn/2020120918285068.png)
 
-经过多次迭代，我们定义出了相对稳定、可靠的应用架构：COLA 4.0
+经过多次迭代，我们定义出了相对稳定、可靠的应用架构：COLA v4
 
 ![cola](https://img-blog.csdnimg.cn/6549230c6723448fb3ab51ca74829e80.png)
 
@@ -85,7 +85,7 @@ mvn archetype:generate  \
     -Dpackage=com.alibaba.demo \
     -DarchetypeArtifactId=cola-framework-archetype-web \
     -DarchetypeGroupId=com.alibaba.cola \
-    -DarchetypeVersion=4.0.1
+    -DarchetypeVersion=4.2.1
 ```
 
 命令执行成功的话，会看到如下的应用代码结构：
@@ -111,7 +111,7 @@ mvn archetype:generate  \
     -Dpackage=com.alibaba.demo \
     -DarchetypeArtifactId=cola-framework-archetype-service \
     -DarchetypeGroupId=com.alibaba.cola \
-    -DarchetypeVersion=4.0.1
+    -DarchetypeVersion=4.2.1
 ```
 
 # 版本迭代
