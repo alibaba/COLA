@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.alibaba.cola</groupId>
         <artifactId>cola-framework-archetypes-parent</artifactId>
-        <version>4.2.0-SNAPSHOT</version>
+        <version>4.2.0</version>
     </parent>
 
     <artifactId>cola-framework-archetype-web</artifactId>
