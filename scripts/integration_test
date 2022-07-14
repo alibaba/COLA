@@ -129,11 +129,11 @@ test_cola_archetype
 ########################################
 # test multi-version java
 ########################################
-for jhome_var_name in "${JDK_HOME_VAR_NAMES[@]}"; do
-    # already tested by above `mvn install`
-    [ "JDK${default_build_jdk_version}_HOME" = "$jhome_var_name" ] && continue
+for jdk in "${PREPARE_JDKS_INSTALL_BY_SDKMAN[@]}"; do
+    # default jdk already tested above
+    [ "$jdk" = "$default_build_jdk_version" ] && continue
 
-    prepare_jdks::switch_to_jdk "${!jhome_var_name}"
+    prepare_jdks::switch_to_jdk "$jdk"
 
     cu::head_line_echo "test with Java: $JAVA_HOME"
 
