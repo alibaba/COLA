@@ -132,7 +132,7 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.22</version>
+                <version>1.18.24</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
