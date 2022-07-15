@@ -55,6 +55,7 @@
         <module>cola-component-dto</module>
         <module>cola-component-exception</module>
         <module>cola-component-statemachine</module>
+        <module>cola-component-statemachine-starter</module>
         <module>cola-component-domain-starter</module>
         <module>cola-component-extension-starter</module>
         <module>cola-component-catchlog-starter</module>

@@ -9,8 +9,6 @@ import com.alibaba.cola.statemachine.impl.StateMachineException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static com.alibaba.cola.test.StateMachineTest.MACHINE_ID;
-
 /**
  * StateMachineUnNormalTest
  *
@@ -44,6 +42,8 @@ public class StateMachineUnNormalTest {
                 .on(StateMachineTest.Events.EVENT1)
                 .when(checkCondition())
                 .perform(doAction());
+
+
 
         builder.externalTransition()
                 .from(StateMachineTest.States.STATE1)
