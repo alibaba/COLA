@@ -1,17 +1,13 @@
 package com.alibaba.cola.statemachine.spring.support;
 
 
-
 import com.alibaba.cola.statemachine.StateMachine;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilder;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.annotation.Order;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Logger;
 
-@Order
 @Slf4j
 public class StateMachineSupport {
 
