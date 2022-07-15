@@ -26,3 +26,4 @@
     ```
     先根据machineId常量获取对应的状态机实例,然后执行fireEvent方法,第一个参数表示from变化前状态,第二个参数on表示在什么场景下触发,第三个参数传入model实体
     > 详细可见测试类
+    > com.alibaba.cola.statemachine.spring.StateMachineTest 
