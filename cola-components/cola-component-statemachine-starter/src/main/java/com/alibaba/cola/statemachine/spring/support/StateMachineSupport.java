@@ -11,16 +11,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
-/**
- * @Title: StateMachineSupport.java
- * @Package com.fcbox.tools.common.statemachine
- * @Description: 状态机自动注册
- * @Author: 003587
- * @Date: 2022/2/8 11:39
- * @Version V1.0
- * @Copyright: 2021 Shenzhen Hive Box Technology Co.,Ltd All rights reserved.
- * @Note: This content is limited to the internal circulation of Hive Box, and it is prohibited to leak or used for other commercial purposes.
- */
 @Order
 @Slf4j
 public class StateMachineSupport {
