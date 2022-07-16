@@ -34,7 +34,7 @@ after_test:
   - rm -rf $HOME/.m2/repository/com/alibaba/cola
   - rm -rf $HOME/.m2/repository/com/alibaba/craftsman
   - rm -rf $HOME/.m2/repository/com/alibaba/demo
-  - rm -rf $HOME/.m2/repository/org/huawei/charge*
+  - rm -rf $HOME/.m2/repository/org/huawei/charg*
   # remove maven install files
   - rm -rf $HOME/.m2/wrapper/dists/*/*/*.zip
   # remove sdkman install files
