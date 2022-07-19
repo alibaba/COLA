@@ -34,23 +34,10 @@
             <!--COLA components-->
             <dependency>
                 <groupId>com.alibaba.cola</groupId>
-                <artifactId>cola-component-domain-starter</artifactId>
+                <artifactId>cola-components-bom</artifactId>
                 <version>${cola.components.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cola</groupId>
-                <artifactId>cola-component-exception</artifactId>
-                <version>${cola.components.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cola</groupId>
-                <artifactId>cola-component-dto</artifactId>
-                <version>${cola.components.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cola</groupId>
-                <artifactId>cola-component-catchlog-starter</artifactId>
-                <version>${cola.components.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <!--COLA components End-->
 
