@@ -29,7 +29,7 @@ readonly bump_version="$1"
     cd ../cola-archetypes/
 
     jvb::mvn_cmd \
-        org.codehaus.mojo:versions-maven-plugin:2.8.1:set \
+        org.codehaus.mojo:versions-maven-plugin:2.11.0:set \
         -DgenerateBackupPoms=false \
         -DnewVersion="$bump_version"
 

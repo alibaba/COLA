@@ -68,6 +68,7 @@
                 <version>${project.version}</version>
             </dependency>
             <!--Project modules End-->
+
             <!--Spring Boot-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -82,17 +83,12 @@
                 <version>${mybatis-starter.version}</version>
             </dependency>
             <!--Spring Boot End-->
+
             <!--Validation API-->
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>2.0.0.Final</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate.validator</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>6.0.22.Final</version>
-            </dependency>
+            <!--
+                javax.validation:javax.validation and org.hibernate.validator:hibernate-validator
+                are decleared in spring-boot-dependencies
+            -->
             <dependency>
                 <groupId>javax.el</groupId>
                 <artifactId>javax.el-api</artifactId>
@@ -104,21 +100,22 @@
                 <version>2.2.6</version>
             </dependency>
             <!--Validation API End -->
+
             <!-- Misc -->
             <dependency>
                 <groupId>org.reflections</groupId>
                 <artifactId>reflections</artifactId>
-                <version>0.9.10</version>
+                <version>0.10.2</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.22</version>
+                <version>1.18.24</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
-                <version>3.4</version>
+                <version>3.12.0</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -141,7 +138,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>3.2.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -151,7 +148,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.9.0</version>
+                    <version>3.10.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-deploy-plugin</artifactId>
