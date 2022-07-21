@@ -67,7 +67,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <spring.boot.version>2.2.6.RELEASE</spring.boot.version>
+        <spring.boot.version>2.7.2</spring.boot.version>
         <spring.version>5.3.22</spring.version>
         <lombok.version>1.18.24</lombok.version>
         <logback.version>1.2.11</logback.version>
