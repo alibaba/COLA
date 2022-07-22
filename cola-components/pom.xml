@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.alibaba.cola</groupId>
@@ -68,13 +69,18 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <spring.boot.version>2.2.6.RELEASE</spring.boot.version>
-        <spring.version>5.3.22</spring.version>
 
         <lombok.version>1.18.24</lombok.version>
         <logback.version>1.2.11</logback.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- 测试包 -->
         <dependency>
             <groupId>junit</groupId>
@@ -195,7 +201,8 @@
                 <artifactId>versions-maven-plugin</artifactId>
                 <version>2.11.0</version>
                 <configuration>
-                    <rulesUri>file://${maven.multiModuleProjectDirectory}/cola-component-dto/src/versions-rules.xml</rulesUri>
+                    <rulesUri>file://${maven.multiModuleProjectDirectory}/cola-component-dto/src/versions-rules.xml
+                    </rulesUri>
                     <generateBackupPoms>false</generateBackupPoms>
                 </configuration>
             </plugin>
@@ -368,7 +375,9 @@
                                 </validationProperty>
                             </validationProperties>
                             <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                            <generateGitPropertiesFilename>${project.build.outputDirectory}/META-INF/scm/${project.groupId}/${project.artifactId}/git.properties</generateGitPropertiesFilename>
+                            <generateGitPropertiesFilename>
+                                ${project.build.outputDirectory}/META-INF/scm/${project.groupId}/${project.artifactId}/git.properties
+                            </generateGitPropertiesFilename>
                         </configuration>
                     </plugin>
                 </plugins>
