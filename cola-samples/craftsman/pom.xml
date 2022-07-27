@@ -46,15 +46,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--COLA components-->
-            <dependency>
-                <groupId>com.alibaba.cola</groupId>
-                <artifactId>cola-components-bom</artifactId>
-                <version>${cola.components.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!--COLA components End-->
             <!--Project modules-->
             <dependency>
                 <groupId>com.alibaba.craftsman</groupId>
@@ -81,9 +72,15 @@
                 <artifactId>craftsman-infrastructure</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--Project modules End-->
 
-            <!--Spring Boot-->
+            <!--Project modules End-->
+            <dependency>
+                <groupId>com.alibaba.cola</groupId>
+                <artifactId>cola-components-bom</artifactId>
+                <version>${cola.components.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -96,7 +93,6 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-starter.version}</version>
             </dependency>
-            <!--Spring Boot End-->
 
             <!--Validation API-->
             <!--
@@ -116,11 +112,6 @@
             <!--Validation API End -->
 
             <!-- Misc -->
-            <dependency>
-                <groupId>org.reflections</groupId>
-                <artifactId>reflections</artifactId>
-                <version>0.10.2</version>
-            </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
@@ -153,6 +144,7 @@
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>3.0.0</version>
                 </plugin>
+
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>

@@ -20,11 +20,11 @@
         </dependency>
         <dependency>
             <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-component-domain-starter</artifactId>
+            <artifactId>cola-component-exception</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-component-exception</artifactId>
+            <artifactId>cola-component-domain-starter</artifactId>
         </dependency>
         <!-- COLA Framework End-->
         <dependency>

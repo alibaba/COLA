@@ -15,10 +15,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.alibaba.cola</groupId>
-            <artifactId>cola-component-catchlog-starter</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba.craftsman</groupId>
             <artifactId>craftsman-client</artifactId>
         </dependency>
@@ -26,6 +22,12 @@
             <groupId>com.alibaba.craftsman</groupId>
             <artifactId>craftsman-infrastructure</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cola</groupId>
+            <artifactId>cola-component-catchlog-starter</artifactId>
+        </dependency>
+
         <!-- JSR 303 Validation -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
