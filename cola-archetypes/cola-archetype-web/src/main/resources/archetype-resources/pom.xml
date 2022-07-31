@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <cola.components.version>4.3.0-SNAPSHOT</cola.components.version>
+        <cola.components.version>4.4.0-SNAPSHOT</cola.components.version>
 
         <spring-boot.version>2.7.2</spring-boot.version>
         <mybatis-starter.version>2.2.2</mybatis-starter.version>
