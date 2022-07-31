@@ -134,10 +134,6 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>3.2.1</version>
-                </plugin>
-                <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>3.3.0</version>
                 </plugin>
