@@ -81,14 +81,14 @@ COLA架构区别于这些架构的地方，在于除了思想之外，我们还�
 执行以下命令：
 
 ```bash
-mvn archetype:generate  \
+mvn archetype:generate \
     -DgroupId=com.alibaba.cola.demo.web \
     -DartifactId=demo-web \
     -Dversion=1.0.0-SNAPSHOT \
     -Dpackage=com.alibaba.demo \
     -DarchetypeArtifactId=cola-framework-archetype-web \
     -DarchetypeGroupId=com.alibaba.cola \
-    -DarchetypeVersion=4.3.0
+    -DarchetypeVersion=4.3.1
 ```
 
 命令执行成功的话，会看到如下的应用代码结构：
@@ -107,14 +107,14 @@ mvn archetype:generate  \
 如果要生成不是`web`工程而是`service`工程也类似，执行的是下面的命令：
 
 ```bash
-mvn archetype:generate  \
+mvn archetype:generate \
     -DgroupId=com.alibaba.cola.demo.service \
     -DartifactId=demo-service \
     -Dversion=1.0.0-SNAPSHOT \
     -Dpackage=com.alibaba.demo \
     -DarchetypeArtifactId=cola-framework-archetype-service \
     -DarchetypeGroupId=com.alibaba.cola \
-    -DarchetypeVersion=4.3.0
+    -DarchetypeVersion=4.3.1
 ```
 
 # 版本迭代
