@@ -10,6 +10,7 @@ package com.alibaba.cola.extension.register;
 import com.alibaba.cola.extension.*;
 
 import org.springframework.aop.support.AopUtils;
+import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
@@ -17,7 +18,7 @@ import org.springframework.util.ClassUtils;
 import javax.annotation.Resource;
 
 /**
- * ExtensionRegister 
+ * ExtensionRegister
  * @author fulan.zjf 2017-11-05
  */
 @Component
@@ -32,9 +33,9 @@ public class ExtensionRegister{
     public void doRegistration(ExtensionPointI extensionObject){
         Class<?>  extensionClz = extensionObject.getClass();
         if (AopUtils.isAopProxy(extensionObject)) {
-            extensionClz = ClassUtils.getUserClass(extensionObject);
+            extensionClz = AopUtils.getTargetClass(extensionObject);
         }
-        Extension extensionAnn = AnnotationUtils.findAnnotation(extensionClz, Extension.class);
+        Extension extensionAnn = AnnotatedElementUtils.findMergedAnnotation(extensionClz, Extension.class);
         BizScenario bizScenario = BizScenario.valueOf(extensionAnn.bizId(), extensionAnn.useCase(), extensionAnn.scenario());
         ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(calculateExtensionPoint(extensionClz), bizScenario.getUniqueIdentity());
         ExtensionPointI preVal = extensionRepository.getExtensionRepo().put(extensionCoordinate, extensionObject);
