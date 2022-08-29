@@ -70,7 +70,7 @@
 
         <spring.boot.version>2.7.3</spring.boot.version>
 
-        <logback.version>1.2.11</logback.version>
+        <logback.version>1.4.0</logback.version>
     </properties>
 
     <dependencies>
