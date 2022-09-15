@@ -69,7 +69,7 @@ public class StateMachineTest {
 
         builder.setFailoverCallback(new AlertFailoverCallbackImpl<>());
 
-        StateMachine<States, Events, Context> stateMachine = builder.build(MACHINE_ID);
+        StateMachine<States, Events, Context> stateMachine = builder.build(MACHINE_ID + "-testFailover");
         Assert.assertThrows(TransitionFailoverException.class,
             () -> stateMachine.fireEvent(States.STATE2, Events.EVENT1, new Context()));
     }
@@ -84,7 +84,7 @@ public class StateMachineTest {
             .when(checkCondition())
             .perform(doAction());
 
-        StateMachine<States, Events, Context> stateMachine = builder.build(MACHINE_ID);
+        StateMachine<States, Events, Context> stateMachine = builder.build(MACHINE_ID + "-testVerify");
 
         Assert.assertTrue(stateMachine.verify(States.STATE1, Events.EVENT1));
         Assert.assertFalse(stateMachine.verify(States.STATE1, Events.EVENT2));
