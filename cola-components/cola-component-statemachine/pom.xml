@@ -8,7 +8,6 @@
     </parent>
 
     <artifactId>cola-component-statemachine</artifactId>
-    <version>4.4.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <description>${project.artifactId}</description>
