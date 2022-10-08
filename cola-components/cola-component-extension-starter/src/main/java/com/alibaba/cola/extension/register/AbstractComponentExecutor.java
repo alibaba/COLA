@@ -1,7 +1,6 @@
 package com.alibaba.cola.extension.register;
 
-import com.alibaba.cola.extension.BizScenario;
-import com.alibaba.cola.extension.ExtensionCoordinate;
+import com.alibaba.cola.extension.*;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -18,8 +17,8 @@ public abstract class AbstractComponentExecutor {
      * @param targetClz
      * @param bizScenario
      * @param exeFunction
-     * @param <R> Response Type
-     * @param <T> Parameter Type
+     * @param <R>         Response Type
+     * @param <T>         Parameter Type
      * @return
      */
     public <R, T> R execute(Class<T> targetClz, BizScenario bizScenario, Function<T, R> exeFunction) {
@@ -27,8 +26,21 @@ public abstract class AbstractComponentExecutor {
         return exeFunction.apply(component);
     }
 
-    public <R, T> R execute(ExtensionCoordinate extensionCoordinate, Function<T, R> exeFunction){
+    public <R, T> R execute(ExtensionCoordinate extensionCoordinate, Function<T, R> exeFunction) {
         return execute((Class<T>) extensionCoordinate.getExtensionPointClass(), extensionCoordinate.getBizScenario(), exeFunction);
+    }
+
+    public <R, T> R executeWithException(Class<T> targetClz, BizScenario bizScenario, ExceptionFunction<T, R> exeFunction) throws ExecuteException {
+        T component = locateComponent(targetClz, bizScenario);
+        try {
+            return exeFunction.apply(component);
+        } catch (Exception exception) {
+            throw new ExecuteException(exception);
+        }
+    }
+
+    public <R, T> R executeWithException(ExtensionCoordinate extensionCoordinate, ExceptionFunction<T, R> exeFunction) throws ExecuteException {
+        return executeWithException((Class<T>) extensionCoordinate.getExtensionPointClass(), extensionCoordinate.getBizScenario(), exeFunction);
     }
 
     /**
@@ -37,15 +49,28 @@ public abstract class AbstractComponentExecutor {
      * @param targetClz
      * @param context
      * @param exeFunction
-     * @param <T> Parameter Type
+     * @param <T>         Parameter Type
      */
     public <T> void executeVoid(Class<T> targetClz, BizScenario context, Consumer<T> exeFunction) {
         T component = locateComponent(targetClz, context);
         exeFunction.accept(component);
     }
 
-    public <T> void executeVoid(ExtensionCoordinate extensionCoordinate, Consumer<T> exeFunction){
+    public <T> void executeVoid(ExtensionCoordinate extensionCoordinate, Consumer<T> exeFunction) {
         executeVoid(extensionCoordinate.getExtensionPointClass(), extensionCoordinate.getBizScenario(), exeFunction);
+    }
+
+    public <T> void executeVoidWithException(Class<T> targetClz, BizScenario context, ExceptionConsumer<T> exeFunction) throws ExecuteException {
+        T component = locateComponent(targetClz, context);
+        try {
+            exeFunction.accept(component);
+        } catch (Exception exception) {
+            throw new ExecuteException(exception);
+        }
+    }
+
+    public <T> void executeVoidWithException(ExtensionCoordinate extensionCoordinate, ExceptionConsumer<T> exeFunction) throws ExecuteException {
+        executeVoidWithException(extensionCoordinate.getExtensionPointClass(), extensionCoordinate.getBizScenario(), exeFunction);
     }
 
     protected abstract <C> C locateComponent(Class<C> targetClz, BizScenario context);
