@@ -12,6 +12,7 @@ import org.springframework.aop.support.AopUtils;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
+import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
 
@@ -54,6 +55,45 @@ public class ExtensionRegister {
         if (preVal != null) {
             String errMessage = "Duplicate registration is not allowed for :" + extensionCoordinate;
             throw new ExtensionException(EXTENSION_DEFINE_DUPLICATE, errMessage);
+        }
+    }
+
+    public void doRegistrationExtensions(ExtensionPointI extensionObject){
+        Class<?> extensionClz = extensionObject.getClass();
+        if (AopUtils.isAopProxy(extensionObject)) {
+            extensionClz = ClassUtils.getUserClass(extensionObject);
+        }
+
+        Extensions extensionsAnnotation = AnnotationUtils.findAnnotation(extensionClz, Extensions.class);
+        Extension[] extensions = extensionsAnnotation.value();
+        if (!ObjectUtils.isEmpty(extensions)){
+            for (Extension extensionAnn : extensions) {
+                BizScenario bizScenario = BizScenario.valueOf(extensionAnn.bizId(), extensionAnn.useCase(), extensionAnn.scenario());
+                ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(calculateExtensionPoint(extensionClz), bizScenario.getUniqueIdentity());
+                ExtensionPointI preVal = extensionRepository.getExtensionRepo().put(extensionCoordinate, extensionObject);
+                if (preVal != null) {
+                    String errMessage = "Duplicate registration is not allowed for :" + extensionCoordinate;
+                    throw new ExtensionException(EXTENSION_DEFINE_DUPLICATE, errMessage);
+                }
+            }
+        }
+
+        //
+        String[] bizIds = extensionsAnnotation.bizId();
+        String[] useCases = extensionsAnnotation.useCase();
+        String[] scenarios = extensionsAnnotation.scenario();
+        for (String bizId : bizIds) {
+            for (String useCase : useCases) {
+                for (String scenario : scenarios) {
+                    BizScenario bizScenario = BizScenario.valueOf(bizId, useCase, scenario);
+                    ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(calculateExtensionPoint(extensionClz), bizScenario.getUniqueIdentity());
+                    ExtensionPointI preVal = extensionRepository.getExtensionRepo().put(extensionCoordinate, extensionObject);
+                    if (preVal != null) {
+                        String errMessage = "Duplicate registration is not allowed for :" + extensionCoordinate;
+                        throw new ExtensionException(EXTENSION_DEFINE_DUPLICATE, errMessage);
+                    }
+                }
+            }
         }
     }
 
