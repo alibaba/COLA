@@ -15,11 +15,14 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 
 /**
- * ExtensionExecutor 
+ * ExtensionExecutor
+ *
  * @author fulan.zjf 2017-11-05
  */
 @Component
 public class ExtensionExecutor extends AbstractComponentExecutor {
+
+    private static final String EXTENSION_NOT_FOUND = "extension_not_found";
 
     private Logger logger = LoggerFactory.getLogger(ExtensionExecutor.class);
 
@@ -35,12 +38,13 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
 
     /**
      * if the bizScenarioUniqueIdentity is "ali.tmall.supermarket"
-     *
+     * <p>
      * the search path is as below:
      * 1、first try to get extension by "ali.tmall.supermarket", if get, return it.
      * 2、loop try to get extension by "ali.tmall", if get, return it.
      * 3、loop try to get extension by "ali", if get, return it.
      * 4、if not found, try the default extension
+     *
      * @param targetClz
      */
     protected <Ext> Ext locateExtension(Class<Ext> targetClz, BizScenario bizScenario) {
@@ -68,35 +72,37 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
             return extension;
         }
 
-        throw new RuntimeException("Can not find extension with ExtensionPoint: "+targetClz+" BizScenario:"+bizScenario.getUniqueIdentity());
+        String errMessage = "Can not find extension with ExtensionPoint: " +
+                targetClz + " BizScenario:" + bizScenario.getUniqueIdentity();
+        throw new ExtensionException(EXTENSION_NOT_FOUND, errMessage);
     }
 
     /**
      * first try with full namespace
-     *
+     * <p>
      * example:  biz1.useCase1.scenario1
      */
-    private  <Ext> Ext firstTry(Class<Ext> targetClz, BizScenario bizScenario) {
+    private <Ext> Ext firstTry(Class<Ext> targetClz, BizScenario bizScenario) {
         logger.debug("First trying with " + bizScenario.getUniqueIdentity());
         return locate(targetClz.getName(), bizScenario.getUniqueIdentity());
     }
 
     /**
      * second try with default scenario
-     *
+     * <p>
      * example:  biz1.useCase1.#defaultScenario#
      */
-    private <Ext> Ext secondTry(Class<Ext> targetClz, BizScenario bizScenario){
+    private <Ext> Ext secondTry(Class<Ext> targetClz, BizScenario bizScenario) {
         logger.debug("Second trying with " + bizScenario.getIdentityWithDefaultScenario());
         return locate(targetClz.getName(), bizScenario.getIdentityWithDefaultScenario());
     }
 
     /**
      * third try with default use case + default scenario
-     *
+     * <p>
      * example:  biz1.#defaultUseCase#.#defaultScenario#
      */
-    private <Ext> Ext defaultUseCaseTry(Class<Ext> targetClz, BizScenario bizScenario){
+    private <Ext> Ext defaultUseCaseTry(Class<Ext> targetClz, BizScenario bizScenario) {
         logger.debug("Third trying with " + bizScenario.getIdentityWithDefaultUseCase());
         return locate(targetClz.getName(), bizScenario.getIdentityWithDefaultUseCase());
     }
@@ -107,8 +113,8 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
         return ext;
     }
 
-    private void checkNull(BizScenario bizScenario){
-        if(bizScenario == null){
+    private void checkNull(BizScenario bizScenario) {
+        if (bizScenario == null) {
             throw new IllegalArgumentException("BizScenario can not be null for extension");
         }
     }
