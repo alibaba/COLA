@@ -4,9 +4,9 @@ package com.alibaba.cola.statemachine.exception;
  * @author 龙也
  * @date 2022/9/15 12:08 PM
  */
-public class TransitionFailoverException extends RuntimeException {
+public class TransitionFailException extends RuntimeException {
 
-    public TransitionFailoverException(String errMsg) {
+    public TransitionFailException(String errMsg) {
         super(errMsg);
     }
 }

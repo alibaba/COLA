@@ -31,11 +31,11 @@ public interface StateMachineBuilder<S, E, C> {
     InternalTransitionBuilder<S, E, C> internalTransition();
 
     /**
-     * set up failover callback, default do nothing {@code NumbFailoverCallbackImpl}
+     * set up fail callback, default do nothing {@code NumbFailCallbackImpl}
      *
      * @param callback
      */
-    void setFailoverCallback(FailoverCallback<S, E, C> callback);
+    void setFailCallback(FailCallback<S, E, C> callback);
 
     StateMachine<S, E, C> build(String machineId);
 

@@ -22,7 +22,7 @@ public class StateMachineBuilderImpl<S, E, C> implements StateMachineBuilder<S, 
      */
     private final Map<S, State<S, E, C>> stateMap = new ConcurrentHashMap<>();
     private final StateMachineImpl<S, E, C> stateMachine = new StateMachineImpl<>(stateMap);
-    private FailoverCallback<S, E, C> failoverCallback = new NumbFailoverCallbackImpl<>();
+    private FailCallback<S, E, C> failCallback = new NumbFailCallback<>();
 
     @Override
     public ExternalTransitionBuilder<S, E, C> externalTransition() {
@@ -40,15 +40,15 @@ public class StateMachineBuilderImpl<S, E, C> implements StateMachineBuilder<S, 
     }
 
     @Override
-    public void setFailoverCallback(FailoverCallback<S, E, C> callback) {
-        this.failoverCallback = callback;
+    public void setFailCallback(FailCallback<S, E, C> callback) {
+        this.failCallback = callback;
     }
 
     @Override
     public StateMachine<S, E, C> build(String machineId) {
         stateMachine.setMachineId(machineId);
         stateMachine.setReady(true);
-        stateMachine.setFailoverCallback(failoverCallback);
+        stateMachine.setFailCallback(failCallback);
         StateMachineFactory.register(stateMachine);
         return stateMachine;
     }

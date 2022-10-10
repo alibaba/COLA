@@ -7,7 +7,7 @@ import com.alibaba.cola.statemachine.State;
 import com.alibaba.cola.statemachine.StateMachine;
 import com.alibaba.cola.statemachine.Transition;
 import com.alibaba.cola.statemachine.Visitor;
-import com.alibaba.cola.statemachine.builder.FailoverCallback;
+import com.alibaba.cola.statemachine.builder.FailCallback;
 
 /**
  * For performance consideration,
@@ -27,7 +27,7 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
 
     private boolean ready;
 
-    private FailoverCallback<S, E, C> failoverCallback;
+    private FailCallback<S, E, C> failCallback;
 
     public StateMachineImpl(Map<S, State<S, E, C>> stateMap) {
         this.stateMap = stateMap;
@@ -51,7 +51,7 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
 
         if (transition == null) {
             Debugger.debug("There is no Transition for " + event);
-            failoverCallback.onFailover(sourceStateId, event, ctx);
+            failCallback.onFail(sourceStateId, event, ctx);
             return sourceStateId;
         }
 
@@ -131,7 +131,7 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
         this.ready = ready;
     }
 
-    public void setFailoverCallback(FailoverCallback<S, E, C> failoverCallback) {
-        this.failoverCallback = failoverCallback;
+    public void setFailCallback(FailCallback<S, E, C> failCallback) {
+        this.failCallback = failCallback;
     }
 }
