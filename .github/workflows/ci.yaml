@@ -6,10 +6,11 @@ on: [ push, pull_request ]
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        java: [ 8, 11, 17, 18, 19-ea ]
+        java: [ 8, 11, 17, 19, 20-ea ]
       fail-fast: false
       max-parallel: 64
     name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}
