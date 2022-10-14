@@ -47,7 +47,7 @@ COLA架构就是为此而生，其核心职责就是定义良好的应用结构�
 
 ![cola](https://img-blog.csdnimg.cn/6549230c6723448fb3ab51ca74829e80.png)
 
-## COLA Archetype
+## COLA Archetypes
 
 好的应用架构，都遵循一些共同模式，不管是六边形架构、洋葱圈架构、整洁架构、还是COLA架构，**都提倡以业务为核心，解耦外部依赖，分离业务复杂度和技术复杂度等**。
 
@@ -64,15 +64,15 @@ COLA架构区别于这些架构的地方，在于除了思想之外，我们还�
 
 这些功能组件被收拢在[`cola-components`目录](cola-components)下面。到目前为止，我们已经沉淀了以下组件：
 
-组件名称 | 功能 | 版本 | 依赖
------- | ---- | ---- | ----
-`cola-component-dto` | 定义了`DTO`格式，包括分页 | 1.0.0 |无
-`cola-component-exception` | 定义了异常格式，<br>主要有`BizException`和`SysException` | 1.0.0 |无
-`cola-component-statemachine` | 状态机组件 | 1.0.0 |无
-`cola-component-domain-starter` | `Spring`托管的领域实体组件 | 1.0.0 |无
-`cola-component-catchlog-starter` | 异常处理和日志组件 | 1.0.0 | `exception`<br>、`dto`组件
-`cola-component-extension-starter` | 扩展点组件 | 1.0.0 |无
-`cola-component-test-container` | 测试容器组件 | 1.0.0 |无
+组件名称 | 功能 | 依赖
+------ | ---- | ----
+`cola-component-dto` | 定义了`DTO`格式，包括分页 |无
+`cola-component-exception` | 定义了异常格式，<br>主要有`BizException`和`SysException` |无
+`cola-component-statemachine` | 状态机组件 | 无
+`cola-component-domain-starter` | `Spring`托管的领域实体组件 | 无
+`cola-component-catchlog-starter` | 异常处理和日志组件 | `exception`、`dto`组件
+`cola-component-extension-starter` | 扩展点组件 | 无
+`cola-component-test-container` | 测试容器组件 | 无
 
 # 三、如何使用COLA
 
