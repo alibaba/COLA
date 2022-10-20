@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <spring.boot.version>2.7.4</spring.boot.version>
+        <spring.boot.version>2.7.5</spring.boot.version>
         <springfox.version>3.0.0</springfox.version>
 
         <archunit.version>0.23.1</archunit.version>
