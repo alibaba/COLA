@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java }}
-          distribution: 'zulu'
-          cache: 'maven'
+          distribution: zulu
+          cache: maven
       - name: Build with Maven
         run: ./mvnw -V --no-transfer-progress clean install
