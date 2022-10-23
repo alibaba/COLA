@@ -15,6 +15,7 @@ public class CleanArchTest {
                 .importPackages("com.huawei.charging");
 
         layeredArchitecture()
+                .consideringAllDependencies()
                 .layer("adapter").definedBy("com.huawei.charging.adapter")
                 .layer("application").definedBy("com.huawei.charging.application")
                 .layer("domain").definedBy("com.huawei.charging.domain")
