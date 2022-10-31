@@ -53,7 +53,7 @@ public class StateMachineUnNormalTest {
                 .perform(doAction());
     }
 
-    @Test(expected = StateMachineException.class)
+    @Test
     public void testDuplicateMachine(){
         StateMachineBuilder<StateMachineTest.States, StateMachineTest.Events, StateMachineTest.Context> builder = StateMachineBuilderFactory.create();
         builder.externalTransition()
