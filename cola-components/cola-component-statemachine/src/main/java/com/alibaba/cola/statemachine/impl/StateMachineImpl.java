@@ -1,12 +1,13 @@
 package com.alibaba.cola.statemachine.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import com.alibaba.cola.statemachine.State;
 import com.alibaba.cola.statemachine.StateMachine;
 import com.alibaba.cola.statemachine.Transition;
 import com.alibaba.cola.statemachine.Visitor;
-
-import java.util.List;
-import java.util.Map;
+import com.alibaba.cola.statemachine.builder.FailCallback;
 
 /**
  * For performance consideration,
@@ -26,8 +27,21 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
 
     private boolean ready;
 
+    private FailCallback<S, E, C> failCallback;
+
     public StateMachineImpl(Map<S, State<S, E, C>> stateMap) {
         this.stateMap = stateMap;
+    }
+
+    @Override
+    public boolean verify(S sourceStateId, E event) {
+        isReady();
+
+        State sourceState = getState(sourceStateId);
+
+        List<Transition<S, E, C>> transitions = sourceState.getEventTransitions(event);
+
+        return transitions != null && transitions.size() != 0;
     }
 
     @Override
@@ -37,6 +51,7 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
 
         if (transition == null) {
             Debugger.debug("There is no Transition for " + event);
+            failCallback.onFail(sourceStateId, event, ctx);
             return sourceStateId;
         }
 
@@ -114,5 +129,9 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
 
     public void setReady(boolean ready) {
         this.ready = ready;
+    }
+
+    public void setFailCallback(FailCallback<S, E, C> failCallback) {
+        this.failCallback = failCallback;
     }
 }
