@@ -2,6 +2,7 @@ package com.alibaba.cola.extension.register;
 
 import com.alibaba.cola.extension.Extension;
 import com.alibaba.cola.extension.ExtensionPointI;
+import com.alibaba.cola.extension.Extensions;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -31,6 +32,10 @@ public class ExtensionBootstrap implements ApplicationContextAware {
         extensionBeans.values().forEach(
                 extension -> extensionRegister.doRegistration((ExtensionPointI) extension)
         );
+
+        // handle @Extensions annotation
+        Map<String, Object> extensionsBeans = applicationContext.getBeansWithAnnotation(Extensions.class);
+        extensionsBeans.values().forEach( extension -> extensionRegister.doRegistrationExtensions((ExtensionPointI) extension));
     }
 
     @Override
