@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # hard code for test purpose
+    url: jdbc:mysql://localhost:3306/chargeDB?serverTimezone=UTC
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# my-name: default, will be inherited from application.yml
+my-age: 30
