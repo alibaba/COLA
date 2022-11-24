@@ -15,7 +15,7 @@
 
         <springfox.version>3.0.0</springfox.version>
         <archunit.version>0.21.0</archunit.version>
-        <spring.boot.version>2.3.8.RELEASE</spring.boot.version>
+        <spring.boot.version>3.0.0</spring.boot.version>
     </properties>
 
     <dependencyManagement>
