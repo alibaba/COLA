@@ -1,6 +1,6 @@
 # 🥤 COLA v4
 
-[![Github Workflow Build Status](https://img.shields.io/github/workflow/status/alibaba/cola/CI/master?logo=github&logoColor=white)](https://github.com/alibaba/cola/actions/workflows/ci.yaml)
+[![Github Workflow Build Status](https://img.shields.io/github/actions/workflow/status/alibaba/cola/ci.yaml?branch=master&logo=github&logoColor=white)](https://github.com/alibaba/cola/actions/workflows/ci.yaml)
 [![Appveyor Build Status](https://img.shields.io/appveyor/ci/oldratlee/cola/master?logo=appveyor&logoColor=white)](https://ci.appveyor.com/project/oldratlee/cola)
 [![Maven Central](https://img.shields.io/maven-central/v/com.alibaba.cola/cola-component-dto.svg?logo=apache-maven&color=2d545e)](https://search.maven.org/search?q=g:com.alibaba.cola)
 [![GitHub release](https://img.shields.io/github/release/alibaba/COLA.svg)](https://github.com/alibaba/COLA/releases)
