@@ -19,7 +19,7 @@
         <cola.components.version>4.4.0-SNAPSHOT</cola.components.version>
 
         <spring-boot.version>2.7.5</spring-boot.version>
-        <mybatis-starter.version>2.2.2</mybatis-starter.version>
+        <mybatis-starter.version>3.0.1</mybatis-starter.version>
     </properties>
 
     <modules>
