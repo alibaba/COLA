@@ -1,6 +1,6 @@
 package com.alibaba.cola.extension.register;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import com.alibaba.cola.extension.BizScenario;
 import com.alibaba.cola.extension.ExtensionExecutor;
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 public class ExtensionRegisterTest {
-    
+
     @Resource
     private ExtensionRegister register;
 
@@ -28,9 +28,9 @@ public class ExtensionRegisterTest {
 
         SomeExtPt extB = CglibProxyFactory.createProxy(new SomeExtensionB());
         register.doRegistration(extB);
-        
+
         executor.executeVoid(SomeExtPt.class, BizScenario.valueOf("A"), SomeExtPt::doSomeThing);
         executor.executeVoid(SomeExtPt.class, BizScenario.valueOf("B"), SomeExtPt::doSomeThing);
     }
-    
+
 }
