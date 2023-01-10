@@ -9,7 +9,7 @@ source bash-buddy/lib/common_utils.sh
 # prepare
 ################################################################################
 
-readonly default_build_jdk_version=11
+readonly default_build_jdk_version=17
 # shellcheck disable=SC2034
 readonly PREPARE_JDKS_INSTALL_BY_SDKMAN=(
   8
