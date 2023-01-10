@@ -377,7 +377,7 @@
             </build>
         </profile>
         <profile>
-            <id>force-jdk11-when-release</id>
+            <id>force-jdk17-when-release</id>
             <activation>
                 <property>
                     <name>performRelease</name>
