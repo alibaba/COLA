@@ -13,7 +13,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 /**
  * @ Description   :  Catching and Logging

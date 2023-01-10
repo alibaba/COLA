@@ -64,11 +64,11 @@
     </modules>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <spring.boot.version>2.7.5</spring.boot.version>
+        <spring.boot.version>3.0.0</spring.boot.version>
     </properties>
 
     <dependencies>
@@ -249,7 +249,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <source>8</source>
+                            <source>17</source>
                             <show>protected</show>
                             <charset>UTF-8</charset>
                             <encoding>UTF-8</encoding>
@@ -400,7 +400,7 @@
                                 <configuration>
                                     <rules>
                                         <requireJavaVersion>
-                                            <version>11</version>
+                                            <version>17</version>
                                         </requireJavaVersion>
                                     </rules>
                                 </configuration>
