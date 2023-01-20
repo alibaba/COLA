@@ -72,12 +72,12 @@ public class CatchLogAspect {
         try {
             long endTime = System.currentTimeMillis();
             if (log.isDebugEnabled()) {
-                log.debug("RESPONSE : {}", JSON.toJSONString(response));
-                log.debug("COST : {}ms", (endTime - startTime));
+                log.debug("RESPONSE: {}", JSON.toJSONString(response));
+                log.debug("COST: {}ms", (endTime - startTime));
             }
         } catch (Exception e) {
             //swallow it
-            log.error("logResponse error : {}", e.getMessage() , e);
+            log.error("logResponse error: {}", e.getMessage() , e);
         }
     }
 
@@ -90,11 +90,11 @@ public class CatchLogAspect {
             log.debug("START PROCESSING: {}", joinPoint.getSignature().toShortString());
             Object[] args = joinPoint.getArgs();
             for (Object arg : args) {
-                log.debug("REQUEST : {}", JSON.toJSONString(arg, SerializerFeature.IgnoreErrorGetter));
+                log.debug("REQUEST: {}", JSON.toJSONString(arg, SerializerFeature.IgnoreErrorGetter));
             }
         } catch (Exception e) {
             //swallow it
-            log.error("logReqeust error : {}", e.getMessage() , e);
+            log.error("logReqeust error: {}", e.getMessage() , e);
         }
     }
 
