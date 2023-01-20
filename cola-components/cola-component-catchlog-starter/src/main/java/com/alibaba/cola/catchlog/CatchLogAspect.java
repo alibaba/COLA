@@ -1,6 +1,5 @@
 package com.alibaba.cola.catchlog;
 
-import com.alibaba.cola.exception.BaseException;
 import com.alibaba.cola.exception.BizException;
 import com.alibaba.cola.exception.SysException;
 import com.alibaba.fastjson.JSON;
@@ -11,6 +10,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 
 /**
  * @Description   :  Catching and Logging
@@ -58,14 +58,16 @@ public class CatchLogAspect {
             if (log.isDebugEnabled()) {
                 log.error(e.getMessage(), e);
             }
-            return ResponseHandler.handle(returnType, (BaseException) e);
+            return ResponseHandlerFactory.get().handle(returnType,
+                ((BizException) e).getErrCode(), e.getMessage());
         } else if (e instanceof SysException) {
             log.error("SYS EXCEPTION: {}",e.getMessage(), e);
-            return ResponseHandler.handle(returnType, (BaseException) e);
+          return ResponseHandlerFactory.get().handle(returnType,
+              ((SysException) e).getErrCode(), e.getMessage());
         }
 
         log.error("UNKNOWN EXCEPTION: {}", e.getMessage(), e);
-        return ResponseHandler.handle(returnType, "UNKNOWN_ERROR", e.getMessage());
+        return ResponseHandlerFactory.get().handle(returnType, "UNKNOWN_ERROR", e.getMessage());
     }
 
 
