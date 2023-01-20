@@ -20,6 +20,7 @@ import org.aspectj.lang.reflect.MethodSignature;
  */
 @Aspect
 @Slf4j
+@Order(1)
 public class CatchLogAspect {
 
     /**
