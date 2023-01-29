@@ -21,10 +21,12 @@
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-infrastructure</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.alibaba.cola</groupId>
             <artifactId>cola-component-catchlog-starter</artifactId>
         </dependency>
+
         <!-- JSR 303 Validation -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
@@ -35,22 +37,9 @@
             <artifactId>javax.el-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>javax.el</artifactId>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.el</artifactId>
         </dependency>
         <!-- JSR 303 Validation End-->
     </dependencies>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <configuration>
-                        <skip>true</skip>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
 </project>

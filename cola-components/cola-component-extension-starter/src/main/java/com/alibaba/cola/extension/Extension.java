@@ -12,12 +12,13 @@ import org.springframework.stereotype.Component;
 import java.lang.annotation.*;
 
 /**
- * Extension 
+ * Extension
  * @author fulan.zjf 2017-11-05
  */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
+@Repeatable(Extensions.class)
 @Component
 public @interface Extension {
     String bizId()  default BizScenario.DEFAULT_BIZ_ID;

@@ -1,6 +1,6 @@
 # 🥤 COLA v4
 
-[![Github Workflow Build Status](https://img.shields.io/github/workflow/status/alibaba/cola/CI/master?logo=github&logoColor=white)](https://github.com/alibaba/cola/actions/workflows/ci.yaml)
+[![Github Workflow Build Status](https://img.shields.io/github/actions/workflow/status/alibaba/cola/ci.yaml?branch=master&logo=github&logoColor=white)](https://github.com/alibaba/cola/actions/workflows/ci.yaml)
 [![Appveyor Build Status](https://img.shields.io/appveyor/ci/oldratlee/cola/master?logo=appveyor&logoColor=white)](https://ci.appveyor.com/project/oldratlee/cola)
 [![Maven Central](https://img.shields.io/maven-central/v/com.alibaba.cola/cola-component-dto.svg?logo=apache-maven&color=2d545e)](https://search.maven.org/search?q=g:com.alibaba.cola)
 [![GitHub release](https://img.shields.io/github/release/alibaba/COLA.svg)](https://github.com/alibaba/COLA/releases)
@@ -47,7 +47,7 @@ COLA架构就是为此而生，其核心职责就是定义良好的应用结构�
 
 ![cola](https://img-blog.csdnimg.cn/6549230c6723448fb3ab51ca74829e80.png)
 
-## COLA Archetype
+## COLA Archetypes
 
 好的应用架构，都遵循一些共同模式，不管是六边形架构、洋葱圈架构、整洁架构、还是COLA架构，**都提倡以业务为核心，解耦外部依赖，分离业务复杂度和技术复杂度等**。
 
@@ -64,15 +64,15 @@ COLA架构区别于这些架构的地方，在于除了思想之外，我们还�
 
 这些功能组件被收拢在[`cola-components`目录](cola-components)下面。到目前为止，我们已经沉淀了以下组件：
 
-组件名称 | 功能 | 版本 | 依赖
------- | ---- | ---- | ----
-`cola-component-dto` | 定义了`DTO`格式，包括分页 | 1.0.0 |无
-`cola-component-exception` | 定义了异常格式，<br>主要有`BizException`和`SysException` | 1.0.0 |无
-`cola-component-statemachine` | 状态机组件 | 1.0.0 |无
-`cola-component-domain-starter` | `Spring`托管的领域实体组件 | 1.0.0 |无
-`cola-component-catchlog-starter` | 异常处理和日志组件 | 1.0.0 | `exception`<br>、`dto`组件
-`cola-component-extension-starter` | 扩展点组件 | 1.0.0 |无
-`cola-component-test-container` | 测试容器组件 | 1.0.0 |无
+组件名称 | 功能 | 依赖
+------ | ---- | ----
+`cola-component-dto` | 定义了`DTO`格式，包括分页 |无
+`cola-component-exception` | 定义了异常格式，<br>主要有`BizException`和`SysException` |无
+`cola-component-statemachine` | 状态机组件 | 无
+`cola-component-domain-starter` | `Spring`托管的领域实体组件 | 无
+`cola-component-catchlog-starter` | 异常处理和日志组件 | `exception`、`dto`组件
+`cola-component-extension-starter` | 扩展点组件 | 无
+`cola-component-test-container` | 测试容器组件 | 无
 
 # 三、如何使用COLA
 
@@ -81,14 +81,14 @@ COLA架构区别于这些架构的地方，在于除了思想之外，我们还�
 执行以下命令：
 
 ```bash
-mvn archetype:generate  \
+mvn archetype:generate \
     -DgroupId=com.alibaba.cola.demo.web \
     -DartifactId=demo-web \
     -Dversion=1.0.0-SNAPSHOT \
     -Dpackage=com.alibaba.demo \
     -DarchetypeArtifactId=cola-framework-archetype-web \
     -DarchetypeGroupId=com.alibaba.cola \
-    -DarchetypeVersion=4.2.2
+    -DarchetypeVersion=4.3.1
 ```
 
 命令执行成功的话，会看到如下的应用代码结构：
@@ -107,14 +107,14 @@ mvn archetype:generate  \
 如果要生成不是`web`工程而是`service`工程也类似，执行的是下面的命令：
 
 ```bash
-mvn archetype:generate  \
+mvn archetype:generate \
     -DgroupId=com.alibaba.cola.demo.service \
     -DartifactId=demo-service \
     -Dversion=1.0.0-SNAPSHOT \
     -Dpackage=com.alibaba.demo \
     -DarchetypeArtifactId=cola-framework-archetype-service \
     -DarchetypeGroupId=com.alibaba.cola \
-    -DarchetypeVersion=4.2.2
+    -DarchetypeVersion=4.3.1
 ```
 
 # 版本迭代
