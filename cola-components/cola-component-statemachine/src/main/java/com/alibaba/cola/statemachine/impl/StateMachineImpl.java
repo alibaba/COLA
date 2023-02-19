@@ -30,7 +30,7 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
     private FailCallback<S, E, C> failCallback;
 
     public StateMachineImpl(Map<S, State<S, E, C>> stateMap) {
-        this.stateMap = stateMap;
+        this.stateMap = StateHelper.cloneStateMap(stateMap);
     }
 
     @Override

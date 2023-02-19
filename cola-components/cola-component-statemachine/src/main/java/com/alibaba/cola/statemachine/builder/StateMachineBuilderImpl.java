@@ -21,7 +21,6 @@ public class StateMachineBuilderImpl<S, E, C> implements StateMachineBuilder<S, 
      * StateMap is the same with stateMachine, as the core of state machine is holding reference to states.
      */
     private final Map<S, State<S, E, C>> stateMap = new ConcurrentHashMap<>();
-    private final StateMachineImpl<S, E, C> stateMachine = new StateMachineImpl<>(stateMap);
     private FailCallback<S, E, C> failCallback = new NumbFailCallback<>();
 
     @Override
@@ -46,6 +45,7 @@ public class StateMachineBuilderImpl<S, E, C> implements StateMachineBuilder<S, 
 
     @Override
     public StateMachine<S, E, C> build(String machineId) {
+        StateMachineImpl<S, E, C> stateMachine = new StateMachineImpl<>(stateMap);
         stateMachine.setMachineId(machineId);
         stateMachine.setReady(true);
         stateMachine.setFailCallback(failCallback);
