@@ -1,8 +1,8 @@
 # Quickstart for GitHub Actions
 # https://docs.github.com/en/actions/quickstart
 
-name: CI
-on: [ push, pull_request ]
+name: Fast CI
+on: [ push, pull_request, workflow_dispatch ]
 jobs:
   test:
     runs-on: ${{ matrix.os }}
@@ -10,10 +10,10 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        java: [ 8, 11, 17, 19, 20-ea ]
+        java: [ 8, 11 ]
       fail-fast: false
       max-parallel: 64
-    name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}
+    name: fast test on Java ${{ matrix.java }} OS ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v3
@@ -22,5 +22,18 @@ jobs:
           java-version: ${{ matrix.java }}
           distribution: zulu
           cache: maven
+
       - name: Build with Maven
         run: ./mvnw -V --no-transfer-progress clean install
+
+      - name: remove cola self maven install files for OS *nix
+        run: rm -rf $HOME/.m2/repository/com/alibaba/{cola,craftsman}
+        # https://docs.github.com/en/actions/learn-github-actions/variables#detecting-the-operating-system
+        # https://docs.github.com/en/actions/learn-github-actions/expressions
+        if: runner.os != 'Windows'
+      - name: remove cola self maven install files for OS Windows
+        run: |
+          Remove-Item -Recurse -Force $home/.m2/repository/com/alibaba/cola
+          Remove-Item -Recurse -Force $home/.m2/repository/com/alibaba/craftsman
+        if: runner.os == 'Windows'
+
