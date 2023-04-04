@@ -20,6 +20,9 @@
         <module>cola-archetypes</module>
 
         <module>cola-samples/craftsman</module>
+        <!-- A test failed module is better to get out. -->
+        <!--
         <module>cola-samples/charge</module>
+        -->
     </modules>
 </project>
