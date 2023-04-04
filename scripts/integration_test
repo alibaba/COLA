@@ -31,6 +31,7 @@ source bash-buddy/lib/java_build_utils.sh
 JVB_MVN_OPTS=(
   "${JVB_DEFAULT_MVN_OPTS[@]}"
   -DperformRelease -P'!gen-sign'
+  ${CI_MORE_MVN_OPTS:+${CI_MORE_MVN_OPTS}}
 )
 
 ################################################################################
