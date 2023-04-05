@@ -186,7 +186,7 @@
                     -->
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
-                    <version>2.13.0</version>
+                    <version>2.15.0</version>
                     <configuration>
                         <rulesUri>file://${maven.multiModuleProjectDirectory}/cola-component-dto/src/versions-rules.xml</rulesUri>
                         <generateBackupPoms>false</generateBackupPoms>
