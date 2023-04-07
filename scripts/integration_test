@@ -2,27 +2,28 @@
 set -eEuo pipefail
 cd "$(dirname "$(readlink -f "$0")")"
 
-source bash-buddy/lib/trap_error_info.sh
-source bash-buddy/lib/common_utils.sh
+BASH_BUDDY_ROOT="$(readlink -f bash-buddy)"
+readonly BASH_BUDDY_ROOT
+source "$BASH_BUDDY_ROOT/lib/trap_error_info.sh"
+source "$BASH_BUDDY_ROOT/lib/common_utils.sh"
+source "$BASH_BUDDY_ROOT/lib/java_build_utils.sh"
 
 ################################################################################
-# prepare
+# ci build logic
 ################################################################################
 
 readonly default_build_jdk_version=11
 # shellcheck disable=SC2034
-readonly PREPARE_JDKS_INSTALL_BY_SDKMAN=(
+readonly JDK_VERSIONS=(
   8
   "$default_build_jdk_version"
   17
+  19
+  20
 )
+readonly default_jh_var_name="JAVA${default_build_jdk_version}_HOME"
 
-source bash-buddy/lib/prepare_jdks.sh
-
-source bash-buddy/lib/java_build_utils.sh
-
-# here use `install` and `-D performRelease` intended
-#   to check release operations.
+# Here use `-D performRelease` intendedly to check release operations.
 #
 # De-activate a maven profile from command line
 #   https://stackoverflow.com/questions/25201430
@@ -31,6 +32,7 @@ source bash-buddy/lib/java_build_utils.sh
 JVB_MVN_OPTS=(
   "${JVB_DEFAULT_MVN_OPTS[@]}"
   -DperformRelease -P'!gen-sign'
+  ${CI_MORE_MVN_OPTS:+${CI_MORE_MVN_OPTS}}
 )
 
 ################################################################################
@@ -119,24 +121,28 @@ test_cola_archetype() {
 # default jdk 11, do build and test
 ########################################
 
-prepare_jdks::switch_to_jdk "$default_build_jdk_version"
+[ -d "${!default_jh_var_name:-}" ] || cu::die "\$${default_jh_var_name}(${!default_jh_var_name:-}) dir is not existed!"
+export JAVA_HOME="${!default_jh_var_name}"
 
-cu::head_line_echo "build and test with Java: $JAVA_HOME"
+cu::head_line_echo "build and test with Java $default_build_jdk_version: $JAVA_HOME"
 
 jvb::mvn_cmd clean install
 
 test_cola_archetype
 
 ########################################
-# test multi-version java
+# test by multiply version jdks
 ########################################
-for jdk in "${PREPARE_JDKS_INSTALL_BY_SDKMAN[@]}"; do
-  # default jdk already tested above
-  [ "$jdk" = "$default_build_jdk_version" ] && continue
 
-  prepare_jdks::switch_to_jdk "$jdk"
+for jdk_version in "${JDK_VERSIONS[@]}"; do
+  # skip default jdk, already tested above
+  [ "$jdk_version" = "$default_build_jdk_version" ] && continue
 
-  cu::head_line_echo "test with Java: $JAVA_HOME"
+  jh_var_name="JAVA${jdk_version}_HOME"
+  [ -d "${!jh_var_name:-}" ] || cu::die "\$${jh_var_name}(${!jh_var_name:-}) dir is not existed!"
+  export JAVA_HOME="${!jh_var_name}"
+
+  cu::head_line_echo "test with Java $jdk_version: $JAVA_HOME"
 
   # just test without build
   jvb::mvn_cmd surefire:test

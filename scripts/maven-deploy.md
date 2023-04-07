@@ -4,7 +4,7 @@ COLA发布到`Maven`中央库操作过程/CheckList。
 
 ## 0. 前置准备与配置
 
-在Maven的`settting.xml`中配置`oss.sonatype.org`账号：
+在Maven的`setting.xml`中配置`oss.sonatype.org`账号：
 
 ```xml
 
