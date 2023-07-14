@@ -17,7 +17,7 @@ import java.util.Map;
  * @author Frank Zhang
  * @date 2020-02-08 7:43 PM
  */
-public class TransitionsBuilderImpl<S,E,C> extends TransitionBuilderImpl<S,E,C> implements ExternalTransitionsBuilder<S,E,C> {
+public class TransitionsBuilderImpl<S,E,C> extends AbstractTransitionBuilder<S,E,C> implements ExternalTransitionsBuilder<S,E,C> {
     /**
      * This is for fromAmong where multiple sources can be configured to point to one target
      */
