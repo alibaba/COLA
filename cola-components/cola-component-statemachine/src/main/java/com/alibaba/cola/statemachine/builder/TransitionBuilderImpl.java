@@ -15,32 +15,19 @@ import java.util.Map;
  * @author Frank Zhang
  * @date 2020-02-07 10:20 PM
  */
-class TransitionBuilderImpl<S,E,C> implements ExternalTransitionBuilder<S,E,C>, InternalTransitionBuilder<S,E,C>, From<S,E,C>, On<S,E,C>, To<S,E,C> {
+class TransitionBuilderImpl<S,E,C> extends AbstractTransitionBuilder<S,E,C> implements ExternalTransitionBuilder<S,E,C>, InternalTransitionBuilder<S,E,C> {
 
-    final Map<S, State<S, E, C>> stateMap;
 
     private State<S, E, C> source;
-
-    protected State<S, E, C> target;
-
     private Transition<S, E, C> transition;
 
-    final TransitionType transitionType;
-
     public TransitionBuilderImpl(Map<S, State<S, E, C>> stateMap, TransitionType transitionType) {
-        this.stateMap = stateMap;
-        this.transitionType = transitionType;
+        super(stateMap, transitionType);
     }
 
     @Override
     public From<S, E, C> from(S stateId) {
         source = StateHelper.getState(stateMap, stateId);
-        return this;
-    }
-
-    @Override
-    public To<S, E, C> to(S stateId) {
-        target = StateHelper.getState(stateMap, stateId);
         return this;
     }
 
