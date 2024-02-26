@@ -48,6 +48,11 @@ public class TransitionImpl<S,E,C> implements Transition<S,E,C> {
     }
 
     @Override
+    public TransitionType getType() {
+        return type;
+    }
+
+    @Override
     public void setType(TransitionType type) {
         this.type = type;
     }
