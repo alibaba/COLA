@@ -13,4 +13,10 @@ public class SomeExtensionA implements SomeExtPt {
         System.out.println("SomeExtensionA::doSomething");
     }
 
+    @Override
+    public void doSomeThingWithException() throws Exception {
+        System.out.println("SomeExtensionA::throw RuntimeException");
+        throw new RuntimeException();
+    }
+
 }
