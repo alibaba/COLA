@@ -2,8 +2,8 @@ package com.alibaba.cola.ruleengine.api;
 
 public interface RuleEngine {
     /**
-     * Fire all registered rules on given facts.
+     * Fire rule on given facts.
      */
-    void fire(Rules rules, Facts facts);
+    void fire(Rule rule, Facts facts);
 
 }

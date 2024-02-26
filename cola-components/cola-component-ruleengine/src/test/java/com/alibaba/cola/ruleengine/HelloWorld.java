@@ -2,7 +2,6 @@ package com.alibaba.cola.ruleengine;
 
 import com.alibaba.cola.ruleengine.api.Rule;
 import com.alibaba.cola.ruleengine.api.RuleEngine;
-import com.alibaba.cola.ruleengine.api.Rules;
 import com.alibaba.cola.ruleengine.core.DefaultRuleEngine;
 import com.alibaba.cola.ruleengine.core.RuleBuilder;
 
@@ -16,9 +15,7 @@ public class HelloWorld {
                 .when(facts -> true)
                 .then(facts -> System.out.println("hello world"))
                 .build();
-        Rules rules = new Rules();
-        rules.register(rule);
 
-        ruleEngine.fire(rules, null);
+        ruleEngine.fire(rule, null);
     }
 }
