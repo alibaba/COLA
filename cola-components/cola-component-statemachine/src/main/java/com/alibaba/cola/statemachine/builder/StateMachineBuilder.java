@@ -22,6 +22,12 @@ public interface StateMachineBuilder<S, E, C> {
      * @return External transition builder
      */
     ExternalTransitionsBuilder<S, E, C> externalTransitions();
+    /**
+     * Builder for parallel transitions
+     *
+     * @return External transition builder
+     */
+    ExternalParallelTransitionBuilder<S, E, C> externalParallelTransition();
 
     /**
      * Start to build internal transition
