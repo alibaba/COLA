@@ -1,59 +1,79 @@
 package com.alibaba.cola.ruleengine;
 
+import com.alibaba.cola.ruleengine.api.Action;
 import com.alibaba.cola.ruleengine.api.Facts;
 import com.alibaba.cola.ruleengine.api.Rule;
-import com.alibaba.cola.ruleengine.core.AbstractRule;
+import com.alibaba.cola.ruleengine.api.RuleEngine;
+import com.alibaba.cola.ruleengine.core.*;
+import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.extractProperty;
 
 public class PriorityTest {
 
+    RuleEngine ruleEngine;
+
+    @Before
+    public void setUp() {
+        ruleEngine = new DefaultRuleEngine();
+    }
+
+
     @Test
     public void testNoPriority() {
-        DummyRule r1 = new DummyRule();
-        DummyRule r2 = new DummyRule();
-        DummyRule r3 = new DummyRule();
+        DummyRule r1 = new DummyRule(1);
+        DummyRule r2 = new DummyRule(2);
+        DummyRule r3 = new DummyRule(3);
 
 //        assertThat(rules).startsWith(r1).endsWith(r3);
     }
 
     @Test
-    public void testPriority(){
+    public void testPriority() {
         DummyRule r1 = new DummyRule(10);
         DummyRule r2 = new DummyRule(3);
         DummyRule r3 = new DummyRule(1);
-
-
 //        assertThat(rules).startsWith(r3).endsWith(r1);
     }
 
+    @Test
+    public void test_natural_rule() {
+        DummyRule r1 = new DummyRule(10);
+        DummyRule r2 = new DummyRule(3);
+        DummyRule r3 = new DummyRule(1);
+        Facts facts = new Facts();
+        facts.put("number", 15);
+
+        Rule naturalRules = NaturalRules.of(r1, r2, r3);
+        ruleEngine.fire(naturalRules, facts);
+    }
 
 
+    static class DummyRule extends DefaultRule {
 
-    static class DummyRule extends AbstractRule {
 
-        public DummyRule(){
-
-        }
-
-        public DummyRule(int priority){
-            super(priority);
+        public DummyRule(int priority) {
+            super("rule" + priority, null, priority, facts -> true, new ArrayList<>());
         }
 
         @Override
         public boolean evaluate(Facts facts) {
-            return false;
+            return true;
         }
 
         @Override
         public void execute(Facts facts) {
-
+            System.out.println(facts.getFact("number").getValue());
         }
 
         @Override
         public boolean apply(Facts facts) {
-            return false;
+            System.out.println(name + ": " + facts.getFact("number").getValue());
+            return true;
         }
     }
 }

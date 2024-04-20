@@ -1,831 +1,830 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-      
-  <modelVersion>4.0.0</modelVersion>
-      
-  <groupId>com.alibaba.cola</groupId>
-      
-  <artifactId>cola-components-parent</artifactId>
-      
-  <version>4.4.0-SNAPSHOT</version>
-      
-  <packaging>pom</packaging>
-      
-  <name>${project.artifactId}</name>
-      
-  <description>${project.artifactId}</description>
-      
-  <url>https://github.com/alibaba/COLA</url>
-      
-  <licenses>
-            
-    <license>
-                  
-      <name>GNU Lesser General Public License v2.1</name>
-                  
-      <url>https://github.com/alibaba/COLA/blob/master/LICENSE</url>
-                  
-      <distribution>repo</distribution>
-              
-    </license>
-        
-  </licenses>
-      
-  <scm>
-            
-    <connection>scm:git:https://github.com/alibaba/COLA.git</connection>
-            
-    <developerConnection>scm:git:https://github.com/alibaba/COLA.git</developerConnection>
-            
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.alibaba.cola</groupId>
+
+    <artifactId>cola-components-parent</artifactId>
+
+    <version>4.4.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>${project.artifactId}</name>
+
+    <description>${project.artifactId}</description>
+
     <url>https://github.com/alibaba/COLA</url>
-        
-  </scm>
-      
-  <issueManagement>
-            
-    <url>https://github.com/alibaba/COLA/issues</url>
-            
-    <system>GitHub Issues</system>
-        
-  </issueManagement>
-      
-  <developers>
-            
-    <developer>
-                  
-      <id>significantfrank</id>
-                  
-      <name>Frank Zhang</name>
-                  
-      <email>25216348(at)qq.com</email>
-                  
-      <roles>
-                        
-        <role>Developer</role>
-                        
-        <role>Architect</role>
-                    
-      </roles>
-                  
-      <timezone>+8</timezone>
-                  
-      <url>https://github.com/significantfrank</url>
-              
-    </developer>
-            
-    <developer>
-                  
-      <id>oldratlee</id>
-                  
-      <name>Jerry Lee</name>
-                  
-      <email>oldratlee(at)gmail.com</email>
-                  
-      <roles>
-                        
-        <role>Developer</role>
-                        
-        <role>CI/SCM Engineer</role>
-                    
-      </roles>
-                  
-      <timezone>+8</timezone>
-                  
-      <url>https://github.com/oldratlee</url>
-              
-    </developer>
-        
-  </developers>
-      
-  <modules>
-            
-    <module>cola-component-dto</module>
-            
-    <module>cola-component-exception</module>
-            
-    <module>cola-component-statemachine</module>
-            
-    <module>cola-component-domain-starter</module>
-            
-    <module>cola-component-extension-starter</module>
-            
-    <module>cola-component-catchlog-starter</module>
-            
-    <module>cola-component-test-container</module>
-            
-    <module>cola-components-bom</module>
-          
-    <module>cola-component-ruleengine</module>
-      
-  </modules>
-      
-  <properties>
-            
-    <maven.compiler.source>1.8</maven.compiler.source>
-            
-    <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
-            
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            
-    <spring.boot.version>2.7.5</spring.boot.version>
-        
-  </properties>
-      
-  <dependencies>
-            
-    <dependency>
-                  
-      <groupId>org.projectlombok</groupId>
-                  
-      <artifactId>lombok</artifactId>
-                  
-      <scope>provided</scope>
-              
-    </dependency>
-            
-    <!-- 测试包 -->
-            
-    <dependency>
-                  
-      <groupId>junit</groupId>
-                  
-      <artifactId>junit</artifactId>
-                  
-      <scope>test</scope>
-              
-    </dependency>
-        
-  </dependencies>
-      
-  <dependencyManagement>
-            
+
+    <licenses>
+
+        <license>
+
+            <name>GNU Lesser General Public License v2.1</name>
+
+            <url>https://github.com/alibaba/COLA/blob/master/LICENSE</url>
+
+            <distribution>repo</distribution>
+
+        </license>
+
+    </licenses>
+
+    <scm>
+
+        <connection>scm:git:https://github.com/alibaba/COLA.git</connection>
+
+        <developerConnection>scm:git:https://github.com/alibaba/COLA.git</developerConnection>
+
+        <url>https://github.com/alibaba/COLA</url>
+
+    </scm>
+
+    <issueManagement>
+
+        <url>https://github.com/alibaba/COLA/issues</url>
+
+        <system>GitHub Issues</system>
+
+    </issueManagement>
+
+    <developers>
+
+        <developer>
+
+            <id>significantfrank</id>
+
+            <name>Frank Zhang</name>
+
+            <email>25216348(at)qq.com</email>
+
+            <roles>
+
+                <role>Developer</role>
+
+                <role>Architect</role>
+
+            </roles>
+
+            <timezone>+8</timezone>
+
+            <url>https://github.com/significantfrank</url>
+
+        </developer>
+
+        <developer>
+
+            <id>oldratlee</id>
+
+            <name>Jerry Lee</name>
+
+            <email>oldratlee(at)gmail.com</email>
+
+            <roles>
+
+                <role>Developer</role>
+
+                <role>CI/SCM Engineer</role>
+
+            </roles>
+
+            <timezone>+8</timezone>
+
+            <url>https://github.com/oldratlee</url>
+
+        </developer>
+
+    </developers>
+
+    <modules>
+
+        <module>cola-component-dto</module>
+
+        <module>cola-component-exception</module>
+
+        <module>cola-component-statemachine</module>
+
+        <module>cola-component-domain-starter</module>
+
+        <module>cola-component-extension-starter</module>
+
+        <module>cola-component-catchlog-starter</module>
+
+        <module>cola-component-test-container</module>
+
+        <module>cola-components-bom</module>
+
+        <module>cola-component-ruleengine</module>
+
+    </modules>
+
+    <properties>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.boot.version>3.1.0</spring.boot.version>
+    </properties>
+
     <dependencies>
-                  
-      <dependency>
-                        
-        <groupId>org.springframework.boot</groupId>
-                        
-        <artifactId>spring-boot-dependencies</artifactId>
-                        
-        <version>${spring.boot.version}</version>
-                        
-        <type>pom</type>
-                        
-        <scope>import</scope>
-                    
-      </dependency>
-                  
-      <!-- 工具包 -->
-                  
-      <dependency>
-                        
-        <groupId>com.alibaba</groupId>
-                        
-        <artifactId>fastjson</artifactId>
-                        
-        <version>1.2.83</version>
-                        
-        <scope>provided</scope>
-                    
-      </dependency>
-                  
-      <dependency>
-                        
-        <groupId>commons-cli</groupId>
-                        
-        <artifactId>commons-cli</artifactId>
-                        
-        <version>1.5.0</version>
-                    
-      </dependency>
-              
+
+        <dependency>
+
+            <groupId>org.projectlombok</groupId>
+
+            <artifactId>lombok</artifactId>
+
+            <scope>provided</scope>
+
+        </dependency>
+
+        <!-- 测试包 -->
+
+        <dependency>
+
+            <groupId>junit</groupId>
+
+            <artifactId>junit</artifactId>
+
+            <scope>test</scope>
+
+        </dependency>
+
     </dependencies>
-        
-  </dependencyManagement>
-      
-  <build>
-            
-    <plugins>
-                  
-      <!--
-                add maven-enforce-plugin to make sure the right jdk is used
-                https://stackoverflow.com/a/18420462/922688
-            -->
-                  
-      <plugin>
-                        
-        <artifactId>maven-enforcer-plugin</artifactId>
-                        
-        <executions>
-                              
-          <execution>
-                                    
-            <goals>
-                                          
-              <goal>enforce</goal>
-                                      
-            </goals>
-                                    
-            <configuration>
-                                          
-              <rules>
-                                                
-                <requireMavenVersion>
-                                                      
-                  <version>3.3.9</version>
-                                                  
-                </requireMavenVersion>
-                                            
-              </rules>
-                                      
-            </configuration>
-                                
-          </execution>
-                          
-        </executions>
-                    
-      </plugin>
-              
-    </plugins>
-            
-    <pluginManagement>
-                  
-      <plugins>
-                        
-        <plugin>
-                              
-          <artifactId>maven-resources-plugin</artifactId>
-                              
-          <version>3.3.1</version>
-                          
-        </plugin>
-                        
-        <plugin>
-                              
-          <artifactId>maven-compiler-plugin</artifactId>
-                              
-          <version>3.11.0</version>
-                          
-        </plugin>
-                        
-        <plugin>
-                              
-          <artifactId>maven-source-plugin</artifactId>
-                              
-          <version>3.2.1</version>
-                          
-        </plugin>
-                        
-        <plugin>
-                              
-          <artifactId>maven-javadoc-plugin</artifactId>
-                              
-          <version>3.6.0</version>
-                          
-        </plugin>
-                        
-        <plugin>
-                              
-          <artifactId>maven-gpg-plugin</artifactId>
-                              
-          <version>3.1.0</version>
-                          
-        </plugin>
-                        
-        <plugin>
-                              
-          <artifactId>maven-enforcer-plugin</artifactId>
-                              
-          <version>3.4.1</version>
-                          
-        </plugin>
-                        
-        <plugin>
-                              
-          <artifactId>maven-deploy-plugin</artifactId>
-                              
-          <version>3.1.1</version>
-                          
-        </plugin>
-                        
-        <plugin>
-                              
-          <groupId>org.sonatype.plugins</groupId>
-                              
-          <artifactId>nexus-staging-maven-plugin</artifactId>
-                              
-          <version>1.6.13</version>
-                          
-        </plugin>
-                        
-        <plugin>
-                              
-          <groupId>org.jacoco</groupId>
-                              
-          <artifactId>jacoco-maven-plugin</artifactId>
-                              
-          <version>0.8.10</version>
-                          
-        </plugin>
-                        
-        <plugin>
-                              
-          <groupId>pl.project13.maven</groupId>
-                              
-          <artifactId>git-commit-id-plugin</artifactId>
-                              
-          <version>4.9.10</version>
-                          
-        </plugin>
-                        
-        <plugin>
-                              
-          <!--
-                        config example: https://github.com/mojohaus/versions-maven-plugin/issues/157#issuecomment-306041074
-                    -->
-                              
-          <groupId>org.codehaus.mojo</groupId>
-                              
-          <artifactId>versions-maven-plugin</artifactId>
-                              
-          <version>2.16.0</version>
-                              
-          <configuration>
-                                    
-            <rulesUri>file://${maven.multiModuleProjectDirectory}/cola-component-dto/src/versions-rules.xml</rulesUri>
-                                    
-            <generateBackupPoms>false</generateBackupPoms>
-                                
-          </configuration>
-                          
-        </plugin>
-                    
-      </plugins>
-              
-    </pluginManagement>
-        
-  </build>
-      
-  <distributionManagement>
-            
-    <snapshotRepository>
-                  
-      <id>ossrh</id>
-                  
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-              
-    </snapshotRepository>
-        
-  </distributionManagement>
-      
-  <profiles>
-            
-    <profile>
-                  
-      <id>gen-java-src</id>
-                  
-      <activation>
-                        
-        <property>
-                              
-          <name>performRelease</name>
-                              
-          <value>true</value>
-                          
-        </property>
-                    
-      </activation>
-                  
-      <build>
-                        
+
+    <dependencyManagement>
+
+        <dependencies>
+
+            <dependency>
+
+                <groupId>org.springframework.boot</groupId>
+
+                <artifactId>spring-boot-dependencies</artifactId>
+
+                <version>${spring.boot.version}</version>
+
+                <type>pom</type>
+
+                <scope>import</scope>
+
+            </dependency>
+
+            <!-- 工具包 -->
+
+            <dependency>
+
+                <groupId>com.alibaba</groupId>
+
+                <artifactId>fastjson</artifactId>
+
+                <version>1.2.83</version>
+
+                <scope>provided</scope>
+
+            </dependency>
+
+            <dependency>
+
+                <groupId>commons-cli</groupId>
+
+                <artifactId>commons-cli</artifactId>
+
+                <version>1.5.0</version>
+
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+
+    <build>
+
         <plugins>
-                              
-          <plugin>
-                                    
-            <artifactId>maven-source-plugin</artifactId>
-                                    
-            <executions>
-                                          
-              <execution>
-                                                
-                <id>attach-sources</id>
-                                                
-                <goals>
-                                                      
-                  <goal>jar</goal>
-                                                  
-                </goals>
-                                            
-              </execution>
-                                      
-            </executions>
-                                
-          </plugin>
-                          
-        </plugins>
-                    
-      </build>
-              
-    </profile>
-            
-    <profile>
-                  
-      <id>gen-java-doc</id>
-                  
-      <activation>
-                        
-        <property>
-                              
-          <name>performRelease</name>
-                              
-          <value>true</value>
-                          
-        </property>
-                    
-      </activation>
-                  
-      <build>
-                        
-        <plugins>
-                              
-          <plugin>
-                                    
-            <artifactId>maven-javadoc-plugin</artifactId>
-                                    
-            <executions>
-                                          
-              <execution>
-                                                
-                <id>attach-javadoc</id>
-                                                
-                <goals>
-                                                      
-                  <goal>jar</goal>
-                                                  
-                </goals>
-                                            
-              </execution>
-                                      
-            </executions>
-                                    
-            <configuration>
-                                          
-              <source>8</source>
-                                          
-              <show>protected</show>
-                                          
-              <charset>UTF-8</charset>
-                                          
-              <encoding>UTF-8</encoding>
-                                          
-              <docencoding>UTF-8</docencoding>
-                                          
-              <additionalJOptions>
-                                                
-                <additionalJOption>--no-module-directories</additionalJOption>
-                                                
-                <additionalJOption>-quiet</additionalJOption>
-                                                
-                <additionalJOption>-J-Duser.language=en</additionalJOption>
-                                                
-                <additionalJOption>-J-Duser.country=US</additionalJOption>
-                                                
-                <additionalJOption>-Xdoclint:none</additionalJOption>
-                                            
-              </additionalJOptions>
-                                      
-            </configuration>
-                                
-          </plugin>
-                          
-        </plugins>
-                    
-      </build>
-              
-    </profile>
-            
-    <profile>
-                  
-      <id>gen-code-cov</id>
-                  
-      <activation>
-                        
-        <property>
-                              
-          <name>env.TRAVIS</name>
-                              
-          <value>true</value>
-                          
-        </property>
-                    
-      </activation>
-                  
-      <build>
-                        
-        <plugins>
-                              
-          <plugin>
-                                    
+
             <!--
-                            plugin docs: http://eclemma.org/jacoco/trunk/doc/
-                            for codecov.io, config example https://github.com/codecov/example-java
-                        -->
-                                    
-            <groupId>org.jacoco</groupId>
-                                    
-            <artifactId>jacoco-maven-plugin</artifactId>
-                                    
-            <executions>
-                                          
-              <execution>
-                                                
-                <goals>
-                                                      
-                  <goal>prepare-agent</goal>
-                                                  
-                </goals>
-                                            
-              </execution>
-                                          
-              <execution>
-                                                
-                <id>report</id>
-                                                
-                <phase>test</phase>
-                                                
-                <goals>
-                                                      
-                  <goal>report</goal>
-                                                  
-                </goals>
-                                            
-              </execution>
-                                      
-            </executions>
-                                
-          </plugin>
-                          
+                      add maven-enforce-plugin to make sure the right jdk is used
+                      https://stackoverflow.com/a/18420462/922688
+                  -->
+
+            <plugin>
+
+                <artifactId>maven-enforcer-plugin</artifactId>
+
+                <executions>
+
+                    <execution>
+
+                        <goals>
+
+                            <goal>enforce</goal>
+
+                        </goals>
+
+                        <configuration>
+
+                            <rules>
+
+                                <requireMavenVersion>
+
+                                    <version>3.3.9</version>
+
+                                </requireMavenVersion>
+
+                            </rules>
+
+                        </configuration>
+
+                    </execution>
+
+                </executions>
+
+            </plugin>
+
         </plugins>
-                    
-      </build>
-              
-    </profile>
-            
-    <profile>
-                  
-      <id>gen-sign</id>
-                  
-      <activation>
-                        
-        <property>
-                              
-          <name>performRelease</name>
-                              
-          <value>true</value>
-                          
-        </property>
-                    
-      </activation>
-                  
-      <build>
-                        
-        <plugins>
-                              
-          <plugin>
-                                    
-            <artifactId>maven-gpg-plugin</artifactId>
-                                    
-            <executions>
-                                          
-              <execution>
-                                                
-                <id>sign-artifacts</id>
-                                                
-                <phase>verify</phase>
-                                                
-                <goals>
-                                                      
-                  <goal>sign</goal>
-                                                  
-                </goals>
-                                            
-              </execution>
-                                      
-            </executions>
-                                
-          </plugin>
-                          
-        </plugins>
-                    
-      </build>
-              
-    </profile>
-            
-    <profile>
-                  
-      <id>gen-git-properties</id>
-                  
-      <activation>
-                        
-        <property>
-                              
-          <name>performRelease</name>
-                              
-          <value>true</value>
-                          
-        </property>
-                    
-      </activation>
-                  
-      <build>
-                        
-        <plugins>
-                              
-          <!--
-                        Maven plugin which includes build-time git repository information into an POJO / *.properties).
-                        Make your apps tell you which version exactly they were built from! Priceless in large distributed deployments.
-                            https://github.com/ktoso/maven-git-commit-id-plugin
-                    -->
-                              
-          <plugin>
-                                    
-            <groupId>pl.project13.maven</groupId>
-                                    
-            <artifactId>git-commit-id-plugin</artifactId>
-                                    
-            <executions>
-                                          
-              <execution>
-                                                
-                <id>get-the-git-infos</id>
-                                                
-                <goals>
-                                                      
-                  <goal>revision</goal>
-                                                  
-                </goals>
-                                            
-              </execution>
-                                          
-              <execution>
-                                                
-                <id>validate-the-git-infos</id>
-                                                
-                <goals>
-                                                      
-                  <goal>validateRevision</goal>
-                                                  
-                </goals>
-                                            
-              </execution>
-                                      
-            </executions>
-                                    
-            <configuration>
-                                          
-              <validationProperties>
-                                                
-                <!-- verify that the current repository is not dirty -->
-                                                
-                <validationProperty>
-                                                      
-                  <name>validating git dirty</name>
-                                                      
-                  <value>${git.dirty}</value>
-                                                      
-                  <shouldMatchTo>false</shouldMatchTo>
-                                                  
-                </validationProperty>
-                                            
-              </validationProperties>
-                                          
-              <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                                          
-              <generateGitPropertiesFilename>
+
+        <pluginManagement>
+
+            <plugins>
+
+                <plugin>
+
+                    <artifactId>maven-resources-plugin</artifactId>
+
+                    <version>3.3.1</version>
+
+                </plugin>
+
+                <plugin>
+
+                    <artifactId>maven-compiler-plugin</artifactId>
+
+                    <version>3.11.0</version>
+
+                </plugin>
+
+                <plugin>
+
+                    <artifactId>maven-source-plugin</artifactId>
+
+                    <version>3.2.1</version>
+
+                </plugin>
+
+                <plugin>
+
+                    <artifactId>maven-javadoc-plugin</artifactId>
+
+                    <version>3.6.0</version>
+
+                </plugin>
+
+                <plugin>
+
+                    <artifactId>maven-gpg-plugin</artifactId>
+
+                    <version>3.1.0</version>
+
+                </plugin>
+
+                <plugin>
+
+                    <artifactId>maven-enforcer-plugin</artifactId>
+
+                    <version>3.4.1</version>
+
+                </plugin>
+
+                <plugin>
+
+                    <artifactId>maven-deploy-plugin</artifactId>
+
+                    <version>3.1.1</version>
+
+                </plugin>
+
+                <plugin>
+
+                    <groupId>org.sonatype.plugins</groupId>
+
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+
+                    <version>1.6.13</version>
+
+                </plugin>
+
+                <plugin>
+
+                    <groupId>org.jacoco</groupId>
+
+                    <artifactId>jacoco-maven-plugin</artifactId>
+
+                    <version>0.8.10</version>
+
+                </plugin>
+
+                <plugin>
+
+                    <groupId>pl.project13.maven</groupId>
+
+                    <artifactId>git-commit-id-plugin</artifactId>
+
+                    <version>4.9.10</version>
+
+                </plugin>
+
+                <plugin>
+
+                    <!--
+                                  config example: https://github.com/mojohaus/versions-maven-plugin/issues/157#issuecomment-306041074
+                              -->
+
+                    <groupId>org.codehaus.mojo</groupId>
+
+                    <artifactId>versions-maven-plugin</artifactId>
+
+                    <version>2.16.0</version>
+
+                    <configuration>
+
+                        <rulesUri>
+                            file://${maven.multiModuleProjectDirectory}/cola-component-dto/src/versions-rules.xml
+                        </rulesUri>
+
+                        <generateBackupPoms>false</generateBackupPoms>
+
+                    </configuration>
+
+                </plugin>
+
+            </plugins>
+
+        </pluginManagement>
+
+    </build>
+
+    <distributionManagement>
+
+        <snapshotRepository>
+
+            <id>ossrh</id>
+
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+
+        </snapshotRepository>
+
+    </distributionManagement>
+
+    <profiles>
+
+        <profile>
+
+            <id>gen-java-src</id>
+
+            <activation>
+
+                <property>
+
+                    <name>performRelease</name>
+
+                    <value>true</value>
+
+                </property>
+
+            </activation>
+
+            <build>
+
+                <plugins>
+
+                    <plugin>
+
+                        <artifactId>maven-source-plugin</artifactId>
+
+                        <executions>
+
+                            <execution>
+
+                                <id>attach-sources</id>
+
+                                <goals>
+
+                                    <goal>jar</goal>
+
+                                </goals>
+
+                            </execution>
+
+                        </executions>
+
+                    </plugin>
+
+                </plugins>
+
+            </build>
+
+        </profile>
+
+        <profile>
+
+            <id>gen-java-doc</id>
+
+            <activation>
+
+                <property>
+
+                    <name>performRelease</name>
+
+                    <value>true</value>
+
+                </property>
+
+            </activation>
+
+            <build>
+
+                <plugins>
+
+                    <plugin>
+
+                        <artifactId>maven-javadoc-plugin</artifactId>
+
+                        <executions>
+
+                            <execution>
+
+                                <id>attach-javadoc</id>
+
+                                <goals>
+
+                                    <goal>jar</goal>
+
+                                </goals>
+
+                            </execution>
+
+                        </executions>
+
+                        <configuration>
+
+                            <source>8</source>
+
+                            <show>protected</show>
+
+                            <charset>UTF-8</charset>
+
+                            <encoding>UTF-8</encoding>
+
+                            <docencoding>UTF-8</docencoding>
+
+                            <additionalJOptions>
+
+                                <additionalJOption>--no-module-directories</additionalJOption>
+
+                                <additionalJOption>-quiet</additionalJOption>
+
+                                <additionalJOption>-J-Duser.language=en</additionalJOption>
+
+                                <additionalJOption>-J-Duser.country=US</additionalJOption>
+
+                                <additionalJOption>-Xdoclint:none</additionalJOption>
+
+                            </additionalJOptions>
+
+                        </configuration>
+
+                    </plugin>
+
+                </plugins>
+
+            </build>
+
+        </profile>
+
+        <profile>
+
+            <id>gen-code-cov</id>
+
+            <activation>
+
+                <property>
+
+                    <name>env.TRAVIS</name>
+
+                    <value>true</value>
+
+                </property>
+
+            </activation>
+
+            <build>
+
+                <plugins>
+
+                    <plugin>
+
+                        <!--
+                                        plugin docs: http://eclemma.org/jacoco/trunk/doc/
+                                        for codecov.io, config example https://github.com/codecov/example-java
+                                    -->
+
+                        <groupId>org.jacoco</groupId>
+
+                        <artifactId>jacoco-maven-plugin</artifactId>
+
+                        <executions>
+
+                            <execution>
+
+                                <goals>
+
+                                    <goal>prepare-agent</goal>
+
+                                </goals>
+
+                            </execution>
+
+                            <execution>
+
+                                <id>report</id>
+
+                                <phase>test</phase>
+
+                                <goals>
+
+                                    <goal>report</goal>
+
+                                </goals>
+
+                            </execution>
+
+                        </executions>
+
+                    </plugin>
+
+                </plugins>
+
+            </build>
+
+        </profile>
+
+        <profile>
+
+            <id>gen-sign</id>
+
+            <activation>
+
+                <property>
+
+                    <name>performRelease</name>
+
+                    <value>true</value>
+
+                </property>
+
+            </activation>
+
+            <build>
+
+                <plugins>
+
+                    <plugin>
+
+                        <artifactId>maven-gpg-plugin</artifactId>
+
+                        <executions>
+
+                            <execution>
+
+                                <id>sign-artifacts</id>
+
+                                <phase>verify</phase>
+
+                                <goals>
+
+                                    <goal>sign</goal>
+
+                                </goals>
+
+                            </execution>
+
+                        </executions>
+
+                    </plugin>
+
+                </plugins>
+
+            </build>
+
+        </profile>
+
+        <profile>
+
+            <id>gen-git-properties</id>
+
+            <activation>
+
+                <property>
+
+                    <name>performRelease</name>
+
+                    <value>true</value>
+
+                </property>
+
+            </activation>
+
+            <build>
+
+                <plugins>
+
+                    <!--
+                                  Maven plugin which includes build-time git repository information into an POJO / *.properties).
+                                  Make your apps tell you which version exactly they were built from! Priceless in large distributed deployments.
+                                      https://github.com/ktoso/maven-git-commit-id-plugin
+                              -->
+
+                    <plugin>
+
+                        <groupId>pl.project13.maven</groupId>
+
+                        <artifactId>git-commit-id-plugin</artifactId>
+
+                        <executions>
+
+                            <execution>
+
+                                <id>get-the-git-infos</id>
+
+                                <goals>
+
+                                    <goal>revision</goal>
+
+                                </goals>
+
+                            </execution>
+
+                            <execution>
+
+                                <id>validate-the-git-infos</id>
+
+                                <goals>
+
+                                    <goal>validateRevision</goal>
+
+                                </goals>
+
+                            </execution>
+
+                        </executions>
+
+                        <configuration>
+
+                            <validationProperties>
+
+                                <!-- verify that the current repository is not dirty -->
+
+                                <validationProperty>
+
+                                    <name>validating git dirty</name>
+
+                                    <value>${git.dirty}</value>
+
+                                    <shouldMatchTo>false</shouldMatchTo>
+
+                                </validationProperty>
+
+                            </validationProperties>
+
+                            <generateGitPropertiesFile>true</generateGitPropertiesFile>
+
+                            <generateGitPropertiesFilename>
                                 ${project.build.outputDirectory}/META-INF/scm/${project.groupId}/${project.artifactId}/git.properties
                             </generateGitPropertiesFilename>
-                                      
-            </configuration>
-                                
-          </plugin>
-                          
-        </plugins>
-                    
-      </build>
-              
-    </profile>
-            
-    <profile>
-                  
-      <id>force-jdk11-when-release</id>
-                  
-      <activation>
-                        
-        <property>
-                              
-          <name>performRelease</name>
-                              
-          <value>true</value>
-                          
-        </property>
-                    
-      </activation>
-                  
-      <build>
-                        
-        <plugins>
-                              
-          <!--
-                        add maven-enforce-plugin to make sure the right jdk is used
-                        https://stackoverflow.com/a/18420462/922688
-                    -->
-                              
-          <plugin>
-                                    
-            <artifactId>maven-enforcer-plugin</artifactId>
-                                    
-            <executions>
-                                          
-              <execution>
-                                                
-                <goals>
-                                                      
-                  <goal>enforce</goal>
-                                                  
-                </goals>
-                                                
-                <configuration>
-                                                      
-                  <rules>
-                                                            
-                    <requireJavaVersion>
-                                                                  
-                      <version>11</version>
-                                                              
-                    </requireJavaVersion>
-                                                        
-                  </rules>
-                                                  
-                </configuration>
-                                            
-              </execution>
-                                      
-            </executions>
-                                
-          </plugin>
-                          
-        </plugins>
-                    
-      </build>
-              
-    </profile>
-            
-    <profile>
-                  
-      <id>deploy-settings</id>
-                  
-      <activation>
-                        
-        <property>
-                              
-          <name>performRelease</name>
-                              
-          <value>true</value>
-                          
-        </property>
-                    
-      </activation>
-                  
-      <build>
-                        
-        <plugins>
-                              
-          <plugin>
-                                    
-            <groupId>org.sonatype.plugins</groupId>
-                                    
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-                                    
-            <extensions>true</extensions>
-                                    
-            <configuration>
-                                          
-              <serverId>ossrh</serverId>
-                                          
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                                          
-              <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                                      
-            </configuration>
-                                
-          </plugin>
-                          
-        </plugins>
-                    
-      </build>
-              
-    </profile>
-        
-  </profiles>
-  
+
+                        </configuration>
+
+                    </plugin>
+
+                </plugins>
+
+            </build>
+
+        </profile>
+
+        <profile>
+
+            <id>force-jdk11-when-release</id>
+
+            <activation>
+
+                <property>
+
+                    <name>performRelease</name>
+
+                    <value>true</value>
+
+                </property>
+
+            </activation>
+
+            <build>
+
+                <plugins>
+
+                    <!--
+                                  add maven-enforce-plugin to make sure the right jdk is used
+                                  https://stackoverflow.com/a/18420462/922688
+                              -->
+
+                    <plugin>
+
+                        <artifactId>maven-enforcer-plugin</artifactId>
+
+                        <executions>
+
+                            <execution>
+
+                                <goals>
+
+                                    <goal>enforce</goal>
+
+                                </goals>
+
+                                <configuration>
+
+                                    <rules>
+
+                                        <requireJavaVersion>
+
+                                            <version>11</version>
+
+                                        </requireJavaVersion>
+
+                                    </rules>
+
+                                </configuration>
+
+                            </execution>
+
+                        </executions>
+
+                    </plugin>
+
+                </plugins>
+
+            </build>
+
+        </profile>
+
+        <profile>
+
+            <id>deploy-settings</id>
+
+            <activation>
+
+                <property>
+
+                    <name>performRelease</name>
+
+                    <value>true</value>
+
+                </property>
+
+            </activation>
+
+            <build>
+
+                <plugins>
+
+                    <plugin>
+
+                        <groupId>org.sonatype.plugins</groupId>
+
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+
+                        <extensions>true</extensions>
+
+                        <configuration>
+
+                            <serverId>ossrh</serverId>
+
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+
+                        </configuration>
+
+                    </plugin>
+
+                </plugins>
+
+            </build>
+
+        </profile>
+
+    </profiles>
+
 </project>

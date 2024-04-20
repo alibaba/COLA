@@ -18,6 +18,8 @@ public class CompositeRuleTest {
         fizzBuzzEngine = new DefaultRuleEngine();
     }
 
+
+
     @Test
     public void test_fizz_first(){
         Facts facts = new Facts();

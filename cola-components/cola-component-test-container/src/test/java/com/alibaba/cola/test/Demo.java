@@ -1,12 +1,16 @@
 package com.alibaba.cola.test;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+@Slf4j
 public class Demo {
 
-    @Before
+    @BeforeEach
     public void before(){
         System.out.println("before action");
     }
@@ -14,6 +18,8 @@ public class Demo {
     @Test
     public void testOne(){
         System.out.println("test one");
+        Assertions.assertEquals(1,1);
+        System.out.println("test one end");
     }
 
     @Test
@@ -21,7 +27,12 @@ public class Demo {
         System.out.println("test two");
     }
 
-    @After
+    @Test
+    void testThree(){
+        System.out.println("test three");
+    }
+
+    @AfterEach
     public void after(){
         System.out.println("after action");
     }
