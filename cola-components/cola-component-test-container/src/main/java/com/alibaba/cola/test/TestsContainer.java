@@ -2,11 +2,10 @@ package com.alibaba.cola.test;
 
 import com.alibaba.cola.test.command.AbstractCommand;
 import com.alibaba.cola.test.command.GuideCmd;
-import org.springframework.beans.BeansException;
+import org.junit.platform.launcher.Launcher;
+import org.junit.platform.launcher.core.LauncherFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,49 +25,63 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author Frank Zhang
  * @date 2020-11-17 3:35 PM
  */
-@Component
-public class TestsContainer implements ApplicationContextAware {
+public class TestsContainer {
 
     private static ApplicationContext context;
+    private static Launcher launcher;
 
     private static TestExecutor testExecutor;
     private static AtomicBoolean initFlag = new AtomicBoolean(false);
 
-    public static void init(ApplicationContext context){
-        if(!initFlag.compareAndSet(false, true)) {
-            return;
+
+    /**
+     * 如果要用到Junit5的Extension功能，需要显示的提供Launcher
+     *
+     * @param context  ApplicationContext to be provided
+     * @param launcher 运行Junit5测试用例的Launcher, 如果不提供，默认会自己创建一个
+     */
+    public static void start(ApplicationContext context, Launcher launcher) {
+        TestsContainer.context = context;
+        if (launcher != null) {
+            TestsContainer.launcher = launcher;
+        } else {
+            TestsContainer.launcher = LauncherFactory.create();
         }
-        if(context == null){
-            testExecutor = new TestExecutor(TestsContainer.context);
-        }else {
-            testExecutor = new TestExecutor(context);
-        }
+        testExecutor = new TestExecutor(TestsContainer.launcher);
+        monitorConsole();
+    }
+
+    /**
+     * 使用Junit5的launcher之后，不再需要ApplicationContext，框架会自己处理Spring的依赖关系
+     * @param launcher
+     */
+    public static void start(Launcher launcher) {
+        start(null, launcher);
     }
 
     /**
      * TestsContainer is optional to be in Spring Container
+     *
      * @param context ApplicationContext to be provided
      */
     public static void start(ApplicationContext context) {
-        TestsContainer.context = context;
-        start();
+        start(context, null);
     }
 
     /**
-     * TestsContainer must be within Spring Container
+     * TestsContainer without Spring Container
      */
-    public static void start(){
-        init(TestsContainer.context);
-        monitorConsole();
+    public static void start() {
+        start(null, null);
     }
 
-    public static void execute(String input){
-        if(StringUtils.isEmpty(input)){
+    public static void execute(String input) {
+        if (ObjectUtils.isEmpty(input)) {
             return;
         }
         input = input.trim();
         AbstractCommand command = AbstractCommand.createCmd(input);
-        if (command == null){
+        if (command == null) {
             System.err.println("Your input is not a valid qualified name");
             return;
         }
@@ -80,12 +93,7 @@ public class TestsContainer implements ApplicationContextAware {
         return testExecutor;
     }
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        context = applicationContext;
-    }
-
-    private static void monitorConsole(){
+    private static void monitorConsole() {
         BufferedReader bufferRead = new BufferedReader(new InputStreamReader(
                 System.in));
         String input = GuideCmd.GUIDE_HELP;
@@ -94,7 +102,7 @@ public class TestsContainer implements ApplicationContextAware {
                 execute(input);
             } catch (Exception e) {
                 e.printStackTrace();
-            } catch (Error e){
+            } catch (Error e) {
                 e.printStackTrace();
                 break;
             }
