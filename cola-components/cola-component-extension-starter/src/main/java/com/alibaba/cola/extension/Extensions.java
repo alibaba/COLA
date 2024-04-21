@@ -24,6 +24,4 @@ public @interface Extensions {
 
     String[] scenario() default BizScenario.DEFAULT_SCENARIO;
 
-    Extension[] value() default {};
-
 }
