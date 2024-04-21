@@ -18,7 +18,6 @@ import java.lang.annotation.*;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-@Repeatable(Extensions.class)
 @Component
 public @interface Extension {
     String bizId()  default BizScenario.DEFAULT_BIZ_ID;
