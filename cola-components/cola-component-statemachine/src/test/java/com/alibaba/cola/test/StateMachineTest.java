@@ -234,9 +234,9 @@ public class StateMachineTest {
             System.out.println(state);
         }
         States target2 = stateMachine.fireEvent(StateMachineTest.States.STATE2, StateMachineTest.Events.EVENT2, new Context());
-        Assert.assertEquals(States.STATE4,target2);
+        Assertions.assertEquals(States.STATE4,target2);
         States target3 = stateMachine.fireEvent(StateMachineTest.States.STATE3, StateMachineTest.Events.EVENT2, new Context());
-        Assert.assertEquals(States.STATE4,target3);
+        Assertions.assertEquals(States.STATE4,target3);
     }
 
     private Condition<Context> checkCondition() {
