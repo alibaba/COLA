@@ -92,6 +92,21 @@ public class Facts implements Iterable<Fact<?>> {
                 .orElse(null);
     }
 
+    public boolean contains(String factName){
+        return getFact(factName) != null;
+    }
+
+    public boolean contains(Fact fact){
+        if(fact == null){
+            return false;
+        }
+        return getFact(fact.getName()) != null;
+    }
+
+    public int size(){
+        return facts.size();
+    }
+
     /**
      * Return a copy of the facts as a map. It is not intended to manipulate
      * facts outside of the rules engine (aka other than manipulating them through rules).

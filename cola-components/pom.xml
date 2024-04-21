@@ -144,9 +144,9 @@
 
         <dependency>
 
-            <groupId>junit</groupId>
+            <groupId>org.junit.jupiter</groupId>
 
-            <artifactId>junit</artifactId>
+            <artifactId>junit-jupiter</artifactId>
 
             <scope>test</scope>
 
@@ -358,7 +358,12 @@
                     </configuration>
 
                 </plugin>
-
+                <!--修复老的maven-surefire-plugin不支持junit5 + spring5的bug-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.1.2</version>
+                </plugin>
             </plugins>
 
         </pluginManagement>

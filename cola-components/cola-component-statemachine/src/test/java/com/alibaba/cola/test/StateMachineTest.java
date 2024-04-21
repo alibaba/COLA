@@ -8,9 +8,9 @@ import com.alibaba.cola.statemachine.builder.AlertFailCallback;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilder;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilderFactory;
 import com.alibaba.cola.statemachine.exception.TransitionFailException;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * StateMachineTest
@@ -54,7 +54,7 @@ public class StateMachineTest {
 
         StateMachine<States, Events, Context> stateMachine = builder.build(MACHINE_ID);
         States target = stateMachine.fireEvent(States.STATE1, Events.EVENT1, new Context());
-        Assert.assertEquals(States.STATE2, target);
+        Assertions.assertEquals(States.STATE2, target);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class StateMachineTest {
         builder.setFailCallback(new AlertFailCallback<>());
 
         StateMachine<States, Events, Context> stateMachine = builder.build(MACHINE_ID + "-testFail");
-        Assert.assertThrows(TransitionFailException.class,
+        Assertions.assertThrows(TransitionFailException.class,
             () -> stateMachine.fireEvent(States.STATE2, Events.EVENT1, new Context()));
     }
 
@@ -86,8 +86,8 @@ public class StateMachineTest {
 
         StateMachine<States, Events, Context> stateMachine = builder.build(MACHINE_ID + "-testVerify");
 
-        Assert.assertTrue(stateMachine.verify(States.STATE1, Events.EVENT1));
-        Assert.assertFalse(stateMachine.verify(States.STATE1, Events.EVENT2));
+        Assertions.assertTrue(stateMachine.verify(States.STATE1, Events.EVENT1));
+        Assertions.assertFalse(stateMachine.verify(States.STATE1, Events.EVENT2));
     }
 
     @Test
@@ -102,7 +102,7 @@ public class StateMachineTest {
 
         StateMachine<States, Events, Context> stateMachine = builder.build(MACHINE_ID + "1");
         States target = stateMachine.fireEvent(States.STATE2, Events.EVENT1, new Context());
-        Assert.assertEquals(States.STATE4, target);
+        Assertions.assertEquals(States.STATE4, target);
     }
 
     @Test
@@ -117,7 +117,7 @@ public class StateMachineTest {
 
         stateMachine.fireEvent(States.STATE1, Events.EVENT1, new Context());
         States target = stateMachine.fireEvent(States.STATE1, Events.INTERNAL_EVENT, new Context());
-        Assert.assertEquals(States.STATE1, target);
+        Assertions.assertEquals(States.STATE1, target);
     }
 
     @Test
@@ -126,13 +126,13 @@ public class StateMachineTest {
 
         Context context = new Context();
         States target = stateMachine.fireEvent(States.STATE1, Events.EVENT1, context);
-        Assert.assertEquals(States.STATE2, target);
+        Assertions.assertEquals(States.STATE2, target);
         target = stateMachine.fireEvent(States.STATE2, Events.INTERNAL_EVENT, context);
-        Assert.assertEquals(States.STATE2, target);
+        Assertions.assertEquals(States.STATE2, target);
         target = stateMachine.fireEvent(States.STATE2, Events.EVENT2, context);
-        Assert.assertEquals(States.STATE1, target);
+        Assertions.assertEquals(States.STATE1, target);
         target = stateMachine.fireEvent(States.STATE1, Events.EVENT3, context);
-        Assert.assertEquals(States.STATE3, target);
+        Assertions.assertEquals(States.STATE3, target);
     }
 
     private StateMachine<States, Events, Context> buildStateMachine(String machineId) {
@@ -186,7 +186,7 @@ public class StateMachineTest {
             Thread thread = new Thread(() -> {
                 StateMachine<States, Events, Context> stateMachine = StateMachineFactory.get("testMultiThread");
                 States target = stateMachine.fireEvent(States.STATE1, Events.EVENT1, new Context());
-                Assert.assertEquals(States.STATE2, target);
+                Assertions.assertEquals(States.STATE2, target);
             });
             thread.start();
         }
@@ -195,7 +195,7 @@ public class StateMachineTest {
             Thread thread = new Thread(() -> {
                 StateMachine<States, Events, Context> stateMachine = StateMachineFactory.get("testMultiThread");
                 States target = stateMachine.fireEvent(States.STATE1, Events.EVENT4, new Context());
-                Assert.assertEquals(States.STATE4, target);
+                Assertions.assertEquals(States.STATE4, target);
             });
             thread.start();
         }
@@ -204,7 +204,7 @@ public class StateMachineTest {
             Thread thread = new Thread(() -> {
                 StateMachine<States, Events, Context> stateMachine = StateMachineFactory.get("testMultiThread");
                 States target = stateMachine.fireEvent(States.STATE1, Events.EVENT3, new Context());
-                Assert.assertEquals(States.STATE3, target);
+                Assertions.assertEquals(States.STATE3, target);
             });
             thread.start();
         }

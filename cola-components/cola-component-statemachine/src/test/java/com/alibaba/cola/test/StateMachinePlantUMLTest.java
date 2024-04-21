@@ -6,8 +6,8 @@ import com.alibaba.cola.statemachine.StateMachine;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilder;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilderFactory;
 import com.alibaba.cola.statemachine.impl.Debugger;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.stream.Stream;
 
@@ -83,7 +83,7 @@ public class StateMachinePlantUMLTest {
         }
     }
 
-    @Before
+    @BeforeEach
     public void init(){
         Debugger.enableDebug();
     }

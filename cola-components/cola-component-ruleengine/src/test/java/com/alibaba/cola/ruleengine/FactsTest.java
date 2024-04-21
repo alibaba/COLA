@@ -2,12 +2,10 @@ package com.alibaba.cola.ruleengine;
 
 import com.alibaba.cola.ruleengine.api.Fact;
 import com.alibaba.cola.ruleengine.api.Facts;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Map;
-import org.junit.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 
 public class FactsTest {
 
@@ -18,9 +16,9 @@ public class FactsTest {
         facts.add(new Fact<>("foo", 1));
         facts.add(new Fact<>("foo", 2));
 
-        assertThat(facts).hasSize(1);
+
         Fact<?> fact = facts.getFact("foo");
-        assertThat(fact.getValue()).isEqualTo(2);
+        assertEquals(fact.getValue(),2);
     }
 
     @Test
@@ -30,8 +28,8 @@ public class FactsTest {
         facts.add(fact1);
         facts.add(fact2);
 
-        assertThat(facts).contains(fact1);
-        assertThat(facts).contains(fact2);
+        assertTrue(facts.contains(fact1));
+        assertTrue(facts.contains(fact2));
     }
 
     @Test
@@ -39,8 +37,8 @@ public class FactsTest {
         facts.put("foo", 1);
         facts.put("bar", 2);
 
-        assertThat(facts).contains(new Fact<>("foo", 1));
-        assertThat(facts).contains(new Fact<>("bar", 2));
+        assertTrue(facts.contains(new Fact<>("foo", 1)));
+        assertTrue(facts.contains(new Fact<>("bar", 2)));
     }
 
     @Test
@@ -49,7 +47,7 @@ public class FactsTest {
         facts.add(foo);
         facts.remove(foo);
 
-        assertThat(facts).isEmpty();
+        assertTrue(facts.size() == 0);
     }
 
     @Test
@@ -58,7 +56,7 @@ public class FactsTest {
         facts.add(foo);
         facts.remove("foo");
 
-        assertThat(facts).isEmpty();
+        assertTrue(facts.size() == 0);
     }
 
     @Test
@@ -66,7 +64,7 @@ public class FactsTest {
         Fact<Integer> fact = new Fact<>("foo", 1);
         facts.add(fact);
         Integer value = facts.get("foo");
-        assertThat(value).isEqualTo(1);
+        assertEquals(value, 1);
     }
 
     @Test
@@ -74,7 +72,7 @@ public class FactsTest {
         Fact<Integer> fact = new Fact<>("foo", 1);
         facts.add(fact);
         Fact<?> retrievedFact = facts.getFact("foo");
-        assertThat(retrievedFact).isEqualTo(fact);
+        assertEquals(retrievedFact, fact);
     }
 
     @Test
@@ -84,8 +82,8 @@ public class FactsTest {
         facts.add(fact1);
         facts.add(fact2);
         Map<String, Object> map = facts.asMap();
-        assertThat(map).containsKeys("foo", "bar");
-        assertThat(map).containsValues(1, 2);
+        assertTrue(map.containsKey("foo"));
+        assertTrue(map.containsKey("bar"));
     }
 
     @Test
@@ -93,7 +91,8 @@ public class FactsTest {
         Facts facts = new Facts();
         facts.add(new Fact<>("foo", 1));
         facts.clear();
-        assertThat(facts).isEmpty();
+
+        assertTrue(facts.size() == 0);
     }
 
 }

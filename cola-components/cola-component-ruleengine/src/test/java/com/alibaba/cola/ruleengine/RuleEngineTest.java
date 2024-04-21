@@ -4,7 +4,7 @@ import com.alibaba.cola.ruleengine.api.Facts;
 import com.alibaba.cola.ruleengine.api.Rule;
 import com.alibaba.cola.ruleengine.api.RuleEngine;
 import com.alibaba.cola.ruleengine.core.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class RuleEngineTest {
 
