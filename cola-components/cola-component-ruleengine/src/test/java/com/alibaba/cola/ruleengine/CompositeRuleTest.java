@@ -4,16 +4,15 @@ import com.alibaba.cola.ruleengine.api.Facts;
 import com.alibaba.cola.ruleengine.api.Rule;
 import com.alibaba.cola.ruleengine.api.RuleEngine;
 import com.alibaba.cola.ruleengine.core.*;
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class CompositeRuleTest {
 
     RuleEngine fizzBuzzEngine;
 
-    @Before
+    @BeforeEach
     public void setUp(){
         fizzBuzzEngine = new DefaultRuleEngine();
     }
@@ -28,7 +27,7 @@ public class CompositeRuleTest {
         Rule rule = assembleRules(1,2,3);
 
         fizzBuzzEngine.fire(rule, facts);
-        assertThat(facts.getFact("fizz").getValue()).isEqualTo("Fizz");
+        assertEquals(facts.getFact("fizz").getValue(), "Fizz");
     }
 
     @Test
@@ -39,7 +38,7 @@ public class CompositeRuleTest {
         Rule rule = assembleRules(2,1,3);
 
         fizzBuzzEngine.fire(rule, facts);
-        assertThat(facts.getFact("buzz").getValue()).isEqualTo("Buzz");
+        assertEquals(facts.getFact("buzz").getValue(), "Buzz");
     }
 
     @Test
@@ -50,8 +49,8 @@ public class CompositeRuleTest {
         Rule rule = assembleRules(2,3,1);
 
         fizzBuzzEngine.fire(rule, facts);
-        assertThat(facts.getFact("fizz").getValue()).isEqualTo("Fizz");
-        assertThat(facts.getFact("buzz").getValue()).isEqualTo("Buzz");
+        assertEquals(facts.getFact("fizz").getValue(), "Fizz");
+        assertEquals(facts.getFact("buzz").getValue(), "Buzz");
     }
 
 

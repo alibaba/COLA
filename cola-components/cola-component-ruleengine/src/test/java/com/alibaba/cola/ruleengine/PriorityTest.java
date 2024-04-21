@@ -1,23 +1,21 @@
 package com.alibaba.cola.ruleengine;
 
-import com.alibaba.cola.ruleengine.api.Action;
 import com.alibaba.cola.ruleengine.api.Facts;
 import com.alibaba.cola.ruleengine.api.Rule;
 import com.alibaba.cola.ruleengine.api.RuleEngine;
-import com.alibaba.cola.ruleengine.core.*;
-import org.junit.Before;
-import org.junit.Test;
+import com.alibaba.cola.ruleengine.core.DefaultRule;
+import com.alibaba.cola.ruleengine.core.DefaultRuleEngine;
+import com.alibaba.cola.ruleengine.core.NaturalRules;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.extractProperty;
 
 public class PriorityTest {
 
     RuleEngine ruleEngine;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         ruleEngine = new DefaultRuleEngine();
     }
