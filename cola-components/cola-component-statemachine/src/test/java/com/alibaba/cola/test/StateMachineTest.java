@@ -12,6 +12,8 @@ import com.alibaba.cola.statemachine.exception.TransitionFailException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+
 /**
  * StateMachineTest
  *
@@ -209,6 +211,32 @@ public class StateMachineTest {
             thread.start();
         }
 
+    }
+    @Test
+    public void testParallel(){
+        StateMachineBuilder<States, Events, Context> builder = StateMachineBuilderFactory.create();
+        builder.externalParallelTransition()
+                .from(States.STATE1)
+                .toAmong(States.STATE2,States.STATE3)
+                .on(StateMachineTest.Events.EVENT1)
+                .when(checkCondition())
+                .perform(doAction());
+        builder.externalTransitions()
+                .fromAmong(StateMachineTest.States.STATE2,StateMachineTest.States.STATE3)
+                .to(StateMachineTest.States.STATE4)
+                .on(StateMachineTest.Events.EVENT2)
+                .when(checkCondition())
+                .perform(doAction());
+        StateMachine<States, Events, Context> stateMachine = builder.build("ParallelMachine");
+        System.out.println(stateMachine.generatePlantUML());
+        List<States> states = stateMachine.fireParallelEvent(StateMachineTest.States.STATE1, StateMachineTest.Events.EVENT1, new Context());
+        for (StateMachineTest.States state : states) {
+            System.out.println(state);
+        }
+        States target2 = stateMachine.fireEvent(StateMachineTest.States.STATE2, StateMachineTest.Events.EVENT2, new Context());
+        Assert.assertEquals(States.STATE4,target2);
+        States target3 = stateMachine.fireEvent(StateMachineTest.States.STATE3, StateMachineTest.Events.EVENT2, new Context());
+        Assert.assertEquals(States.STATE4,target3);
     }
 
     private Condition<Context> checkCondition() {

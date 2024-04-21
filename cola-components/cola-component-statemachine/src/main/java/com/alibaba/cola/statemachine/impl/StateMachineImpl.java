@@ -1,5 +1,6 @@
 package com.alibaba.cola.statemachine.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +58,23 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
 
         return transition.transit(ctx, false).getId();
     }
+    @Override
+    public List<S> fireParallelEvent(S sourceState, E event, C context) {
+        isReady();
+        List<Transition<S, E, C>> transitions = routeTransitions(sourceState, event, context);
+        List<S> result = new ArrayList<>();
+        if (transitions == null||transitions.isEmpty()) {
+            Debugger.debug("There is no Transition for " + event);
+            failCallback.onFail(sourceState, event, context);
+            result.add(sourceState);
+            return result;
+        }
+        for (Transition<S, E, C> transition : transitions) {
+            S id = transition.transit(context, false).getId();
+            result.add(id);
+        }
+        return result;
+    }
 
     private Transition<S, E, C> routeTransition(S sourceStateId, E event, C ctx) {
         State sourceState = getState(sourceStateId);
@@ -78,6 +96,25 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
         }
 
         return transit;
+    }
+    private List<Transition<S,E,C>> routeTransitions(S sourceStateId, E event, C context) {
+        State sourceState = getState(sourceStateId);
+        List<Transition<S, E, C>> result = new ArrayList<>();
+        List<Transition<S, E, C>> transitions = sourceState.getEventTransitions(event);
+        if (transitions == null || transitions.size() == 0) {
+            return null;
+        }
+
+        for (Transition<S, E, C> transition : transitions) {
+            Transition<S, E, C> transit = null;
+            if (transition.getCondition() == null) {
+                transit = transition;
+            } else if (transition.getCondition().isSatisfied(context)) {
+                transit = transition;
+            }
+            result.add(transit);
+        }
+        return result;
     }
 
     private State getState(S currentStateId) {
