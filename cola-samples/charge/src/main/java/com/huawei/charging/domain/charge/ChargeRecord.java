@@ -3,7 +3,7 @@ package com.huawei.charging.domain.charge;
 import com.huawei.charging.domain.charge.chargeplan.ChargePlanType;
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 public class ChargeRecord {
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 

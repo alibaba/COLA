@@ -9,10 +9,11 @@ import com.huawei.charging.domain.charge.chargeplan.ChargePlan;
 import com.huawei.charging.domain.charge.chargerule.ChargeRuleFactory;
 import com.huawei.charging.domain.charge.chargerule.CompositeChargeRule;
 import com.huawei.charging.domain.gateway.AccountGateway;
+import jakarta.annotation.Resource;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.annotation.Resource;
+
 import java.util.ArrayList;
 import java.util.List;
 

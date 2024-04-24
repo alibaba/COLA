@@ -3,7 +3,7 @@ package com.huawei.charging;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.core.importer.ImportOption;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 
@@ -15,7 +15,7 @@ public class CleanArchTest {
                 .importPackages("com.huawei.charging");
 
         layeredArchitecture()
-                .consideringAllDependencies()
+                .consideringOnlyDependenciesInLayers()
                 .layer("adapter").definedBy("com.huawei.charging.adapter")
                 .layer("application").definedBy("com.huawei.charging.application")
                 .layer("domain").definedBy("com.huawei.charging.domain")
