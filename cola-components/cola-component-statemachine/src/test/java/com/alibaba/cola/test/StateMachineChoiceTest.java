@@ -5,6 +5,7 @@ import com.alibaba.cola.statemachine.Condition;
 import com.alibaba.cola.statemachine.StateMachine;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilder;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilderFactory;
+import java.util.UUID;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -53,7 +54,8 @@ public class StateMachineChoiceTest {
             .when(checkCondition3())
             .perform(doAction());
 
-        StateMachine<StateMachineTest.States, StateMachineTest.Events, Context> stateMachine = builder.build("ChoiceConditionMachine");
+        String uniqueId = "ChoiceConditionMachine" + UUID.randomUUID().toString();
+        StateMachine<StateMachineTest.States, StateMachineTest.Events, Context> stateMachine = builder.build(uniqueId);
         StateMachineTest.States target1 = stateMachine.fireEvent(StateMachineTest.States.STATE1, StateMachineTest.Events.EVENT1, new Context("1"));
         Assert.assertEquals(StateMachineTest.States.STATE1,target1);
         StateMachineTest.States target2 = stateMachine.fireEvent(StateMachineTest.States.STATE1, StateMachineTest.Events.EVENT1, new Context("2"));

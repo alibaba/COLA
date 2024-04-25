@@ -6,6 +6,7 @@ import com.alibaba.cola.statemachine.StateMachine;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilder;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilderFactory;
 import com.alibaba.cola.statemachine.impl.StateMachineException;
+import java.util.UUID;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,7 +30,8 @@ public class StateMachineUnNormalTest {
                 .when(checkConditionFalse())
                 .perform(doAction());
 
-        StateMachine<StateMachineTest.States, StateMachineTest.Events, StateMachineTest.Context> stateMachine = builder.build("NotMeetConditionMachine");
+        String uniqueId = "NotMeetConditionMachine" + UUID.randomUUID().toString();
+        StateMachine<StateMachineTest.States, StateMachineTest.Events, StateMachineTest.Context> stateMachine = builder.build(uniqueId);
         StateMachineTest.States target = stateMachine.fireEvent(StateMachineTest.States.STATE1, StateMachineTest.Events.EVENT1, new StateMachineTest.Context());
         Assert.assertEquals(StateMachineTest.States.STATE1,target);
     }
