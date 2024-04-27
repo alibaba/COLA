@@ -1,5 +1,6 @@
 package com.huawei.charging.domain.account;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.huawei.charging.domain.BizException;
 import com.huawei.charging.domain.DomainFactory;
 import com.huawei.charging.domain.Entity;
@@ -35,11 +36,13 @@ public class Account {
     /**
      * 账户所拥有的套餐
      */
+    @JsonIgnore
     private List<ChargePlan> chargePlanList = new ArrayList<>();;
 
     @Resource
     private AccountGateway accountGateway;
 
+    private String name;
 
     public Account(){
 
@@ -84,6 +87,7 @@ public class Account {
                 "phoneNo=" + phoneNo +
                 ", remaining=" + remaining +
                 ", chargePlanList=" + chargePlanList +
+                ", name=" + name +
                 '}';
     }
 }

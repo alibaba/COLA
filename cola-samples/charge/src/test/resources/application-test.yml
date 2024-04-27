@@ -11,5 +11,7 @@ spring:
       ddl-auto: update
     show-sql: true
 
-# my-name: default, will be inherited from application.yml
+# this will override config in test/resources/application.yml and resources/application.yml
 my-age: 30
+
+my-age-test: 40

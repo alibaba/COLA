@@ -11,5 +11,8 @@ spring:
       ddl-auto: update
     show-sql: true
 
+server:
+  port: 8081
+
 my-name: default
 my-age: default

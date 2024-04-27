@@ -2,10 +2,7 @@ package com.huawei.charging.domain;
 
 import com.huawei.charging.Application;
 import com.huawei.charging.domain.account.Account;
-import com.huawei.charging.domain.charge.CallType;
-import com.huawei.charging.domain.charge.ChargeRecord;
-import com.huawei.charging.domain.charge.ChargeContext;
-import com.huawei.charging.domain.charge.Money;
+import com.huawei.charging.domain.charge.*;
 import com.huawei.charging.domain.charge.chargeplan.BasicChargePlan;
 import com.huawei.charging.domain.charge.chargeplan.ChargePlan;
 import com.huawei.charging.domain.charge.chargeplan.FamilyChargePlan;
@@ -18,10 +15,14 @@ import org.springframework.test.context.ContextConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @SpringBootTest
 @ContextConfiguration(classes = Application.class)
 public class CompositeChargeRuleTestRecord {
+
+    private long callingPhoneNo = 13681874561L;
+    private long calledPhoneNo = 15921582125L;
 
     @Test
     public void test_basic_and_fixedTime_charge_rule(){
@@ -32,6 +33,9 @@ public class CompositeChargeRuleTestRecord {
         Account account = Account.valueOf(13681874561L, Money.of(200)); // for spring bean
         account.setChargePlanList(chargePlanList);
         ChargeContext ctx = new ChargeContext(CallType.CALLING, 13681874561L, 15921582125L, 220);
+        String sessionId = UUID.randomUUID().toString();
+        Session session = new Session(sessionId, callingPhoneNo, calledPhoneNo);
+        ctx.setSession(session);
         ctx.account = account;
 
         // do
@@ -50,6 +54,9 @@ public class CompositeChargeRuleTestRecord {
         Account account = Account.valueOf(13681874561L, Money.of(200)); // for spring bean
         account.setChargePlanList(chargePlanList);
         ChargeContext ctx = new ChargeContext(CallType.CALLING, 13681874561L, 15921582125L, 220);
+        String sessionId = UUID.randomUUID().toString();
+        Session session = new Session(sessionId, callingPhoneNo, calledPhoneNo);
+        ctx.setSession(session);
         ctx.account = account;
 
         // do
@@ -69,6 +76,9 @@ public class CompositeChargeRuleTestRecord {
         Account account = Account.valueOf(13681874561L, Money.of(200)); // for spring bean
         account.setChargePlanList(chargePlanList);
         ChargeContext ctx = new ChargeContext(CallType.CALLING, 13681874561L, 15921582125L, 220);
+        String sessionId = UUID.randomUUID().toString();
+        Session session = new Session(sessionId, callingPhoneNo, calledPhoneNo);
+        ctx.setSession(session);
         ctx.account = account;
 
         // do

@@ -16,10 +16,10 @@ public class ChargeController {
 
     @PostMapping("session/{sessionId}/begin")
     public Response begin(@PathVariable(name = "sessionId") String sessionId,
-                          @RequestParam long callingPhoneNo,
-                          @RequestParam long calledPhoneNo) {
+                          @RequestParam("callingPhoneNo") String callingPhoneNo,
+                          @RequestParam("calledPhoneNo") String calledPhoneNo) {
         log.debug(sessionId + " " + callingPhoneNo + " " + calledPhoneNo);
-        BeginSessionRequest request = new BeginSessionRequest(sessionId, callingPhoneNo, calledPhoneNo);
+        BeginSessionRequest request = new BeginSessionRequest(sessionId, Long.valueOf(callingPhoneNo), Long.valueOf(calledPhoneNo));
         return chargeService.begin(request);
     }
 
