@@ -5,24 +5,26 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.AfterEachCallback;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
-@Slf4j
 @SpringBootTest(classes = SpringBootConfig.class)
 @ExtendWith(LoggingExtension.class)
-public class DemoWithExtension{
+public class DemoWithExtension {
 
-    @Resource
+    @Autowired
     private Demo demo;
 
     @BeforeEach
-    public void before(){
+    public void before() {
         System.out.println("=====before");
+    }
+
+    @Test
+    public void testParam(String param) {
+        System.out.println("hello : " + param);
     }
 
     @Test
@@ -33,27 +35,33 @@ public class DemoWithExtension{
     }
 
     @Test
-    public void testMethod2(){
+    public void testMethod2() {
         System.out.println("Begin testMethod2");
         demo.testTwo();
         System.out.println("End testMethod2");
     }
 
     @AfterEach
-    public void after(){
+    public void after() {
         System.out.println("=====after");
     }
 }
 
 
-class LoggingExtension implements BeforeEachCallback, AfterEachCallback {
+class LoggingExtension implements BeforeEachCallback, ParameterResolver {
     @Override
     public void beforeEach(ExtensionContext context) throws Exception {
-        System.out.println("Before Executing test method: " + context.getRequiredTestMethod().getName());
+        System.out.println("Executing test method: " + context.getRequiredTestMethod().getName());
     }
 
     @Override
-    public void afterEach(ExtensionContext context) throws Exception {
-        System.out.println("After Executed test method: " + context.getRequiredTestMethod().getName());
+    public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
+        return true;
+    }
+
+    @Override
+    public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
+        System.out.println("resolveParameter: " + parameterContext);
+        return null;
     }
 }

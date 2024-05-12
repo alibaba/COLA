@@ -1,6 +1,5 @@
 package com.huawei.charging.infrastructure;
 
-import com.alibaba.cola.test.TestsContainer;
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import com.huawei.charging.Application;

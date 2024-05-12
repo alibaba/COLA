@@ -32,6 +32,11 @@ public class Demo {
         System.out.println("test three");
     }
 
+    @Test
+    public void testParam(String param){
+        System.out.println("hello param");
+    }
+
     @AfterEach
     public void after(){
         System.out.println("after action");

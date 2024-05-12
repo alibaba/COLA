@@ -1,5 +1,6 @@
 package com.alibaba.cola.test;
 
+
 import com.alibaba.cola.test.command.TestClassRunCmd;
 import com.alibaba.cola.test.command.TestMethodRunCmd;
 import org.junit.platform.engine.TestExecutionResult;
@@ -8,6 +9,9 @@ import org.junit.platform.launcher.LauncherDiscoveryRequest;
 import org.junit.platform.launcher.TestExecutionListener;
 import org.junit.platform.launcher.TestIdentifier;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
+
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 import static org.junit.platform.engine.discovery.DiscoverySelectors.selectClass;
 import static org.junit.platform.engine.discovery.DiscoverySelectors.selectMethod;
@@ -38,14 +42,28 @@ public class TestExecutor {
     }
 
     private void runMethodTest(TestMethodRunCmd cmd, Class<?> testClz, String methodName) throws Exception {
+        // 获取测试类的方法参数类型name，只支持单参数
+        String paramTypeName = extractParamTypeName(testClz, methodName);
+
         // 创建测试方法
         LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder
                 .request()
-                .selectors(selectMethod(testClz, methodName))
+                .selectors(selectMethod(testClz, methodName, paramTypeName))
                 .build();
 
         // 运行测试方法
         launcher.execute(request, new MyTestExecutionListener());
+    }
+
+    private String extractParamTypeName(Class<?> testClz, String methodName) {
+        for (Method method : testClz.getMethods()) {
+            if(methodName.equals(method.getName())){
+                for (Parameter parameter : method.getParameters()) {
+                    return parameter.getType().getName();
+                }
+            }
+        }
+        return "";
     }
 
 
