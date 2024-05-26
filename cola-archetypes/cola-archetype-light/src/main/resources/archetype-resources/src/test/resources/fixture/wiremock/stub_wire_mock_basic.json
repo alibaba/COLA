@@ -1,0 +1,30 @@
+{
+  "request": {
+    "urlPathPattern": "/v1/wiremock/basic",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "request_id": "f7f9e747-f073-4ea8-8360-b42fc754a049",
+      "hyper_switch": {
+        "id": "switch1",
+        "name": "1520-001",
+        "device_model": "1520",
+        "role": "tor",
+        "mgmt_ip": "192.168.0.1",
+        "rack_code": "kw14b2-1k-01-08",
+        "sn": "21980119523GP8000745",
+        "node_id": "node1",
+        "xpod_id": "pod1",
+        "op_status": "online",
+        "created_at": "2024-02-04 15:11:13",
+        "updated_at": "2020-02-04 15:11:13",
+        "type": "l1"
+      }
+    }
+  }
+}
