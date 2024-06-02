@@ -1,4 +1,4 @@
-# 🥤 COLA v4
+# 🥤 COLA v5
 
 [![Fast CI](https://img.shields.io/github/actions/workflow/status/alibaba/cola/ci.yaml?branch=master&logo=github&logoColor=white&label=fast%20ci)](https://github.com/alibaba/cola/actions/workflows/ci.yaml)
 [![Multiply Java versions CI](https://img.shields.io/github/actions/workflow/status/alibaba/cola/ci_by_multiply_java_versions.yaml?branch=master&logo=github&logoColor=white&label=strong%20ci)](https://github.com/alibaba/cola/actions/workflows/ci_by_multiply_java_versions.yaml)
@@ -14,7 +14,7 @@
 [![gitpod: Ready to Code](https://img.shields.io/badge/Gitpod-ready%20to%20code-339933?label=gitpod&logo=gitpod&logoColor=white)](https://gitpod.io/#https://github.com/alibaba/COLA)
 
 <strong>COLA 是 Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”。
-目前COLA已经发展到[COLA v4](https://blog.csdn.net/significantfrank/article/details/110934799)。</strong>
+目前COLA已经发展到[COLA v5](https://blog.csdn.net/significantfrank/article/details/110934799)。</strong>
 
 > - 想了解更多COLA信息，请关注微信公众号：  
 > <a href="#dummy"><img src="https://img-blog.csdnimg.cn/2020110314110321.png" width="25%" alt="qrcode" /></a>
@@ -116,6 +116,13 @@ mvn archetype:generate \
 ```
 
 # 版本迭代
+
+## 5.0.0 版本
+1. 支持jdk17和SpringBoot 3.x
+2. 增加cola-archetype-light，支持新的基于package轻量级分层架构
+3. 增加cola-component-unittest组件，支持[新的单元测试](https://blog.csdn.net/significantfrank/article/details/137495244)
+4. 增强cola-component-test-container组件，支持Junit5的Extension
+
 
 ## 4.0.0 版本
 
