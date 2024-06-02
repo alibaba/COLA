@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.alibaba.cola</groupId>
+    <artifactId>cola-framework-archetypes-parent</artifactId>
+    <version>5.x-SNAPSHOT</version>
+  </parent>
 
-  <groupId>com.alibaba.cola</groupId>
   <artifactId>cola-archetype-light</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
-
-  <name>cola-archetype-light</name>
+  <name>${project.artifactId}</name>
+  <description>${project.artifactId}</description>
+  <url>https://github.com/alibaba/COLA</url>
 
   <build>
     <extensions>
