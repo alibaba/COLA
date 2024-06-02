@@ -131,7 +131,7 @@
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <spring.boot.version>3.1.0</spring.boot.version>
+    <spring.boot.version>3.3.0</spring.boot.version>
 
   </properties>
 
