@@ -5,5 +5,5 @@
 https://blog.csdn.net/significantfrank/article/details/100074716
 
 ## 使用介绍
-参看测试代码`com.alibaba.cola.extension.test.ExtensionTest`
+参看测试代码`com.alibaba.cola.extension.ExtensionTest`
 

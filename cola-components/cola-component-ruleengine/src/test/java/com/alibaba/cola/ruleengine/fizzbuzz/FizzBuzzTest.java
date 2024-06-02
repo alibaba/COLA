@@ -2,8 +2,9 @@ package com.alibaba.cola.ruleengine.fizzbuzz;
 
 //import com.alibaba.cola.ruleengine.fizzbuzz.v1.FizzBuzz;
 import com.alibaba.cola.ruleengine.fizzbuzz.v2.FizzBuzz;
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class FizzBuzzTest {
 
@@ -14,7 +15,7 @@ public class FizzBuzzTest {
         //when
         String result = FizzBuzz.count(input);
         //then
-        Assertions.assertThat(result).isEqualTo("1");
+        assertEquals(result, "1");
     }
 
     @Test
@@ -24,8 +25,7 @@ public class FizzBuzzTest {
         //when
         String result = FizzBuzz.count(input);
         //then
-        Assertions.assertThat(result).isEqualTo("Fizz");
-
+        assertEquals(result, "Fizz");
     }
 
     @Test
@@ -35,7 +35,7 @@ public class FizzBuzzTest {
         //when
         String result = FizzBuzz.count(input);
         //then
-        Assertions.assertThat(result).isEqualTo("Buzz");
+        assertEquals(result, "Buzz");
     }
 
     @Test
@@ -45,6 +45,6 @@ public class FizzBuzzTest {
         //when
         String result = FizzBuzz.count(input);
         //then
-        Assertions.assertThat(result).isEqualTo("FizzBuzz");
+        assertEquals(result, "FizzBuzz");
     }
 }

@@ -1,5 +1,6 @@
 package com.huawei.charging.domain.account;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.huawei.charging.domain.BizException;
 import com.huawei.charging.domain.DomainFactory;
 import com.huawei.charging.domain.Entity;
@@ -9,10 +10,11 @@ import com.huawei.charging.domain.charge.chargeplan.ChargePlan;
 import com.huawei.charging.domain.charge.chargerule.ChargeRuleFactory;
 import com.huawei.charging.domain.charge.chargerule.CompositeChargeRule;
 import com.huawei.charging.domain.gateway.AccountGateway;
+import jakarta.annotation.Resource;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.annotation.Resource;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,11 +36,13 @@ public class Account {
     /**
      * 账户所拥有的套餐
      */
+    @JsonIgnore
     private List<ChargePlan> chargePlanList = new ArrayList<>();;
 
     @Resource
     private AccountGateway accountGateway;
 
+    private String name;
 
     public Account(){
 
@@ -83,6 +87,7 @@ public class Account {
                 "phoneNo=" + phoneNo +
                 ", remaining=" + remaining +
                 ", chargePlanList=" + chargePlanList +
+                ", name=" + name +
                 '}';
     }
 }

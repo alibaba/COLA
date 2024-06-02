@@ -2,9 +2,9 @@ package com.huawei.charging.domain.account;
 
 import com.huawei.charging.domain.charge.Session;
 import com.huawei.charging.domain.gateway.AccountGateway;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 
 @Component
 public class AccountDomainService {

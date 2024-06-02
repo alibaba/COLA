@@ -3,7 +3,7 @@
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+            <pattern>%date{HH:mm:ss} %highlight(%-5level) [%blue(%t)] %yellow(%C{35}): %msg%n%throwable</pattern>
             <charset>utf8</charset>
         </encoder>
     </appender>
@@ -16,8 +16,9 @@
     <!--应用日志-->
     <!--这个logger没有指定appender，它会继承root节点中定义的那些appender-->
     <logger name="com.huawei" level="DEBUG"/>
-    <!--SQL参数绑定日志-->
-    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace"/>
+    <!--hibernate6以上的配置，SQL参数绑定日志-->
+    <logger name="org.hibernate.SQL" level="debug"/>
+    <logger name="org.hibernate.orm.jdbc.bind" level="trace"/>
 
     <!--全局的访问日志-->
     <logger name="com.alibaba.cola.catchlog" level="DEBUG"/>

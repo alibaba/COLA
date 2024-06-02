@@ -8,14 +8,13 @@
 package com.alibaba.cola.extension.register;
 
 import com.alibaba.cola.extension.*;
+import jakarta.annotation.Resource;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
-
-import javax.annotation.Resource;
 
 /**
  * ExtensionRegister
@@ -66,20 +65,8 @@ public class ExtensionRegister {
         }
 
         Extensions extensionsAnnotation = AnnotationUtils.findAnnotation(extensionClz, Extensions.class);
-        Extension[] extensions = extensionsAnnotation.value();
-        if (!ObjectUtils.isEmpty(extensions)){
-            for (Extension extensionAnn : extensions) {
-                BizScenario bizScenario = BizScenario.valueOf(extensionAnn.bizId(), extensionAnn.useCase(), extensionAnn.scenario());
-                ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(calculateExtensionPoint(extensionClz), bizScenario.getUniqueIdentity());
-                ExtensionPointI preVal = extensionRepository.getExtensionRepo().put(extensionCoordinate, extensionObject);
-                if (preVal != null) {
-                    String errMessage = "Duplicate registration is not allowed for :" + extensionCoordinate;
-                    throw new ExtensionException(EXTENSION_DEFINE_DUPLICATE, errMessage);
-                }
-            }
-        }
 
-        //
+        //Support multiple extensions registration
         String[] bizIds = extensionsAnnotation.bizId();
         String[] useCases = extensionsAnnotation.useCase();
         String[] scenarios = extensionsAnnotation.scenario();

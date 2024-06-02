@@ -114,20 +114,24 @@
     <module>cola-component-test-container</module>
             
     <module>cola-components-bom</module>
-          
+            
     <module>cola-component-ruleengine</module>
+          
+    <module>cola-component-unittest</module>
       
   </modules>
       
   <properties>
             
-    <maven.compiler.source>1.8</maven.compiler.source>
+    <java.version>17</java.version>
             
-    <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+            
+    <maven.compiler.target>17</maven.compiler.target>
             
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
             
-    <spring.boot.version>2.7.5</spring.boot.version>
+    <spring.boot.version>3.1.0</spring.boot.version>
         
   </properties>
       
@@ -147,9 +151,9 @@
             
     <dependency>
                   
-      <groupId>junit</groupId>
+      <groupId>org.junit.jupiter</groupId>
                   
-      <artifactId>junit</artifactId>
+      <artifactId>junit-jupiter</artifactId>
                   
       <scope>test</scope>
               
@@ -208,9 +212,9 @@
     <plugins>
                   
       <!--
-                add maven-enforce-plugin to make sure the right jdk is used
-                https://stackoverflow.com/a/18420462/922688
-            -->
+                      add maven-enforce-plugin to make sure the right jdk is used
+                      https://stackoverflow.com/a/18420462/922688
+                  -->
                   
       <plugin>
                         
@@ -341,8 +345,8 @@
         <plugin>
                               
           <!--
-                        config example: https://github.com/mojohaus/versions-maven-plugin/issues/157#issuecomment-306041074
-                    -->
+                                  config example: https://github.com/mojohaus/versions-maven-plugin/issues/157#issuecomment-306041074
+                              -->
                               
           <groupId>org.codehaus.mojo</groupId>
                               
@@ -352,11 +356,25 @@
                               
           <configuration>
                                     
-            <rulesUri>file://${maven.multiModuleProjectDirectory}/cola-component-dto/src/versions-rules.xml</rulesUri>
+            <rulesUri>
+                            file://${maven.multiModuleProjectDirectory}/cola-component-dto/src/versions-rules.xml
+                        </rulesUri>
                                     
             <generateBackupPoms>false</generateBackupPoms>
                                 
           </configuration>
+                          
+        </plugin>
+                        
+        <!--修复老的maven-surefire-plugin不支持junit5 + spring5的bug-->
+                        
+        <plugin>
+                              
+          <groupId>org.apache.maven.plugins</groupId>
+                              
+          <artifactId>maven-surefire-plugin</artifactId>
+                              
+          <version>3.1.2</version>
                           
         </plugin>
                     
@@ -527,9 +545,9 @@
           <plugin>
                                     
             <!--
-                            plugin docs: http://eclemma.org/jacoco/trunk/doc/
-                            for codecov.io, config example https://github.com/codecov/example-java
-                        -->
+                                        plugin docs: http://eclemma.org/jacoco/trunk/doc/
+                                        for codecov.io, config example https://github.com/codecov/example-java
+                                    -->
                                     
             <groupId>org.jacoco</groupId>
                                     
@@ -642,10 +660,10 @@
         <plugins>
                               
           <!--
-                        Maven plugin which includes build-time git repository information into an POJO / *.properties).
-                        Make your apps tell you which version exactly they were built from! Priceless in large distributed deployments.
-                            https://github.com/ktoso/maven-git-commit-id-plugin
-                    -->
+                                  Maven plugin which includes build-time git repository information into an POJO / *.properties).
+                                  Make your apps tell you which version exactly they were built from! Priceless in large distributed deployments.
+                                      https://github.com/ktoso/maven-git-commit-id-plugin
+                              -->
                               
           <plugin>
                                     
@@ -736,9 +754,9 @@
         <plugins>
                               
           <!--
-                        add maven-enforce-plugin to make sure the right jdk is used
-                        https://stackoverflow.com/a/18420462/922688
-                    -->
+                                  add maven-enforce-plugin to make sure the right jdk is used
+                                  https://stackoverflow.com/a/18420462/922688
+                              -->
                               
           <plugin>
                                     
