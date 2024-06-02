@@ -203,7 +203,6 @@
                             <encoding>UTF-8</encoding>
                             <docencoding>UTF-8</docencoding>
                             <additionalJOptions>
-                                <additionalJOption>--no-module-directories</additionalJOption>
                                 <additionalJOption>-quiet</additionalJOption>
                                 <additionalJOption>-J-Duser.language=en</additionalJOption>
                                 <additionalJOption>-J-Duser.country=US</additionalJOption>
