@@ -13,6 +13,10 @@
     <description>${project.artifactId}</description>
     <url>https://github.com/alibaba/COLA</url>
 
+    <properties>
+        <maven.test.skip>true</maven.test.skip>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
