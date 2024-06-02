@@ -4,7 +4,7 @@
 
   <groupId>com.alibaba.cola</groupId>
   <artifactId>cola-archetype-light</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>5.0.0</version>
   <packaging>maven-archetype</packaging>
 
   <name>cola-archetype-light</name>
