@@ -9,4 +9,8 @@ import java.util.List;
 @Repository
 public interface ChargeGateway extends JpaRepository<ChargeRecord, Long> {
     public List<ChargeRecord> findBySessionId(String sessionId);
+
+    public ChargeRecord getBySessionId(String sessionId);
+
+    public List<ChargeRecord> findByPhoneNo(long phoneNo);
 }

@@ -6,8 +6,8 @@ import com.alibaba.cola.statemachine.StateMachine;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilder;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilderFactory;
 import java.util.UUID;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author dingchenchen
@@ -57,11 +57,11 @@ public class StateMachineChoiceTest {
         String uniqueId = "ChoiceConditionMachine" + UUID.randomUUID().toString();
         StateMachine<StateMachineTest.States, StateMachineTest.Events, Context> stateMachine = builder.build(uniqueId);
         StateMachineTest.States target1 = stateMachine.fireEvent(StateMachineTest.States.STATE1, StateMachineTest.Events.EVENT1, new Context("1"));
-        Assert.assertEquals(StateMachineTest.States.STATE1,target1);
+        Assertions.assertEquals(StateMachineTest.States.STATE1,target1);
         StateMachineTest.States target2 = stateMachine.fireEvent(StateMachineTest.States.STATE1, StateMachineTest.Events.EVENT1, new Context("2"));
-        Assert.assertEquals(StateMachineTest.States.STATE2,target2);
+        Assertions.assertEquals(StateMachineTest.States.STATE2,target2);
         StateMachineTest.States target3 = stateMachine.fireEvent(StateMachineTest.States.STATE1, StateMachineTest.Events.EVENT1, new Context("3"));
-        Assert.assertEquals(StateMachineTest.States.STATE3,target3);
+        Assertions.assertEquals(StateMachineTest.States.STATE3,target3);
     }
 
     private Condition<Context> checkCondition1() {

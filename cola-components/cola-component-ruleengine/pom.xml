@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.alibaba.cola</groupId>
         <artifactId>cola-components-parent</artifactId>
-        <version>4.4.0-SNAPSHOT</version>
+        <version>5.x-SNAPSHOT</version>
     </parent>
 
     <artifactId>cola-component-ruleengine</artifactId>
@@ -64,21 +64,6 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
