@@ -6,6 +6,7 @@ import com.alibaba.cola.statemachine.StateChain;
 import com.alibaba.cola.statemachine.StateMachine;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilder;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilderFactory;
+import com.alibaba.cola.statemachine.impl.Debugger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -19,8 +20,6 @@ import java.util.List;
  * @date 2024/6/12 18:57
  */
 public class StateChainTest {
-
-    private static final Boolean DEBUG = false;
 
     @Test
     public void testGetTargetStates() {
@@ -160,16 +159,12 @@ public class StateChainTest {
         boolean passed = true;
         HashSet<StateMachineTest.States> uniqueStates = new HashSet<>(targets);
         if (uniqueStates.size() != setNum) {
-            if (DEBUG) {
-                System.out.println("The list should contain only " + setNum + " unique elements");
-            }
+            Debugger.debug("The list should contain only " + setNum + " unique elements");
             passed = false;
         }
         for (StateMachineTest.States target : targets) {
             if (target == null) {
-                if (DEBUG) {
-                    System.out.println("The list should not contain null.");
-                }
+                Debugger.debug("The list should not contain null");
                 passed = false;
                 break;
             }
@@ -181,9 +176,7 @@ public class StateChainTest {
                 }
             }
             if (!foundMatch) {
-                if (DEBUG) {
-                    System.out.println("The list should only contain elements from the provided equalsList.");
-                }
+                Debugger.debug("The list should only contain elements from the provided equalsList");
                 passed = false;
                 break;
             }

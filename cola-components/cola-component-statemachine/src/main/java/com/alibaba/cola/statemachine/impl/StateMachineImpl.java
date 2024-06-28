@@ -1,6 +1,7 @@
 package com.alibaba.cola.statemachine.impl;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.alibaba.cola.statemachine.*;
 import com.alibaba.cola.statemachine.builder.FailCallback;
@@ -29,7 +30,7 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
 
     public StateMachineImpl(Map<S, State<S, E, C>> stateMap) {
         this.stateMap = stateMap;
-        this.stateChainMap = new HashMap<>(32);
+        this.stateChainMap = new ConcurrentHashMap<>(32);
     }
 
     @Override
