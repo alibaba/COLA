@@ -1,9 +1,8 @@
 package com.alibaba.cola.statemachine.impl;
 
-import com.alibaba.cola.statemachine.State;
-import com.alibaba.cola.statemachine.StateMachine;
-import com.alibaba.cola.statemachine.Transition;
-import com.alibaba.cola.statemachine.Visitor;
+import com.alibaba.cola.statemachine.*;
+
+import java.util.List;
 
 /**
  * PlantUMLVisitor
@@ -11,7 +10,7 @@ import com.alibaba.cola.statemachine.Visitor;
  * @author Frank Zhang
  * @date 2020-02-09 7:47 PM
  */
-public class PlantUMLVisitor implements Visitor {
+public class PlantUMLVisitor implements Visitor, StateChainVisitor {
 
     /**
      * Since the state machine is stateless, there is no initial state.
@@ -30,6 +29,30 @@ public class PlantUMLVisitor implements Visitor {
     @Override
     public String visitOnExit(StateMachine<?, ?, ?> visitable) {
         return "@enduml";
+    }
+
+    @Override
+    public String visitOnEntry(StateChain<?, ?> visitable) {
+        return "@startuml" + LF;
+    }
+
+    @Override
+    public String visitOnExit(StateChain<?, ?> visitable) {
+        return "@enduml";
+    }
+
+    @Override
+    public <S, C, E> String visitOnStateChain(List<State<S, E, C>> chainStateList, E event) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < chainStateList.size() - 1; i++) {
+            sb.append(chainStateList.get(i).getId())
+                    .append("->")
+                    .append(chainStateList.get(i + 1).getId())
+                    .append(": ")
+                    .append(event)
+                    .append(LF);
+        }
+        return sb.toString();
     }
 
     @Override
