@@ -1,6 +1,7 @@
 package com.alibaba.craftsman.gatewayimpl;
 
 import com.alibaba.craftsman.common.event.DomainEventPublisher;
+import com.alibaba.craftsman.convertor.MetricConvertor;
 import com.alibaba.craftsman.domain.gateway.MetricGateway;
 import com.alibaba.craftsman.domain.metrics.MainMetricType;
 import com.alibaba.craftsman.domain.metrics.MetricItem;
@@ -19,7 +20,6 @@ import com.alibaba.craftsman.gatewayimpl.rpc.AppMetricMapper;
 import com.alibaba.craftsman.gatewayimpl.rpc.BugMetricMapper;
 import com.alibaba.craftsman.gatewayimpl.rpc.dataobject.AppMetricDO;
 import com.alibaba.craftsman.gatewayimpl.rpc.dataobject.BugMetricDO;
-import com.alibaba.craftsman.convertor.MetricConvertor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
@@ -51,6 +51,7 @@ public class MetricGatewayImpl implements MetricGateway {
     private DomainEventPublisher domainEventPublisher;
 
 
+    @Override
     public void save(MetricItem metricItem){
         MetricDO metricDO = MetricConvertor.toDataObject(metricItem);
 
@@ -64,6 +65,7 @@ public class MetricGatewayImpl implements MetricGateway {
         domainEventPublisher.publish(metricItemCreatedEvent);
     }
 
+    @Override
     public List<SubMetric> listByTechContribution(String userId){
         List<MetricDO> metricDOList = metricMapper.listByMainMetric(userId, MainMetricType.TECH_CONTRIBUTION.getMetricCode());
         RefactoringMetric refactoringMetric = new RefactoringMetric();
@@ -92,6 +94,7 @@ public class MetricGatewayImpl implements MetricGateway {
         return subMetricList;
     }
 
+    @Override
     public List<SubMetric> listByTechInfluence(String userId){
         List<MetricDO> metricDOList = metricMapper.listByMainMetric(userId, MainMetricType.TECH_INFLUENCE.getMetricCode());
         ATAMetric ataMetric = new ATAMetric();
@@ -124,6 +127,7 @@ public class MetricGatewayImpl implements MetricGateway {
         return subMetricList;
     }
 
+    @Override
     public BugMetric getBugMetric(String userId){
         BugMetricDO bugMetricDO = bugMetricMapper.getByUserId(userId);
         BugMetricItem bugMetricItem = new BugMetricItem(bugMetricDO.getBugCount(), bugMetricDO.getCheckInCodeCount());
@@ -132,6 +136,7 @@ public class MetricGatewayImpl implements MetricGateway {
         return bugMetric;
     }
 
+    @Override
     public AppMetric getAppMetric(String userId){
         List<AppMetricDO> appMetricDOList = appMetricMapper.listByUserId(userId);
         AppMetric appMetric = new AppMetric();
@@ -141,5 +146,10 @@ public class MetricGatewayImpl implements MetricGateway {
             appMetric.addMetricItem(appMetricItem);
         });
         return appMetric;
+    }
+
+    @Override
+    public void delete(String id, String operator) {
+        metricMapper.delete(id, operator);
     }
 }

@@ -19,4 +19,5 @@ public interface MetricGateway {
     List<SubMetric> listByTechInfluence(String userId);
     BugMetric getBugMetric(String userId);
     AppMetric getAppMetric(String userId);
+    void delete(String id, String operator);
 }

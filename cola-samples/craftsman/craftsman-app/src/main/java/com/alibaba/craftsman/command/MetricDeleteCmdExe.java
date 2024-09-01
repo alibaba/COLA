@@ -1,8 +1,8 @@
 package com.alibaba.craftsman.command;
 
 import com.alibaba.cola.dto.Response;
+import com.alibaba.craftsman.domain.gateway.MetricGateway;
 import com.alibaba.craftsman.dto.MetricDeleteCmd;
-import com.alibaba.craftsman.gatewayimpl.database.MetricMapper;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -17,11 +17,11 @@ import javax.annotation.Resource;
 public class MetricDeleteCmdExe{
 
     @Resource
-    private MetricMapper metricMapper;
+    private MetricGateway metricGateway;
 
     public Response execute(MetricDeleteCmd cmd) {
 
-        metricMapper.delete(cmd.getMetricId(), cmd.getOperater());
+        metricGateway.delete(cmd.getMetricId(), cmd.getOperater());
 
         return Response.buildSuccess();
     }
