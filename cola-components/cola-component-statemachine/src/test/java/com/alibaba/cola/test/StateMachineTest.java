@@ -8,6 +8,7 @@ import com.alibaba.cola.statemachine.builder.AlertFailCallback;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilder;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilderFactory;
 import com.alibaba.cola.statemachine.exception.TransitionFailException;
+import com.alibaba.cola.statemachine.impl.AbsChainAction;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -181,6 +182,24 @@ public class StateMachineTest {
     }
 
     @Test
+    public void testChainAction(){
+        StateMachineBuilder<States, Events, Context> builder = StateMachineBuilderFactory.create();
+        builder.externalTransition()
+                .from(States.STATE1)
+                .to(States.STATE2)
+                .on(Events.EVENT1)
+                .when(checkCondition())
+                .perform(
+                        new ChainActionOne()
+                                .next(new ChainActionTwo())
+                )
+        ;
+        builder.setFailCallback((states,events,context)->{throw new RuntimeException("不可流转");});
+        builder.build("aaaa").fireEvent(States.STATE1,Events.EVENT2,new Context());
+
+    }
+
+    @Test
     public void testMultiThread() {
         buildStateMachine("testMultiThread");
 
@@ -254,6 +273,23 @@ public class StateMachineTest {
             System.out.println(
                 ctx.operator + " is operating " + ctx.entityId + " from:" + from + " to:" + to + " on:" + event);
         };
+    }
+
+    public static class ChainActionOne extends AbsChainAction{
+
+        @Override
+        protected void doExecute(Object from, Object to, Object event, Object context) {
+            System.out.println("one on chain");
+        }
+    }
+
+    public static class ChainActionTwo extends AbsChainAction{
+
+        @Override
+        protected void doExecute(Object from, Object to, Object event, Object context) {
+            System.out.println("two on chain");
+
+        }
     }
 
 }
