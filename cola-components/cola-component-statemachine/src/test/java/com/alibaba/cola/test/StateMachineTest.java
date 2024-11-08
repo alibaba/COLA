@@ -190,12 +190,25 @@ public class StateMachineTest {
                 .on(Events.EVENT1)
                 .when(checkCondition())
                 .perform(
-                        new ChainActionOne()
-                                .next(new ChainActionTwo())
+                        new AbsChainAction<States, Events, Context>() {
+                            @Override
+                            protected void doExecute(States from, States to, Events event, Context context) {
+                                System.out.println("first action to execute");
+                            }
+                        }.next(new AbsChainAction() {
+                            @Override
+                            protected void doExecute(Object from, Object to, Object event, Object context) {
+                                System.out.println("second action to execute");
+                            }
+                        }.next(new AbsChainAction() {
+                            @Override
+                            protected void doExecute(Object from, Object to, Object event, Object context) {
+                                System.out.println("third action to execute");
+                            }
+                        }))
                 )
         ;
-        builder.setFailCallback((states,events,context)->{throw new RuntimeException("不可流转");});
-        builder.build("aaaa").fireEvent(States.STATE1,Events.EVENT2,new Context());
+        builder.build("test-perform-chan-action").fireEvent(States.STATE1,Events.EVENT1,new Context());
 
     }
 
@@ -274,22 +287,4 @@ public class StateMachineTest {
                 ctx.operator + " is operating " + ctx.entityId + " from:" + from + " to:" + to + " on:" + event);
         };
     }
-
-    public static class ChainActionOne extends AbsChainAction{
-
-        @Override
-        protected void doExecute(Object from, Object to, Object event, Object context) {
-            System.out.println("one on chain");
-        }
-    }
-
-    public static class ChainActionTwo extends AbsChainAction{
-
-        @Override
-        protected void doExecute(Object from, Object to, Object event, Object context) {
-            System.out.println("two on chain");
-
-        }
-    }
-
 }
