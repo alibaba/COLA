@@ -8,6 +8,7 @@ import com.alibaba.cola.statemachine.builder.AlertFailCallback;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilder;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilderFactory;
 import com.alibaba.cola.statemachine.exception.TransitionFailException;
+import com.alibaba.cola.statemachine.impl.AbsChainAction;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -91,6 +92,38 @@ public class StateMachineTest {
         Assertions.assertTrue(stateMachine.verify(States.STATE1, Events.EVENT1));
         Assertions.assertFalse(stateMachine.verify(States.STATE1, Events.EVENT2));
     }
+
+    @Test
+    public void testChainAction(){
+        StateMachineBuilder<States, Events, Context> builder = StateMachineBuilderFactory.create();
+        builder.externalTransition()
+                .from(States.STATE1)
+                .to(States.STATE2)
+                .on(Events.EVENT1)
+                .when(checkCondition())
+                .perform(
+                        new AbsChainAction<States, Events, Context>() {
+                            @Override
+                            protected void doExecute(States from, States to, Events event, Context context) {
+                                System.out.println("first action to execute");
+                            }
+                        }.next(new AbsChainAction() {
+                            @Override
+                            protected void doExecute(Object from, Object to, Object event, Object context) {
+                                System.out.println("second action to execute");
+                            }
+                        }.next(new AbsChainAction() {
+                            @Override
+                            protected void doExecute(Object from, Object to, Object event, Object context) {
+                                System.out.println("third action to execute");
+                            }
+                        }))
+                )
+        ;
+        builder.build("test-perform-chan-action").fireEvent(States.STATE1,Events.EVENT1,new Context());
+
+    }
+
 
     @Test
     public void testExternalTransitionsNormal() {
