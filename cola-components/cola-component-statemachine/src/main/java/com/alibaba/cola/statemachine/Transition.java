@@ -29,6 +29,8 @@ public interface Transition<S, E, C>{
     void setEvent(E event);
 
     void setType(TransitionType type);
+
+    TransitionType getType();
     /**
      * Gets the target state of this transition.
      *

@@ -53,6 +53,11 @@ public class TransitionImpl<S,E,C> implements Transition<S,E,C> {
     }
 
     @Override
+    public TransitionType getType() {
+        return this.type;
+    }
+
+    @Override
     public State<S, E, C> getTarget() {
         return this.target;
     }

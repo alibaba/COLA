@@ -1,9 +1,6 @@
 package com.alibaba.cola.test;
 
-import com.alibaba.cola.statemachine.Action;
-import com.alibaba.cola.statemachine.Condition;
-import com.alibaba.cola.statemachine.StateMachine;
-import com.alibaba.cola.statemachine.StateMachineFactory;
+import com.alibaba.cola.statemachine.*;
 import com.alibaba.cola.statemachine.builder.AlertFailCallback;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilder;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilderFactory;
@@ -28,7 +25,8 @@ public class StateMachineTest {
         STATE1,
         STATE2,
         STATE3,
-        STATE4
+        STATE4,
+        STATE5
     }
 
     static enum Events {
