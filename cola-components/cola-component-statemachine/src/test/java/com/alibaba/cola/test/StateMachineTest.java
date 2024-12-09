@@ -93,6 +93,21 @@ public class StateMachineTest {
     }
 
     @Test
+    public void testCurrentStatusFetcher() {
+        StateMachineBuilder<States, Events, Context> builder = StateMachineBuilderFactory.create();
+        builder.externalTransition()
+                .from(States.STATE1)
+                .to(States.STATE2)
+                .on(Events.EVENT1)
+                .when(checkCondition())
+                .perform(doAction());
+        builder.setCurrentStateFetcher((ctx) -> States.STATE1);
+        StateMachine<States, Events, Context> stateMachine = builder.build(MACHINE_ID + "-testCurrentStatusFetcher");
+        Assertions.assertTrue(stateMachine.verify(Events.EVENT1));
+        Assertions.assertFalse(stateMachine.verify(Events.EVENT2));
+    }
+
+    @Test
     public void testExternalTransitionsNormal() {
         StateMachineBuilder<States, Events, Context> builder = StateMachineBuilderFactory.create();
         builder.externalTransitions()

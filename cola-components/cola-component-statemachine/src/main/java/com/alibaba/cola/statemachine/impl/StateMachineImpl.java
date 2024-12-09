@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.alibaba.cola.statemachine.State;
-import com.alibaba.cola.statemachine.StateMachine;
-import com.alibaba.cola.statemachine.Transition;
-import com.alibaba.cola.statemachine.Visitor;
+import com.alibaba.cola.statemachine.*;
 import com.alibaba.cola.statemachine.builder.FailCallback;
+import com.alibaba.cola.statemachine.exception.TransitionFailException;
 
 /**
  * For performance consideration,
@@ -30,6 +28,8 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
 
     private FailCallback<S, E, C> failCallback;
 
+    private CurrentStateFetcher<S,C> currentStateFetcher;
+
     public StateMachineImpl(Map<S, State<S, E, C>> stateMap) {
         this.stateMap = stateMap;
     }
@@ -46,6 +46,17 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
     }
 
     @Override
+    public boolean verify(E event) {
+        isReady();
+        if (this.currentStateFetcher != null) {
+            S currentState = this.currentStateFetcher.currentState(null);
+            return verify(currentState, event);
+        } else {
+            throw new TransitionFailException("currentStateFetcher not set");
+        }
+    }
+
+    @Override
     public S fireEvent(S sourceStateId, E event, C ctx) {
         isReady();
         Transition<S, E, C> transition = routeTransition(sourceStateId, event, ctx);
@@ -58,6 +69,18 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
 
         return transition.transit(ctx, false).getId();
     }
+
+    @Override
+    public S fireEvent(E event, C ctx) {
+        isReady();
+        if (this.currentStateFetcher != null) {
+            S currentState = this.currentStateFetcher.currentState(ctx);
+            return fireEvent(currentState, event, ctx);
+        } else {
+            throw new TransitionFailException("currentStateFetcher not set");
+        }
+    }
+
     @Override
     public List<S> fireParallelEvent(S sourceState, E event, C context) {
         isReady();
@@ -74,6 +97,17 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
             result.add(id);
         }
         return result;
+    }
+
+    @Override
+    public List<S> fireParallelEvent(E event, C ctx) {
+        isReady();
+        if (this.currentStateFetcher != null) {
+            S currentState = this.currentStateFetcher.currentState(ctx);
+            return fireParallelEvent(currentState, event, ctx);
+        } else {
+            throw new TransitionFailException("currentStateFetcher not set");
+        }
     }
 
     private Transition<S, E, C> routeTransition(S sourceStateId, E event, C ctx) {
@@ -170,5 +204,9 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
 
     public void setFailCallback(FailCallback<S, E, C> failCallback) {
         this.failCallback = failCallback;
+    }
+
+    public void setCurrentStateFetcher(CurrentStateFetcher<S,C> currentStateFetcher) {
+        this.currentStateFetcher = currentStateFetcher;
     }
 }
