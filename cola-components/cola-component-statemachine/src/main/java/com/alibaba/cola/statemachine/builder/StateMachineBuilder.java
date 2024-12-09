@@ -1,5 +1,6 @@
 package com.alibaba.cola.statemachine.builder;
 
+import com.alibaba.cola.statemachine.CurrentStateFetcher;
 import com.alibaba.cola.statemachine.StateMachine;
 
 /**
@@ -42,6 +43,13 @@ public interface StateMachineBuilder<S, E, C> {
      * @param callback
      */
     void setFailCallback(FailCallback<S, E, C> callback);
+
+    /**
+     * Set up current state fetcher
+     *
+     * @param fetcher the current state fetcher
+     */
+    void setCurrentStateFetcher(CurrentStateFetcher<S, C> fetcher);
 
     StateMachine<S, E, C> build(String machineId);
 
