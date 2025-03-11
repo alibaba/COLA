@@ -62,6 +62,9 @@ public abstract class PageQuery extends Query {
     }
 
     public PageQuery setOrderBy(String orderBy) {
+        if (SqlSafeUtil.check(orderBy)) {
+            throw new PageException("Order by [" + orderBy + "] contains SQL injection risk. If you want to bypass SQL injection validation, use PageQuery.setUnsafeOrderBy");
+        }
         this.orderBy = orderBy;
         return this;
     }
