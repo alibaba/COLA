@@ -5,6 +5,7 @@ import com.alibaba.cola.statemachine.Condition;
 import com.alibaba.cola.statemachine.StateMachine;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilder;
 import com.alibaba.cola.statemachine.builder.StateMachineBuilderFactory;
+import java.util.UUID;
 import com.alibaba.cola.statemachine.impl.Debugger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -168,7 +169,8 @@ public class StateMachinePlantUMLTest {
                         .when(checkCondition())
                         .perform(doAction()));
 
-        StateMachine stateMachine = builder.build("AdjustPriceTask");
+        String uniqueId = "AdjustPriceTask" + UUID.randomUUID().toString();
+        StateMachine stateMachine = builder.build(uniqueId);
         String plantUML = stateMachine.generatePlantUML();
         System.out.println(plantUML);
 
