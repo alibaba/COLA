@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        java: [ 8, 11 ]
+        java: [ 17 ]
       fail-fast: false
       max-parallel: 64
     name: fast test on Java ${{ matrix.java }} OS ${{ matrix.os }}

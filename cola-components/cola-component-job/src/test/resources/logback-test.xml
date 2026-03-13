@@ -1,0 +1,29 @@
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{HH:mm:ss.SSS} %highlight(%-5level) [%blue(%t)] %yellow(%C{45}): %msg%n%throwable</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <!--rootLogger是默认的logger-->
+    <root level="INFO">
+        <!--定义了两个appender，日志会通过往这两个appender里面写-->
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <!--应用日志-->
+    <logger name="com.alibaba.cola" level="DEBUG"/>
+
+    <!--
+        在application.yml中设置如下配置，可以用更加可读的方式输出SQL日志
+        spring.jpa.properties.hibernate.format_sql=true
+    -->
+    <!--JPA的SQL日志-->
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <!--JPA的SQL参数绑定日志-->
+    <logger name="org.hibernate.orm.jdbc.bind" level="TRACE"/>
+</configuration>

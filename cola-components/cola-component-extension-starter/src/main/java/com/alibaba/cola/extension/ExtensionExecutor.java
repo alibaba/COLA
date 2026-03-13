@@ -8,11 +8,11 @@
 package com.alibaba.cola.extension;
 
 import com.alibaba.cola.extension.register.AbstractComponentExecutor;
+import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 
 /**
  * ExtensionExecutor

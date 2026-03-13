@@ -28,14 +28,17 @@ public class UserProfileGatewayImpl implements UserProfileGateway {
     private UserProfileMapper userProfileMapper;
 
 
+    @Override
     public void create(UserProfile userProfile) {
         userProfileMapper.create(UserProfileConvertor.toDataObjectForCreate(userProfile));
     }
 
+    @Override
     public void update(UserProfile userProfile) {
         userProfileMapper.update(UserProfileConvertor.toDataObjectForUpdate(userProfile));
     }
 
+    @Override
     public UserProfile getByUserId(String userId) {
         UserProfileDO userProfileDO = userProfileMapper.getByUserId(userId);
         if (userProfileDO == null) {

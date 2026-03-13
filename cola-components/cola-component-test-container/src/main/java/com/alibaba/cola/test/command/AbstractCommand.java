@@ -1,7 +1,7 @@
 package com.alibaba.cola.test.command;
 
 import org.apache.commons.cli.*;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,7 @@ import java.util.Map;
  * @date 2020-11-17 4:33 PM
  */
 public abstract class AbstractCommand {
-    private static CommandLineParser parser = new DefaultParser();
+    private static final CommandLineParser parser = new DefaultParser();
     protected static AbstractCommand curCmd;
     protected static AbstractCommand preCmd;
 
@@ -57,22 +57,6 @@ public abstract class AbstractCommand {
         return null;
     }
 
-    public Object getParam(String key){
-        return params.get(key);
-    }
-
-    public void putParam(String key, Object value){
-        params.put(key, value);
-    }
-
-    public String getStringParam(String key){
-        Object value = params.get(key);
-        if(value == null){
-            return EMPTY;
-        }
-        return value.toString();
-    }
-
     public boolean isEclipseMethod(String input) {
         return input.indexOf("(") > 0 ;
     }
@@ -86,7 +70,7 @@ public abstract class AbstractCommand {
     }
 
     public static AbstractCommand createCmd(String cmdRaw){
-        if(StringUtils.isEmpty(cmdRaw)){
+        if(ObjectUtils.isEmpty(cmdRaw)){
             return null;
         }
 

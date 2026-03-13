@@ -1,20 +1,17 @@
 package com.alibaba.cola.extension.register;
 
-import javax.annotation.Resource;
-
 import com.alibaba.cola.extension.BizScenario;
+import com.alibaba.cola.extension.ExtensionException;
 import com.alibaba.cola.extension.ExtensionExecutor;
-import com.alibaba.cola.extension.test.Application;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.alibaba.cola.extension.Application;
+import jakarta.annotation.Resource;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 public class ExtensionRegisterTest {
-    
+
     @Resource
     private ExtensionRegister register;
 
@@ -22,15 +19,16 @@ public class ExtensionRegisterTest {
     private ExtensionExecutor executor;
 
     @Test
-    public void test() {
-        SomeExtPt extA = new SomeExtensionA();
-        register.doRegistration(extA);
+    public void testDuplicateRegistration() {
+        // expect:
+        //Duplicate registration is not allowed for :ExtensionCoordinate
+        // [extensionPointName=com.alibaba.cola.extension.register.SomeExtPt, bizScenarioUniqueIdentity=A.#defaultUseCase#.#defaultScenario#]
+        Assertions.assertThrows(ExtensionException.class, ()->{
+            SomeExtPt extA = new SomeExtensionA();
+            register.doRegistration(extA);
 
-        SomeExtPt extB = CglibProxyFactory.createProxy(new SomeExtensionB());
-        register.doRegistration(extB);
-        
-        executor.executeVoid(SomeExtPt.class, BizScenario.valueOf("A"), SomeExtPt::doSomeThing);
-        executor.executeVoid(SomeExtPt.class, BizScenario.valueOf("B"), SomeExtPt::doSomeThing);
+            executor.executeVoid(SomeExtPt.class, BizScenario.valueOf("A"), SomeExtPt::doSomeThing);
+        });
     }
-    
+
 }

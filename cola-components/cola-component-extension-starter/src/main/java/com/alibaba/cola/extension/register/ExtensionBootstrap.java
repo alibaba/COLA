@@ -3,13 +3,15 @@ package com.alibaba.cola.extension.register;
 import com.alibaba.cola.extension.Extension;
 import com.alibaba.cola.extension.ExtensionPointI;
 import com.alibaba.cola.extension.Extensions;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+
 import java.util.Map;
 
 /**
@@ -18,6 +20,7 @@ import java.util.Map;
  * @author Frank Zhang
  * @date 2020-06-18 7:55 PM
  */
+@Slf4j
 @Component
 public class ExtensionBootstrap implements ApplicationContextAware {
 
@@ -28,14 +31,16 @@ public class ExtensionBootstrap implements ApplicationContextAware {
 
     @PostConstruct
     public void init(){
-        Map<String, Object> extensionBeans = applicationContext.getBeansWithAnnotation(Extension.class);
-        extensionBeans.values().forEach(
-                extension -> extensionRegister.doRegistration((ExtensionPointI) extension)
-        );
-
-        // handle @Extensions annotation
-        Map<String, Object> extensionsBeans = applicationContext.getBeansWithAnnotation(Extensions.class);
-        extensionsBeans.values().forEach( extension -> extensionRegister.doRegistrationExtensions((ExtensionPointI) extension));
+        Map<String, ExtensionPointI> extMap = applicationContext.getBeansOfType(ExtensionPointI.class);
+        for (ExtensionPointI ext : extMap.values()) {
+            if (ext.getClass().isAnnotationPresent(Extension.class)) {
+                extensionRegister.doRegistration(ext);
+            }else if (ext.getClass().isAnnotationPresent(Extensions.class)){
+                extensionRegister.doRegistrationExtensions(ext);
+            }else {
+                log.error("There is no annotation for @Extension or @Extension on this extension class:{}" , ext.getClass());
+            }
+        }
     }
 
     @Override

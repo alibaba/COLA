@@ -5,7 +5,7 @@
 
     <groupId>com.alibaba.cola</groupId>
     <artifactId>cola-components-parent</artifactId>
-    <version>4.4.0-SNAPSHOT</version>
+    <version>5.x-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>${project.artifactId}</description>
@@ -61,14 +61,16 @@
         <module>cola-component-catchlog-starter</module>
         <module>cola-component-test-container</module>
         <module>cola-components-bom</module>
+        <module>cola-component-ruleengine</module>
+        <module>cola-component-unittest</module>
     </modules>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <spring.boot.version>2.7.5</spring.boot.version>
+        <spring.boot.version>3.3.0</spring.boot.version>
     </properties>
 
     <dependencies>
@@ -77,11 +79,10 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
-
         <!-- 测试包 -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -95,7 +96,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <!-- 工具包 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -106,7 +106,7 @@
             <dependency>
                 <groupId>commons-cli</groupId>
                 <artifactId>commons-cli</artifactId>
-                <version>1.5.0</version>
+                <version>1.8.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -135,6 +135,7 @@
                 </executions>
             </plugin>
         </plugins>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -143,27 +144,27 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.10.1</version>
+                    <version>3.13.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>3.2.1</version>
+                    <version>3.3.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.5.0</version>
+                    <version>3.7.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-gpg-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>3.1.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>3.3.0</version>
+                    <version>3.4.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-deploy-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.1.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.sonatype.plugins</groupId>
@@ -173,24 +174,18 @@
                 <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.9</version>
+                    <version>0.8.12</version>
                 </plugin>
                 <plugin>
                     <groupId>pl.project13.maven</groupId>
                     <artifactId>git-commit-id-plugin</artifactId>
                     <version>4.9.10</version>
                 </plugin>
+                <!--修复老的maven-surefire-plugin不支持junit5 + spring5的bug-->
                 <plugin>
-                    <!--
-                        config example: https://github.com/mojohaus/versions-maven-plugin/issues/157#issuecomment-306041074
-                    -->
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>versions-maven-plugin</artifactId>
-                    <version>2.15.0</version>
-                    <configuration>
-                        <rulesUri>file://${maven.multiModuleProjectDirectory}/cola-component-dto/src/versions-rules.xml</rulesUri>
-                        <generateBackupPoms>false</generateBackupPoms>
-                    </configuration>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.2.5</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -216,14 +211,6 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-source-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -249,13 +236,12 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <source>8</source>
+                            <source>17</source>
                             <show>protected</show>
                             <charset>UTF-8</charset>
                             <encoding>UTF-8</encoding>
                             <docencoding>UTF-8</docencoding>
                             <additionalJOptions>
-                                <additionalJOption>--no-module-directories</additionalJOption>
                                 <additionalJOption>-quiet</additionalJOption>
                                 <additionalJOption>-J-Duser.language=en</additionalJOption>
                                 <additionalJOption>-J-Duser.country=US</additionalJOption>
@@ -337,10 +323,10 @@
             <build>
                 <plugins>
                     <!--
-                        Maven plugin which includes build-time git repository information into an POJO / *.properties).
-                        Make your apps tell you which version exactly they were built from! Priceless in large distributed deployments.
-                            https://github.com/ktoso/maven-git-commit-id-plugin
-                    -->
+                                            Maven plugin which includes build-time git repository information into an POJO / *.properties).
+                                            Make your apps tell you which version exactly they were built from! Priceless in large distributed deployments.
+                                                https://github.com/ktoso/maven-git-commit-id-plugin
+                                        -->
                     <plugin>
                         <groupId>pl.project13.maven</groupId>
                         <artifactId>git-commit-id-plugin</artifactId>
@@ -400,7 +386,7 @@
                                 <configuration>
                                     <rules>
                                         <requireJavaVersion>
-                                            <version>11</version>
+                                            <version>17</version>
                                         </requireJavaVersion>
                                     </rules>
                                 </configuration>

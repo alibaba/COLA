@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # hard code for test purpose
+    url: jdbc:mysql://localhost:3306/chargeDB?serverTimezone=UTC
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# this will override config in test/resources/application.yml and resources/application.yml
+my-age: 30
+
+my-age-test: 40

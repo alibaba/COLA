@@ -1,0 +1,15 @@
+{
+  "records": {
+    "test:hash": {
+      "version": 1,
+      "json": {
+        "id": "30000000-0000-0000-0000-000000000001",
+        "name": "port-01",
+        "project_id": "7a9941d34fc1497d8d0797429ecfd354",
+        "provisioning_status": "active",
+        "created_at": "2024-01-01T12:00:00Z",
+        "updated_at": "2024-01-01T12:00:00Z"
+      }
+    }
+  }
+}

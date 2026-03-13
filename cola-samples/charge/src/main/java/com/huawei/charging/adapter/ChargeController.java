@@ -2,10 +2,10 @@ package com.huawei.charging.adapter;
 
 import com.huawei.charging.application.ChargeServiceI;
 import com.huawei.charging.application.dto.*;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 
 @RestController
 @Slf4j
@@ -16,10 +16,10 @@ public class ChargeController {
 
     @PostMapping("session/{sessionId}/begin")
     public Response begin(@PathVariable(name = "sessionId") String sessionId,
-                          @RequestParam long callingPhoneNo,
-                          @RequestParam long calledPhoneNo) {
+                          @RequestParam("callingPhoneNo") String callingPhoneNo,
+                          @RequestParam("calledPhoneNo") String calledPhoneNo) {
         log.debug(sessionId + " " + callingPhoneNo + " " + calledPhoneNo);
-        BeginSessionRequest request = new BeginSessionRequest(sessionId, callingPhoneNo, calledPhoneNo);
+        BeginSessionRequest request = new BeginSessionRequest(sessionId, Long.valueOf(callingPhoneNo), Long.valueOf(calledPhoneNo));
         return chargeService.begin(request);
     }
 

@@ -1,8 +1,8 @@
 package com.alibaba.cola.domain;
 
 import com.alibaba.cola.domain.Entity;
+import jakarta.annotation.Resource;
 
-import javax.annotation.Resource;
 
 /**
  * Customer

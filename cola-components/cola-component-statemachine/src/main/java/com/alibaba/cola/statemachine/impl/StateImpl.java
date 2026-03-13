@@ -4,6 +4,7 @@ import com.alibaba.cola.statemachine.State;
 import com.alibaba.cola.statemachine.Transition;
 import com.alibaba.cola.statemachine.Visitor;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -33,6 +34,17 @@ public class StateImpl<S,E,C> implements State<S,E,C> {
 
         eventTransitions.put(event, newTransition);
         return newTransition;
+    }
+
+    @Override
+    public List<Transition<S, E, C>> addTransitions(E event, List<State<S, E, C>> targets, TransitionType transitionType) {
+        List<Transition<S, E, C>> result = new ArrayList<>();
+        for (State<S, E, C> target : targets) {
+            Transition<S, E, C> secTransition = addTransition(event, target, transitionType);
+            result.add(secTransition);
+        }
+
+        return result;
     }
 
     @Override

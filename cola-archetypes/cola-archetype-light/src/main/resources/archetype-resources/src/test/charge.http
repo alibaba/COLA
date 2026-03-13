@@ -1,0 +1,20 @@
+### list charge records by sessionId
+GET http://localhost:8080/123145/chargeRecords
+Accept: application/json
+
+### end session
+POST http://localhost:8080/session/123145/end?duration=10
+Content-Type: application/x-www-form-urlencoded
+
+duration=10
+
+### do charge
+POST http://localhost:8080/session/123145/charge?duration=10
+
+
+### begin Session
+POST http://localhost:8080/session/123145/begin?callingPhoneNo=13681874561&calledPhoneNo=15921252125
+
+<> 2022-11-03T150743.200.json
+
+

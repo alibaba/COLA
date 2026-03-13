@@ -2,17 +2,13 @@ package com.alibaba.cola.catchlog.test;
 
 import com.alibaba.cola.catchlog.CatchLogAspect;
 import com.alibaba.cola.catchlog.CatchLogAutoConfiguration;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import jakarta.annotation.Resource;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import javax.annotation.Resource;
 
 /**
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {CatchLogAutoConfiguration.class, Demo.class, CatchLogAspect.class, Application.class})
 public class CatchLogTest {
 

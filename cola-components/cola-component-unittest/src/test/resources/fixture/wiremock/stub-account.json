@@ -1,0 +1,30 @@
+{
+  "request": {
+    "urlPathPattern": "/v1/api/account/[0-9]+",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": [
+      "response-template"
+    ],
+    "jsonBody": {
+      "name": "frank",
+      "phoneNo": "{{request.path.[3]}}",
+      "remaining": "400",
+      "chargePlanList": [
+        {
+          "priority": "2",
+          "type": "fixedTime"
+        },
+        {
+          "priority": "1",
+          "type": "familyMember"
+        }
+      ]
+    }
+  }
+}

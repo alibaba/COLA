@@ -1,0 +1,32 @@
+{
+  "topic": "embedded-test-topic",
+  "messages": [
+    {
+      "job_id": "10000000-0000-0000-0000-000000000001",
+      "version": "v1",
+      "action": "create",
+      "resource_type": "test_resource",
+      "request": [
+        {
+          "id": "30000000-0000-0000-0000-000000000001",
+          "name": "test-01",
+          "project_id": "7a9941d34fc1497d8d0797429ecfd354"
+        }
+      ]
+    }
+  ,
+    {
+      "job_id": "10000000-0000-0000-0000-000000000002",
+      "version": "v1",
+      "action": "create",
+      "resource_type": "test_resource",
+      "request": [
+        {
+          "id": "30000000-0000-0000-0000-000000000002",
+          "name": "test-02",
+          "project_id": "7a9941d34fc1497d8d0797429ecfd354"
+        }
+      ]
+    }
+  ]
+}

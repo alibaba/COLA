@@ -1,5 +1,7 @@
 package com.alibaba.cola.statemachine;
 
+import java.util.List;
+
 /**
  * StateMachine
  *
@@ -29,6 +31,8 @@ public interface StateMachine<S, E, C> extends Visitable{
      * @return the target state
      */
      S fireEvent(S sourceState, E event, C ctx);
+
+     List<S> fireParallelEvent(S sourceState, E event, C ctx);
 
     /**
      * MachineId is the identifier for a State Machine
