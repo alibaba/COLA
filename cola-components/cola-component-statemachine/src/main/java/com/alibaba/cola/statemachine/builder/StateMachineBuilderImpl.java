@@ -3,6 +3,7 @@ package com.alibaba.cola.statemachine.builder;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.alibaba.cola.statemachine.CurrentStateFetcher;
 import com.alibaba.cola.statemachine.State;
 import com.alibaba.cola.statemachine.StateMachine;
 import com.alibaba.cola.statemachine.StateMachineFactory;
@@ -23,6 +24,7 @@ public class StateMachineBuilderImpl<S, E, C> implements StateMachineBuilder<S, 
     private final Map<S, State<S, E, C>> stateMap = new ConcurrentHashMap<>();
     private final StateMachineImpl<S, E, C> stateMachine = new StateMachineImpl<>(stateMap);
     private FailCallback<S, E, C> failCallback = new NumbFailCallback<>();
+    private CurrentStateFetcher<S, C> currentStateFetcher;
 
     @Override
     public ExternalTransitionBuilder<S, E, C> externalTransition() {
@@ -50,10 +52,16 @@ public class StateMachineBuilderImpl<S, E, C> implements StateMachineBuilder<S, 
     }
 
     @Override
+    public void setCurrentStateFetcher(CurrentStateFetcher<S, C> fetcher) {
+        this.currentStateFetcher = fetcher;
+    }
+
+    @Override
     public StateMachine<S, E, C> build(String machineId) {
         stateMachine.setMachineId(machineId);
         stateMachine.setReady(true);
         stateMachine.setFailCallback(failCallback);
+        stateMachine.setCurrentStateFetcher(currentStateFetcher);
         StateMachineFactory.register(stateMachine);
         return stateMachine;
     }
