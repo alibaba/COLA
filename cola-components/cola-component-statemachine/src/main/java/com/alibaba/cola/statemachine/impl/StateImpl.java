@@ -7,6 +7,7 @@ import com.alibaba.cola.statemachine.Visitor;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * StateImpl
@@ -50,6 +51,18 @@ public class StateImpl<S,E,C> implements State<S,E,C> {
     @Override
     public List<Transition<S, E, C>> getEventTransitions(E event) {
         return eventTransitions.get(event);
+    }
+
+    @Override
+    public List<Transition<S, E, C>> getEventTransitions(E event, TransitionType transitionType) {
+        List<Transition<S, E, C>> transitionList = this.getEventTransitions(event);
+        if (transitionList == null || transitionList.isEmpty()) {
+            Debugger.debug("There is no Transition for " + event);
+            return new ArrayList<>();
+        }
+        return transitionList.stream()
+                .filter(transition-> transition.getType().equals(transitionType))
+                .collect(Collectors.toList());
     }
 
     @Override
