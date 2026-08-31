@@ -23,7 +23,7 @@ public class ExtensionRepository {
         return extensionRepo;
     }
 
-    private Map<ExtensionCoordinate, ExtensionPointI> extensionRepo = new HashMap<>();
+    private Map<ExtensionCoordinate, ExtensionPointI> extensionRepo = new ConcurrentHashMap<>();
 
 
 }
