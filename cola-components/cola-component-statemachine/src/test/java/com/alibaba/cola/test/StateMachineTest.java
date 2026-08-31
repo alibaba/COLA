@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.UUID;
 import java.util.List;
 
 /**
@@ -54,7 +55,8 @@ public class StateMachineTest {
             .when(checkCondition())
             .perform(doAction());
 
-        StateMachine<States, Events, Context> stateMachine = builder.build(MACHINE_ID);
+        String uniqueId = MACHINE_ID + UUID.randomUUID().toString();
+        StateMachine<States, Events, Context> stateMachine = builder.build(uniqueId);
         States target = stateMachine.fireEvent(States.STATE1, Events.EVENT1, new Context());
         Assertions.assertEquals(States.STATE2, target);
     }
@@ -70,8 +72,8 @@ public class StateMachineTest {
             .perform(doAction());
 
         builder.setFailCallback(new AlertFailCallback<>());
-
-        StateMachine<States, Events, Context> stateMachine = builder.build(MACHINE_ID + "-testFail");
+        String uniqueId = MACHINE_ID + "-testFail" + UUID.randomUUID().toString();
+        StateMachine<States, Events, Context> stateMachine = builder.build(uniqueId);
         Assertions.assertThrows(TransitionFailException.class,
             () -> stateMachine.fireEvent(States.STATE2, Events.EVENT1, new Context()));
     }
@@ -86,7 +88,8 @@ public class StateMachineTest {
             .when(checkCondition())
             .perform(doAction());
 
-        StateMachine<States, Events, Context> stateMachine = builder.build(MACHINE_ID + "-testVerify");
+        String uniqueId = MACHINE_ID + "-testVerify" + UUID.randomUUID().toString();
+        StateMachine<States, Events, Context> stateMachine = builder.build(uniqueId);
 
         Assertions.assertTrue(stateMachine.verify(States.STATE1, Events.EVENT1));
         Assertions.assertFalse(stateMachine.verify(States.STATE1, Events.EVENT2));
@@ -102,7 +105,8 @@ public class StateMachineTest {
             .when(checkCondition())
             .perform(doAction());
 
-        StateMachine<States, Events, Context> stateMachine = builder.build(MACHINE_ID + "1");
+        String uniqueId = MACHINE_ID + "1" + UUID.randomUUID().toString();
+        StateMachine<States, Events, Context> stateMachine = builder.build(uniqueId);
         States target = stateMachine.fireEvent(States.STATE2, Events.EVENT1, new Context());
         Assertions.assertEquals(States.STATE4, target);
     }
@@ -115,7 +119,8 @@ public class StateMachineTest {
             .on(Events.INTERNAL_EVENT)
             .when(checkCondition())
             .perform(doAction());
-        StateMachine<States, Events, Context> stateMachine = builder.build(MACHINE_ID + "2");
+        String uniqueId = MACHINE_ID + "2" + UUID.randomUUID().toString();
+        StateMachine<States, Events, Context> stateMachine = builder.build(uniqueId);
 
         stateMachine.fireEvent(States.STATE1, Events.EVENT1, new Context());
         States target = stateMachine.fireEvent(States.STATE1, Events.INTERNAL_EVENT, new Context());
@@ -124,7 +129,8 @@ public class StateMachineTest {
 
     @Test
     public void testExternalInternalNormal() {
-        StateMachine<States, Events, Context> stateMachine = buildStateMachine("testExternalInternalNormal");
+        String uniqueId = "testExternalInternalNormal" + UUID.randomUUID().toString();
+        StateMachine<States, Events, Context> stateMachine = buildStateMachine(uniqueId);
 
         Context context = new Context();
         States target = stateMachine.fireEvent(States.STATE1, Events.EVENT1, context);
@@ -182,7 +188,8 @@ public class StateMachineTest {
 
     @Test
     public void testMultiThread() {
-        buildStateMachine("testMultiThread");
+        String uniqueId = "testMultiThread" + UUID.randomUUID().toString();
+        buildStateMachine(uniqueId);
 
         for (int i = 0; i < 10; i++) {
             Thread thread = new Thread(() -> {
@@ -227,7 +234,8 @@ public class StateMachineTest {
                 .on(StateMachineTest.Events.EVENT2)
                 .when(checkCondition())
                 .perform(doAction());
-        StateMachine<States, Events, Context> stateMachine = builder.build("ParallelMachine");
+        String uniqueId = "ParallelMachine" + UUID.randomUUID().toString();
+        StateMachine<States, Events, Context> stateMachine = builder.build(uniqueId);
         System.out.println(stateMachine.generatePlantUML());
         List<States> states = stateMachine.fireParallelEvent(StateMachineTest.States.STATE1, StateMachineTest.Events.EVENT1, new Context());
         for (StateMachineTest.States state : states) {
