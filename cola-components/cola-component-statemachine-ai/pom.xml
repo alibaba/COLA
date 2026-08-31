@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.alibaba.cola</groupId>
+        <artifactId>cola-components-parent</artifactId>
+        <version>5.x-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cola-component-statemachine-ai</artifactId>
+    <packaging>jar</packaging>
+    <name>${project.artifactId}</name>
+    <description>AI Agent ReAct State Machine — COLA 状态机的 AI Agent 编排扩展，基于 Java 25</description>
+    <url>https://github.com/alibaba/COLA</url>
+
+    <licenses>
+        <license>
+            <name>GNU Lesser General Public License v2.1</name>
+            <url>https://github.com/alibaba/COLA/blob/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:https://github.com/alibaba/COLA.git</connection>
+        <developerConnection>scm:git:https://github.com/alibaba/COLA.git</developerConnection>
+        <url>https://github.com/alibaba/COLA</url>
+    </scm>
+
+    <properties>
+        <!-- 该模块独立使用 Java 25，不影响其他模块 -->
+        <java.version>25</java.version>
+        <maven.compiler.release>25</maven.compiler.release>
+    </properties>
+
+    <dependencies>
+        <!-- 只依赖原版状态机，不入侵其内部 -->
+        <dependency>
+            <groupId>com.alibaba.cola</groupId>
+            <artifactId>cola-component-statemachine</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- 测试 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.26.3</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- JSON 解析，用于调用真实 OpenAI 兼容 API -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <release>25</release>
+                    <!-- enable-preview for ScopedValue (JEP 506) and Structured Concurrency (JEP 505) -->
+                    <compilerArgs>
+                        <arg>--enable-preview</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>--enable-preview</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
