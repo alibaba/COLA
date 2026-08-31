@@ -9,7 +9,7 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest ]
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
         java: [ 17 ]
       fail-fast: false
       max-parallel: 64
