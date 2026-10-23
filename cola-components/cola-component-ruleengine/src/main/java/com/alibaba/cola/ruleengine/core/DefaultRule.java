@@ -43,13 +43,13 @@ public class DefaultRule extends AbstractRule {
 
     public DefaultRule(Condition condition, List<Action> actions){
         this.condition = condition;
-        this.actions = actions;
+        this.actions = new ArrayList<>(actions);
     }
 
     public DefaultRule(String name, String description, int priority, Condition condition, List<Action> actions) {
         super(name, description, priority);
         this.condition = condition;
-        this.actions = actions;
+        this.actions = new ArrayList<>(actions);
     }
 
     @Override

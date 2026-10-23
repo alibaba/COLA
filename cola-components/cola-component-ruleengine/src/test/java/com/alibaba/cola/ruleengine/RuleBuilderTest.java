@@ -6,7 +6,29 @@ import com.alibaba.cola.ruleengine.api.RuleEngine;
 import com.alibaba.cola.ruleengine.core.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class RuleBuilderTest {
+
+    @Test
+    public void builtRulesDoNotShareBuilderActions() {
+        AtomicInteger executions = new AtomicInteger();
+        RuleBuilder builder = new RuleBuilder()
+                .when(facts -> true)
+                .then(facts -> executions.incrementAndGet());
+
+        Rule first = builder.build();
+        builder.then(facts -> executions.addAndGet(10));
+        Rule second = builder.build();
+
+        first.apply(new Facts());
+        assertEquals(1, executions.get());
+
+        second.apply(new Facts());
+        assertEquals(12, executions.get());
+    }
 
     @Test
     public void testFizzBuzz() {
