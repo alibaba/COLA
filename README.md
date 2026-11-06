@@ -95,7 +95,7 @@ mvn archetype:generate \
 
 命令执行成功的话，会看到如下的应用代码结构：
 
-<a href="#dummy"><img src="https://img-blog.csdnimg.cn/20201209192258840.png" alt="demo struture" /></a>
+<a href="#dummy"><img src="https://img-blog.csdnimg.cn/20201209192258840.png" alt="demo structure" /></a>
 
 ## 2. 运行应用
 
